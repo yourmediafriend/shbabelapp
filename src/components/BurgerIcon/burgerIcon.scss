@@ -1,0 +1,73 @@
+$burgerColor: #fff;
+$burgerWidth: 22px;
+$burgerHeight: 18px;
+
+$burgerLayerHeight: 3px;
+$burgerLayerRadius: $burgerLayerHeight;
+$burgerLayerDivide: 4px;
+
+$burgerInnerHeight: (($burgerLayerHeight + $burgerLayerDivide) * 2) + $burgerLayerHeight;
+
+$spinLocationA: $burgerLayerHeight + $burgerLayerDivide;
+$spinLocationB: ($spinLocationA * -2);
+
+@mixin burgerMenu {
+    position: absolute;
+    width: $burgerWidth;
+    height: $burgerLayerHeight;
+    border-radius: $burgerLayerRadius;
+    background-color: $burgerColor;
+}
+
+.hamburgerBox {
+    position: relative;
+    display: inline-block;
+    width: $burgerWidth;
+    height: $burgerInnerHeight;
+    top: ($burgerHeight - $burgerInnerHeight) / 2;
+}
+.hamburgerInner {
+
+    @include burgerMenu;
+
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(.68,-.55,.265,1.55);
+    transition-duration: .275s;
+
+
+    &:before,
+    &:after {
+        @include burgerMenu;
+        display: block;
+        content: "";
+    }
+    &:before {
+        transition: opacity .125s ease .275s;
+        top: ($burgerLayerDivide + $burgerLayerHeight);
+    }
+    &:after {
+        top: ($burgerLayerDivide + $burgerLayerHeight)  * 2;
+        transition: transform .275s cubic-bezier(.68,-.55,.265,1.55);
+    }
+}
+
+.hamburgerBox {
+    &.active {
+        .hamburgerInner,
+        .hamburgerInner:before,
+        .hamburgerInner:after {
+        }
+        .hamburgerInner {
+            transition-delay: 75ms;
+            transform: translate3d(0, $spinLocationA ,0) rotate(135deg);
+            &:before {
+                transition-delay: 0s;
+                opacity: 0;
+            }
+            &:after {
+                transition-delay: 75ms;
+                transform: translate3d(0,$spinLocationB,0) rotate(-270deg);
+            }
+        }
+    }
+}

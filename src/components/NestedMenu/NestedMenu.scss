@@ -1,0 +1,30 @@
+$ink-color: #ccc;
+
+:global(.nav) {
+    border-bottom: 0;
+}
+
+:global(.nav-item) {
+
+}
+
+:global(.nav-link) {
+    border-top: 0;
+    font-size: 1em;
+    line-height: 1em;
+    padding: 0.7rem 1rem;
+
+    &:hover {
+        background-color: #363636;
+        border-color: transparent;
+        transition: all .25s ease;
+    }
+}
+:global(.dropdown-menu) {
+    position: static;
+    border: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+}
