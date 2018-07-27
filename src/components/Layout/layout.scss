@@ -1,0 +1,22 @@
+.base {
+    width: 100%;
+    .inner {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 1200px;
+        display: flex;
+        .main {
+            padding: 0 15px;
+            flex: 1;
+        }
+    }
+}
+.sideleft,
+.sideright{
+    display: none;
+    @include media-breakpoint-up(sm) {
+        display: inherit;
+        padding: 0 15px;
+        flex: 0 0 300px;
+    }
+}

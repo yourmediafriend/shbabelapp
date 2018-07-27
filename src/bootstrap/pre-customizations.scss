@@ -1,19 +1,30 @@
 // Customize Bootstrap variables that get imported before the original Bootstrap variables.
 // Thus original Bootstrap variables can depend on values from here.
+
+//
+// Grid containers
+//
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1200px
+) !default;
+
+//
+// Colors
+//
 $brand-primary: #5cb85c;
 
-$font-family-sans-serif: 'OpenSans', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
-
 //
-// Headings
-//
-$headings-font-family: 'Montserrat', 'OpenSans-Semibold', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
-$headings-font-weight: 400;
-
+// Fonts
 // This path is relative to this file!
+
 $fonts-url-path: '../fonts';
 
-// Body Font
+//
+// Body
+//
 
 @font-face {
     font-family: 'OpenSans';
@@ -32,7 +43,11 @@ $fonts-url-path: '../fonts';
     src: url('#{$fonts-url-path}/open-sans/OpenSans-Semibold.ttf') format('truetype');
 }
 
-// Header Font
+$font-family-sans-serif: 'OpenSans-Light', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+//
+// Headings
+//
 
 @font-face {
     font-family: 'Montserrat';
@@ -48,6 +63,10 @@ $fonts-url-path: '../fonts';
     font-family: 'Montserrat-Bold';
     src: url('#{$fonts-url-path}/montserrat/Montserrat-Bold.otf') format('truetype');
 }
+
+$headings-font-family: 'Montserrat', 'OpenSans-Semibold', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headings-font-weight: 400;
+
 
 
 // If you're using a custom icon font path, specify it as follows

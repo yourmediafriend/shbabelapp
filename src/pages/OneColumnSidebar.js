@@ -174,7 +174,7 @@ const MainContent = props => {
   return (
     <div style={{...styles.container.scroll, ...props.style   }}>
       <SearchModal />
-      <StickyHeader style={{width: '100%'}}/>
+{/*      <StickyHeader style={{width: '100%'}}/>*/}
       {props.children}
     </div>
   )
