@@ -2,15 +2,53 @@
 // Thus original Bootstrap variables can depend on values from here.
 $brand-primary: #5cb85c;
 
-$font-family-sans-serif: 'OpenSans-Light', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-sans-serif: 'OpenSans', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+//
+// Headings
+//
+$headings-font-family: 'Montserrat', 'OpenSans-Semibold', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headings-font-weight: 400;
 
 // This path is relative to this file!
 $fonts-url-path: '../fonts';
 
+// Body Font
+
 @font-face {
-  font-family: 'OpenSans-Light';
-  src: url('#{$fonts-url-path}/OpenSans-Light.ttf') format('truetype');
+    font-family: 'OpenSans';
+    src: url('#{$fonts-url-path}/open-sans/OpenSans-Regular.ttf') format('truetype');
 }
+@font-face {
+    font-family: 'OpenSans-Light';
+    src: url('#{$fonts-url-path}/open-sans/OpenSans-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'OpenSans-Bold';
+    src: url('#{$fonts-url-path}/open-sans/OpenSans-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'OpenSans-Semibold';
+    src: url('#{$fonts-url-path}/open-sans/OpenSans-Semibold.ttf') format('truetype');
+}
+
+// Header Font
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('#{$fonts-url-path}/montserrat/Montserrat-Regular.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Medium';
+    src: url('#{$fonts-url-path}/montserrat/Montserrat-Medium.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Bold';
+    src: url('#{$fonts-url-path}/montserrat/Montserrat-Bold.otf') format('truetype');
+}
+
 
 // If you're using a custom icon font path, specify it as follows
 // $icon-font-path: ../fonts // This path is relative to this file
