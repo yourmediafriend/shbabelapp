@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
-import styles from './pages.scss';
-
-
-
 import { mediaMatch } from '../utils/mediaQueries';
 
 import { bindActionCreators } from 'redux';
@@ -61,11 +56,11 @@ import {
   offCanvasMenuToggleAnimation
 } from '../modules/OffCanvasMenu';
 
-import styleJs from './pagesStyles.js';
+import styles from './pagesStyles.js';
 
 
 const openMenunClass = function (isMenuOpen) {
-  return isMenuOpen ? styleJs.open : '';
+  return isMenuOpen ? styles.open : '';
 };
 
 export const mapStateToProps = (state) => {
@@ -177,9 +172,9 @@ const renderContentSwitch = (currentpage) => {
 
 const MainContent = props => {
   return (
-    <div className={styles.scroll} style={{...props.style}}>
+    <div style={{...styles.container.scroll, ...props.style   }}>
       <SearchModal />
-      <StickyHeader style={{width: '100%'}}/>
+{/*      <StickyHeader style={{width: '100%'}}/>*/}
       {props.children}
     </div>
   )
@@ -301,17 +296,17 @@ class Home extends Component {
           };
 
           return (
-            <div className={styles.outer} style={styleJs.container.outer}>
-              <div className={styles.menu} style={{...myStyles(state).menu}}>
+            <div style={styles.container.outer}>
+              <div style={{...styles.menu, ...myStyles(state).menu}}>
                 <div>
                   <SidebarMenu/>
                 </div>
               </div>
               <MenuTrigger/>
-              <div className={styles.inner} style={{...myStyles(state).containerInner}}>
+              <div style={{...styles.container.inner, ...myStyles(state).containerInner}}>
                 {renderContentSwitch(this.props.currentpage)}
               </div>
-              <div className={styles.fixed} style={{...myStyles(state).containerFixed}}/>
+              <div style={{...styles.container.fixed, ...myStyles(state).containerFixed}}/>
               <Modal/>
             </div>
           );

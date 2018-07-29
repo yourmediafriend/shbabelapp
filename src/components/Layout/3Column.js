@@ -4,7 +4,6 @@ import cx from 'classnames';
 import { Container, Row, Col } from 'reactstrap';
 
 import styles from './layout.scss';
-import stylesJs from './layoutStyles';
 
 
 const Layout = (props) => {
@@ -26,20 +25,3 @@ const Layout = (props) => {
 };
 
 export default Layout;
-
-
-{/*
-<div className={cx(styles.base)} >
-  <div className={cx(styles.inner)} style={{...props.styles}}>
-    <div className={cx(styles.sideleft)} >
-      {props.contentColumnLeft}
-    </div>
-    <div className={cx(styles.main)} >
-      {props.contentMain}
-    </div>
-    <div className={cx(styles.sideright)} >
-      {props.contentColumnRight}
-    </div>
-  </div>
-</div>
-*/}

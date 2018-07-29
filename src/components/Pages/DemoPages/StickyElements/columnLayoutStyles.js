@@ -13,7 +13,7 @@ export default {
       display: 'flex'
     },
     sideleft: {
-      padding: '40px 15px',
+      padding: '40px 0',
       flex: '0 0 300px',
  /*     position: 'relative'*/
     },
@@ -21,18 +21,6 @@ export default {
       padding: '40px 15px',
       flex: '1'
     }
-  },
-  sideleft: {
-    panel: {
-      border: '1px solid rgb(222, 222, 222)',
-      width: '100%',
-      height: '300px',
-      padding: '20px',
-      marginBottom: '20px',
-      borderRadius: '5px',
-      backgroundColor: '#fff',
-    }
-
   }
 
 };

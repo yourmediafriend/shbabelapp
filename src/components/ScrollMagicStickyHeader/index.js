@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+
+
+
+
+
 import styles from './stickyHeaderStyles';
 import Animate from 'react-move/Animate';
 import { easeExp, easeExpInOut, easePolyOut, easeQuad, easeCubicInOut, easeCircleOut } from 'd3-ease';
 import Radium from "radium";
 import scrollMagicEnhanced from "./scrollMagicEnhanced";
 import MegaMenu from '../MegaMenu';
-
 import IconNav from '../IconNav';
 
 
@@ -65,9 +69,7 @@ class StickyHeader extends Component {
               <div className="padding" style={{paddingTop: compStyles(state).header.height}} />
               <div style={{...styles.header.base, ...style, ...compStyles(state).header}}>
                 <MegaMenu />
-                <div style={{float: 'right', height: '100%', display: 'flex', marginLeft: 'auto'}}>
-                  <IconNav />
-                </div>
+                <IconNav />
               </div>
             </div>
          );

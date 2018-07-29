@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import cx from 'classnames';
+import { Container, Row, Col } from 'reactstrap';
+
 import styles from './layout.scss';
-import stylesJs from './layoutStyles';
+
 
 const Layout = (props) => {
   return (
-    <div className={cx(styles.base)} >
-      <div className={cx(styles.inner)} style={{...props.styles}}>
-        <div className={cx(styles.main)} >
+    <Container>
+      <Row>
+        <Col>
           {props.contentMain}
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   )
 };
 

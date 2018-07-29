@@ -1,12 +1,18 @@
-import styles from './columnLayoutStyles';
-import Radium from "radium";
+
 import PropTypes from "prop-types";
 
 import { TwoColumnLeft }  from '../../../Layout';
 import React, { Component } from 'react';
 
+import cx from 'classnames';
+import styles from './stickyElements.scss';
+
+
 import DummyText from '../../../DummyText/DummyTextLong'
 import StickyPanel from './StickyPanel';
+
+import stylesJS from './columnLayoutStyles';
+
 
 import HeroBanner from '../../../HeroBanner';
 
@@ -30,8 +36,8 @@ const imagesHero = {
 
 
 let Sidebar = props => (
-  <div style={styles.container.sideleft}>
-    <div style={styles.sideleft.panel} >
+  <div>
+    <div className={cx(styles.panel)} >
       Promo Panel
     </div>
     <StickyPanel />
@@ -44,7 +50,7 @@ class ColumnLayout extends Component {
     return (
       <div>
         <HeroBanner image={imagesHero}  />
-        <TwoColumnLeft contentMain={<div style={styles.container.main}><DummyText /></div>}  contentColumnLeft={<Sidebar />}  />
+        <TwoColumnLeft contentMain={<DummyText />}  contentColumnLeft={<Sidebar />}  style={{container:{paddingTop: '30px'}}}/>
       </div>
     )
   }

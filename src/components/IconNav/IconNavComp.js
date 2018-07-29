@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import ReactHoverObserver from '../ReactHoverObserver';
-import stylesJs from './iconNavStyles';
 import Icon from '../Icons';
 import cx from 'classnames';
 import AccountDropdown from './Dropdown/accountDropdown'
@@ -21,14 +20,19 @@ class AppProvider extends React.Component {
 }
 
 let Link = ({icon, text, style, clickEvent }) => {
-
   return (
     <AppContext.Consumer>
       {(context) => {
-        const compStyle = () => context.isHovering || context.isSearchModalOpen  ? stylesJs.nav.link.hover : '';
         return (
-          <a  className={cx(styles.navLink)}  style={{...compStyle()  }}      onClick={clickEvent}>
-            {icon ? <Icon icon={icon} color={style.color} size={style.size} /> : <div>{text}</div>}
+          <a  className={cx(styles.navLink)} onClick={clickEvent}>
+
+            <div style={{ width:'22px',height:'22px',display:'block', overflow:'hidden', backgroundColor: '#ff00ea' }}>
+
+
+              {icon ? <Icon icon={icon} color={style.color} size={style.size} /> : <div>{text}</div>}
+
+
+            </div>
           </a>
         )
       }}
@@ -41,9 +45,8 @@ let Dropdown = props => {
   return (
     <AppContext.Consumer>
       {(context) => {
-        const compStyle = () => context.isHovering ? {display: 'block'} : {display: 'none'};
         return (
-          <div className={cx(styles.dropdown)}   style={{...compStyle()}}   >
+          <div className={cx(styles.dropdown)}>
             {props.children}
           </div>
         )
