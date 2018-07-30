@@ -4,6 +4,8 @@ import Banner from '../../Banner';
 
 import { OneColumnCenter }  from '../../Layout';
 import GridParallax from '../../GridParallax'
+import styles from './gridpages.scss'
+import cx from 'classnames';
 
 import hero_480w from '../../../media/hero6/hero_480w.jpg';
 import hero_660w from '../../../media/hero6/hero_660w.jpg';
@@ -25,8 +27,12 @@ class GridPage extends Component {
   render() {
     return (
       <div>
-        <Banner image={imagesHero}  content={<PageTitle title={ 'Paralax Grid!' } layout={'center'} style={{}} />}/>
-        <OneColumnCenter  contentMain={<GridParallax />}/>
+        <div className={cx(styles.section, styles.banner)}>
+          <Banner image={imagesHero}  content={<PageTitle title={ 'Paralax Grid!' } layout={'center'} style={{}} />}/>
+        </div>
+        <div className={cx(styles.section)}>
+          <OneColumnCenter  contentMain={<GridParallax />}/>
+        </div>
       </div>
     )
   }

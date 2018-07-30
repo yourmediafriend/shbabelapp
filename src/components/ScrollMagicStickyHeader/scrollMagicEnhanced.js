@@ -74,7 +74,12 @@ function withSubscription(WrappedComponent, selectData) {
 
       let $el = ReactDOM.findDOMNode(this.myRef.current);
 
-      let $holder = S($el).queryAll.padding[0];
+
+     // let $holder = S($el).queryAll;
+
+    //  let $holder = S($el).queryAll.padding[0];
+
+
 
       this.controller = new ScrollMagic.Controller({
         container: options.container,
@@ -83,8 +88,8 @@ function withSubscription(WrappedComponent, selectData) {
       });
 
       this.scenes.push(new ScrollMagic.Scene({
-        offset: ($holder.clientHeight * 5)+'px',
-        triggerElement: $holder,
+        offset: ($el.clientHeight * 5)+'px',
+        triggerElement: $el,
         triggerHook: 0,
       })
       .on("enter", function (event) {

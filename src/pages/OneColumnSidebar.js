@@ -176,8 +176,6 @@ const renderContentSwitch = (currentpage) => {
 const MainContent = props => {
   return (
     <div className={styles.scroll} style={{...props.style}}>
-      <SearchModal />
-      <StickyHeader style={{width: '100%'}}/>
       {props.children}
     </div>
   )
@@ -288,7 +286,15 @@ class Home extends Component {
                 transform: `translate3d(${menu.transformX}px, 0, 0)`,
               },
               containerInner: {
-                transform: `translate3d(${containerInner.transformX}px, 0, 0)`,
+    /*
+                this is smoother but effects the positioning off fixed elements for the whole page
+                 transform: `translate3d(${containerInner.transformX}px, 0, 0)`,
+                  marginRight: `${containerInner.marginRight}px`
+                  maybe I could uses flex with a column that expands and pushes main content across
+                  */
+
+                marginLeft: `${containerInner.transformX}px`,
+                width:  `calc(100% - ${containerInner.transformX}px)`,
                 marginRight: `${containerInner.marginRight}px`
               },
               containerFixed: {
@@ -306,9 +312,17 @@ class Home extends Component {
                 </div>
               </div>
               <MenuTrigger/>
-              <div className={styles.inner} style={{...myStyles(state).containerInner}}>
+
+              <div className={cx(styles.stickyHeader)}>
+                <div style={{...myStyles(state).containerInner}}>
+                  <StickyHeader style={{width: '100%'}}/>
+                </div>
+              </div>
+
+              <div className={styles.inner} style={{...{marginTop:'80px'},...myStyles(state).containerInner}}>
                 {renderContentSwitch(this.props.currentpage)}
               </div>
+
               <div className={styles.fixed} style={{...myStyles(state).containerFixed}}/>
               <Modal/>
             </div>

@@ -18,7 +18,7 @@ export default {
       display: 'block',
       top: '0',
       left: '0',
-      zIndex: '30',
+      zIndex: '255',
       width: '54px',
     },
     iconWrap: {
