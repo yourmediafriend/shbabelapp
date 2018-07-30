@@ -6,7 +6,7 @@ import ParallaxContent from './ParallaxContent';
 import { TweenMax, Linear } from 'gsap';
 
 import ScrollMagic from 'scrollmagic-with-ssr';
-//import 'AnimationGsap';
+import 'AnimationGsap';
 //import 'debug.addIndicators';
 
 var globalOptions = {

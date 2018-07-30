@@ -6,16 +6,6 @@ import iconNavComponent from './IconNavComp';
 
 import { modalOpen } from "../../modules/Modal";
 
-// Trigger multiple actions
-// this doesn't work
-const modalToggle = () => {
-  // console.log('modalToggle', searchModalToggle);
-  // have to dispatch the action from mapDispatchToProps
-  // return (dispatch) => {
-  //   dispatch(searchModalToggle());
-  // };
-}
-
 const mapStateToProps = state => {
   return {
     isSearchModalOpen: get('searchModal.searchIsOpen', state),

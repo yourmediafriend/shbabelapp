@@ -6,7 +6,7 @@ import S from 'camel-case-selector';
 import PropTypes from 'prop-types';
 
 import ScrollMagic from 'scrollmagic-with-ssr';
-//import 'AnimationGsap';
+import 'AnimationGsap';
 //import 'debug.addIndicators';
 
 import { getOr } from 'lodash/fp';

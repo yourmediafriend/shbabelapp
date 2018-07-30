@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
-
-import styles from './layoutStyles';
-import Radium from "radium";
 import PropTypes from "prop-types";
+import cx from 'classnames';
+import { Container, Row, Col } from 'reactstrap';
+
+import styles from './layout.scss';
+
 
 const Layout = (props) => {
   return (
-    <div style={styles.container.base}>
-      <div style={styles.container.inner}>
-        <div style={styles.container.sideleft}>
+    <Container>
+      <Row>
+        <Col xs="3">
           {props.contentColumnLeft}
-        </div>
-        <div style={styles.container.main}>
+        </Col>
+        <Col xs="6">
           {props.contentMain}
-        </div>
-        <div style={styles.container.sideright}>
+        </Col>
+        <Col xs="3">
           {props.contentColumnRight}
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   )
 };
 
-export default Radium(Layout);
+export default Layout;

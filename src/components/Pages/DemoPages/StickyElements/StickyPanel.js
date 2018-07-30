@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import styles from './columnLayoutStyles';
 import scrollMagicEnhanced from "./scrollMagicEnhanced";
+import cx from 'classnames';
+import styles from './stickyElements.scss';
 
 class StickyPanel extends Component {
 
@@ -21,11 +22,11 @@ class StickyPanel extends Component {
 
     return (
       <div>
-        <div style={{...compStyles(this.state)}}  >
-          <div style={{...styles.sideleft.panel}} >
+        <div style={{...compStyles(this.state)}}>
+          <div className={cx(styles.panel, styles.stickyPanel)}>
             Sticky Panel
           </div>
-          <div style={{...styles.sideleft.panel}} >
+          <div className={cx(styles.panel, styles.stickyPanel)}>
             Sticky Panel
           </div>
         </div>

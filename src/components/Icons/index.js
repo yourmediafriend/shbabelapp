@@ -35,9 +35,8 @@ const Icon = props => {
       width={`${props.size}px`}
       height={`${props.size}px`}
       viewBox="0 0 1024 1024"
-      style={styles.svg}
     >
-      { getIcon(iconJson, icon).map((child, index) => <path
+      {getIcon(iconJson, icon).map((child, index) => <path
           key={index}
           style={styles.path}
           d={ child }
