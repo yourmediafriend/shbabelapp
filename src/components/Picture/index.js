@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
+import styles from './picture.scss';
+
 
 export function getSizes(images) {
   return Object.keys(images).map(s => parseInt(s, 10)).sort((a, b) => b - a);
@@ -34,7 +37,7 @@ export default function Picture({
                                   images = {},
                                   style,
                                   renderImage,
-                                  imageStyles,
+                                  imageClass
                                 }) {
 
   const { smallestImageSrc , sources } = getPictureSettings(images);
@@ -44,14 +47,16 @@ export default function Picture({
     style,
   };
 
+  const classes = {heroImg: styles.heroImg}
+
   const img = renderImage ? renderImage({
     alt,
     src: smallestImageSrc,
   }) : (
     <img
+      className={cx(styles.img, classes[imageClass])}
       src={smallestImageSrc}
       alt={alt}
-      style={{width:'100%', height: 'auto', ...imageStyles}}
     />
   );
 

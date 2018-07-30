@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './pages.scss';
 
-
-
 import { mediaMatch } from '../utils/mediaQueries';
 
 import { bindActionCreators } from 'redux';

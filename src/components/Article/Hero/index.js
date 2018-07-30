@@ -10,7 +10,6 @@ import hero_980w from '../../../media/hero6/hero_980w.jpg';
 import hero_1320w from '../../../media/hero6/hero_1320w.jpg';
 import hero_1900w from '../../../media/hero6/hero_1900w.jpg';
 
-
 const imagesHero = {
   0: hero_480w,
   480: hero_660w,

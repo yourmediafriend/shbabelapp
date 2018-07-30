@@ -1,18 +1,19 @@
 import React from 'react'
-import Radium, { Style } from 'radium';
-import styles from './heroBannerStyles'
 import Picture from '../Picture';
+import cx from 'classnames';
+import styles from './heroBanner.scss';
 
 const HeroBanner = (props) => {
   return (
-    <div style={styles.hero.base}>
-      <div style={styles.hero.inner}>
-        <Picture images={props.image} imageStyles={styles.hero.img}   />
-        <div style={styles.hero.overlay} />
-        <div style={{...styles.hero.content, ...styles.hero.content.bottom }}>{props.content}</div>
+    <div className={cx(styles.heroBanner)}>
+      <div className={cx(styles.inner)}>
+        <Picture images={props.image} imageClass={'heroImg'}/>
+        <div className={cx(styles.overlay)}>
+          <div className={cx(styles.content, styles.bottom)}>{props.content}</div>
+        </div>
       </div>
     </div>
   )
 }
 
-export default Radium(HeroBanner);
+export default HeroBanner;
