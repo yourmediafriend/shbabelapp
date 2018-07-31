@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import stylesJs from './stickyHeaderStyles';
+import styles from './stickyHeaderStyles';
 import Animate from 'react-move/Animate';
 import { easeExp, easeExpInOut, easePolyOut, easeQuad, easeCubicInOut, easeCircleOut } from 'd3-ease';
-
+import Radium from "radium";
 import scrollMagicEnhanced from "./scrollMagicEnhanced";
 import MegaMenu from '../MegaMenu';
 import IconNav from '../IconNav';
-
-
-import styles from './stickyHeader.scss';
-import cx from "classnames";
 
 
 class StickyHeader extends Component {
@@ -27,13 +23,12 @@ class StickyHeader extends Component {
   render() {
     const { style } = this.props;
 
-    let baseHeight = parseInt(stylesJs.header.base.height, 10);
-    let compactHeight = parseInt(stylesJs.header.compact.height, 10);
+    let baseHeight = parseInt(styles.header.base.height, 10);
+    let compactHeight = parseInt(styles.header.compact.height, 10);
 
     return (
       <Animate
         start={() => ({
-          styles,
           header: {
             height: baseHeight,
           },
@@ -55,21 +50,24 @@ class StickyHeader extends Component {
       >
         {(state) => {
 
-          const compStyles = (state) => {
+         const compStyles = (state) => {
             const { header } = state;
             return {
               header: {
                 height: `${header.height}px`,
               },
             }
-          };
+         };
 
-          return (
-            <div className={cx(state.styles.stickyHeader, state.styles.base, state.styles.isSticky)} style={{...compStyles(state).header}}>
-              <MegaMenu />
-              <IconNav />
+         return (
+            <div >
+              <div className="padding" style={{paddingTop: compStyles(state).header.height}} />
+              <div style={{...styles.header.base, ...style, ...compStyles(state).header}}>
+                <MegaMenu />
+                <IconNav />
+              </div>
             </div>
-          );
+         );
         }}
       </Animate>
     )

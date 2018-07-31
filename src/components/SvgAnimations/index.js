@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 
-import styleJs from './svgAnimationStyles';
-import style from './compStyles.scss';
+import styles from './svgShapes.scss';
+import cx from 'classnames';
 
 import Background from '../Background';
 import VideoBackground from '../Background/video';
@@ -22,26 +22,26 @@ const SvgShape = (props) => {
 
   switch(props.shape) {
     case 'circle':
-      return ( <div style={styleJs.slide}>
+      return ( <div className={cx(styles.slide)} >
         <VideoBackground bgSrc={bgSrc} />
-        <Background className={style.contentContainer} bgSrc={BackgroundImageUrlA}  />
+        <Background className={styles.contentContainer} bgSrc={BackgroundImageUrlA}  />
         <Circle />
       </div>);
     case 'square':
-      return (<div style={styleJs.slide}>
+      return (<div className={cx(styles.slide)} >
         <Background  bgSrc={BackgroundImageUrlB} />
         <Square />
       </div>);
     case 'triangle':
       return (
-        <div style={styleJs.slide}>
+        <div className={cx(styles.slide)} >
           <Background bgSrc={BackgroundImageUrlC} />
           <Triangle />
         </div>
       );
     case 'hypno':
       return (
-      <div style={styleJs.slide}>
+      <div className={cx(styles.slide)} >
         <Background bgSrc={BackgroundImageUrlC} />
         <Hypno />
       </div>
@@ -49,13 +49,13 @@ const SvgShape = (props) => {
     default:
       return (
         <div>
-          <div style={styleJs.slide}>
+          <div className={cx(styles.slide)} >
             <Triangle />
           </div>
-          <div style={styleJs.slide}>
+          <div className={cx(styles.slide)} >
             <Square />
           </div>
-          <div style={styleJs.slide}>
+          <div className={cx(styles.slide)} >
             <Circle />
           </div>
         </div>
@@ -65,7 +65,7 @@ const SvgShape = (props) => {
 
 const SvgAnimation = (props) => {
   return (
-    <div className={styleJs.svgContainer}>
+    <div className={styles.svgContainer}>
       {SvgShape(props)}
     </div>
   )

@@ -3,6 +3,10 @@
 export default {
 
   parallax: {
+    scrollableContainer: {
+      position: 'relative',
+      zIndex: 1,
+    },
     parallaxContentHolder: {
       position: 'relative',
       perspective: '1000px',

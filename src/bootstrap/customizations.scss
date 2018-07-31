@@ -8,4 +8,10 @@
 $btn-primary-bg: adjust-hue(theme-color("primary"), +20deg);
 
 // NOTE: $gray-300 is defined in _variables.scss
-$body-bg: $gray-300;
+$body-bg: #ffffff  ;
+
+body {
+    overflow-x: hidden;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+}

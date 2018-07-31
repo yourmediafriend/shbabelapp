@@ -1,0 +1,11 @@
+.parallaxContentHolder {
+    position: relative;
+    perspective: 1000px;
+    display: block;
+    z-index: -1;
+}
+.parallaxContent {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    display: block;
+}
