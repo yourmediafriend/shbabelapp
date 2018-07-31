@@ -1,8 +1,6 @@
 .outer {
     position: relative;
 }
-
-
 .mainContainer {
     box-sizing: border-box;
     flex: 1;
@@ -12,7 +10,7 @@
         display: flex;
         flex-direction: column;
         box-shadow: 0 3px 28px #0c0c0c6e;
-        margin-bottom: 200px;
+        margin-bottom: 500px; // to make up for footer
         padding-bottom: 40px;
     }
 }
@@ -20,7 +18,6 @@
 .headerContainer {
     position: fixed;
     -webkit-transform: translateZ(0);
-    -webkit-overflow-scrolling: auto;
     z-index: 250;
     top: 0;
     left: 0;
@@ -42,10 +39,6 @@
     max-width: 1200px;
     margin: 0 auto;
 }
-
-
-
-
 .fixed {
     position: fixed;
     width: calc(100vw - 54px);

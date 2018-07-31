@@ -1,13 +1,14 @@
 .footer {
     width: 100%;
+    padding: 20px;
     &.reveal {
         border-top: 0;
         background-color: #b3b3b3;
-        height: 200px;
+        padding-bottom: 74px;
+
     }
     &.fixed {
-        height: 54px;
-        background-color: #dcdcdc;
-        box-shadow: 0 -2px 1px 0px #7b7b7b26;
+        background-color: #F1F2F2;
+        border-top: 1px solid #cecece;
     }
 }

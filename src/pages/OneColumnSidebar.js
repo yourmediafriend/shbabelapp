@@ -348,7 +348,7 @@ class Home extends Component {
               <div className={styles.mainContainer}>
                 <div className={styles.menuFlexWrap}>
                   <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}}   />
-                  <div className={styles.mainFlex} style={{...state.props.fullscreen ? '' : {marginTop:'80px', marginBotom:'80px'}}}>
+                  <div className={styles.mainFlex} style={{...state.props.fullscreen ? '' : {marginTop:'80px'}}}>
                     {renderContentSwitch(this.props.currentpage)}
                   </div>
                 </div>
