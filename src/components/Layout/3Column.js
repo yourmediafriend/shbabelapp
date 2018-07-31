@@ -10,13 +10,13 @@ const Layout = (props) => {
   return (
     <Container>
       <Row>
-        <Col xs="3">
+        <Col sm={12} md={3}>
           {props.contentColumnLeft}
         </Col>
-        <Col xs="6">
+        <Col sm={12} md={6}>
           {props.contentMain}
         </Col>
-        <Col xs="3">
+        <Col sm={12} md={3}>
           {props.contentColumnRight}
         </Col>
       </Row>

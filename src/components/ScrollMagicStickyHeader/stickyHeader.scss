@@ -7,15 +7,10 @@
         color: #ffffff;
     }
     &.isSticky {
-        z-index: 250;
-        position: fixed;
-        top: 0;
-        -webkit-transform: translateZ(0);
-        -webkit-overflow-scrolling: auto;
+        position: relative;
     }
     &.compact {
         height: 54px;
-        background: #ff00ea;
     }
 
     &.padding {

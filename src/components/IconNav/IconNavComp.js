@@ -25,13 +25,8 @@ let Link = ({icon, text, style, clickEvent }) => {
       {(context) => {
         return (
           <a  className={cx(styles.navLink)} onClick={clickEvent}>
-
-            <div style={{ width:'22px',height:'22px',display:'block', overflow:'hidden', backgroundColor: '#ff00ea' }}>
-
-
+            <div style={{ width:'22px',height:'22px',display:'block', overflow:'hidden'}}>
               {icon ? <Icon icon={icon} color={style.color} size={style.size} /> : <div>{text}</div>}
-
-
             </div>
           </a>
         )

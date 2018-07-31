@@ -238,10 +238,32 @@ class Home extends Component {
       }
   };
 
-  headerMenu = () => {
+  myStyles = (state) => {
+    const {menu, containerInner, containerFixed} = state;
+    return {
+      menu: {
+        transform: `translate3d(${menu.transformX}px, 0, 0)`,
+      },
+      containerInner: {
+        width: `${containerInner.marginRight}px`
+      },
+      containerFixed: {
+        left: `${containerFixed.left}px`,
+        width: `calc(100vw - ${containerFixed.left}px)`,
+      }
+    }
+  };
+
+
+  headerMenu = (state) => {
     return (
       <div className={cx(styles.stickyHeader)}>
-        <StickyHeader style={{width: '100%'}}/>
+        <div className={styles.menuFlexWrap}>
+          <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}} />
+          <div className={styles.inner} >
+            <StickyHeader />
+          </div>
+        </div>
       </div>
     );
   };
@@ -288,47 +310,25 @@ class Home extends Component {
       >
         {(state) => {
 
-          const myStyles = (state) => {
-            const {menu, containerInner, containerFixed} = state;
-            return {
-              menu: {
-                transform: `translate3d(${menu.transformX}px, 0, 0)`,
-              },
-              containerInner: {
-                /*
-                  this is smoother but effects the positioning off fixed elements for the whole page
-                  transform: `translate3d(${containerInner.transformX}px, 0, 0)`,
-                  marginRight: `${containerInner.marginRight}px`
-                  maybe I could uses flex with a column that expands and pushes main content across
-                */
-                marginLeft: `${containerInner.transformX}px`,
-                width:  `calc(100% - ${containerInner.transformX}px)`,
-                marginRight: `${containerInner.marginRight}px`
-              },
-              containerFixed: {
-                left: `${containerFixed.left}px`,
-                width: `calc(100vw - ${containerFixed.left}px)`,
-              }
-            }
-          };
-
           return (
             <div className={styles.outer} style={styleJs.container.outer}>
-              <div className={styles.menu} style={{...myStyles(state).menu}}>
+              <div className={styles.menu} style={{...this.myStyles(state).menu}}>
                 <div>
                   <SidebarMenu/>
                 </div>
               </div>
               <MenuTrigger/>
 
-
               { state.props.fullscreen ? '' :  this.headerMenu(state) }
 
-              <div className={styles.inner} style={{...state.props.fullscreen ? '' : {marginTop:'80px'},...myStyles(state).containerInner}}>
-                {renderContentSwitch(this.props.currentpage)}
+              <div className={styles.menuFlexWrap}>
+                <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}}   />
+                <div className={styles.inner} style={{...state.props.fullscreen ? '' : {marginTop:'80px'}}}>
+                  {renderContentSwitch(this.props.currentpage)}
+                </div>
               </div>
 
-              <div className={styles.fixed} style={{...myStyles(state).containerFixed}}/>
+              <div className={styles.fixed} style={{...this.myStyles(state).containerFixed}}/>
               <Modal/>
             </div>
           );
