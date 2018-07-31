@@ -1,6 +1,7 @@
 .grid {
     display: flex;
     flex-wrap :wrap;
+    margin: 0 -12px;
 }
 .item {
     width: 100%;
@@ -8,14 +9,19 @@
     @include media-breakpoint-up(sm) {
         width: 50%;
     }
+    @include media-breakpoint-up(md) {
+        width: 33.3333%;
+    }
 }
 .inner {
     background: #fff;
     height: 300px;
     transition: all 0.3s ease;
     &:hover {
-        transform: translateZ(0) scale(1.05);
-        box-shadow: 0px 5px 10px 0px #1d1d1d;
+        @include media-breakpoint-up(md) {
+            transform: translateZ(0) scale(1.05);
+            box-shadow: 0 5px 10px 0 #1d1d1d;
+        }
     }
 }
 .imageWrapper {

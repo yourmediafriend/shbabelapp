@@ -9,7 +9,7 @@ const baner = (props) => {
 
   const classes = {bottom: styles.bottom, center: styles.center}
   return(
-    <div className={cx(styles.textOverMedia)} style={{height:'50vh', marginBottom:'30px'}}>
+    <div className={cx(styles.clipBanner)}>
 
       <div className={cx(styles.textOverMediaInnerText, classes['center'])}>
         <div className={cx(styles.textInner)}>
