@@ -1,12 +1,23 @@
 .outer {
     position: relative;
 }
-.inner {
-    background-color: #3c3c3c;
+
+
+.mainContainer {
     box-sizing: border-box;
     flex: 1;
+    position: relative;
+    z-index: 10;
+    .content {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 3px 28px #0c0c0c6e;
+        margin-bottom: 200px;
+        padding-bottom: 40px;
+    }
 }
-.stickyHeader {
+
+.headerContainer {
     position: fixed;
     -webkit-transform: translateZ(0);
     -webkit-overflow-scrolling: auto;
@@ -15,27 +26,26 @@
     left: 0;
     right: 0;
 }
+
 .menuFlexWrap {
     display: flex;
     .menuFlex{
         width: 54px;
         transform: translate(0);
     }
+    .mainFlex {
+        flex: 1;
+    }
 }
-.main {
-    position: relative;
-    z-index: 100;
-    background-color: #3c3c3c;
-    box-shadow: 0 3px 28px #0c0c0c6e;
-}
+
 .center {
     max-width: 1200px;
     margin: 0 auto;
 }
-.scroll {
-    display: flex;
-    flex-direction: column;
-}
+
+
+
+
 .fixed {
     position: fixed;
     width: calc(100vw - 54px);
@@ -55,4 +65,30 @@
     overflow: auto;
     z-index: 255;
     border-left: 1px solid #2B2B2B;
+}
+.footerContainer {
+
+    &.isReveal {
+        position: fixed;
+        -webkit-transform: translateZ(0);
+        -webkit-overflow-scrolling: auto;
+        z-index: -1;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+    }
+
+    &.isFixed {
+        position: fixed;
+        -webkit-transform: translateZ(0);
+        -webkit-overflow-scrolling: auto;
+        z-index: 60;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
 }

@@ -74,23 +74,28 @@ class ScrollMagicEnhanced extends Component {
 
     let options = this.getOptions();
 
+  //  console.log('PB Container',options.container);
+
+
     this.controller = new ScrollMagic.Controller({
       container: options.container,
 /*     loglevel: 2,
       addIndicators: true*/
     });
 
-
     let $holders = S(this.refs.parallax).queryAll.parallaxContentHolder;
 
     let $firstHolder = $holders[0];
     let $firstContent = $firstHolder.query.parallaxContent;
 
+
+   // console.log('PB $firstHolder',$firstHolder);
+
+
     // console.log('container', options.container);
     // console.log('controller', this.controller);
     // console.log($firstHolder);
     // console.log($firstContent);
-
 
     //first exit scene
     let firstExitTween = this.firstSceneExit($firstContent, options);
@@ -152,7 +157,7 @@ class ScrollMagicEnhanced extends Component {
   firstSceneExit($firstContent, options){
    // console.log('firstSceneExit', $firstContent.clientHeight * options.power + 'px');
     //$firstContent.clientHeight * options.power + 'px'
-    let tranformSize = 150;
+    let tranformSize = 100;
     return TweenMax.fromTo($firstContent, tranformSize, {y: '0px'}, {y: tranformSize + 'px', z: '-0.01px', force3D: true, ease: Linear.easeNone})
   }
 

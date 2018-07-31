@@ -2,15 +2,16 @@
 
     position: relative;
     overflow: hidden;
-    height: 20vh;
+    height: 25vh;
+    margin-bottom: 15px;
 
     @include media-breakpoint-up(md) {
         height: 35vh;
-        margin-bottom:30px;
+        margin-bottom:20px;
     }
 
     @include media-breakpoint-up(lg) {
-        height: 50vh;
+        height: 45vh;
         margin-bottom:30px;
     }
 }

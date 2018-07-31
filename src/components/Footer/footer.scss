@@ -1,0 +1,13 @@
+.footer {
+    width: 100%;
+    &.reveal {
+        border-top: 0;
+        background-color: #b3b3b3;
+        height: 200px;
+    }
+    &.fixed {
+        height: 54px;
+        background-color: #dcdcdc;
+        box-shadow: 0 -2px 1px 0px #7b7b7b26;
+    }
+}
