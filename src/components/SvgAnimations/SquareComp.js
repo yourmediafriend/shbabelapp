@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-
 import SVG from 'svgjs';
 import { TweenMax, Linear } from 'gsap';
-import style from './svgAnimationStyles';
+import styles from './svgShapes.scss';
+import cx from 'classnames';
 
 class Triangle extends React.Component {
 
@@ -33,10 +33,10 @@ class Triangle extends React.Component {
     // CLIP - The same as Mask but doesn't allow lines or opacity levels
     this.clip = this.group.clip();
 
-    var line = this.draw.path('M 0,50 300,47.5 300,52.5 z').fill('transparent');
-    var yt;
+    let line = this.draw.path('M 0,50 300,47.5 300,52.5 z').fill('transparent');
+    let yt;
 
-    for (var i = 0; i < 200; i++) {
+    for (let i = 0; i < 200; i++) {
       yt = 25 * i;
       this.clip.add(line.clone().move(0, yt).fill('#000'));
     }
@@ -45,7 +45,7 @@ class Triangle extends React.Component {
     this.groupC = this.group.clone();
     this.groupD = this.group.clone();
 
-    var rect = this.group.rect(200,200).fill('rgba(244, 29, 210, 0.7)');
+    let rect = this.group.rect(200,200).fill('rgba(244, 29, 210, 0.7)');
     rect.clipWith(this.clip);
     TweenMax.to(this.group.node, 4, {rotation:'360_cw', transformOrigin:"55% 55%", repeat:-1, ease: Linear.easeNone });
 
@@ -61,11 +61,8 @@ class Triangle extends React.Component {
   }
 
   render() {
-
-    console.log(this.myRef);
-
     return (
-      <div ref={this.myRef}  style={style.svgOuter} />
+      <div ref={this.myRef} className={cx(styles.svgOuter, styles.square)}  />
     );
   }
 

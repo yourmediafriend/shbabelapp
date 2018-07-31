@@ -24,11 +24,11 @@ const SwitchRoute = () => (
     <Route exact path='/layouts/mixed' render={() => <OneColumnSidebar currentpage='mixedDemo' />} />
 
     {/*/SVG.js/*/}
-    <Route exact path='/svgs/square' render={ (routeProps) => <OneColumnSidebar {...routeProps} currentpage='square' />} />
-    <Route exact path='/svgs/circle' render={(routeProps) => <OneColumnSidebar {...routeProps}  currentpage='circle' />} />
-    <Route exact path='/svgs/triangle' render={(routeProps) => <OneColumnSidebar currentpage='triangle' />} />
-    <Route exact path='/svgs/hypno' render={(routeProps) => <OneColumnSidebar currentpage='hypno' />} />
-    <Route exact path='/svgs/patterns' render={() => <OneColumnSidebar currentpage='svgPattern' />} />
+    <Route exact path='/svgs/square' render={ (routeProps) => <OneColumnSidebar {...routeProps} currentpage='square' fullscreen={true} />} />
+    <Route exact path='/svgs/circle' render={(routeProps) => <OneColumnSidebar {...routeProps}  currentpage='circle' fullscreen={true} />} />
+    <Route exact path='/svgs/triangle' render={(routeProps) => <OneColumnSidebar currentpage='triangle' fullscreen={true}/>} />
+    <Route exact path='/svgs/hypno' render={(routeProps) => <OneColumnSidebar currentpage='hypno' fullscreen={true}/>} />
+    <Route exact path='/svgs/patterns' render={() => <OneColumnSidebar currentpage='svgPattern' fullscreen={true}/>} />
 
     {/*/ScrollMagic/*/}
     <Route exact path='/mscroll/parallax' render={() => <OneColumnSidebar currentpage='parallax' />} />

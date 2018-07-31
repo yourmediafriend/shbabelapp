@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import SVG from 'svgjs';
 import { TweenMax, Linear } from 'gsap';
-import style from './svgAnimationStyles';
+
+import styles from './svgShapes.scss';
+import cx from 'classnames';
 
 class Hypno extends React.Component {
 
@@ -81,30 +83,15 @@ class Hypno extends React.Component {
       }
 
     });
-
-  /*  this.draw.on('animatePlay', function() {
-      if (el.fx.pause){
-        console.log('animatePlay');
-        el.play();
-      }
-    }).on('animatePause', function() {
-      if (el.fx.active){
-        console.log('animatePause');
-        el.pause();
-      }
-    });*/
-
   };
 
 
   render() {
     return (
-      <div ref={this.myRef} style={{...style.svgOuter, ...style.svgHypno}} />
+      <div ref={this.myRef} className={cx(styles.svgOuter, styles.hypno)}  />
     );
   }
-
 }
-
 
 export default Hypno
 

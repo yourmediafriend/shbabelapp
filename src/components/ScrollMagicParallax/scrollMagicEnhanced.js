@@ -9,7 +9,7 @@ import ScrollMagic from 'scrollmagic-with-ssr';
 import 'AnimationGsap';
 //import 'debug.addIndicators';
 
-var globalOptions = {
+let globalOptions = {
   offset: 0,
   power: 0.2,
   ease: Linear.easeNone,
@@ -19,7 +19,7 @@ var globalOptions = {
   defaultMobileWidth: 600
 };
 
-class Parallax extends Component {
+class ScrollMagicEnhanced extends Component {
 
   constructor(){
     super(...arguments)
@@ -30,20 +30,20 @@ class Parallax extends Component {
   }
 
   getOptions(){
-    var offset = this.props.offset || globalOptions.offset;
-    var power = this.props.power || globalOptions.power;
-    var easeExit, easeEnter;
-    var ease = this.props.ease || globalOptions.ease;
+    let offset = this.props.offset || globalOptions.offset;
+    let power = this.props.power || globalOptions.power;
+    let easeExit, easeEnter;
+    let ease = this.props.ease || globalOptions.ease;
     easeEnter = ease.enter === undefined ? ease : ease.enter;
     easeExit = ease.exit === undefined ? ease : ease.exit;
-    var container = this.props.container || globalOptions.container;
+    let container = this.props.container || globalOptions.container;
     return {offset, power, ease: {enter: easeExit, exit: easeExit}, container: container};
   }
 
   shouldEnable(){
-    var w = verge.viewportW();
-    var disable = this.props.disable !== undefined ? this.props.disable : globalOptions.disable;
-    var disableMobile = this.props.disableMobile !== undefined ? this.props.disableMobile : globalOptions.disableMobile;
+    let w = verge.viewportW();
+    let disable = this.props.disable !== undefined ? this.props.disable : globalOptions.disable;
+    let disableMobile = this.props.disableMobile !== undefined ? this.props.disableMobile : globalOptions.disableMobile;
     if(typeof disable === 'function'){
       return !disable();
     }else if(typeof disable === 'boolean' && disable){
@@ -72,30 +72,33 @@ class Parallax extends Component {
 
   createParallax(){
 
-    var options = this.getOptions();
+    let options = this.getOptions();
 
     this.controller = new ScrollMagic.Controller({
       container: options.container,
-/*      loglevel: 2,
+/*     loglevel: 2,
       addIndicators: true*/
     });
 
 
-    var $holders = S(this.refs.parallax).queryAll.parallaxContentHolder;
+    let $holders = S(this.refs.parallax).queryAll.parallaxContentHolder;
 
-    var $firstHolder = $holders[0];
-    var $firstContent = $firstHolder.query.parallaxContent;
+    let $firstHolder = $holders[0];
+    let $firstContent = $firstHolder.query.parallaxContent;
 
-    console.log('container', options.container);
-    console.log('controller', this.controller);
-    console.log($firstHolder);
-    console.log($firstContent);
+    // console.log('container', options.container);
+    // console.log('controller', this.controller);
+    // console.log($firstHolder);
+    // console.log($firstContent);
 
 
     //first exit scene
-    var firstExitTween = this.firstSceneExit($firstContent, options);
+    let firstExitTween = this.firstSceneExit($firstContent, options);
 
     this.tweens.push(firstExitTween);
+
+    // debugger;
+    // console.log($firstHolder.clientHeight + options.offset + 'px');
 
     this.scenes.push(new ScrollMagic.Scene({
         offset: -options.offset + 'px',
@@ -108,9 +111,9 @@ class Parallax extends Component {
 
 
 /*    $holders.slice(1).forEach($holder => {
-      var $content = $holder.query.parallaxContent;
+      let $content = $holder.query.parallaxContent;
       //other enter scene
-      var enterTween = this.otherSceneEnter($content, options);
+      let enterTween = this.otherSceneEnter($content, options);
       this.tweens.push(enterTween);
       this.scenes.push(new ScrollMagic.Scene({
           offset: -options.offset + 'px',
@@ -122,7 +125,7 @@ class Parallax extends Component {
       );
 
       //other exit scene
-      var exitTween = this.otherSceneExit($content, options);
+      let exitTween = this.otherSceneExit($content, options);
       this.tweens.push(exitTween);
       this.scenes.push(new ScrollMagic.Scene({
           offset: -options.offset + 'px',
@@ -147,7 +150,10 @@ class Parallax extends Component {
   }
 
   firstSceneExit($firstContent, options){
-    return TweenMax.fromTo($firstContent, 1.0, {y: '0px'}, {y: $firstContent.clientHeight * options.power + 'px', z: '-0.01px', force3D: true, ease: options.easeExit})
+   // console.log('firstSceneExit', $firstContent.clientHeight * options.power + 'px');
+    //$firstContent.clientHeight * options.power + 'px'
+    let tranformSize = 150;
+    return TweenMax.fromTo($firstContent, tranformSize, {y: '0px'}, {y: tranformSize + 'px', z: '-0.01px', force3D: true, ease: Linear.easeNone})
   }
 
   otherSceneEnter($content, options){
@@ -171,23 +177,23 @@ class Parallax extends Component {
       return this.createParallax();
     }
 
-    var options = this.getOptions();
+    let options = this.getOptions();
 
-    var $holders = S(this.refs.parallax).queryAll.parallaxContentHolder;
+    let $holders = S(this.refs.parallax).queryAll.parallaxContentHolder;
 
-    var firstScene = this.scenes[0];
-    var firstTween = this.tweens[0];
-    var $firstHolder = $holders[0];
-    var otherScenes = this.scenes.slice(1);
-    var otherTweens = this.tweens.slice(1);
-    var $otherHolders = $holders.slice(1);
+    let firstScene = this.scenes[0];
+    let firstTween = this.tweens[0];
+    let $firstHolder = $holders[0];
+    let otherScenes = this.scenes.slice(1);
+    let otherTweens = this.tweens.slice(1);
+    let $otherHolders = $holders.slice(1);
 
     if(firstScene){
       firstScene.duration($firstHolder.clientHeight + options.offset + 'px');
       firstScene.setTween(this.firstSceneExit($firstHolder, options));
     }
     otherScenes.forEach((scene, index) => {
-      var holderIndex = parseInt(index / 2);
+      let holderIndex = parseInt(index / 2);
       scene.duration($otherHolders[holderIndex].clientHeight + options.offset + 'px');
     });
   }
@@ -203,14 +209,14 @@ class Parallax extends Component {
 
 }
 
-Parallax.setGlobalOptions = (options) => {
-  PropTypes.checkPropTypes(Object.assign(Parallax.propTypes, {
+ScrollMagicEnhanced.setGlobalOptions = (options) => {
+  PropTypes.checkPropTypes(Object.assign(ScrollMagicEnhanced.propTypes, {
     defaultMobileWidth: PropTypes.number
   }), options, 'prop', 'Parallax global settings');
   globalOptions = Object.assign(globalOptions, options);
 }
 
-Parallax.propTypes = {
+ScrollMagicEnhanced.propTypes = {
   offset: PropTypes.number,
   power: PropTypes.number,
   ease: PropTypes.oneOfType([
@@ -239,5 +245,5 @@ Parallax.propTypes = {
   container: PropTypes.string
 }
 
-export default Parallax;
+export default ScrollMagicEnhanced;
 export {ParallaxContent};

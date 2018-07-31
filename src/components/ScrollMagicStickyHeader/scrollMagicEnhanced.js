@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import ScrollMagic from 'scrollmagic-with-ssr';
 import 'AnimationGsap';
-//import 'debug.addIndicators';
+import 'debug.addIndicators';
 
 import { getOr } from 'lodash/fp';
 
@@ -73,13 +73,6 @@ function withSubscription(WrappedComponent, selectData) {
       let options = this.getOptions();
 
       let $el = ReactDOM.findDOMNode(this.myRef.current);
-
-
-     // let $holder = S($el).queryAll;
-
-    //  let $holder = S($el).queryAll.padding[0];
-
-
 
       this.controller = new ScrollMagic.Controller({
         container: options.container,

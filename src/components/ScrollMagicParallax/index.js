@@ -3,18 +3,31 @@ import PropTypes from 'prop-types';
 
 import {Power2} from 'gsap';
 import ParallaxContent from './ParallaxContent';
-import Parallax from './Parallax';
+import ScrollMagicEnhanced from './scrollMagicEnhanced';
 
 import HeroBanner from '../HeroBanner';
 import DummyText from '../DummyText';
 
 import styles from './parallaxStyles';
 
-class ParallaxTestComponent extends Component {
 
-  constructor(){
-    super(...arguments)
-  }
+import hero_480w from '../../media/hero6/hero_480w.jpg';
+import hero_660w from '../../media/hero6/hero_660w.jpg';
+import hero_960w from '../../media/hero6/hero_960w.jpg';
+import hero_980w from '../../media/hero6/hero_980w.jpg';
+import hero_1320w from '../../media/hero6/hero_1320w.jpg';
+import hero_1900w from '../../media/hero6/hero_1900w.jpg';
+
+const imagesHero = {
+  0: hero_480w,
+  480: hero_660w,
+  660: hero_960w,
+  740: hero_980w,
+  1140: hero_1320w,
+  1300: hero_1900w,
+};
+
+class ParallaxTestComponent extends Component {
 
   render(){
 
@@ -32,33 +45,35 @@ class ParallaxTestComponent extends Component {
       container: 'body'
     };
 
-
     return (
       <div className="scrollable-container" style={styles.parallax.scrollableContainer}>
-        <Parallax {...parallaxProps}>
+        <ScrollMagicEnhanced {...parallaxProps}>
           <ParallaxContent>
-            <HeroBanner />
+            <HeroBanner image={imagesHero}  />
           </ParallaxContent>
-        </Parallax>
-          <div style={{background:'white'}}>
-            <div style={{maxWidth:'1020px', margin: '0 auto', padding:'30px 50px'}}>
-              <DummyText />
-            </div>
+        </ScrollMagicEnhanced>
+        <div style={{background:'white' }}>
+          <div style={{maxWidth:'1020px', margin: '0 auto', padding:'30px 50px'}}>
+            <DummyText />
           </div>
-        <Parallax {...parallaxPropsB}>
+        </div>
+        <ScrollMagicEnhanced {...parallaxPropsB}>
           <ParallaxContent>
-            <HeroBanner />
+            <HeroBanner image={imagesHero}  />
           </ParallaxContent>
-        </Parallax>
-          <div style={{background:'white'}}>
-            <div style={{maxWidth:'1020px', margin: '0 auto', padding:'30px 50px'}}>
-              <DummyText />
-            </div>
+        </ScrollMagicEnhanced>
+        <div style={{background:'white'}}>
+          <div style={{maxWidth:'1020px', margin: '0 auto', padding:'30px 50px'}}>
+            <DummyText />
+            <DummyText />
+            <DummyText />
+            <DummyText />
+
           </div>
+        </div>
       </div>
     )
   }
-
 }
 
 ParallaxTestComponent.propTypes = {

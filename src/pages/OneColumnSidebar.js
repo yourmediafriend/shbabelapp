@@ -238,6 +238,14 @@ class Home extends Component {
       }
   };
 
+  headerMenu = () => {
+    return (
+      <div className={cx(styles.stickyHeader)}>
+        <StickyHeader style={{width: '100%'}}/>
+      </div>
+    );
+  };
+
   render() {
 
     let props = this.props;
@@ -246,6 +254,7 @@ class Home extends Component {
     return (
       <Animate
         start={() => ({
+          props,
           menu: {
             transformX: (this.state.triggerWidth - this.state.menuWidth) + 4,
           },
@@ -286,13 +295,12 @@ class Home extends Component {
                 transform: `translate3d(${menu.transformX}px, 0, 0)`,
               },
               containerInner: {
-    /*
-                this is smoother but effects the positioning off fixed elements for the whole page
-                 transform: `translate3d(${containerInner.transformX}px, 0, 0)`,
+                /*
+                  this is smoother but effects the positioning off fixed elements for the whole page
+                  transform: `translate3d(${containerInner.transformX}px, 0, 0)`,
                   marginRight: `${containerInner.marginRight}px`
                   maybe I could uses flex with a column that expands and pushes main content across
-                  */
-
+                */
                 marginLeft: `${containerInner.transformX}px`,
                 width:  `calc(100% - ${containerInner.transformX}px)`,
                 marginRight: `${containerInner.marginRight}px`
@@ -313,13 +321,10 @@ class Home extends Component {
               </div>
               <MenuTrigger/>
 
-              <div className={cx(styles.stickyHeader)}>
-                <div style={{...myStyles(state).containerInner}}>
-                  <StickyHeader style={{width: '100%'}}/>
-                </div>
-              </div>
 
-              <div className={styles.inner} style={{...{marginTop:'80px'},...myStyles(state).containerInner}}>
+              { state.props.fullscreen ? '' :  this.headerMenu(state) }
+
+              <div className={styles.inner} style={{...state.props.fullscreen ? '' : {marginTop:'80px'},...myStyles(state).containerInner}}>
                 {renderContentSwitch(this.props.currentpage)}
               </div>
 
