@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './footer.scss';
 import cx from 'classnames';
 import FooterMusicPlayer from './FooterMusicPlayer';
+import ReactDOM from "react-dom";
 
 
 class Footer extends Component {
@@ -13,7 +14,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <div className={cx(styles.footer, styles.fixed)}>
+      <div ref={this.myRef} className={cx(styles.footer, styles.fixed)}>
         <FooterMusicPlayer />
       </div>
     )
