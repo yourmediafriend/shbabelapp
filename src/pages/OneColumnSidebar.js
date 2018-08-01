@@ -88,8 +88,11 @@ class Home extends Component {
     this.setFixedFooterHeight();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const { height } =  this.getDimensions(ReactDOM.findDOMNode(this.fixedFooter.current));
+    if (prevState.fixedFooterHeight !==  height ) {
+      this.setState({fixedFooterHeight: height})
+    }
   }
 
   onResize = () => {
@@ -107,17 +110,15 @@ class Home extends Component {
     }
   };
 
-
   setFixedFooterHeight() {
     const { height } =  this.getDimensions(ReactDOM.findDOMNode(this.fixedFooter.current));
     this.setState({fixedFooterHeight: height });
   }
+
   getDimensions = (element) => {
     const { width, height } = element ? element.getBoundingClientRect() : {};
     return { width, height };
   };
-
-
 
 
   sidebarAction = (props, sidebarWidth) => {
@@ -171,8 +172,9 @@ class Home extends Component {
   };
 
 
-
   render() {
+
+
 
     let props = this.props;
     let sidebarWidth = this.state.triggerWidth + this.state.menuWidth;
@@ -213,6 +215,7 @@ class Home extends Component {
         })}
       >
         {(state) => {
+
 
           return (
             <div className={styles.outer} style={styleJs.container.outer}>
