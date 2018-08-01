@@ -71,8 +71,9 @@ function withSubscription(WrappedComponent, selectData) {
     createScene() {
 
       let options = this.getOptions();
-
       let $el = ReactDOM.findDOMNode(this.myRef.current);
+
+      console.log('SH Container',options.container);
 
       this.controller = new ScrollMagic.Controller({
         container: options.container,
@@ -82,7 +83,6 @@ function withSubscription(WrappedComponent, selectData) {
 
       this.scenes.push(new ScrollMagic.Scene({
         offset: ($el.clientHeight * 5)+'px',
-        triggerElement: $el,
         triggerHook: 0,
       })
       .on("enter", function (event) {

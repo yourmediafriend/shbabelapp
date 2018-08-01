@@ -1,0 +1,14 @@
+.footer {
+    width: 100%;
+    padding: 20px;
+    &.reveal {
+        border-top: 0;
+        background-color: #b3b3b3;
+        padding-bottom: 74px;
+
+    }
+    &.fixed {
+        background-color: #F1F2F2;
+        border-top: 1px solid #cecece;
+    }
+}

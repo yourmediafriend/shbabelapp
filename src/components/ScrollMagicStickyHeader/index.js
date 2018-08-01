@@ -76,4 +76,5 @@ class StickyHeader extends Component {
   }
 }
 
+//export default StickyHeader;
 export default scrollMagicEnhanced(StickyHeader);
