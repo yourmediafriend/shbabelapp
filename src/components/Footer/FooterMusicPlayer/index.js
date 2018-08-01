@@ -2,7 +2,12 @@ import React, { Component } from 'react'
 
 import OneColumnCenter from '../../Layout/1ColumnCenter';
 import styles from './footerMusicPlayer.scss';
+import Icon from '../../Icons';
+
 import cx from 'classnames';
+
+import InputRange from 'react-input-range';
+import './inputRange.css';
 
 import { findDOMNode } from 'react-dom'
 import { hot } from 'react-hot-loader'
@@ -22,7 +27,8 @@ class MusicPlayer extends Component {
     loaded: 0,
     duration: 0,
     playbackRate: 1.0,
-    loop: false
+    loop: false,
+    showRemaining: false,
   }
 
 
@@ -35,7 +41,6 @@ class MusicPlayer extends Component {
     })
   }
 
-
   playPause = () => {
     this.setState({ playing: !this.state.playing })
   }
@@ -45,12 +50,19 @@ class MusicPlayer extends Component {
   toggleLoop = () => {
     this.setState({ loop: !this.state.loop })
   }
-  setVolume = e => {
-    this.setState({ volume: parseFloat(e.target.value) })
+
+  setVolume = value => {
+    this.setState({ volume: parseFloat(value/100) })
   }
+
   toggleMuted = () => {
     this.setState({ muted: !this.state.muted })
   }
+
+  toggleShowRemaining = () => {
+    this.setState({ showRemaining: !this.state.showRemaining })
+  }
+
   setPlaybackRate = e => {
     this.setState({ playbackRate: parseFloat(e.target.value) })
   }
@@ -62,16 +74,19 @@ class MusicPlayer extends Component {
     console.log('onPause')
     this.setState({ playing: false })
   }
-  onSeekMouseDown = e => {
+
+  onSeekMouseDown = value => {
     this.setState({ seeking: true })
   }
-  onSeekChange = e => {
-    this.setState({ played: parseFloat(e.target.value) })
+  onSeekChange = value => {
+    this.setState({ played: parseFloat(value/100)})
   }
-  onSeekMouseUp = e => {
+  onSeekMouseUp = value => {
     this.setState({ seeking: false })
-    this.player.seekTo(parseFloat(e.target.value))
+    this.player.seekTo(parseFloat(value/100))
   }
+
+
   onProgress = state => {
     console.log('onProgress', state)
     // We only want to update time slider if we are not currently seeking
@@ -87,11 +102,6 @@ class MusicPlayer extends Component {
     console.log('onDuration', duration)
     this.setState({ duration })
   }
-
-
-
-
-
   renderLoadButton = (url, label) => {
     return (
       <button onClick={() => this.load(url)}>
@@ -100,97 +110,78 @@ class MusicPlayer extends Component {
     )
   }
 
-
-
-
   ref = player => {
     this.player = player
   }
   render () {
-    const { url, playing, volume, muted, loop, played, loaded, duration, playbackRate } = this.state
-    const SEPARATOR = ' · '
+    const { url, playing, volume, muted, loop, played, playedSeconds, loaded, duration, playbackRate, showRemaining } = this.state
 
     return (
       <div className={cx(styles.app)}>
 
-            <ReactPlayer
-              ref={this.ref}
-              className='react-player'
-              width='0'
-              height='0'
-              url={url}
-              playing={playing}
-              loop={loop}
-              playbackRate={playbackRate}
-              volume={volume}
-              muted={muted}
-              onReady={() => console.log('onReady')}
-              onStart={() => console.log('onStart')}
-              onPlay={this.onPlay}
-              onPause={this.onPause}
-              onBuffer={() => console.log('onBuffer')}
-              onSeek={e => console.log('onSeek', e)}
-              onEnded={this.onEnded}
-              onError={e => console.log('onError', e)}
-              onProgress={this.onProgress}
-              onDuration={this.onDuration}
-            />
+        <ReactPlayer
+          ref={this.ref}
+          className='react-player'
+          width='0'
+          height='0'
+          url={url}
+          playing={playing}
+          loop={loop}
+          playbackRate={playbackRate}
+          volume={volume}
+          muted={muted}
+          onReady={() => console.log('onReady')}
+          onStart={() => console.log('onStart')}
+          onPlay={this.onPlay}
+          onPause={this.onPause}
+          onBuffer={() => console.log('onBuffer')}
+          onSeek={e => console.log('onSeek', e)}
+          onEnded={this.onEnded}
+          onError={e => console.log('onError', e)}
+          onProgress={this.onProgress}
+          onDuration={this.onDuration}
+        />
 
-        <div className={cx(styles.controls)}>
-          <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
-          <span>
-            <label htmlFor='loop'>Loop
-            <input id='loop' type='checkbox' checked={loop} onChange={this.toggleLoop} />
-            </label>
-          </span>
+        <div className={cx(styles.section, styles.controls)}>
+          <button className={cx(styles.button)} onClick={this.playPause}>{playing ? <Icon icon={'pause'} color={'#000'} size={22} /> : <Icon icon={'play'} color={'#000'} size={22} />}</button>
+          <button className={cx(styles.button)} onClick={this.toggleLoop}><Icon icon={'loop'} color={loop ? '#ff00ea' : '#000'} size={22} /></button>
         </div>
 
-
-
-        <div className={cx(styles.timeline)}>
-
+        <div className={cx(styles.section, styles.timeline)}>
           <div className={cx(styles.elapsed)}>
             <Duration seconds={duration * played} />
           </div>
 
           <div className={cx(styles.timelineWrap)}>
-            <div className={cx(styles.barWrap, styles.range )}>
-              <input
-                className={cx(styles.bar)}
-                type='range' min={0} max={1} step='any'
-                value={played}
-                onMouseDown={this.onSeekMouseDown}
-                onChange={this.onSeekChange}
-                onMouseUp={this.onSeekMouseUp}
+              <InputRange
+                maxValue={100}
+                minValue={0}
+                value={ played * 100 }
+                onChangeStart={value => this.onSeekMouseDown(value)}
+                onChange={value => this.onSeekChange(value)}
+                onChangeComplete={value => this.onSeekMouseUp(value)}
               />
-            </div>
-            <div className={cx(styles.barWrap, styles.played )}>
-              <progress className={cx(styles.bar)} max={1} value={played} />
-            </div>
-            <div className={cx(styles.barWrap, styles.loaded )}>
-              <progress className={cx(styles.bar)} max={1} value={loaded} />
-            </div>
           </div>
-
 
           <div className={cx(styles.duration)}>
-            <Duration seconds={duration} />
-            <br />
-            <Duration seconds={duration * (1 - played)} />
+            <div onClick={this.toggleShowRemaining}>{!(showRemaining) ?  <Duration seconds={duration} /> : <span>- <Duration seconds={duration * (1 - played)} /></span>}</div>
           </div>
 
         </div>
 
-        <div className={cx(styles.volume)}>
-          <label htmlFor='muted'>Muted
-          <input id='muted' type='checkbox' checked={muted} onChange={this.toggleMuted} />
-          </label>
+        <div className={cx(styles.section, styles.volume)}>
+          <button className={cx(styles.button)} onClick={this.toggleMuted}>{muted ? <Icon icon={'mute'} color={'#000'} size={22} /> : <Icon icon={'volume'} color={'#000'} size={22} />}</button>
           <div className={cx(styles.barWrap, styles.setVolume )}>
-            <input type='range' min={0} max={1} step='any' value={volume} onChange={this.setVolume} className={cx(styles.bar)} />
+            <InputRange
+              maxValue={100}
+              minValue={0}
+              value={ volume * 100 }
+              onChange={value => this.setVolume(value)}
+            />
           </div>
         </div>
 
-        <div className={cx(styles.select)}>
+        <div className={cx(styles.section, styles.select)}>
           {this.renderLoadButton(tune, 'mp3')}
         </div>
 

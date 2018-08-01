@@ -1,15 +1,16 @@
 import React from 'react'
-import ReactStrapTest from '../components/ReactStrapTest';
+/*import ReactStrapTest from '../components/ReactStrapTest';*/
+import InputRange from '../components/inputRange';
 
-const Thunk = props => {
+const Page = props => {
 
   return (
     <div>
-      <ReactStrapTest />
+      <InputRange />
     </div>
   )
 
 };
 
-export default Thunk;
+export default Page;
 

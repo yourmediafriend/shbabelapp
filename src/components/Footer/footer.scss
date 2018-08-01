@@ -10,5 +10,11 @@
     &.fixed {
         background-color: #F1F2F2;
         border-top: 1px solid #cecece;
+        padding: 10px 0;
+
+        @include media-breakpoint-up(md) {
+            padding: 20px 0;
+        }
+
     }
 }
