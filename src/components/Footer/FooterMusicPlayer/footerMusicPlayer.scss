@@ -1,0 +1,90 @@
+.app {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .controls {
+        flex-basis: 10%;
+
+    }
+    .timeline {
+
+        display: flex;
+        order: 4;
+        flex-basis: 100%;
+
+        @include media-breakpoint-up(md) {
+            flex: 1;
+            order: inherit;
+        }
+
+        .timelineWrap {
+            position: relative;
+            flex: 1;
+        }
+    }
+}
+
+
+
+
+.barWrap {
+    .bar {
+        &:focus{
+            outline: none;
+        }
+    }
+}
+
+.timeline {
+    .barWrap{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .bar {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 2px;
+            background: transparent;
+            width: 100%;
+        }
+        &.loaded {
+            z-index: 1;
+            progress[value] {color: red} /* IE10 */
+            progress::-webkit-progress-bar-value {background: red}
+            progress::-webkit-progress-value {background: red}
+            progress::-moz-progress-bar {background: red}
+        }
+        &.played {
+            z-index: 2;
+            progress[value] {color: blue} /* IE10 */
+            progress::-webkit-progress-bar-value {background: blue}
+            progress::-webkit-progress-value {background: blue}
+            progress::-moz-progress-bar {background: blue}
+        }
+        &.range {
+            z-index: 3;
+            background: transparent;
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1d2e38', endColorstr='#2b4254',GradientType=1 );
+            outline: none;
+            .bar {
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+    }
+}
+.volume{
+    position: relative;
+    .barWrap {
+        position: absolute;
+        transform: translate3D(-100%, -100%, 0) rotate(-90deg);
+        top: -121%;
+        left: 150%;
+        transform-origin: 50%;
+    }
+
+}

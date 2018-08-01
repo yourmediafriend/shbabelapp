@@ -1,26 +1,21 @@
 import React, { Component } from 'react'
+
+import OneColumnCenter from '../../Layout/1ColumnCenter';
+import styles from './footerMusicPlayer.scss';
+import cx from 'classnames';
+
 import { findDOMNode } from 'react-dom'
 import { hot } from 'react-hot-loader'
 
-
-import './reset.css'
-import './defaults.css'
-import './range.css'
-import './App.css'
-
 import ReactPlayer from 'react-player';
 import Duration from './Duration';
+import tune from './media/tune.mp3'
 
-const MULTIPLE_SOURCES = [
-  { src: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4', type: 'video/mp4' },
-  { src: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv', type: 'video/ogv' },
-  { src: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.webm', type: 'video/webm' }
-]
 
 class MusicPlayer extends Component {
   state = {
     url: null,
-    playing: true,
+    playing: false,
     volume: 0.8,
     muted: false,
     played: 0,
@@ -29,13 +24,18 @@ class MusicPlayer extends Component {
     playbackRate: 1.0,
     loop: false
   }
+
+
   load = url => {
     this.setState({
       url,
       played: 0,
-      loaded: 0
+      loaded: 0,
+      playing: true,
     })
   }
+
+
   playPause = () => {
     this.setState({ playing: !this.state.playing })
   }
@@ -88,6 +88,10 @@ class MusicPlayer extends Component {
     this.setState({ duration })
   }
 
+
+
+
+
   renderLoadButton = (url, label) => {
     return (
       <button onClick={() => this.load(url)}>
@@ -95,6 +99,10 @@ class MusicPlayer extends Component {
       </button>
     )
   }
+
+
+
+
   ref = player => {
     this.player = player
   }
@@ -103,15 +111,13 @@ class MusicPlayer extends Component {
     const SEPARATOR = ' · '
 
     return (
-      <div className='app'>
-        <section className='section'>
-          <h1>ReactPlayer Demo</h1>
-          <div className='player-wrapper'>
+      <div className={cx(styles.app)}>
+
             <ReactPlayer
               ref={this.ref}
               className='react-player'
-              width='100%'
-              height='100%'
+              width='0'
+              height='0'
               url={url}
               playing={playing}
               loop={loop}
@@ -129,195 +135,65 @@ class MusicPlayer extends Component {
               onProgress={this.onProgress}
               onDuration={this.onDuration}
             />
+
+        <div className={cx(styles.controls)}>
+          <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
+          <span>
+            <label htmlFor='loop'>Loop
+            <input id='loop' type='checkbox' checked={loop} onChange={this.toggleLoop} />
+            </label>
+          </span>
+        </div>
+
+
+
+        <div className={cx(styles.timeline)}>
+
+          <div className={cx(styles.elapsed)}>
+            <Duration seconds={duration * played} />
           </div>
 
-          <table><tbody>
-          <tr>
-            <th>Controls</th>
-            <td>
-              <button onClick={this.stop}>Stop</button>
-              <button onClick={this.playPause}>{playing ? 'Pause' : 'Play'}</button>
-              <button onClick={this.setPlaybackRate} value={1}>1</button>
-              <button onClick={this.setPlaybackRate} value={1.5}>1.5</button>
-              <button onClick={this.setPlaybackRate} value={2}>2</button>
-            </td>
-          </tr>
-          <tr>
-            <th>Seek</th>
-            <td>
+          <div className={cx(styles.timelineWrap)}>
+            <div className={cx(styles.barWrap, styles.range )}>
               <input
+                className={cx(styles.bar)}
                 type='range' min={0} max={1} step='any'
                 value={played}
                 onMouseDown={this.onSeekMouseDown}
                 onChange={this.onSeekChange}
                 onMouseUp={this.onSeekMouseUp}
               />
-            </td>
-          </tr>
-          <tr>
-            <th>Volume</th>
-            <td>
-              <input type='range' min={0} max={1} step='any' value={volume} onChange={this.setVolume} />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <label htmlFor='muted'>Muted</label>
-            </th>
-            <td>
-              <input id='muted' type='checkbox' checked={muted} onChange={this.toggleMuted} />
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <label htmlFor='loop'>Loop</label>
-            </th>
-            <td>
-              <input id='loop' type='checkbox' checked={loop} onChange={this.toggleLoop} />
-            </td>
-          </tr>
-          <tr>
-            <th>Played</th>
-            <td><progress max={1} value={played} /></td>
-          </tr>
-          <tr>
-            <th>Loaded</th>
-            <td><progress max={1} value={loaded} /></td>
-          </tr>
-          </tbody></table>
-        </section>
-        <section className='section'>
-          <table><tbody>
-          <tr>
-            <th>YouTube</th>
-            <td>
-              {this.renderLoadButton('https://www.youtube.com/watch?v=oUFJJNQGwhk', 'Test A')}
-              {this.renderLoadButton('https://www.youtube.com/watch?v=jNgP6d9HraI', 'Test B')}
-            </td>
-          </tr>
-          <tr>
-            <th>SoundCloud</th>
-            <td>
-              {this.renderLoadButton('https://soundcloud.com/miami-nights-1984/accelerated', 'Test A')}
-              {this.renderLoadButton('https://soundcloud.com/tycho/tycho-awake', 'Test B')}
-            </td>
-          </tr>
-          <tr>
-            <th>Facebook</th>
-            <td>
-              {this.renderLoadButton('https://www.facebook.com/facebook/videos/10153231379946729/', 'Test A')}
-              {this.renderLoadButton('https://www.facebook.com/FacebookDevelopers/videos/10152454700553553/', 'Test B')}
-            </td>
-          </tr>
-          <tr>
-            <th>Vimeo</th>
-            <td>
-              {this.renderLoadButton('https://vimeo.com/90509568', 'Test A')}
-              {this.renderLoadButton('https://vimeo.com/169599296', 'Test B')}
-            </td>
-          </tr>
-          <tr>
-            <th>Twitch</th>
-            <td>
-              {this.renderLoadButton('https://www.twitch.tv/videos/106400740', 'Test A')}
-              {this.renderLoadButton('https://www.twitch.tv/videos/12783852', 'Test B')}
-              {this.renderLoadButton('https://www.twitch.tv/kronovi', 'Test C')}
-            </td>
-          </tr>
-          <tr>
-            <th>Streamable</th>
-            <td>
-              {this.renderLoadButton('https://streamable.com/moo', 'Test A')}
-              {this.renderLoadButton('https://streamable.com/ifjh', 'Test B')}
-            </td>
-          </tr>
-          <tr>
-            <th>Wistia</th>
-            <td>
-              {this.renderLoadButton('https://home.wistia.com/medias/e4a27b971d', 'Test A')}
-              {this.renderLoadButton('https://home.wistia.com/medias/29b0fbf547', 'Test B')}
-            </td>
-          </tr>
-          <tr>
-            <th>DailyMotion</th>
-            <td>
-              {this.renderLoadButton('https://www.dailymotion.com/video/x5e9eog', 'Test A')}
-              {this.renderLoadButton('https://www.dailymotion.com/video/x61xx3z', 'Test B')}
-            </td>
-          </tr>
-          <tr>
-            <th>Mixcloud</th>
-            <td>
-              {this.renderLoadButton('https://www.mixcloud.com/mixcloud/meet-the-curators/', 'Test A')}
-              {this.renderLoadButton('https://www.mixcloud.com/mixcloud/mixcloud-curates-4-mary-anne-hobbs-in-conversation-with-dan-deacon/', 'Test B')}
-            </td>
-          </tr>
-          <tr>
-            <th>Files</th>
-            <td>
-              {this.renderLoadButton('http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4', 'mp4')}
-              {this.renderLoadButton('http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv', 'ogv')}
-              {this.renderLoadButton('http://clips.vorwaerts-gmbh.de/big_buck_bunny.webm', 'webm')}
-              {this.renderLoadButton('https://storage.googleapis.com/media-session/elephants-dream/the-wires.mp3', 'mp3')}
-              {this.renderLoadButton(MULTIPLE_SOURCES, 'Multiple')}
-              {this.renderLoadButton('https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8', 'HLS (m3u8)')}
-              {this.renderLoadButton('http://dash.edgesuite.net/envivio/EnvivioDash3/manifest.mpd', 'DASH (mpd)')}
-            </td>
-          </tr>
-          <tr>
-            <th>Custom URL</th>
-            <td>
-              <input ref={input => { this.urlInput = input }} type='text' placeholder='Enter URL' />
-              <button onClick={() => this.setState({ url: this.urlInput.value })}>Load</button>
-            </td>
-          </tr>
-          </tbody></table>
+            </div>
+            <div className={cx(styles.barWrap, styles.played )}>
+              <progress className={cx(styles.bar)} max={1} value={played} />
+            </div>
+            <div className={cx(styles.barWrap, styles.loaded )}>
+              <progress className={cx(styles.bar)} max={1} value={loaded} />
+            </div>
+          </div>
 
-          <h2>State</h2>
 
-          <table><tbody>
-          <tr>
-            <th>url</th>
-            <td className={!url ? 'faded' : ''}>
-              {(url instanceof Array ? 'Multiple' : url) || 'null'}
-            </td>
-          </tr>
-          <tr>
-            <th>playing</th>
-            <td>{playing ? 'true' : 'false'}</td>
-          </tr>
-          <tr>
-            <th>volume</th>
-            <td>{volume.toFixed(3)}</td>
-          </tr>
-          <tr>
-            <th>played</th>
-            <td>{played.toFixed(3)}</td>
-          </tr>
-          <tr>
-            <th>loaded</th>
-            <td>{loaded.toFixed(3)}</td>
-          </tr>
-          <tr>
-            <th>duration</th>
-            <td><Duration seconds={duration} /></td>
-          </tr>
-          <tr>
-            <th>elapsed</th>
-            <td><Duration seconds={duration * played} /></td>
-          </tr>
-          <tr>
-            <th>remaining</th>
-            <td><Duration seconds={duration * (1 - played)} /></td>
-          </tr>
-          </tbody></table>
-        </section>
-        <footer className='footer'>
-          {SEPARATOR}
-          <a href='https://github.com/CookPete/react-player'>GitHub</a>
-          {SEPARATOR}
-          <a href='https://www.npmjs.com/package/react-player'>npm</a>
-        </footer>
+          <div className={cx(styles.duration)}>
+            <Duration seconds={duration} />
+            <br />
+            <Duration seconds={duration * (1 - played)} />
+          </div>
+
+        </div>
+
+        <div className={cx(styles.volume)}>
+          <label htmlFor='muted'>Muted
+          <input id='muted' type='checkbox' checked={muted} onChange={this.toggleMuted} />
+          </label>
+          <div className={cx(styles.barWrap, styles.setVolume )}>
+            <input type='range' min={0} max={1} step='any' value={volume} onChange={this.setVolume} className={cx(styles.bar)} />
+          </div>
+        </div>
+
+        <div className={cx(styles.select)}>
+          {this.renderLoadButton(tune, 'mp3')}
+        </div>
+
       </div>
     )
   }
@@ -330,9 +206,7 @@ class MusicPlayer extends Component {
 
 const FooterMusicPlayer = props => {
   return (
-    <div>
-      <MusicPlayer />
-    </div>
+    <OneColumnCenter contentMain={ <MusicPlayer />} />
   )
 }
 
