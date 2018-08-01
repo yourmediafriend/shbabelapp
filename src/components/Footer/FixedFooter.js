@@ -3,6 +3,7 @@ import styles from './footer.scss';
 import cx from 'classnames';
 import FooterMusicPlayer from './FooterMusicPlayer';
 
+
 class Footer extends Component {
 
   constructor(props) {
