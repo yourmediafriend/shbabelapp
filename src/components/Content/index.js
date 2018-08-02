@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './content.scss';
-
+import cx from 'classnames'
 
 // Content
 import SvgAnimation from '../SvgAnimations';
@@ -29,7 +29,7 @@ import StickyElements from '../Pages/DemoPages/StickyElements';
 
 const MainContent = props => {
   return (
-    <div className={styles.content} style={{...props.style}}>
+    <div className={cx(styles.content,props.className)} style={{...props.style}}>
       {props.children}
     </div>
   )
@@ -60,7 +60,7 @@ const Content = ({currentpage }) => {
       return  <SvgPattern />;
     case 'stickyHeader':
       return (
-        <MainContent style={{backgroundColor:'#fff'}}>
+        <MainContent>
           <StickyElements />
         </MainContent>
       );
@@ -68,7 +68,7 @@ const Content = ({currentpage }) => {
       return  <QuarterPage />;
     case 'grid-parallax':
       return (
-        <MainContent>
+        <MainContent className={styles.grid}>
           <GridPage />
         </MainContent>
       );

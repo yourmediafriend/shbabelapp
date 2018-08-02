@@ -1,7 +1,7 @@
 .grid {
     display: flex;
     flex-wrap :wrap;
-    margin: 0 -12px;
+    margin: 0 -12px 30px;
 }
 .item {
     width: 100%;
@@ -20,7 +20,7 @@
     &:hover {
         @include media-breakpoint-up(md) {
             transform: translateZ(0) scale(1.05);
-            box-shadow: 0 5px 10px 0 #1d1d1d;
+            box-shadow: 0 5px 8px 0px rgba(29, 29, 29, 0.3);
         }
     }
 }

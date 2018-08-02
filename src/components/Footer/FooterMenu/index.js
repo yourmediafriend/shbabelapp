@@ -9,22 +9,19 @@ const Menu = props => {
     <Row>
       <Col sm={12} md={4}>
         <ListGroup>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
+          <ListGroupItem><a href="#">About</a></ListGroupItem>
+          <ListGroupItem><a href="#">Contact</a></ListGroupItem>
+          <ListGroupItem><a href="#">Sign Up</a></ListGroupItem>
+          <ListGroupItem><a href="#">Location</a></ListGroupItem>
         </ListGroup>
       </Col>
       <Col sm={12} md={4}>
         <ListGroup>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
+          <ListGroupItem><a href="#">Meat</a></ListGroupItem>
+          <ListGroupItem><a href="#">Fish & Seafood</a></ListGroupItem>
+          <ListGroupItem><a href="#">Vegetables</a></ListGroupItem>
+          <ListGroupItem><a href="#">Fruit</a></ListGroupItem>
+          <ListGroupItem><a href="#">Groceries</a></ListGroupItem>
         </ListGroup>
       </Col>
       <Col sm={12} md={4}>

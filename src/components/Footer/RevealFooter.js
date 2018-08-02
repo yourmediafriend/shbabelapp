@@ -49,7 +49,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <div ref={(element) => this.footerElement = element} className={cx(styles.footer,styles.reveal)} style={{ paddingBottom:`${this.props.fixedFooterHeight + 20}px`}}>
+      <div ref={(element) => this.footerElement = element} className={cx(styles.footer,styles.reveal, 'footer')} style={{ paddingBottom:`${this.props.fixedFooterHeight + 20}px`}}>
           <FooterMenu />
       </div>
     )

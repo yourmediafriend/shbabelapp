@@ -15,3 +15,11 @@ body {
     min-height: 100%;
     -webkit-font-smoothing: antialiased;
 }
+
+.footer {
+    .list-group {
+        .list-group-item {
+            background: transparent;
+        }
+    }
+}
