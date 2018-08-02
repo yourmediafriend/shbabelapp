@@ -21,35 +21,34 @@ class Footer extends Component {
   };
 
   componentDidMount() {
-    const { height } =  this.fixedFooter.getBoundingClientRect();
+    const { height } =  this.footerElement.getBoundingClientRect();
     this.setState({ height })
   }
 
   componentDidUpdate(prevProps, prevState) {
 
     // this doesn't help initial render.
-    const { height } =  this.fixedFooter.getBoundingClientRect();
+    const { height } =  this.footerElement.getBoundingClientRect();
 
     if (prevState.height !==  height ) {
       this.setState({ height })
       this.props.setFixedFooterHeight(this.state.height);
+      console.log('FF componentDidUpdate height', height);
+      console.log('FF componentDidUpdate state.height', this.state.height);
     }
-
-    console.log('FF componentDidUpdate height', height);
-    console.log('FF componentDidUpdate state.height', this.state.height);
 
   }
 
   onResize = () => {
-    if (this.fixedFooter && this.fixedFooter!== null) {
-      const { height } =  this.fixedFooter.getBoundingClientRect();
+    if (this.footerElement && this.footerElement!== null) {
+      const { height } =  this.footerElement.getBoundingClientRect();
       this.setState({ height })
     }
   }
 
   render() {
     return (
-      <div ref={(element) => this.fixedFooter = element} className={cx(styles.footer, styles.fixed)}>
+      <div ref={(element) => this.footerElement = element} className={cx(styles.footer, styles.fixed)}>
         <FooterMusicPlayer />
       </div>
     )

@@ -205,13 +205,13 @@ class Main extends Component {
                 </div>
               </div>
 
-              { this.props.fullscreen ? '' :  <FooterContainer ref={this.fixedFooter} flexStyle={{...this.myStyles(state).containerInner}} class={'isFixed'}>
+              { this.props.fullscreen ? '' :  <FooterContainer flexStyle={{...this.myStyles(state).containerInner}} class={'isFixed'}>
                                                 <FixedFooter />
                                               </FooterContainer> }
 
               { this.props.fullscreen ? '' :  <FooterContainer flexStyle={{...this.myStyles(state).containerInner}} class={'isReveal'}>
-                                                  <RevealFooter />
-                                                </FooterContainer> }
+                                                <RevealFooter />
+                                              </FooterContainer> }
 
             </div>
           );

@@ -22,31 +22,34 @@ class Footer extends Component {
   };
 
   componentDidMount() {
-    const { height } =  this.revealFooter.getBoundingClientRect();
+    const { height } =  this.footerElement.getBoundingClientRect();
     this.setState({ height })
   }
 
   componentDidUpdate(prevProps, prevState) {
 
-    const { height } =  this.revealFooter.getBoundingClientRect();
+    const { height } =  this.footerElement.getBoundingClientRect();
 
     if (prevState.height !==  height ) {
       this.setState({ height })
       this.props.setRevealFooterHeight(this.state.height);
+      console.log('RF componentDidUpdate height', height);
+      console.log('RF componentDidUpdate state.height', this.state.height);
+      console.log('RF componentDidUpdate fixedFooterHeight', this.props.fixedFooterHeight);
     }
 
   }
 
   onResize = () => {
-    if (this.revealFooter && this.revealFooter!== null) {
-      const { height } =  this.revealFooter.getBoundingClientRect();
+    if (this.footerElement && this.footerElement!== null) {
+      const { height } =  this.footerElement.getBoundingClientRect();
       this.setState({ height })
     }
   }
 
   render() {
     return (
-      <div ref={(element) => this.revealFooter = element} className={cx(styles.footer,styles.reveal)}     style={{ paddingBottom:`${this.props.fixedFooterHeight + 20}px`}}>
+      <div ref={(element) => this.footerElement = element} className={cx(styles.footer,styles.reveal)} style={{ paddingBottom:`${this.props.fixedFooterHeight + 20}px`}}>
           <FooterMenu />
       </div>
     )
