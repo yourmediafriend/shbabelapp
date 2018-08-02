@@ -1,19 +1,76 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import { setRevealFooterHeight } from "../../modules/Main";
 import styles from './footer.scss';
-import cx from 'classnames'
+import cx from 'classnames';
 
 import FooterMenu from './FooterMenu';
-
+import {get} from "lodash/fp";
 
 class Footer extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = { height:0 }
+  }
+
+  componentWillMount(){
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+  };
+
+  componentDidMount() {
+    const { height } =  this.revealFooter.getBoundingClientRect();
+    this.setState({ height })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+
+    const { height } =  this.revealFooter.getBoundingClientRect();
+
+    if (prevState.height !==  height ) {
+      this.setState({ height })
+      this.props.setRevealFooterHeight(this.state.height);
+    }
+
+  }
+
+  onResize = () => {
+    if (this.revealFooter && this.revealFooter!== null) {
+      const { height } =  this.revealFooter.getBoundingClientRect();
+      this.setState({ height })
+    }
+  }
+
   render() {
     return (
-      <div className={cx(styles.footer, styles.reveal)}>
+      <div ref={(element) => this.revealFooter = element} className={cx(styles.footer,styles.reveal)}     style={{ paddingBottom:`${this.props.fixedFooterHeight + 20}px`}}>
           <FooterMenu />
       </div>
     )
   }
 }
 
-export default Footer;
+
+
+export const mapStateToProps = (state) => {
+  return {
+    fixedFooterHeight: get('mainModule.fixedFooterHeight', state),
+  }
+};
+
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      setRevealFooterHeight,
+    },
+    dispatch
+  );
+
+Footer.propTypes = {
+  setRevealFooterHeight: PropTypes.func,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

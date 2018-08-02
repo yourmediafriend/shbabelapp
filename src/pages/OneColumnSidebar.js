@@ -146,9 +146,10 @@ class Main extends Component {
 
     return (
       <Animate
+
+        data={props}
+
         start={() => ({
-          props,
-          fixedFooterHeight: props.fixedFooterHeight,
           menu: {
             transformX: (this.state.triggerWidth - this.state.menuWidth) + 4,
           },
@@ -158,7 +159,6 @@ class Main extends Component {
           }
         })}
         update={() => ({
-          fixedFooterHeight: props.fixedFooterHeight,
           menu: {
             transformX: [props.isMenuOpen ? this.state.triggerWidth + 3 : (this.state.triggerWidth - this.state.menuWidth) + 4 ],
           },
@@ -192,23 +192,26 @@ class Main extends Component {
               </div>
               <MenuTrigger/>
 
-              { state.props.fullscreen ? '' :  this.stickyHeaderContainer(state) }
+              { this.props.fullscreen ? '' :  this.stickyHeaderContainer(state) }
 
               <div className={styles.mainContainer}>
                 <div className={styles.menuFlexWrap}>
                   <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}}   />
-                  <div className={styles.mainFlex} style={{...state.props.fullscreen ? '' : {marginTop:'80px', marginBottom:`${state.fixedFooterHeight}px`}}}>
-
-
-                    <MainContent currentpage={state.props.currentpage} />
-
+                  <div className={styles.mainFlex} style={{...this.props.fullscreen ? '' : {marginTop:'80px', marginBottom:`${this.props.revealFooterHeight}px`}}}>
+                    <div className={styles.content}>
+                      <MainContent currentpage={this.props.currentpage} />
+                    </div>
                   </div>
                 </div>
               </div>
 
-              { state.props.fullscreen ? '' :  <FooterContainer ref={this.fixedFooter} flexStyle={{...this.myStyles(state).containerInner}} class={'isFixed'}>
-                <FixedFooter />
-              </FooterContainer> }
+              { this.props.fullscreen ? '' :  <FooterContainer ref={this.fixedFooter} flexStyle={{...this.myStyles(state).containerInner}} class={'isFixed'}>
+                                                <FixedFooter />
+                                              </FooterContainer> }
+
+              { this.props.fullscreen ? '' :  <FooterContainer flexStyle={{...this.myStyles(state).containerInner}} class={'isReveal'}>
+                                                  <RevealFooter />
+                                                </FooterContainer> }
 
             </div>
           );
@@ -221,6 +224,7 @@ class Main extends Component {
 
 export const mapStateToProps = (state) => {
   return {
+    revealFooterHeight: get('mainModule.revealFooterHeight', state),
     fixedFooterHeight: get('mainModule.fixedFooterHeight', state),
     isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
     openMenunClass: openMenunClass,

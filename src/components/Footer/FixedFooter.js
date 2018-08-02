@@ -12,7 +12,6 @@ class Footer extends Component {
 
   constructor(props) {
     super(props);
-    this.myRef = React.createRef();
     this.state = { height:0 }
   }
 
