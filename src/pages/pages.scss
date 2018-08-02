@@ -10,8 +10,6 @@
         display: flex;
         flex-direction: column;
         box-shadow: 0 3px 28px #0c0c0c6e;
-        margin-bottom: 500px; // to make up for footer
-        padding-bottom: 40px;
     }
 }
 
@@ -60,7 +58,6 @@
     border-left: 1px solid #2B2B2B;
 }
 .footerContainer {
-
     &.isReveal {
         position: fixed;
         -webkit-transform: translateZ(0);
@@ -70,14 +67,12 @@
         bottom: 0;
         left: 0;
         right: 0;
-
     }
-
     &.isFixed {
         position: fixed;
         -webkit-transform: translateZ(0);
         -webkit-overflow-scrolling: auto;
-        z-index: 60;
+        z-index: 10;
         top: auto;
         bottom: 0;
         left: 0;

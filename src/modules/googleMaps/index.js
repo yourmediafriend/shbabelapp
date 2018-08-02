@@ -12,8 +12,7 @@ export {
   attemptToRetrieveData,
   failureToRetrieveData,
   successToRetrieveData
-};2
-
+};
 
 // Export Saga
 export const googleMapModuleSaga = function *() {

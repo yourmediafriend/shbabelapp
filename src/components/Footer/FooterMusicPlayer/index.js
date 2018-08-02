@@ -182,7 +182,7 @@ class MusicPlayer extends Component {
         </div>
 
         <div className={cx(styles.section, styles.select)}>
-          {this.renderLoadButton(tune, 'mp3')}
+          {this.renderLoadButton('https://storage.googleapis.com/media-session/elephants-dream/the-wires.mp3', 'mp3')}
         </div>
 
       </div>
