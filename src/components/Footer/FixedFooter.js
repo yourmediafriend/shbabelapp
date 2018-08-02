@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import { setFixedFooterHeight } from "../../modules/Main";
 import styles from './footer.scss';
 import cx from 'classnames';
 import FooterMusicPlayer from './FooterMusicPlayer';
-import ReactDOM from "react-dom";
 
 
 class Footer extends Component {
@@ -29,11 +32,12 @@ class Footer extends Component {
     const { height } =  this.fixedFooter.getBoundingClientRect();
 
     if (prevState.height !==  height ) {
-       this.setState({ height })
+      this.setState({ height })
+      this.props.setFixedFooterHeight(this.state.height);
     }
 
-   console.log('XcomponentDidUpdate prevState', prevState.height);
-   console.log('XcomponentDidUpdate height', height);
+    console.log('FF componentDidUpdate height', height);
+    console.log('FF componentDidUpdate state.height', this.state.height);
 
   }
 
@@ -53,4 +57,20 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+export const mapStateToProps = (state) => {
+  return {}
+};
+
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      setFixedFooterHeight,
+    },
+    dispatch
+  );
+
+Footer.propTypes = {
+  setFixedFooterHeight: PropTypes.func,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

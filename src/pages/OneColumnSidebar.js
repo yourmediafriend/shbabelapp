@@ -55,10 +55,6 @@ const FooterContainer = (props) => {
 };
 
 
-
-
-
-
 //const Home = (this.props) => {
 
 // this watches for resize and can match queries put how to we update the state for this component
@@ -68,15 +64,13 @@ const initialState = {
   triggerWidth: 50,
   menuWidth: 280,
   sidebarStyle: 'overlay',
-  fixedFooterHeight: 0,
 };
 
-class Home extends Component {
+class Main extends Component {
 
   constructor(props) {
     super(props);
     this.state = initialState;
-    this.fixedFooter = React.createRef();
   };
 
   componentWillMount(){
@@ -84,21 +78,7 @@ class Home extends Component {
     this.onResize();
   };
 
-  componentDidMount() {
-    this.setFixedFooterHeight();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { height } =  this.getDimensions(ReactDOM.findDOMNode(this.fixedFooter.current));
-    if (prevState.fixedFooterHeight !==  height ) {
-      this.setState({fixedFooterHeight: height})
-    }
-  }
-
   onResize = () => {
-
-    this.setFixedFooterHeight();
-
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
       this.setState({sidebarStyle:'squash'});
     }
@@ -110,36 +90,24 @@ class Home extends Component {
     }
   };
 
-  setFixedFooterHeight() {
-    const { height } =  this.getDimensions(ReactDOM.findDOMNode(this.fixedFooter.current));
-    this.setState({fixedFooterHeight: height });
-  }
-
-  getDimensions = (element) => {
-    const { width, height } = element ? element.getBoundingClientRect() : {};
-    return { width, height };
-  };
-
-
   sidebarAction = (props, sidebarWidth) => {
-
-      switch (this.state.sidebarStyle) {
-        case 'squash':
-          return {
-            transformX: [props.isMenuOpen ? sidebarWidth + 2 : this.state.triggerWidth + 2],
-            marginRight: [props.isMenuOpen ? sidebarWidth + 1 : this.state.triggerWidth + 1],
-          };
-        case 'push':
-          return {
-            transformX: [props.isMenuOpen ? sidebarWidth + 2 : this.state.triggerWidth + 2],
-            marginRight: this.state.triggerWidth,
-          };
-        default:
-          return {
-            transformX: this.state.triggerWidth,
-            marginRight: this.state.triggerWidth,
-          };
-      }
+    switch (this.state.sidebarStyle) {
+      case 'squash':
+        return {
+          transformX: [props.isMenuOpen ? sidebarWidth + 2 : this.state.triggerWidth + 2],
+          marginRight: [props.isMenuOpen ? sidebarWidth + 1 : this.state.triggerWidth + 1],
+        };
+      case 'push':
+        return {
+          transformX: [props.isMenuOpen ? sidebarWidth + 2 : this.state.triggerWidth + 2],
+          marginRight: this.state.triggerWidth,
+        };
+      default:
+        return {
+          transformX: this.state.triggerWidth,
+          marginRight: this.state.triggerWidth,
+        };
+    }
   };
 
   myStyles = (state) => {
@@ -171,10 +139,7 @@ class Home extends Component {
     );
   };
 
-
   render() {
-
-
 
     let props = this.props;
     let sidebarWidth = this.state.triggerWidth + this.state.menuWidth;
@@ -183,6 +148,7 @@ class Home extends Component {
       <Animate
         start={() => ({
           props,
+          fixedFooterHeight: props.fixedFooterHeight,
           menu: {
             transformX: (this.state.triggerWidth - this.state.menuWidth) + 4,
           },
@@ -192,6 +158,7 @@ class Home extends Component {
           }
         })}
         update={() => ({
+          fixedFooterHeight: props.fixedFooterHeight,
           menu: {
             transformX: [props.isMenuOpen ? this.state.triggerWidth + 3 : (this.state.triggerWidth - this.state.menuWidth) + 4 ],
           },
@@ -216,7 +183,6 @@ class Home extends Component {
       >
         {(state) => {
 
-
           return (
             <div className={styles.outer} style={styleJs.container.outer}>
               <div className={styles.menu} style={{...this.myStyles(state).menu}}>
@@ -231,23 +197,19 @@ class Home extends Component {
               <div className={styles.mainContainer}>
                 <div className={styles.menuFlexWrap}>
                   <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}}   />
-                  <div className={styles.mainFlex} style={{...state.props.fullscreen ? '' : {marginTop:'80px', marginBottom: `${this.state.fixedFooterHeight}px`    }}}>
-                    <MainContent currentpage={this.props.currentpage} />
+                  <div className={styles.mainFlex} style={{...state.props.fullscreen ? '' : {marginTop:'80px', marginBottom:`${state.fixedFooterHeight}px`}}}>
+
+
+                    <MainContent currentpage={state.props.currentpage} />
+
                   </div>
                 </div>
               </div>
 
-
               { state.props.fullscreen ? '' :  <FooterContainer ref={this.fixedFooter} flexStyle={{...this.myStyles(state).containerInner}} class={'isFixed'}>
-                                                  <FixedFooter />
-                                                </FooterContainer> }
+                <FixedFooter />
+              </FooterContainer> }
 
-
-
-
-{/*              { state.props.fullscreen ? '' :  <FooterContainer flexStyle={{...this.myStyles(state).containerInner}} class={'isReveal'}>
-                                                  <RevealFooter />
-                                                </FooterContainer> }*/}
             </div>
           );
         }}
@@ -257,9 +219,9 @@ class Home extends Component {
 }
 
 
-
 export const mapStateToProps = (state) => {
   return {
+    fixedFooterHeight: get('mainModule.fixedFooterHeight', state),
     isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
     openMenunClass: openMenunClass,
   }
@@ -275,11 +237,11 @@ export const mapDispatchToProps = dispatch =>
   );
 
 
-Home.propTypes = {
+Main.propTypes = {
   isMenuOpen: PropTypes.bool,
   openMenunClass: PropTypes.func,
   offCanvasMenuStateChange: PropTypes.func,
   offCanvasMenuToggleAnimation: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
