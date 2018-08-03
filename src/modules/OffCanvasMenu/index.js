@@ -1,4 +1,4 @@
-import offCanvasMenu, { offCanvasMenuToggleAnimation, offCanvasMenuStateChange } from './reducers/offCanvasMenu';
+import offCanvasMenu, { offCanvasMenuToggleAnimation, offCanvasMenuStateChange, offCanvasMenuClose } from './reducers/offCanvasMenu';
 
 // Export Reducers
 export default offCanvasMenu;
@@ -7,4 +7,5 @@ export default offCanvasMenu;
 export {
   offCanvasMenuToggleAnimation,
   offCanvasMenuStateChange,
+  offCanvasMenuClose,
 };

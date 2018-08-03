@@ -49,7 +49,7 @@ export function offCanvasMenuStateChange() {
   };
 }
 
-export function offCanvasMenuStateClose() {
+export function offCanvasMenuClose() {
   return {
     type: MENU_CLOSE,
   };
