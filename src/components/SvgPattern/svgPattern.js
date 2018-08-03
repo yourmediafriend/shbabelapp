@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import SVG from 'svgjs';
+import cx from 'classnames'
+import styles from './svgPattern.scss';
+
 import Skull from './media/svgTileSkull.svg'
 import Lightening from './media/svgTileLightening.svg'
 import Globe from './media/svgTileGlobe.svg'
 import Peace from './media/svgTilePeace.svg'
+
 
 class SvgPattern extends Component {
 
@@ -55,7 +59,7 @@ class SvgPattern extends Component {
 
   render() {
     return (
-      <div ref={this.myRef} />
+      <div ref={this.myRef} className={cx(styles.svgPattern)}/>
     )
   }
 }

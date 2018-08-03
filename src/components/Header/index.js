@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import stylesJs from './stickyHeaderStyles';
 import Animate from 'react-move/Animate';
 import { easeExp, easeExpInOut, easePolyOut, easeQuad, easeCubicInOut, easeCircleOut } from 'd3-ease';
@@ -8,11 +11,16 @@ import MegaMenu from '../MegaMenu';
 import IconNav from '../IconNav';
 
 
-import styles from './stickyHeader.scss';
+import styles from './header.scss';
 import cx from "classnames";
+import {get} from "lodash/fp";
+import {setCurrentBreakPoint} from "../../modules/App";
+import {offCanvasMenuStateChange, offCanvasMenuToggleAnimation} from "../../modules/OffCanvasMenu";
+import PropTypes from "prop-types";
 
 
-class StickyHeader extends Component {
+
+class Header extends Component {
 
   constructor(props) {
     super(props);
@@ -25,7 +33,7 @@ class StickyHeader extends Component {
   };
 
   render() {
-    const { style } = this.props;
+    const { style, breakpoint } = this.props;
 
     let baseHeight = parseInt(stylesJs.header.base.height, 10);
     let compactHeight = parseInt(stylesJs.header.compact.height, 10);
@@ -67,7 +75,10 @@ class StickyHeader extends Component {
           return (
             <div className={cx(state.styles.stickyHeader, state.styles.base, state.styles.isSticky)} style={{...compStyles(state).header}}>
               <MegaMenu />
-              <IconNav />
+
+              {breakpoint === 'large' || breakpoint === 'medium' ? <IconNav /> : null}
+
+
             </div>
           );
         }}
@@ -76,5 +87,17 @@ class StickyHeader extends Component {
   }
 }
 
-//export default StickyHeader;
-export default scrollMagicEnhanced(StickyHeader);
+Header.propTypes = {
+  breakpoint: PropTypes.string,
+};
+
+export const mapStateToProps = (state) => {
+  return {
+    breakpoint: get('appModule.breakpoint', state),
+  }
+};
+
+export const mapDispatchToProps = dispatch => {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(scrollMagicEnhanced(Header));
+

@@ -15,8 +15,7 @@ import ThreeColumnDemo from '../components/Pages/DemoPages/ThreeColumn';
 // Elements
 import Logo from '../components/Logo';
 import IconNav from '../components/IconNav';
-import StickyHeader from '../components/ScrollMagicStickyHeader';
-
+import Header from '../components/Header';
 
 // Menu
 import SidebarMenu from '../components/SidebarMenu';
@@ -29,7 +28,6 @@ import SvgAnimation from '../components/SvgAnimations';
 import ScrollMagicParallax from '../components/ScrollMagicParallax';
 import ScrollMagicParallaxExtra from '../components/ScrollMagicParallaxExtra';
 
-import SvgFlasher from '../components/SvgFlasher';
 import SvgPattern from '../components/SvgPattern';
 import QuarterPage from '../components/QuarterPage';
 
@@ -56,8 +54,6 @@ const renderContentSwitch = (currentpage) => {
       return  <ScrollMagicParallax />;
     case 'parallaxExtra':
       return  <ScrollMagicParallaxExtra />;
-    case 'svgFlasher':
-      return  <SvgFlasher />;
     case 'svgPattern':
       return  <SvgPattern />;
     case 'stickyHeader':
@@ -114,7 +110,7 @@ const renderContentSwitch = (currentpage) => {
 const MainContent = props => {
   return (
     <div style={{...styles.container.scroll, ...props.style   }}>
-      <StickyHeader style={{width: '100%'}}/>
+      <Header style={{width: '100%'}}/>
       {props.children}
     </div>
   )

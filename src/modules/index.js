@@ -11,7 +11,7 @@ import postContactForm from './Forms/ContactForm';
 import retrieveOpenWeather from './OpenWeather';
 import offCanvasMenu from './OffCanvasMenu';
 import googleMapModule from "./googleMaps";
-import mainModule from "./Main";
+import appModule from "./App";
 
 
 export default combineReducers({
@@ -23,7 +23,7 @@ export default combineReducers({
   searchModal,
   retrieveOpenWeather,
   googleMapModule,
-  mainModule,
+  appModule,
   ...modal,
   ...nestedMenuReducers,
 });

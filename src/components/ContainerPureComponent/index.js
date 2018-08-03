@@ -8,8 +8,6 @@ import Sticky from './Sticky';
 import verge from 'verge';
 import S from 'camel-case-selector';
 
-import styles from './svgFlasherStyles';
-
 
 class SvgFlasher extends Component {
 

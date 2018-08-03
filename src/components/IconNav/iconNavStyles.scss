@@ -5,7 +5,6 @@
     list-style: none;
     display: flex;
 }
-
 .navItem {
     position: relative;
     .navLink {
@@ -23,7 +22,10 @@
         }
     }
 }
-
+.ReactHoverObserver {
+    height: 100%;
+    display: flex;
+}
 .dropdown {
     display: none;
     position: absolute;
@@ -37,4 +39,33 @@
     margin-right: -5vw;
     overflow: hidden;
     text-align: center;
+    &.show {
+        display: block;
+    }
+}
+
+.iconNavSide {
+    flex-direction: column;
+    pointer-events: all;
+
+    .ReactHoverObserver {
+        height: auto;
+        display: block;
+    }
+    .navItem {
+        .navLink {
+            padding: 0;
+            height: 54px;
+            width: 100%;
+            text-align: center;
+            span {
+                margin:0 auto;
+            }
+        }
+    }
+    .dropdown {
+        &.show {
+            display: none;
+        }
+    }
 }

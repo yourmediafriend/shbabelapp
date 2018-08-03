@@ -4,22 +4,7 @@
 // bootstrap variables configured by bootstrap. For example, the _variables.scss contains:
 // $btn-primary-bg: $brand-primary !default;
 
-// Here we're adjusting the hue of that default:
-$btn-primary-bg: adjust-hue(theme-color("primary"), +20deg);
+@import '../styles/_variables';
+@import '../styles/style';
 
-// NOTE: $gray-300 is defined in _variables.scss
-$body-bg: #ffffff  ;
 
-body {
-    overflow-x: hidden;
-    min-height: 100%;
-    -webkit-font-smoothing: antialiased;
-}
-
-.footer {
-    .list-group {
-        .list-group-item {
-            background: transparent;
-        }
-    }
-}

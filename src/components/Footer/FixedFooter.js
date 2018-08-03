@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import { setFixedFooterHeight } from "../../modules/Main";
+import { setFixedFooterHeight } from "../../modules/App";
 import styles from './footer.scss';
 import cx from 'classnames';
 import FooterMusicPlayer from './FooterMusicPlayer';

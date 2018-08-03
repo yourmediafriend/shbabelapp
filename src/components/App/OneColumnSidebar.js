@@ -1,52 +1,51 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './pages.scss';
-import { mediaMatch } from '../utils/mediaQueries';
+import { mediaMatch } from '../../utils/mediaQueries';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Animate from 'react-move/Animate';
 import { easeExpOut } from 'd3-ease';
+
+import { setCurrentBreakPoint } from '../../modules/App';
+
+
 
 import {
   get,
 } from 'lodash/fp';
 
 // Elements
-import MainContent from '../components/Content';
-import StickyHeader from '../components/ScrollMagicStickyHeader';
-import {FixedFooter, RevealFooter} from '../components/Footer';
-
-import Modal from '../components/Modal';
+import MainContent from '../Content';
+import Header from '../Header';
+import SearchModal from '../SearchModal'
+import Modal from '../Modal';
+import {FixedFooter, RevealFooter} from '../Footer';
 
 // Menu
-import SidebarMenu from '../components/SidebarMenu';
-import MenuTrigger from '../components/SidebarMenu/MenuTrigger';
+import SidebarMenu from '../SidebarMenu';
+import MenuTrigger from '../SidebarMenu/MenuTrigger';
 
 import {
   offCanvasMenuStateChange,
   offCanvasMenuToggleAnimation
-} from '../modules/OffCanvasMenu';
+} from '../../modules/OffCanvasMenu';
 
 import styleJs from './pagesStyles.js';
+
+//const AppContext = React.createContext();
 
 const openMenunClass = function (isMenuOpen) {
   return isMenuOpen ? styleJs.open : '';
 };
 
-const FooterContainer = (props) => {
-
-  let footerClasses = {
-    isFixed: styles.isFixed,
-    isReveal: styles.isReveal,
-  };
-
+const StickyContainer = (props) => {
   return (
-    <div className={cx(styles.footerContainer, footerClasses[props.class] )}>
+    <div className={cx(styles.stickyContainer, props.className)}>
       <div className={styles.menuFlexWrap}>
         <div className={styles.menuFlex} style={{...props.flexStyle}} />
-        <div className={styles.mainFlex}>
+        <div className={styles.mainFlex} >
           {props.children}
         </div>
       </div>
@@ -54,19 +53,13 @@ const FooterContainer = (props) => {
   );
 };
 
-
-//const Home = (this.props) => {
-
-// this watches for resize and can match queries put how to we update the state for this component
-//window.addEventListener('resize', mediaQueriesOoof)
-
 const initialState = {
   triggerWidth: 50,
   menuWidth: 280,
   sidebarStyle: 'overlay',
 };
 
-class Main extends Component {
+class App extends Component {
 
   constructor(props) {
     super(props);
@@ -80,13 +73,19 @@ class Main extends Component {
 
   onResize = () => {
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
+      // Desktop
       this.setState({sidebarStyle:'squash'});
+      this.props.setCurrentBreakPoint('large');
     }
     else if (window.matchMedia(mediaMatch.breakpointSmall).matches) {
+      // Tablet
       this.setState({sidebarStyle:'push'});
+      this.props.setCurrentBreakPoint('medium');
     }
     else {
+      // Mobile
       this.setState({sidebarStyle:'overlay'});
+      this.props.setCurrentBreakPoint('small');
     }
   };
 
@@ -126,17 +125,8 @@ class Main extends Component {
     }
   };
 
-  stickyHeaderContainer = (state) => {
-    return (
-      <div className={cx(styles.headerContainer)}>
-        <div className={styles.menuFlexWrap}>
-          <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}} />
-          <div className={styles.mainFlex} >
-            <StickyHeader />
-          </div>
-        </div>
-      </div>
-    );
+  modalState = ({isModalOpen}) => {
+    return isModalOpen ? styles.visible : styles.hidden
   };
 
   render() {
@@ -146,9 +136,6 @@ class Main extends Component {
 
     return (
       <Animate
-
-        data={props}
-
         start={() => ({
           menu: {
             transformX: (this.state.triggerWidth - this.state.menuWidth) + 4,
@@ -190,11 +177,21 @@ class Main extends Component {
                   <SidebarMenu/>
                 </div>
               </div>
+
               <MenuTrigger/>
 
-              { this.props.fullscreen ? '' :  this.stickyHeaderContainer(state) }
-
               <div className={styles.mainContainer}>
+
+                { this.props.fullscreen ? '' :
+                  <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.header,styles.top)}>
+                    <Header />
+                  </StickyContainer> }
+
+                { this.props.fullscreen ? '' :
+                  <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.top)}>
+                        <SearchModal />
+                  </StickyContainer> }
+
                 <div className={styles.menuFlexWrap}>
                   <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}}   />
                   <div className={styles.mainFlex} style={{...this.props.fullscreen ? '' : {marginTop:'80px', marginBottom:`${this.props.revealFooterHeight}px`}}}>
@@ -203,16 +200,23 @@ class Main extends Component {
                     </div>
                   </div>
                 </div>
+
+                { this.props.fullscreen ? '' :
+                  <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.full, this.modalState(this.props) )}>
+                    <Modal/>
+                  </StickyContainer> }
+
+                { this.props.fullscreen ? '' :
+                  <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isFixed)}>
+                    <FixedFooter />
+                  </StickyContainer> }
+
+                { this.props.fullscreen ? '' :
+                  <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isReveal)}>
+                    <RevealFooter />
+                  </StickyContainer> }
+
               </div>
-
-              { this.props.fullscreen ? '' :  <FooterContainer flexStyle={{...this.myStyles(state).containerInner}} class={'isFixed'}>
-                                                <FixedFooter />
-                                              </FooterContainer> }
-
-              { this.props.fullscreen ? '' :  <FooterContainer flexStyle={{...this.myStyles(state).containerInner}} class={'isReveal'}>
-                                                <RevealFooter />
-                                              </FooterContainer> }
-
             </div>
           );
         }}
@@ -221,11 +225,11 @@ class Main extends Component {
   }
 }
 
-
 export const mapStateToProps = (state) => {
   return {
-    revealFooterHeight: get('mainModule.revealFooterHeight', state),
-    fixedFooterHeight: get('mainModule.fixedFooterHeight', state),
+    isModalOpen: get('modalModule.modalIsOpen', state),
+    revealFooterHeight: get('appModule.revealFooterHeight', state),
+    fixedFooterHeight: get('appModule.fixedFooterHeight', state),
     isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
     openMenunClass: openMenunClass,
   }
@@ -235,17 +239,18 @@ export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       offCanvasMenuStateChange,
-      offCanvasMenuToggleAnimation
+      offCanvasMenuToggleAnimation,
+      setCurrentBreakPoint,
     },
     dispatch
   );
 
-
-Main.propTypes = {
+App.propTypes = {
   isMenuOpen: PropTypes.bool,
+  isModalOpen: PropTypes.bool,
   openMenunClass: PropTypes.func,
   offCanvasMenuStateChange: PropTypes.func,
   offCanvasMenuToggleAnimation: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

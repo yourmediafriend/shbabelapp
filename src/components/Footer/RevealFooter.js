@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import { setRevealFooterHeight } from "../../modules/Main";
+import { setRevealFooterHeight } from "../../modules/App";
 import styles from './footer.scss';
 import cx from 'classnames';
 
@@ -60,7 +60,7 @@ class Footer extends Component {
 
 export const mapStateToProps = (state) => {
   return {
-    fixedFooterHeight: get('mainModule.fixedFooterHeight', state),
+    fixedFooterHeight: get('appModule.fixedFooterHeight', state),
   }
 };
 

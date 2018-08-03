@@ -7,8 +7,9 @@ import cx from 'classnames'
 import SvgAnimation from '../SvgAnimations';
 import ScrollMagicParallax from '../ScrollMagicParallax';
 import ScrollMagicParallaxExtra from '../ScrollMagicParallaxExtra';
-import SvgFlasher from '../SvgFlasher';
+
 import SvgPattern from '../SvgPattern';
+
 import QuarterPage from '../QuarterPage';
 
 // Pages
@@ -25,8 +26,6 @@ import ThreeColumnDemo from '../Pages/DemoPages/ThreeColumn';
 import MixedDemo from '../Pages/DemoPages/Mixed';
 import StickyElements from '../Pages/DemoPages/StickyElements';
 
-
-
 const MainContent = props => {
   return (
     <div className={cx(styles.content,props.className)} style={{...props.style}}>
@@ -39,7 +38,7 @@ const Content = ({currentpage }) => {
 
   switch(currentpage) {
     case 'home':
-      return;
+      return null;
     case 'svgs':
       return  <SvgAnimation />;
     case 'circle':
@@ -54,10 +53,12 @@ const Content = ({currentpage }) => {
       return  <ScrollMagicParallax />;
     case 'parallaxExtra':
       return  <ScrollMagicParallaxExtra />;
-    case 'svgFlasher':
-      return  <SvgFlasher />;
     case 'svgPattern':
-      return  <SvgPattern />;
+      return(
+        <MainContent style={{backgroundColor:'#000'}}>
+          <SvgPattern />;
+        </MainContent>
+      )
     case 'stickyHeader':
       return (
         <MainContent>

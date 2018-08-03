@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 // Common Page Layouts
-import OneColumnSidebar from './pages/OneColumnSidebar';
+import OneColumnSidebar from './components/App/OneColumnSidebar';
 import OneColumnFlat from './pages/OneColumnFlat';
 
 // Test Pages
@@ -11,7 +11,7 @@ import Strap from './pages/ReactStrapTest'
 
 const SwitchRoute = () => (
   <Switch>
-    <Route exact path='/' render={() => <OneColumnSidebar currentpage='home' />} />
+    <Route exact path='/' render={() => <OneColumnSidebar currentpage='home' fullscreen={true} />} />
     <Route exact path='/full' render={() => <OneColumnFlat currentpage='full' />} />
     <Route exact path='/svgs' render={() => <OneColumnSidebar currentpage='svgs' />} />
 
@@ -44,7 +44,6 @@ const SwitchRoute = () => (
     {/*/Site Pages/*/}
     <Route exact path='/contact' render={() => <OneColumnSidebar currentpage='contact' />} />
     <Route exact path='/weather' render={() => <OneColumnSidebar currentpage='weather' />} />
-
 
     {/*/Test Pages/*/}
     <Route exact path='/test' render={() => <OneColumnSidebar currentpage='test' />} />

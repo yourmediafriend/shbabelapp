@@ -1,29 +1,42 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
+import cx from 'classnames'
+import styles from './svgPattern.scss';
 
 import SVG from 'svgjs';
+import SvgPattern from './SvgPattern';
+import SvgFlasher from './SvgFlasher';
 
-import SvgPattern from './svgPattern'
-import SvgFlasher from '../SvgFlasher';
-
-import styles from './svgPatternStyles';
 import scrollMagicEnhanced from './scrollMagicEnhanced';
 import {get} from "lodash/fp";
 
+import { OneColumnCenter }  from '../Layout';
+import Dummytext from '../DummyText/DummyTextLong';
 
 class SvgPatternMagicScroll extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
       <div>
+
         <div className='scene-content-holder'>
-          <SvgPattern scenePosition={this.props.scenePosition} offCanvasMenuAnimating={this.props.offCanvasMenuAnimating}/>
-          <SvgFlasher scenePosition={this.props.scenePosition} offCanvasMenuAnimating={this.props.offCanvasMenuAnimating}/>
+          <div className={cx(styles.svgPatternWrap)}>
+            <SvgPattern scenePosition={this.props.scenePosition} offCanvasMenuAnimating={this.props.offCanvasMenuAnimating}/>
+          </div>
+          <div className={cx(styles.svgFlasherWrap)}>
+            <SvgFlasher scenePosition={this.props.scenePosition} offCanvasMenuAnimating={this.props.offCanvasMenuAnimating}/>
+          </div>
         </div>
+
+
+        <div className={cx(styles.textWrap)}>
+          <OneColumnCenter contentMain={
+            <div className={cx(styles.textWrapInner)}>
+              <Dummytext />
+            </div>
+          } />
+        </div>
+
       </div>
     )
   }

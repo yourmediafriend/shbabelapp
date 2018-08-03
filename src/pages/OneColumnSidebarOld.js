@@ -31,7 +31,7 @@ import StickyElements from '../components/Pages/DemoPages/StickyElements';
 // Elements
 import Logo from '../components/Logo';
 import IconNav from '../components/IconNav';
-import StickyHeader from '../components/ScrollMagicStickyHeader';
+import Header from '../components/Header';
 import Modal from '../components/Modal';
 import SearchModal from '../components/SearchModal'
 
@@ -44,7 +44,7 @@ import SvgAnimation from '../components/SvgAnimations';
 import ScrollMagicParallax from '../components/ScrollMagicParallax';
 import ScrollMagicParallaxExtra from '../components/ScrollMagicParallaxExtra';
 
-import SvgFlasher from '../components/SvgFlasher';
+
 import SvgPattern from '../components/SvgPattern';
 import QuarterPage from '../components/QuarterPage';
 
@@ -174,7 +174,7 @@ const MainContent = props => {
   return (
     <div style={{...styles.container.scroll, ...props.style   }}>
       <SearchModal />
-{/*      <StickyHeader style={{width: '100%'}}/>*/}
+{/*      <Header style={{width: '100%'}}/>*/}
       {props.children}
     </div>
   )

@@ -19,15 +19,18 @@ class AppProvider extends React.Component {
   }
 }
 
-let Link = ({icon, text, style, clickEvent }) => {
+let Link = ({icon, text, style, clickEvent, href }) => {
   return (
     <AppContext.Consumer>
       {(context) => {
         return (
-          <a  className={cx(styles.navLink)} onClick={clickEvent}>
-            <div style={{ width:'22px',height:'22px',display:'block', overflow:'hidden'}}>
+          <a  href={href} className={cx(styles.navLink)}  onClick={clickEvent}>
+
+              <span>
               {icon ? <Icon icon={icon} color={style.color} size={style.size} /> : <div>{text}</div>}
-            </div>
+              </span>
+
+
           </a>
         )
       }}
@@ -41,7 +44,7 @@ let Dropdown = props => {
     <AppContext.Consumer>
       {(context) => {
         return (
-          <div className={cx(styles.dropdown)}>
+          <div className={cx(styles.dropdown, context.isHovering ? styles.show : '' )}>
             {props.children}
           </div>
         )
@@ -53,9 +56,10 @@ let Dropdown = props => {
 let MenuItem = (props) => {
   return (
     <ReactHoverObserver
-      hoverDelayInMs={250}
-      hoverOffDelayInMs={250}
-      styles={{height:'100%', display:'flex'}}
+      hoverDelayInMs={props.hoverDelay ? props.hoverDelay : 0}
+      hoverOffDelayInMs={props.hoverOffDelay ? props.hoverOffDelay : 0}
+      className={cx(styles.ReactHoverObserver)}
+
     >
       {({ isHovering }) => {
         return(
@@ -73,11 +77,14 @@ let MenuItem = (props) => {
 const IconNav = (props) => {
 
   return (
-    <ul className={cx(styles.navList)}>
+    <ul className={cx(styles.navList, styles[props.className])}>
+      <MenuItem>
+        <Link icon="home" style={{color:'#ffffff', size:22}} href={"/"}/>
+      </MenuItem>
       <MenuItem >
         <Link icon='search' style={{color:'#ffffff', size:22}} clickEvent={props.searchModalOpen.bind(this)}/>
       </MenuItem>
-      <MenuItem>
+      <MenuItem hoverOffDelay={250}>
         <Link icon="account" style={{color:'#ffffff', size:22}} clickEvent={props.modalOpen.bind(this, 'account', 0)} />
         <Dropdown>
           <AccountDropdown />
@@ -87,7 +94,7 @@ const IconNav = (props) => {
         <Link icon="cart" style={{color:'#ffffff', size:22}} />
       </MenuItem>
       <MenuItem>
-        <Link icon="location" style={{color:'#ffffff', size:22}} clickEvent={props.modalOpen.bind(this, 'location')} />
+        <Link icon="location" style={{color:'#ffffff', size:24}} clickEvent={props.modalOpen.bind(this, 'location')} />
       </MenuItem>
     </ul>
   )

@@ -25,14 +25,9 @@ const Menu = props => {
         </ListGroup>
       </Col>
       <Col sm={12} md={4}>
-        <ListGroup>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-          <ListGroupItem>1</ListGroupItem>
-        </ListGroup>
+        <p>Add Contact Details</p>
+        <p>Social Media Links</p>
+        <p>Newsletter Signup</p>
       </Col>
     </Row>
   )

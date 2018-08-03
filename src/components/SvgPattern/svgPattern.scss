@@ -1,0 +1,39 @@
+.textWrap {
+    position: relative;
+    top: 0;
+    z-index: 101;
+    width: 100%;
+}
+.textWrapInner {
+    padding: 20px;
+    background: #ffc107;
+/*    visibility: hidden;
+    pointer-events: none;*/
+}
+
+.svgFlasherWrap {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 54px;
+    height: 100vh;
+    width: 50%;
+    background: #ff00ea;
+    z-index: 100;
+}
+
+
+.svgPatternWrap {
+    background: yellow;
+/*    position: absolute;
+    width: calc(100vw - 54px);
+    background: grey;
+    z-index: 99;
+    height: 1000px;
+    display: block;*/
+}
+
+
+
+
+

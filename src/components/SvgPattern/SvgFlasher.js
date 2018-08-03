@@ -8,8 +8,6 @@ import Lightening from './media/svgTileLightening.svg'
 import Globe from './media/svgTileGlobe.svg'
 import Peace from './media/svgTilePeace.svg'
 
-import styles from './svgFlasherStyles';
-
 
 import {get, getOr} from 'lodash/fp';
 
@@ -71,7 +69,7 @@ class SvgFlasher extends Component {
 
   render() {
     return (
-      <div ref={this.myRef} style={{...styles.flasher.wrap}} />
+      <div ref={this.myRef} />
     )
   }
 }
