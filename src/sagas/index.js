@@ -8,12 +8,18 @@ import { catalogMenuSaga } from '../modules/CatalogMenu';
 import { openWeatherSaga } from '../modules/OpenWeather';
 import { googleMapModuleSaga } from '../modules/googleMaps';
 
+import { modalSaga } from '../modules/Modal';
+import { searchModalSaga } from '../modules/Search';
+
+
 export {
   nestedMenuSaga,
   catalogMenuSaga,
   contactFormSaga,
   openWeatherSaga,
   googleMapModuleSaga,
+  modalSaga,
+  searchModalSaga,
 };
 
 export default function *() {
@@ -23,5 +29,7 @@ export default function *() {
     fork(contactFormSaga),
     fork(openWeatherSaga),
     fork(googleMapModuleSaga),
+    fork(modalSaga),
+    fork(searchModalSaga),
   ];
 }

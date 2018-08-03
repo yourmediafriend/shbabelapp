@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+
+
 import { reducer as formReducer } from 'redux-form';
 
 import searchModal from './Search';
@@ -26,5 +28,11 @@ export default combineReducers({
   appModule,
   ...modal,
   ...nestedMenuReducers,
-})
+});
+
+
+/*export reduceReducers({
+  searchModal,
+  ...modal,
+});*/
 

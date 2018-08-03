@@ -5,7 +5,6 @@ import Icon from '../Icons';
 import cx from 'classnames';
 import AccountDropdown from './Dropdown/accountDropdown'
 import styles from './iconNavStyles.scss';
-import {modalToggle} from "../../modules/Modal";
 
 const AppContext = React.createContext();
 

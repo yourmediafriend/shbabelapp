@@ -50,6 +50,7 @@ export default function reducer(state=initialState, action = {}) {
   }
 }
 
+
 // Action Creators
 export function modalOpen(modalRef, contentId) {
   return {
