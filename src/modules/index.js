@@ -26,5 +26,5 @@ export default combineReducers({
   appModule,
   ...modal,
   ...nestedMenuReducers,
-});
+})
 

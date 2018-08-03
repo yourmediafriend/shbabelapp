@@ -81,9 +81,6 @@ class Triangle extends React.Component {
 
 
   render() {
-
-    console.log(this.myRef);
-
     return (
       <div ref={this.myRef}  style={style.svgOuter} />
     );

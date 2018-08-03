@@ -15,9 +15,7 @@ class DemoPage extends Component {
     return (
       <div>
         <PageTitle title={ 'One Column Center Page Layout!' } layout={'center'} style={{}} />
-        <div style={{background:'rgba(255, 255, 255, 0.48)', position: 'relative', padding: '40px'}}>
-          <OneColumnCenter contentMain={<Dummytext />} />
-        </div>
+        <OneColumnCenter contentMain={<Dummytext />} />
       </div>
     )
   }

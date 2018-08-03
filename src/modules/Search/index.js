@@ -1,4 +1,4 @@
-import searchModal, { searchModalOpen, searchModalClose } from './reducers/searchModal';
+import searchModal, { searchModalOpen, searchModalClose, searchModalToggle } from './reducers/searchModal';
 
 // Export Reducers
 export default searchModal;
@@ -7,4 +7,5 @@ export default searchModal;
 export {
   searchModalOpen,
   searchModalClose,
+  searchModalToggle,
 };

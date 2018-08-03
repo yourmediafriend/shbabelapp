@@ -5,6 +5,7 @@ import Icon from '../Icons';
 import cx from 'classnames';
 import AccountDropdown from './Dropdown/accountDropdown'
 import styles from './iconNavStyles.scss';
+import {modalToggle} from "../../modules/Modal";
 
 const AppContext = React.createContext();
 
@@ -25,12 +26,9 @@ let Link = ({icon, text, style, clickEvent, href }) => {
       {(context) => {
         return (
           <a  href={href} className={cx(styles.navLink)}  onClick={clickEvent}>
-
-              <span>
+            <span>
               {icon ? <Icon icon={icon} color={style.color} size={style.size} /> : <div>{text}</div>}
-              </span>
-
-
+            </span>
           </a>
         )
       }}
@@ -82,10 +80,10 @@ const IconNav = (props) => {
         <Link icon="home" style={{color:'#ffffff', size:22}} href={"/"}/>
       </MenuItem>
       <MenuItem >
-        <Link icon='search' style={{color:'#ffffff', size:22}} clickEvent={props.searchModalOpen.bind(this)}/>
+        <Link icon='search' style={{color:'#ffffff', size:22}} clickEvent={props.searchModalToggle.bind(this)}/>
       </MenuItem>
       <MenuItem hoverOffDelay={250}>
-        <Link icon="account" style={{color:'#ffffff', size:22}} clickEvent={props.modalOpen.bind(this, 'account', 0)} />
+        <Link icon="account" style={{color:'#ffffff', size:22}} clickEvent={props.modalToggle.bind(this, 'account', 0)} />
         <Dropdown>
           <AccountDropdown />
         </Dropdown>
@@ -103,6 +101,7 @@ const IconNav = (props) => {
 IconNav.props = {
   searchModalToggle: PropTypes.func,
   accountModalOpen: PropTypes.func,
+  modalToggle: PropTypes.func,
 }
 
 export default IconNav;

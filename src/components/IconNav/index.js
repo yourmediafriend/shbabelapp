@@ -1,10 +1,11 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { get } from "lodash/fp";
-import { searchModalOpen } from '../../modules/Search';
+
 import iconNavComponent from './IconNavComp';
 
-import { modalOpen } from "../../modules/Modal";
+import { searchModalOpen, searchModalToggle } from '../../modules/Search';
+import { modalOpen, modalToggle } from "../../modules/Modal";
 
 const mapStateToProps = state => {
   return {
@@ -16,7 +17,9 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       modalOpen,
+      modalToggle,
       searchModalOpen,
+      searchModalToggle,
     },
     dispatch
   );
