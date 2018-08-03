@@ -23,6 +23,7 @@ class SvgPattern extends Component {
     this.createPattern();
   }
 
+
   createPattern() {
 
     this.draw = SVG(this.myRef.current).viewbox(0, 0, 100, 100);

@@ -28,7 +28,6 @@ class SvgPatternMagicScroll extends Component {
           </div>
         </div>
 
-
         <div className={cx(styles.textWrap)}>
           <OneColumnCenter contentMain={
             <div className={cx(styles.textWrapInner)}>
