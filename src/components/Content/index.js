@@ -24,6 +24,10 @@ import TwoColumnRightDemo from '../Pages/DemoPages/TwoColumnRight';
 import TwoColumnLeftDemo from '../Pages/DemoPages/TwoColumnLeft';
 import ThreeColumnDemo from '../Pages/DemoPages/ThreeColumn';
 import MixedDemo from '../Pages/DemoPages/Mixed';
+import DrupalArticles from '../Pages/DemoPages/DrupalArticles';
+
+
+
 import StickyElements from '../Pages/DemoPages/StickyElements';
 
 const MainContent = props => {
@@ -119,6 +123,12 @@ const Content = ({currentpage }) => {
       return (
         <MainContent style={{backgroundColor:'#f5f5f5'}}>
           <MixedDemo />
+        </MainContent>
+      );
+    case 'drupalArticles':
+      return (
+        <MainContent style={{backgroundColor:'#f5f5f5'}}>
+          <DrupalArticles />
         </MainContent>
       );
     default:

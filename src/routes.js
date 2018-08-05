@@ -23,6 +23,8 @@ const SwitchRoute = () => (
     <Route exact path='/layouts/3-column' render={() => <OneColumnSidebar currentpage='threeColumnDemo' />} />
     <Route exact path='/layouts/mixed' render={() => <OneColumnSidebar currentpage='mixedDemo' />} />
 
+    <Route exact path='/drupal-articles' render={() => <OneColumnSidebar currentpage='drupalArticles' />} />
+
     {/*/SVG.js/*/}
     <Route exact path='/svgs/square' render={ (routeProps) => <OneColumnSidebar {...routeProps} currentpage='square' fullscreen={true} />} />
     <Route exact path='/svgs/circle' render={(routeProps) => <OneColumnSidebar {...routeProps}  currentpage='circle' fullscreen={true} />} />
