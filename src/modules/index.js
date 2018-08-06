@@ -12,8 +12,9 @@ import retrieveCatalogMenuData from './CatalogMenu';
 import postContactForm from './Forms/ContactForm';
 import retrieveOpenWeather from './OpenWeather';
 import offCanvasMenu from './OffCanvasMenu';
-import googleMapModule from "./googleMaps";
+import googleMapsModule from "./GoogleMaps";
 import appModule from "./App";
+import musicPlayerModule from "./MusicPlayer";
 
 
 export default combineReducers({
@@ -24,8 +25,9 @@ export default combineReducers({
   retrieveCatalogMenuData,
   searchModal,
   retrieveOpenWeather,
-  googleMapModule,
+  googleMapsModule,
   appModule,
+  musicPlayerModule,
   ...modal,
   ...nestedMenuReducers,
 });

@@ -5,7 +5,7 @@ import {bindActionCreators} from "redux";
 import MapMarker from './mapMarker'
 import GoogleMap from 'google-map-react';
 import { geolocated } from 'react-geolocated';
-import { clickMap } from '../../../modules/googleMaps';
+import { clickMap } from '../../../modules/GoogleMaps';
 
 const geoMap = props => {
   return(

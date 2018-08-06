@@ -10,34 +10,7 @@ import store, { history } from './store';
 import Routes from './routes';
 
 import client from './graphQL/client'
-
 import { ApolloProvider } from "react-apollo";
-import gql from "graphql-tag";
-
-
-// console.log(client);
-//
-// client
-//   .query({
-//     query: gql`
-//       {
-//   nodeQuery {
-//     entities {
-//       ... on Node {
-//         nid
-//         title
-//         __typename
-//         body {
-//           value
-//         }
-//       }
-//     }
-//   }
-// }
-//     `
-//   })
-//   .then(({data}) => console.log({ data }));
-
 
 const App = () => (
   <ApolloProvider client={client}>

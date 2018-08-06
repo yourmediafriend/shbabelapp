@@ -6,7 +6,7 @@ import { nestedMenuSaga } from '../modules/NestedMenu';
 import { contactFormSaga } from '../modules/Forms/ContactForm';
 import { catalogMenuSaga } from '../modules/CatalogMenu';
 import { openWeatherSaga } from '../modules/OpenWeather';
-import { googleMapModuleSaga } from '../modules/googleMaps';
+import { googleMapModuleSaga } from '../modules/GoogleMaps';
 
 import { modalSaga } from '../modules/Modal';
 import { searchModalSaga } from '../modules/Search';

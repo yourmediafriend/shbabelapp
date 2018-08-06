@@ -88,6 +88,9 @@ const IconNav = (props) => {
         </Dropdown>
       </MenuItem>
       <MenuItem>
+        <Link icon="contact" style={{color:'#ffffff', size:26}} href={"/contact"} />
+      </MenuItem>
+      <MenuItem>
         <Link icon="cart" style={{color:'#ffffff', size:22}} />
       </MenuItem>
       <MenuItem>

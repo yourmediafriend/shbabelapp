@@ -17,11 +17,11 @@ $footer-fixed-bg: #F1F2F2 !default;
     &.fixed {
         background-color: $footer-fixed-bg;
         border-top: 1px solid #cecece;
-        padding: 10px 0;
+        padding: 0;
         box-shadow: 0 -10px 10px -10px #0c0c0c38;
 
         @include media-breakpoint-up(md) {
-            padding: 20px 0;
+            padding: 0;
         }
 
     }

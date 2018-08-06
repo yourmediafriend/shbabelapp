@@ -11,17 +11,11 @@ import gql from "graphql-tag";
 
 const ArticleTeaser = ({ article }) => (
   <div>
-    <h3>{article.fieldTrack.uri}</h3>
+    <h3>{article.title}</h3>
+    <div>{article.body.value}</div>
   </div>
 );
 
-/*
-... on Node {
-  nid
-  title
-  field_track
-}
-*/
 const GET_ARTICLES = gql`
      {
       nodeQuery {
@@ -29,6 +23,7 @@ const GET_ARTICLES = gql`
           ... on Node {
             nid
             title
+            field_track
             body {
               value
             }
@@ -38,34 +33,14 @@ const GET_ARTICLES = gql`
     }
     `;
 
-const GET_TRACKS = gql`
-  {
-    nodeQuery(filter: {conditions: [{operator: EQUAL, field: "type", value: ["mixes"]}]}) {
-      entities {
-        entityId
-        entityLabel
-      
-        ... on Node {
-          nid
-          title
-          fieldTrack {
-            uri
-          }
-        }
-      }
-    }
-  }
-    `;
-
 const ArticlesView = () => (
 
-  <Query query={GET_TRACKS} >
+  <Query query={GET_ARTICLES} >
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return `Error: ${error.message}`;
-      console.log(data);
-      console.log(data.nodeQuery.entities);
 
+      console.log(data);
       return (
         <ul>
           {data.nodeQuery.entities.map(article => <li key={article.nid}><ArticleTeaser article={article} /></li>)}

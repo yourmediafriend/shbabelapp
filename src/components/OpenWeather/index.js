@@ -9,7 +9,7 @@ import { geolocated } from 'react-geolocated';
 import WeatherPanel from './WeatherPanel';
 
 import {attemptToRetrieveOpenWeather} from "../../modules/OpenWeather";
-import {attemptToRetrieveData as attemptToRetrieveReverseGeoData} from  "../../modules/googleMaps";
+import {attemptToRetrieveData as attemptToRetrieveReverseGeoData} from  "../../modules/GoogleMaps";
 
 const mapOptions  = () => {
   return {
