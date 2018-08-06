@@ -8,8 +8,10 @@ import NestedMenu from '../NestedMenu';
 const SidebarMenu = (props) => {
 
   return (
-    <div className={styles.sidebarMenu}>
-      <NestedMenu />
+    <div className={styles.sidebarMenuWrap}>
+      <div className={styles.sidebarMenu}>
+        <NestedMenu />
+      </div>
     </div>
   )
 }

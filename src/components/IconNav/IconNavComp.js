@@ -4,6 +4,8 @@ import ReactHoverObserver from '../ReactHoverObserver';
 import Icon from '../Icons';
 import cx from 'classnames';
 import AccountDropdown from './Dropdown/accountDropdown'
+
+import { Nav, NavItem } from 'reactstrap';
 import styles from './iconNavStyles.scss';
 
 const AppContext = React.createContext();
@@ -24,9 +26,9 @@ let Link = ({icon, text, style, clickEvent, href }) => {
     <AppContext.Consumer>
       {(context) => {
         return (
-          <a  href={href} className={cx(styles.navLink)}  onClick={clickEvent}>
-            <span>
-              {icon ? <Icon icon={icon} color={style.color} size={style.size} /> : <div>{text}</div>}
+          <a  href={href} className={cx(styles.navLink)} onClick={clickEvent}>
+            <span className={cx(styles.icon, styles[icon])}>
+              {icon ? <Icon icon={icon} /> : <div>{text}</div>}
             </span>
           </a>
         )
@@ -61,9 +63,9 @@ let MenuItem = (props) => {
       {({ isHovering }) => {
         return(
           <AppProvider value={{isHovering:isHovering, isSearchModalOpen: props.isSearchModalOpen }}>
-            <li className={cx(styles.navItem)}>
+            <div className={cx(styles.navItem)}>
               {props.children}
-            </li>
+            </div>
           </AppProvider>
         )
       }}
@@ -74,29 +76,41 @@ let MenuItem = (props) => {
 const IconNav = (props) => {
 
   return (
-    <ul className={cx(styles.navList, styles[props.className])}>
-      <MenuItem>
-        <Link icon="home" style={{color:'#ffffff', size:22}} href={"/"}/>
-      </MenuItem>
-      <MenuItem >
-        <Link icon='search' style={{color:'#ffffff', size:22}} clickEvent={props.searchModalToggle.bind(this)}/>
-      </MenuItem>
-      <MenuItem hoverOffDelay={250}>
-        <Link icon="account" style={{color:'#ffffff', size:22}} clickEvent={props.modalToggle.bind(this, 'account', 0)} />
-        <Dropdown>
-          <AccountDropdown />
-        </Dropdown>
-      </MenuItem>
-      <MenuItem>
-        <Link icon="contact" style={{color:'#ffffff', size:26}} href={"/contact"} />
-      </MenuItem>
-      <MenuItem>
-        <Link icon="cart" style={{color:'#ffffff', size:22}} />
-      </MenuItem>
-      <MenuItem>
-        <Link icon="location" style={{color:'#ffffff', size:24}} clickEvent={props.modalOpen.bind(this, 'location')} />
-      </MenuItem>
-    </ul>
+    <Nav className={cx(styles.navList, styles[props.className])}>
+      <NavItem>
+        <MenuItem>
+         <Link icon="home" style={{color:'#ffffff'}} href={"/"}/>
+        </MenuItem>
+      </NavItem>
+      <NavItem >
+        <MenuItem>
+          <Link icon='search' style={{color:'#ffffff'}} clickEvent={props.searchModalToggle.bind(this)}/>
+        </MenuItem>
+      </NavItem>
+      <NavItem hoverOffDelay={250}>
+        <MenuItem>
+          <Link icon="account" style={{color:'#ffffff'}} clickEvent={props.modalToggle.bind(this, 'account', 0)} />
+          <Dropdown>
+            <AccountDropdown />
+          </Dropdown>
+        </MenuItem>
+      </NavItem>
+      <NavItem>
+        <MenuItem>
+          <Link icon="contact" style={{color:'#ffffff'}} href={"/contact"} />
+        </MenuItem>
+      </NavItem>
+      <NavItem>
+        <MenuItem>
+          <Link icon="cart" style={{color:'#ffffff'}} />
+        </MenuItem>
+      </NavItem>
+      <NavItem>
+        <MenuItem>
+          <Link icon="location" style={{color:'#ffffff', size:24}} clickEvent={props.modalOpen.bind(this, 'location')} />
+        </MenuItem>
+      </NavItem>
+    </Nav>
   )
 }
 

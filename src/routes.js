@@ -51,7 +51,7 @@ const SwitchRoute = () => (
     <Route exact path='/test' render={() => <OneColumnSidebar currentpage='test' />} />
     <Route exact path='/rec' component={Recompose}/>
     <Route exact path='/strap' component={Strap}/>
-    <Route exact path='/menu' render={() => <OneColumnFlat currentpage='menu' />} />
+
   </Switch>
 );
 

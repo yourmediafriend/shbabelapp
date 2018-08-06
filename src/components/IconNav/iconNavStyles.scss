@@ -5,6 +5,8 @@
     list-style: none;
     display: flex;
 }
+
+
 .navItem {
     position: relative;
     .navLink {
@@ -17,11 +19,24 @@
         text-transform: uppercase;
         letter-spacing: .075em;
         padding: 0 20px 0;
+
+        .icon {
+            width: 22px;
+            svg {
+                fill: #fff;
+            }
+            &.contact {
+                width: 26px;
+            }
+        }
+
         &:hover {
             background-color: #333333;
         }
     }
 }
+
+
 .ReactHoverObserver {
     height: 100%;
     display: flex;

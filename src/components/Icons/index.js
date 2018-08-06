@@ -25,15 +25,12 @@ const Icon = props => {
       display: 'inline-block',
       verticalAlign: 'middle',
     },
-    path: {
-      fill: props.color,
-    },
   };
 
   return (
     <svg
-      width={`${props.size}px`}
-      height={`${props.size}px`}
+      width="100%"
+      height="100%"
       viewBox="0 0 1024 1024"
     >
       {getIcon(iconJson, icon).map((child, index) => <path

@@ -1,29 +1,55 @@
+
+.contactForm,
+.searchForm {
+    :global(.form-control) {
+        border-radius: 0;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
 .contactForm {
     margin-bottom: 40px;
-}
-:global(label){
-    display: block;
-    .required {
-        color: #dc3939;
+
+    :global(label){
+        display: block;
+        .required {
+            color: #dc3939;
+        }
+    }
+    :global(.form-control){
+        border-color: transparent transparent $gray-400 $gray-400;
+        &:global(.is-invalid){
+            border-color: transparent transparent #dc3939 #dc3939;
+        }
+        &:hover {
+            background: #f7f7f7;
+            border-color: $gray-500;
+        }
+        &:focus {
+            background: #fff;
+            border-color: $gray-500;
+            outline: none;
+        }
     }
 }
-:global(.form-control){
-    border-radius: 0;
-    border-color: transparent transparent $gray-400 $gray-400;
 
-    &:global(.is-invalid){
-        border-color: transparent transparent #dc3939 #dc3939;
+.searchForm {
+    :global(label){
+        display: block;
     }
-
-    &:hover {
-        background: #f7f7f7;
-        border-color: $gray-500;
-    }
-
-    &:focus {
-        background: #fff;
-        border-color: $gray-500;
-        outline: none;
+    :global(.form-control){
+        background: transparent;
+        font-size: 1.8em;
+        border: 0;
+        border-bottom: 2px solid #515557;
+        padding: 1.5rem 0;
+        &:focus {
+            background: transparent;
+            border-color: inherit;
+            outline: none;
+        }
     }
 }
 

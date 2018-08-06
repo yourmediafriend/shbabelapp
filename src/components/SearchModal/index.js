@@ -17,7 +17,7 @@ import styles from './modalStyles.scss';
 const ModalCloseButton = ({clickEvent}) => {
   return (
     <div className={styles.modalClose} onClick={clickEvent}>
-      <Icon icon={'close'} color={'#fff'} size={32} />
+      <Icon icon={'close'} color={'#fff'} size={'100%'} />
     </div>
   )
 }

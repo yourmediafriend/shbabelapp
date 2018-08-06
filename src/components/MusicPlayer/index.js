@@ -146,15 +146,20 @@ class MusicPlayer extends Component {
         />
 
         <div className={cx(styles.section, styles.controls)}>
-          <button className={cx(styles.button)} onClick={this.playPause}>{playing ? <Icon icon={'pause'} color={'#000'} size={22} /> : <Icon icon={'play'} color={'#000'} size={22} />}</button>
-          <button className={cx(styles.button)} onClick={this.toggleLoop}><Icon icon={'loop'} color={loop ? '#ff00ea' : '#000'} size={22} /></button>
+          <button className={cx(styles.button)} onClick={this.playPause}>
+            {playing ? <span className={cx(styles.icon, styles.pause)}><Icon icon={'pause'} /></span> : <span className={cx(styles.icon, styles.play)}><Icon icon={'play'} /></span>}
+          </button>
+          <button className={cx(styles.button)} onClick={this.toggleLoop}>
+            <span className={cx(styles.icon, styles.loop)}>
+              <Icon icon={'loop'} />
+            </span>
+          </button>
         </div>
 
         <div className={cx(styles.section, styles.timeline)}>
           <div className={cx(styles.elapsed)}>
             <Duration seconds={duration * played} />
           </div>
-
           <div className={cx(styles.timelineWrap)}>
             <InputRange
               maxValue={100}
@@ -165,15 +170,15 @@ class MusicPlayer extends Component {
               onChangeComplete={value => this.onSeekMouseUp(value)}
             />
           </div>
-
           <div className={cx(styles.duration)}>
             <div onClick={this.toggleShowRemaining}>{!(showRemaining) ?  <Duration seconds={duration} /> : <span>- <Duration seconds={duration * (1 - played)} /></span>}</div>
           </div>
-
         </div>
 
         <div className={cx(styles.section, styles.volume)}>
-          <button className={cx(styles.button)} onClick={this.toggleMuted}>{muted ? <Icon icon={'mute'} color={'#000'} size={22} /> : <Icon icon={'volume'} color={'#000'} size={22} />}</button>
+          <button className={cx(styles.button)} onClick={this.toggleMuted}>
+            {muted ? <span className={cx(styles.icon, styles.mute)}><Icon icon={'mute'} /></span> : <span className={cx(styles.icon, styles.volume)}><Icon icon={'volume'} /></span>}
+            </button>
           <div className={cx(styles.barWrap, styles.setVolume )}>
             <InputRange
               maxValue={100}
@@ -189,7 +194,9 @@ class MusicPlayer extends Component {
         <div className={cx(styles.section, styles.select)}>
           {/*this.load('https://res.cloudinary.com/dghff7rpa/video/upload/v1533465886/Mixes/test.mp3')*/}
           <button className={cx(styles.button)} onClick={this.props.toggleQueuePopUp}>
-            <Icon icon={'queue'} color={'#000'} size={22} />
+            <span className={cx(styles.icon, styles.queue)}>
+              <Icon icon={'queue'} color={'#000'} size={22} />
+            </span>
           </button>
         </div>
       </div>

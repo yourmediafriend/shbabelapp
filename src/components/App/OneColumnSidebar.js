@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import styles from './pages.scss';
+import styles from './app.scss';
 import { mediaMatch } from '../../utils/mediaQueries';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Animate from 'react-move/Animate';
 import { easeExpOut } from 'd3-ease';
-
 import { setCurrentBreakPoint } from '../../modules/App';
-
 
 
 import {
@@ -171,14 +169,14 @@ class App extends Component {
         {(state) => {
 
           return (
-            <div className={styles.outer} style={styleJs.container.outer}>
-              <div className={styles.menu} style={{...this.myStyles(state).menu}}>
-                <div>
+            <div className={styles.outer}>
+
+
+                <div className={styles.sidebarMenuWrap} style={{...this.myStyles(state).menu}}>
                   <SidebarMenu/>
                 </div>
-              </div>
+                <MenuTrigger/>
 
-              <MenuTrigger/>
 
               <div className={styles.mainContainer}>
 

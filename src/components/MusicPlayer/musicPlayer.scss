@@ -6,6 +6,15 @@
     margin: 0 -10px;
     position: relative;
     padding: 10px 0;
+
+    .icon {
+        display: inline-block;
+        width: 22px;
+        svg {
+            fill: #424242;
+        }
+    }
+
     @include media-breakpoint-up(md) {
         padding: 20px 0;
     }

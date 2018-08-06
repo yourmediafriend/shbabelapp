@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { get } from "lodash/fp";
 import cx from 'classnames';
 import { modalOpen } from "../../../modules/Modal";
+import { Nav, NavItem } from 'reactstrap';
 import styles from './dropdownStyles.scss';
 
 
@@ -21,20 +22,20 @@ let menuJson = [
 
 const DropdownMenuItem = ({item, eventClick}) => {
   return (
-    <li className={cx(styles.menuItem)}><a href={'#'} onClick={eventClick.bind(this, 'account',  item.id)} >{item.name}</a></li>
+    <NavItem className={cx(styles.menuItem)}><a href={'#'} onClick={eventClick.bind(this, 'account',  item.id)} >{item.name}</a></NavItem>
   );
 }
 
 const DropdownMenu = props => {
   return (
-    <ul className={cx(styles.dropdownMenu)}>
+    <Nav className={cx(styles.dropdownMenu)}>
       {menuJson.map((child, index) => <DropdownMenuItem
                                         key={index}
                                         item = {child}
                                         eventClick = {props.modalOpen}
                                       />
       )}
-    </ul>
+    </Nav>
   );
 }
 
