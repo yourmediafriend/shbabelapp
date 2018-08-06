@@ -1,0 +1,82 @@
+// Customize Bootstrap variables that get imported before the original Bootstrap variables.
+// Thus original Bootstrap variables can depend on values from here.
+
+//
+// Grid containers
+//
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1200px
+);
+
+//
+// Colors
+//
+$brand-primary: #5cb85c;
+
+//
+// Fonts
+// This path is relative to this file!
+
+$fonts-url-path: '../fonts';
+
+//
+// Body
+//
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('#{$fonts-url-path}/open-sans/OpenSans-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'OpenSans-Light';
+    src: url('#{$fonts-url-path}/open-sans/OpenSans-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'OpenSans-Bold';
+    src: url('#{$fonts-url-path}/open-sans/OpenSans-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'OpenSans-Semibold';
+    src: url('#{$fonts-url-path}/open-sans/OpenSans-Semibold.ttf') format('truetype');
+}
+
+$font-family-sans-serif: 'OpenSans-Light', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+//
+// Headings
+//
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('#{$fonts-url-path}/montserrat/Montserrat-Regular.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Medium';
+    src: url('#{$fonts-url-path}/montserrat/Montserrat-Medium.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Bold';
+    src: url('#{$fonts-url-path}/montserrat/Montserrat-Bold.otf') format('truetype');
+}
+
+$headings-font-family: 'Montserrat', 'OpenSans-Semibold', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headings-font-weight: 400;
+
+// If you're using a custom icon font path, specify it as follows
+// $icon-font-path: ../fonts // This path is relative to this file
+// $icon-font-name: 'glyphicons' // The name of the font you want to use
+// And be sure to set useCustomIconFontPath to true in .bootstraprc.
+
+
+
+//
+// Forms
+//
+$input-btn-focus-width: 0;
+$input-btn-focus-color: transparent;
+$input-btn-focus-box-shadow: none;

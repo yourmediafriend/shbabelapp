@@ -8,7 +8,7 @@ const Menu = props => {
   return (
     <Row>
       <Col sm={12} md={4}>
-        <ListGroup>
+        <ListGroup className={styles.footerMenu}>
           <ListGroupItem><a href="#">About</a></ListGroupItem>
           <ListGroupItem><a href="#">Contact</a></ListGroupItem>
           <ListGroupItem><a href="#">Sign Up</a></ListGroupItem>
@@ -16,7 +16,7 @@ const Menu = props => {
         </ListGroup>
       </Col>
       <Col sm={12} md={4}>
-        <ListGroup>
+        <ListGroup className={styles.footerMenu}>
           <ListGroupItem><a href="#">Meat</a></ListGroupItem>
           <ListGroupItem><a href="#">Fish & Seafood</a></ListGroupItem>
           <ListGroupItem><a href="#">Vegetables</a></ListGroupItem>
