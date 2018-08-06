@@ -15,6 +15,11 @@
         border-color: transparent transparent #dc3939 #dc3939;
     }
 
+    &:hover {
+        background: #f7f7f7;
+        border-color: $gray-500;
+    }
+
     &:focus {
         background: #fff;
         border-color: $gray-500;

@@ -38,9 +38,10 @@ const Playlist = () => {
         console.log(data);
         console.log(data.nodeQuery.entities);
 
+        return null;
         return (
           <ListGroup>
-            {data.nodeQuery.entities.map(article => <ListGroupItem key={article.nid}  ><QueueItem article={article} /></ListGroupItem>)}
+            {data.nodeQuery.entities.map(article => <ListGroupItem key={article.nid}><QueueItem article={article} /></ListGroupItem>)}
           </ListGroup>
         )
       }}

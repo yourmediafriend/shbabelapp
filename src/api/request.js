@@ -36,6 +36,10 @@ export default function *(url, { method, headers = {}, body = null }) {
 
   const init = {
     method,
+    headers: new Headers({
+      Accept: 'application/vnd.api+json',
+      ...headers,
+    }),
     body: body ? JSON.stringify(body) : undefined, // must match 'Content-Type' header
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'same-origin', // include, same-origin, *omit
@@ -43,6 +47,9 @@ export default function *(url, { method, headers = {}, body = null }) {
     redirect: 'follow', // manual, *follow, error
     referrer: 'no-referrer', // *client, no-referrer
   };
+
+
+  console.log(init);
 
   const request = new Request(url, init);
   yield put(requestMade(request));

@@ -33,12 +33,12 @@ class MusicPlayer extends Component {
   componentDidUpdate(prevProps, prevState) {
 
     // this doesn't help initial render.
-    if (prevProps.loadTrack !==  this.props.loadTrack ) {
+/*    if (prevProps.loadTrack !==  this.props.loadTrack ) {
       this.load(this.props.loadTrack)
     }
     else if (prevProps.loadTrack === this.props.loadTrack ) {
       // toggle play / pause
-    }
+    }*/
   }
 
   load = url => {

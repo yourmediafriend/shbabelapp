@@ -19,24 +19,37 @@ import {
 
 import contactFormData from '../selectors/contactFormSelector';
 
-const baseUrl = get('baseUrl', __ENV__);
+const baseUrl = get('adminUrl', __ENV__);
 
-export const constructUrl = () => `${baseUrl}contactEmail`;
+export const constructUrl = () => `${baseUrl}contact_message?format=json`;
 
 
 export default function * () {
 
   const formData = yield select(contactFormData);
 
-    try {
-      return yield put(attemptToSubmitFailed());
+  const postData =  {
+                    "contact_form":[{"target_id":"contact_form"}],
+                    "subject":[{"value":"shBabel Webform"}],
+                    "message":[{"value":"_"}],
+                    "field_first_name":[{"value": get('firstName', formData)}],
+                    "field_last_name":[{"value": get('lastName', formData)}],
+                    "field_email":[{"value": get('email', formData)}],
+                    "field_phone_number":[{"value": get('phoneNumber', formData)}],
+                    "field_message":[{"value": get('message', formData)}]
+                  }
+
+  try {
 
       const url = yield call(constructUrl);
 
       const response = yield call(
         sendPost,
         url,
-        formData,
+        {
+          'Content-Type': 'application/json',
+        },
+        postData,
       );
 
       return yield [
@@ -44,7 +57,7 @@ export default function * () {
       ];
 
   } catch (e) {
-  //  console.error(e);
+    console.error(e);
     return yield put(attemptToSubmitFailed());
   }
 }

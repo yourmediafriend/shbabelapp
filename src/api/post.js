@@ -6,13 +6,14 @@ import {
   call,
 } from 'redux-saga/effects';
 
-export default function *(url, body) {
+export default function *(url, headers = {}, body) {
 
   const params = {
     body,
     method: 'POST',
     headers: {
       'Content-Type': 'application/vnd.api+json',
+      ...headers
     },
   };
 
