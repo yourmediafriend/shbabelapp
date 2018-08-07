@@ -252,8 +252,6 @@ module.exports = {
                   loader: 'sass-resources-loader',
                   options: {
                     // Provide path to the file with resources
-  /*                  resources: [ './node_modules/bootstrap/scss/_mixins.scss', './node_modules/bootstrap/scss/_variables.scss']*/
-
                     resources: require(path.join(process.cwd(), "src/styles/utils.js"))
 
                   },
