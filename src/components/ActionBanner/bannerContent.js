@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import DummyText from '../DummyText';
-import { get } from 'lodash/fp';
 import styles from './actionBannerStyles';
-
-import {Transition, TransitionGroup } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 
 class BannerContent extends Component {
 
@@ -13,8 +10,6 @@ class BannerContent extends Component {
   }
 
   render() {
-
-    const duration = 500;
 
     const defaultStyle = {
       opacity: 0,

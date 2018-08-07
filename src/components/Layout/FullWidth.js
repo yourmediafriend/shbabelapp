@@ -1,10 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from "prop-types";
-import cx from 'classnames';
-import { Container, Row, Col } from 'reactstrap';
-
-import styles from './layout.scss';
-
+import React  from 'react';
 
 const Layout = (props) => {
   return (

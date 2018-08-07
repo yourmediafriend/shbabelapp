@@ -1,4 +1,3 @@
-'use strict';
 import { mediaQueries } from '../../utils/mediaQueries';
 
 const styleVariables = {

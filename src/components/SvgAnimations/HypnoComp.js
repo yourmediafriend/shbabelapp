@@ -1,8 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types';
 import SVG from 'svgjs';
-import { TweenMax, Linear } from 'gsap';
-
 import styles from './svgShapes.scss';
 import cx from 'classnames';
 
@@ -11,7 +8,6 @@ class Hypno extends React.Component {
   constructor(props) {
     super(props);
     this.myRef = React.createRef();
-
     this.state = {
       container: {x: 50, y: 50},
       groupScale: 1,
@@ -22,7 +18,6 @@ class Hypno extends React.Component {
       opacity: 1,
       animateOnHover: false,
     }
-
   }
 
   componentDidMount() {
@@ -84,7 +79,6 @@ class Hypno extends React.Component {
 
     });
   };
-
 
   render() {
     return (

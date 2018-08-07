@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from "./pagesStyles";
 
-
 // Pages
 import ContactPage from '../components/Pages/ContactPage';
 import GridPage from '../components/Pages/GridPage';
@@ -11,28 +10,17 @@ import TwoColumnRightDemo from '../components/Pages/DemoPages/TwoColumnRight';
 import TwoColumnLeftDemo from '../components/Pages/DemoPages/TwoColumnLeft';
 import ThreeColumnDemo from '../components/Pages/DemoPages/ThreeColumn';
 
-
 // Elements
-import Logo from '../components/Logo';
-import IconNav from '../components/IconNav';
 import Header from '../components/Header';
-
-// Menu
-import SidebarMenu from '../components/SidebarMenu';
-import MenuTrigger from '../components/SidebarMenu/MenuTrigger';
 
 // Content
 import ColumnLayout from '../components/ColumnLayout';
-
 import SvgAnimation from '../components/SvgAnimations';
 import ScrollMagicParallax from '../components/ScrollMagicParallax';
 import ScrollMagicParallaxExtra from '../components/ScrollMagicParallaxExtra';
-
 import SvgPattern from '../components/SvgPattern';
 import QuarterPage from '../components/QuarterPage';
 
-import Fullpage from '../components/Fullpage';
-import NestedMenu from '../components/NestedMenu';
 
 
 const renderContentSwitch = (currentpage) => {

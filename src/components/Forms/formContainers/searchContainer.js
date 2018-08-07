@@ -1,23 +1,12 @@
-import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import React from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {get} from "lodash/fp";
 
 import SearchForm from '../forms/searchForm';
 
-/*import {
-  attemptToSubmit
-} from '../../../modules/Forms/ContactForm';*/
-
-
-/*const submit = (values, dispatch ) => {
-  return dispatch(attemptToSubmit(values));
-}*/
-
 const searchModalForm = props => {
   return (<SearchForm/>)
-}
+};
 
 const mapStateToProps = (state) => {
   return {

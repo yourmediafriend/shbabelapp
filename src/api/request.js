@@ -1,5 +1,3 @@
-import { __ENV__ } from '../utils/constants';
-
 import 'isomorphic-fetch';
 
 import {
@@ -11,25 +9,12 @@ import {
   put,
 } from 'redux-saga/effects';
 
-import {
+/*import {
   getToken,
   setToken,
-} from './token';
+} from './token';*/
 
 import { requestMade, responseReceived, requestIsBad, requestFailed } from '../modules/ApiRequest';
-
-/*
-  const init = {
-    method,
-    body: body ? JSON.stringify(body) : undefined,
-    mode: 'cors',
-    headers: new Headers({
-      Accept: 'application/vnd.api+json',
-      Authorization: `Bearer ${yield call(getToken)}`,
-      ...headers,
-    }),
-  };
-*/
 
 
 export default function *(url, { method, headers = {}, body = null }) {
@@ -47,10 +32,6 @@ export default function *(url, { method, headers = {}, body = null }) {
     redirect: 'follow', // manual, *follow, error
     referrer: 'no-referrer', // *client, no-referrer
   };
-
-
-  console.log(init);
-
   const request = new Request(url, init);
   yield put(requestMade(request));
   let response;

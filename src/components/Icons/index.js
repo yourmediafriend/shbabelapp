@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get, findKey } from 'lodash/fp';
+import { findKey } from 'lodash/fp';
 import iconJson from '../../fonts/icons';
-
 
 const getIcon = (iconJson, icon) => {
 
@@ -17,7 +16,7 @@ const getIcon = (iconJson, icon) => {
 
 const Icon = props => {
 
-  const { size, icon } = props;
+  const { icon } = props;
 
   // we should be able to pass own style from parent eg I want svg to be a block.
   const styles = {

@@ -1,15 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
-
 import { FormRow, renderField } from '../formComponents'
-
 import { Button } from 'reactstrap';
 
-import styles from '../formStyles';
-
 const validate = values => {
-  const errors = {}
+  const errors = {};
   if (!values.username) {
     errors.username = 'Required'
   }
@@ -19,7 +14,7 @@ const validate = values => {
   }
 
   return errors
-}
+};
 
 export const reduxFormDetails = {
   form: 'LoginForm',
@@ -28,11 +23,11 @@ export const reduxFormDetails = {
     'username',
     'password',
   ],
-}
+};
 
 const LoginForm = props => {
 
-  const { handleSubmit, pristine, reset, submitting, isSending, hasErrored } = props;
+  const { handleSubmit, submitting, isSending, hasErrored } = props;
 
   return(
     <div>
@@ -52,7 +47,7 @@ const LoginForm = props => {
       </form>
     </div>
   )
-}
+};
 
 // Decorate the form component
 export default reduxForm(

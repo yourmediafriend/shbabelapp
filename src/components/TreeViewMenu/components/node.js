@@ -1,15 +1,9 @@
-'use strict';
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import {VelocityTransitionGroup} from 'velocity-react';
-
 import { NavItem  } from 'reactstrap'
-
 import NodeHeader from './header';
-
 import { flow, get, has, isMatch, includes, map } from 'lodash/fp'
-
 
 class TreeNode extends React.Component {
   constructor() {
@@ -67,7 +61,7 @@ class TreeNode extends React.Component {
 
     componentWillMount(){
 
-      const {style, node, onToggle, currentUrl } = this.props;
+      const {node, onToggle, currentUrl } = this.props;
       const isActiveBranch = this.isActiveBranch(node, currentUrl);
 
       if (isActiveBranch && node.toggled===undefined) {
@@ -78,7 +72,7 @@ class TreeNode extends React.Component {
     }
 
     render() {
-      const {style, node, onToggle, currentUrl } = this.props;
+      const {style, node, currentUrl } = this.props;
 
       const decorators = this.decorators();
       const animations = this.animations();
@@ -97,7 +91,7 @@ class TreeNode extends React.Component {
 
     renderDrawer(decorators, animations, isActiveBranch) {
 
-      const {node: {toggled}, node, currentUrl} = this.props;
+      const {node: {toggled}} = this.props;
 
       if (!animations && !toggled) {
         return null;
@@ -118,7 +112,7 @@ class TreeNode extends React.Component {
     }
 
     renderHeader(decorators, animations, isActiveBranch) {
-        const {node, style, level, currentUrl, onToggle} = this.props;
+        const {node, style, level, currentUrl } = this.props;
 
 
         //it stores its own node and when asked to toggle. adds it to drawer

@@ -1,12 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {closeQueuePopUp, loadTrack} from "../../modules/MusicPlayer";
-import {get} from "lodash/fp";
+import { loadTrack} from "../../modules/MusicPlayer";
 import styles from './musicPlayer.scss'
 import cx from 'classnames';
-import { Query } from "react-apollo";
-
 import { Image } from 'cloudinary-react';
 
 
@@ -19,7 +16,7 @@ const QueueItem = ({ article, loadTrack }) => {
       </div>
       <div className={cx(styles.details)}>
         <div className={cx(styles.title)}>
-          <a href='#'>{article.title}</a>
+          <a href=''>{article.title}</a>
         </div>
         <div className={cx(styles.artist)}>{article.fieldArtist}</div>
       </div>

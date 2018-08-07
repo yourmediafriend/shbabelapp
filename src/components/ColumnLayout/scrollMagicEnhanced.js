@@ -1,10 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-
 import verge from 'verge';
-import S from 'camel-case-selector';
-import PropTypes from 'prop-types';
-
 import ScrollMagic from 'scrollmagic-with-ssr';
 
 import 'AnimationGsap';
@@ -74,8 +70,6 @@ function withSubscription(WrappedComponent, selectData) {
 
       let $el = ReactDOM.findDOMNode(this.myRef.current);
 
-/*      let $holder = S($el).queryAll.padding[0];*/
-
       this.controller = new ScrollMagic.Controller({
         container: options.container,
 /*        loglevel: 2,
@@ -119,9 +113,9 @@ function withSubscription(WrappedComponent, selectData) {
         return this.createScene();
       }
 
-      let options = this.getOptions();
+/*          let options = this.getOptions();
 
-/*      let $holders = S(this.refs.scene).queryAll.sceneContentHolder;
+let $holders = S(this.refs.scene).queryAll.sceneContentHolder;
       let $holder = $holders[0];
       let firstScene = this.scenes[0];
 

@@ -30,13 +30,6 @@ import {
   offCanvasMenuToggleAnimation
 } from '../../modules/OffCanvasMenu';
 
-import styleJs from './pagesStyles.js';
-
-//const AppContext = React.createContext();
-
-const openMenunClass = function (isMenuOpen) {
-  return isMenuOpen ? styleJs.open : '';
-};
 
 const StickyContainer = (props) => {
   return (
@@ -229,7 +222,6 @@ export const mapStateToProps = (state) => {
     revealFooterHeight: get('appModule.revealFooterHeight', state),
     fixedFooterHeight: get('appModule.fixedFooterHeight', state),
     isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
-    openMenunClass: openMenunClass,
   }
 };
 
@@ -246,7 +238,6 @@ export const mapDispatchToProps = dispatch =>
 App.propTypes = {
   isMenuOpen: PropTypes.bool,
   isModalOpen: PropTypes.bool,
-  openMenunClass: PropTypes.func,
   offCanvasMenuStateChange: PropTypes.func,
   offCanvasMenuToggleAnimation: PropTypes.func,
 };

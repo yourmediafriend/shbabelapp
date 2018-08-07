@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SVGInline from "react-svg-inline"
 import cx from 'classnames';
-import { flow, get,map } from 'lodash/fp';
+import { flow, get } from 'lodash/fp';
 import styles from './openWeather.scss';
 
 import WeatherIconJson from './icons.js';

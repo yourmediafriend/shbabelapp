@@ -1,7 +1,4 @@
 import { mediaQueries } from '../../utils/mediaQueries';
-
-'use strict';
-
 export default {
   nav: {
     list: {

@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -12,7 +10,7 @@ class NodeHeader extends React.Component {
     }
 
     return (
-      <a href="#" style={{...style.nav.link, ...compStyle() }}>
+      <a href="" style={{...style.nav.link, ...compStyle() }}>
         <span>
           {node.name}
         </span>

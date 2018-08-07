@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
+import styles from '../article.scss';
 
 import HeroBanner from '../../HeroBanner';
-import styles from '../articleStyles';
-
 import hero_480w from '../../../media/hero6/hero_480w.jpg';
 import hero_660w from '../../../media/hero6/hero_660w.jpg';
 import hero_960w from '../../../media/hero6/hero_960w.jpg';
@@ -20,8 +19,8 @@ const imagesHero = {
 };
 
 let HeroContent = props => (
-  <div style={styles.hero.main}>
-    <div style={styles.content.column.main}>
+  <div className={styles.heroMain}>
+    <div className={styles.columnMain}>
       <h1>
         'nean leo ligula': porttitor eu, consequat vitae, eleifend
       </h1>

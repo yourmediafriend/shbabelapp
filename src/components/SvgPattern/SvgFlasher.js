@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
 import SVG from 'svgjs';
 import Skull from './media/svgTileSkull.svg'
 import Lightening from './media/svgTileLightening.svg'
 import Globe from './media/svgTileGlobe.svg'
 import Peace from './media/svgTilePeace.svg'
-
-
-import {get, getOr} from 'lodash/fp';
 
 class SvgFlasher extends Component {
 

@@ -1,9 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types';
 import SVG from 'svgjs';
-import { TweenMax, Linear } from 'gsap';
-
-import SvgLightening from './media/lightening.svg';
+//import { TweenMax, Linear } from 'gsap';
+//import SvgLightening from './media/lightening.svg';
 
 
 class Dotty extends React.Component {
@@ -29,9 +27,8 @@ class Dotty extends React.Component {
     let col = 0;
     let row = 0;
 
-    this.rowArray = Array();
-    this.circleArray = Array();
-
+    this.rowArray = [];
+    this.circleArray = [];
 
     this.draw = SVG(this.myRef.current).viewbox(0, 0, 100, 100).attr({'preserveAspectRatio': 'xMidYMid meet'});
     this.nested = this.draw.nested().viewbox(0, 0, 100, 100);
@@ -51,7 +48,7 @@ class Dotty extends React.Component {
       if ((i+1)%this.state.columns === 0) {
         // new row
         this.circleArray.push(this.rowArray);
-        this.rowArray = Array();
+        this.rowArray = [];
         col = 0;
         row ++;
       }

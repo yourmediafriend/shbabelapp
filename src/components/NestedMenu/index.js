@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
-
 import {
   attemptToRetrieveMenu,
 } from '../../modules/NestedMenu';
-
 import { get } from 'lodash/fp'
-
 import {Treebeard} from '../TreeViewMenu';
-
 import decorators from './decorators';
 import animations from './themes/animations';
 import theme from './themes/default';
-
-import styles from './NestedMenu.scss';
 
 class NestedMenu extends Component {
 
@@ -46,7 +39,7 @@ class NestedMenu extends Component {
 
   render() {
 
-    const { isLoading, hasErrored, items, currentUrl, subMenuToggle } = this.props
+    const { isLoading, hasErrored, items, currentUrl } = this.props;
 
     if (hasErrored) {
       return <p>Sorry! There was an error loading the items</p>;

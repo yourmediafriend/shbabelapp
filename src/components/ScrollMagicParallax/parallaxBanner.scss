@@ -9,3 +9,8 @@
     backface-visibility: hidden;
     display: block;
 }
+
+.scrollableContainer {
+    position: relative;
+    z-index: 1,
+}

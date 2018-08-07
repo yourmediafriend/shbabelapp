@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import cx from 'classnames'
 import styles from './svgPattern.scss';
 
-import SVG from 'svgjs';
 import SvgPattern from './SvgPattern';
 import SvgFlasher from './SvgFlasher';
 

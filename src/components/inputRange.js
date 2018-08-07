@@ -1,7 +1,4 @@
-import React, { Component } from 'react';
-
-
-// import 'react-input-range/lib/css/index.css';
+import React from 'react';
 
 class ExampleApp extends React.Component {
   constructor(props) {

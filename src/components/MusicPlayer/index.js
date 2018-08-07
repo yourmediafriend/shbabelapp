@@ -9,11 +9,9 @@ import './inputRange.css';
 import Duration from './Duration';
 import styles from './musicPlayer.scss';
 import Icon from '../Icons';
-import tune from './media/tune.mp3'
 
 import MusicQueuePopUp from './MusicQueue'
 import {toggleQueuePopUp} from "../../modules/MusicPlayer";
-
 
 
 class MusicPlayer extends Component {
@@ -118,7 +116,7 @@ class MusicPlayer extends Component {
   }
 
   render () {
-    const { url, playing, volume, muted, loop, played, playedSeconds, loaded, duration, playbackRate, showRemaining } = this.state;
+    const { url, playing, volume, muted, loop, played, duration, playbackRate, showRemaining } = this.state;
 
     return (
       <div className={cx(styles.player)}>

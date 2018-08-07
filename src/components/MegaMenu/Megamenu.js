@@ -1,25 +1,13 @@
-'use strict';
-
 import React from 'react';
-import PropTypes from 'prop-types';
 import Animate from 'react-move/Animate';
-import { easeSinOut, easeCircleOut, easeBackOut, easeCubicOut, easeElasticOut, easeQuadOut   } from 'd3-ease';
+import { easeQuadOut   } from 'd3-ease';
 import {first, getOr, last, forEach, keys, map} from "lodash/fp";
-
-
 import styles from './headerNavStyles';
 import fractalSrc from '../../media/fractal.jpg';
-import cx from "classnames";
 
-
-let menuAnimation = easeQuadOut
-
+let menuAnimation = easeQuadOut;
 
 class MenuItem extends React.Component {
-
-  constructor() {
-    super();
-  }
 
   renderTitle() {
 
@@ -28,13 +16,13 @@ class MenuItem extends React.Component {
     if (level===1){
       return (<h3 style={styles.menulist.menuTitle}>{ name }</h3>);
     } else {
-      return (<a style={styles.menulist.a} href='#'>{ name }</a>);
+      return (<a style={styles.menulist.a} href=''>{ name }</a>);
     }
   }
 
   renderMenu() {
 
-    const { item:{ name, children }, level } = this.props;
+    const { item:{ children }, level } = this.props;
 
     if (Array.isArray(children) && children.length){
       return (
@@ -47,9 +35,6 @@ class MenuItem extends React.Component {
   }
 
   render() {
-
-    const {item} = this.props;
-
     return (
       <li>
         {this.renderTitle()}
@@ -61,15 +46,9 @@ class MenuItem extends React.Component {
 
 class MenuBuilder extends React.Component {
 
-  constructor() {
-    super();
-  }
-
   render() {
     const {items, level } = this.props;
-
     const compStyle = (level) =>  level===1 ? {...styles.megamenu.layout.columns.base, ...styles.megamenu.layout.columns.oneQuarter} : styles.menulist ;
-
     return (
       <ul style={{...compStyle(level)}} >
         {items.map((child, index) =>
@@ -83,9 +62,6 @@ class MenuBuilder extends React.Component {
 
 class NodeMegamenu extends React.Component {
 
-  constructor() {
-    super();
-  }
   // split array into x parts
   chunkify(a, n, balanced) {
 
@@ -158,9 +134,7 @@ class NodeMegamenu extends React.Component {
 
   shiftValue(arr) {
 
-    let that = this;
     let dir = 1;
-    let rep =  true;
 
     const sumValues = obj => Object.values(obj).reduce((a, b) => a + b);
 
@@ -237,31 +211,22 @@ class NodeMegamenu extends React.Component {
   }
 
   render() {
-
-    const {node, style, level, columns, isHovering } = this.props;
+    const {node, level, columns, isHovering } = this.props;
     let ColumnMenuStructure = this.organiseMenu(node, columns);
-
-
     return (
       <Animate
-
         start={() => ({
           transformY: [-100]
         })}
-
         update={() => ({
           transformY:[isHovering ? 0 : -100 ],
           timing: {duration: 500, ease: menuAnimation},
           events: {
             start() {
-              // dispatch action Opening
-              //console.log('isAnimating');
-              isHovering ? this.setState({menuDisplay: true}) : null ;
+             if (isHovering){this.setState({menuDisplay: true}); }
             },
             end() {
-              // dispatch action Opening
-              //console.log('notAnimating');
-              !(isHovering) ? this.setState({menuDisplay: false}) : null ;
+              if (!isHovering){this.setState({menuDisplay: false}); }
             },
           },
         })}
@@ -288,7 +253,7 @@ class NodeMegamenu extends React.Component {
                   )}
                   <ul style={{...styles.megamenu.layout.columns.base, ...styles.megamenu.layout.columns.oneQuarter, ...{borderRight: 0}}} >
                     <li>
-                      <img src={fractalSrc} style={{width:'100%'}} />
+                      <img src={fractalSrc} style={{width:'100%'}} alt='' />
                     </li>
                   </ul>
                 </div>
@@ -298,12 +263,7 @@ class NodeMegamenu extends React.Component {
         }}
       </Animate>
     )
-}
-
-
-
-
-
+  }
 }
 
 export default NodeMegamenu;

@@ -1,5 +1,3 @@
-'use strict';
-
 export default {
   slide: {
     width: '100vw',

@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import MapMarker from './mapMarker'
+//import MapMarker from './mapMarker'
 import GoogleMap from 'google-map-react';
-import { geolocated } from 'react-geolocated';
 import { clickMap } from '../../../modules/GoogleMaps';
 
 const geoMap = props => {

@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import GoogleMap from '../GeoLoction/googleMap';
-import {connect} from "react-redux";
-import {get, getOr } from "lodash/fp";
+import { getOr } from "lodash/fp";
 import cx from 'classnames';
 import styles from './openWeather.scss';
 import WeatherIcon from './WeatherIcon';
 import SVGInline from "react-svg-inline"
-
 import Precipitation from './media/precipitation.svg'
 import Wind from './media/wind.svg'
-
-import {attemptToRetrieveOpenWeather} from "../../modules/OpenWeather";
 
 class WeatherPanel extends Component {
 

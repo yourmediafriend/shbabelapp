@@ -4,7 +4,6 @@ import S from 'camel-case-selector';
 import PropTypes from 'prop-types';
 import ParallaxContent from './ParallaxContent';
 import { TweenMax, Linear } from 'gsap';
-
 import ScrollMagic from 'scrollmagic-with-ssr';
 import 'AnimationGsap';
 //import 'debug.addIndicators';
@@ -37,7 +36,7 @@ class ScrollMagicEnhanced extends Component {
     easeEnter = ease.enter === undefined ? ease : ease.enter;
     easeExit = ease.exit === undefined ? ease : ease.exit;
     let container = this.props.container || globalOptions.container;
-    return {offset, power, ease: {enter: easeExit, exit: easeExit}, container: container};
+    return {offset, power, ease: {enter: easeEnter, exit: easeExit}, container: container};
   }
 
   shouldEnable(){
@@ -187,10 +186,8 @@ class ScrollMagicEnhanced extends Component {
     let $holders = S(this.refs.parallax).queryAll.parallaxContentHolder;
 
     let firstScene = this.scenes[0];
-    let firstTween = this.tweens[0];
     let $firstHolder = $holders[0];
     let otherScenes = this.scenes.slice(1);
-    let otherTweens = this.tweens.slice(1);
     let $otherHolders = $holders.slice(1);
 
     if(firstScene){
@@ -198,7 +195,7 @@ class ScrollMagicEnhanced extends Component {
       firstScene.setTween(this.firstSceneExit($firstHolder, options));
     }
     otherScenes.forEach((scene, index) => {
-      let holderIndex = parseInt(index / 2);
+      let holderIndex = parseInt(index/2, 10);
       scene.duration($otherHolders[holderIndex].clientHeight + options.offset + 'px');
     });
   }

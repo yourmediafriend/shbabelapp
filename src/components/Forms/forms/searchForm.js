@@ -1,19 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
-
 import { renderField } from '../formComponents'
-import { Button, Container, Row, Col  } from 'reactstrap';
+import { Row, Col  } from 'reactstrap';
 import styles from '../forms.scss';
-
-const validate = values => {
-  const errors = {}
-  return errors
-}
 
 export const reduxFormDetails = {
   form: 'SearchField',
-  validate,
   fields: [
     'search',
   ],
@@ -21,7 +13,7 @@ export const reduxFormDetails = {
 
 const SearchForm = props => {
 
-  const { handleSubmit, pristine, reset, submitting, isSending, hasErrored } = props;
+  const { handleSubmit } = props;
 
   return(
       <form className={styles.searchForm} onSubmit={handleSubmit}>
@@ -34,7 +26,6 @@ const SearchForm = props => {
   )
 }
 
-// Decorate the form component
 export default reduxForm(
   reduxFormDetails
 )(SearchForm);

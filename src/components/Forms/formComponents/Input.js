@@ -1,9 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import { FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
-
-
+import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import styles from '../forms.scss';
 
 class FormFieldInput extends React.Component {
@@ -14,13 +10,12 @@ class FormFieldInput extends React.Component {
 
     switch (type) {
       case 'textarea':
-        return (<Input invalid={touched && error ? true : false} {...input} placeholder={placeholder} type={type}  />);
+        return (<Input invalid={!!touched && error} {...input} placeholder={placeholder} type={type}  />);
       default:
-        return (<Input invalid={touched && error ? true : false} {...input} placeholder={placeholder} type={type} autoComplete={!(autocomplete) ? 'off' : 'on'}     />);
+        return (<Input invalid={!!touched && error} {...input} placeholder={placeholder} type={type} autoComplete={!(autocomplete) ? 'off' : 'on'}     />);
     }
   }
 }
-
 
 const FormIsRequired = () => (
   <span className={styles.required}>*</span>

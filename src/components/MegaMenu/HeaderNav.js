@@ -1,9 +1,7 @@
-'use strict';
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import NavNode from './NavNode';
-import Radium, { Style } from 'radium';
+import Radium from 'radium';
 
 class HeaderNav extends React.Component {
 

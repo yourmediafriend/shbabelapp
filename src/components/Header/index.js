@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import PropTypes from "prop-types";
 import { connect } from 'react-redux';
-
 import stylesJs from './stickyHeaderStyles';
 import Animate from 'react-move/Animate';
-import { easeExp, easeExpInOut, easePolyOut, easeQuad, easeCubicInOut, easeCircleOut } from 'd3-ease';
-
+import { easeCubicInOut } from 'd3-ease';
 import scrollMagicEnhanced from "./scrollMagicEnhanced";
 import MegaMenu from '../MegaMenu';
 import IconNav from '../IconNav';
-
-
 import styles from './header.scss';
 import cx from "classnames";
 import {get} from "lodash/fp";
-import {setCurrentBreakPoint} from "../../modules/App";
-import {offCanvasMenuStateChange, offCanvasMenuToggleAnimation} from "../../modules/OffCanvasMenu";
-import PropTypes from "prop-types";
-
-
 
 class Header extends Component {
 
@@ -33,7 +24,7 @@ class Header extends Component {
   };
 
   render() {
-    const { style, breakpoint } = this.props;
+    const { breakpoint } = this.props;
 
     let baseHeight = parseInt(stylesJs.header.base.height, 10);
     let compactHeight = parseInt(stylesJs.header.compact.height, 10);
@@ -56,7 +47,7 @@ class Header extends Component {
 
             },
             end() {
-              // When Animation Ends Make sure the sticky Padding is reset
+
             },
           },
         })}
@@ -75,10 +66,7 @@ class Header extends Component {
           return (
             <div className={cx(state.styles.stickyHeader, state.styles.base, state.styles.isSticky)} style={{...compStyles(state).header}}>
               <MegaMenu />
-
               {breakpoint === 'large' || breakpoint === 'medium' ? <IconNav /> : null}
-
-
             </div>
           );
         }}

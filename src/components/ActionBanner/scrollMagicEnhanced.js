@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import verge from 'verge';
 import S from 'camel-case-selector';
-import PropTypes from 'prop-types';
-
+import { getOr } from 'lodash/fp';
 import ScrollMagic from 'scrollmagic-with-ssr';
-
 import 'AnimationGsap';
 //import 'debug.addIndicators';
-
-import { getOr } from 'lodash/fp';
 
 let globalOptions = {
   offset: 0,
@@ -97,7 +93,7 @@ function withSubscription(WrappedComponent, selectData) {
      /*   if (event.scrollPos >= event.startPos && event.scrollPos <= event.endPos ) {
           this.setState({scenePosition: (event.scrollPos - event.startPos)})
         }*/
-      }.bind(this))
+      })
       .addTo(this.controller));
 
       this.sceneCreated = true;

@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-
-import {Power2} from 'gsap';
+import { Power2 } from 'gsap';
 import ParallaxContent from './ParallaxContent';
 import ScrollMagicEnhanced from './scrollMagicEnhanced';
+import cx from 'classnames'
+import styles from './parallaxBanner.scss';
 
 import HeroBanner from '../HeroBanner';
 import DummyText from '../DummyText';
-
-import styles from './parallaxStyles';
-
-
 import hero_480w from '../../media/hero6/hero_480w.jpg';
 import hero_660w from '../../media/hero6/hero_660w.jpg';
 import hero_960w from '../../media/hero6/hero_960w.jpg';
@@ -46,7 +42,7 @@ class ParallaxTestComponent extends Component {
     };
 
     return (
-      <div className="scrollable-container" style={styles.parallax.scrollableContainer}>
+      <div className={cx(styles.scrollableContainer ,'scrollable-container')} >
         <ScrollMagicEnhanced {...parallaxProps}>
           <ParallaxContent>
             <HeroBanner image={imagesHero}  />

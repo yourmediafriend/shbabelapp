@@ -1,9 +1,4 @@
-import { __ENV__ } from '../../../utils/constants';
 import sendGet from '../../../api/get';
-
-import {
-  get,
-} from 'lodash/fp';
 
 import {
   call,

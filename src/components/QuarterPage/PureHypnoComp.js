@@ -1,7 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types';
 import SVG from 'svgjs';
-import { TweenMax, Linear } from 'gsap';
 
 class Hypno extends React.Component {
 

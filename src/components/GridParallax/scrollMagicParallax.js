@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import verge from 'verge';
+import { getOr } from 'lodash/fp';
 import S from 'camel-case-selector';
-import PropTypes from 'prop-types';
-
 import { TweenMax, Linear } from 'gsap';
 import ScrollMagic from 'scrollmagic-with-ssr';
-
 import 'AnimationGsap';
 //import 'debug.addIndicators';
 
-import { getOr } from 'lodash/fp';
 
 let globalOptions = {
   offset: 0,
@@ -43,7 +40,7 @@ function withScrollMagic(WrappedComponent, selectData) {
       easeEnter = ease.enter === undefined ? ease : ease.enter;
       easeExit = ease.exit === undefined ? ease : ease.exit;
       let container = this.props.container || globalOptions.container;
-      return {offset, power, ease: {enter: easeExit, exit: easeExit}, container: container};
+      return {offset, power, ease: {enter: easeExit, exit: easeEnter}, container: container};
     }
 
     shouldEnable(){
@@ -130,7 +127,7 @@ function withScrollMagic(WrappedComponent, selectData) {
         return this.createScene();
       }
 
-      let options = this.getOptions();
+      //let options = this.getOptions();
 
       // let $holders = S(this.refs.scene).queryAll.sceneContentHolder;
       // let $holder = $holders[0];

@@ -12,7 +12,6 @@ import {
 } from 'redux-saga/effects';
 
 import {
-  attemptToSubmit,
   attemptToSubmitFailed,
   attemptToSubmitSuccess,
 } from '../';
@@ -43,14 +42,14 @@ export default function * () {
 
       const url = yield call(constructUrl);
 
-      const response = yield call(
-        sendPost,
-        url,
-        {
-          'Content-Type': 'application/json',
-        },
-        postData,
-      );
+      yield call(
+              sendPost,
+              url,
+              {
+                'Content-Type': 'application/json',
+              },
+              postData,
+            );
 
       return yield [
           put(attemptToSubmitSuccess())

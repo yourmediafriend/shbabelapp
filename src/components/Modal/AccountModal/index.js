@@ -1,17 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types';
-
-
 import { LoginForm, SignupForm, PasswordForgotForm } from '../../Forms';
 import Slider from "react-slick";
 
-import { add } from 'lodash/fp'
-
 const FormNav = ({style, slideGoTo, id, text}) => {
   return (
-      <a href={'#'} style={style} onClick={(e) => slideGoTo(id)}>{text}</a>
+      <a href={''} style={style} onClick={(e) => slideGoTo(id)}>{text}</a>
   )
-}
+};
 
 class Slide extends React.Component {
 
@@ -92,29 +87,24 @@ class SimpleSlider extends React.Component {
 
     this.state = {
       slides: [0,0]
-    }
+    };
 
     this.slideGoTo = this.slideGoTo.bind(this);
 
-  }
+  };
 
   slideGoTo = (value) => {
-
-    let goto = 0;
     let slides = [value];
-
     let currentSlideRef = this.state.slides[this.slider.innerSlider.state.currentSlide];
     this.slider.innerSlider.state.currentSlide > 0 ? slides.push(currentSlideRef) : slides.unshift(currentSlideRef);
-
     this.setState({slides: slides});
-
-  }
+  };
 
   componentWillReceiveProps(props){
     let contentId = props.contentId;
     let slides = [contentId];
     this.setState({slides: slides});
-  }
+  };
 
   componentDidUpdate() {
 

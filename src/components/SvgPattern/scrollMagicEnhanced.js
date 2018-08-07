@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
-
-
+import React from 'react';
 import verge from 'verge';
 import S from 'camel-case-selector';
-import PropTypes from 'prop-types';
-
 import ScrollMagic from 'scrollmagic-with-ssr';
 import 'AnimationGsap';
 //import 'debug.addIndicators';
 
-import {get, getOr} from 'lodash/fp';
+import { getOr} from 'lodash/fp';
 
 let globalOptions = {
   offset: 0,

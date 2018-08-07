@@ -1,11 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types';
-
 import SVG from 'svgjs';
-import { TweenMax, Linear } from 'gsap';
 import style from './svgAnimationStyles';
-
-import XXX from '../../../media/x.svg';
 
 class Triangle extends React.Component {
 
@@ -26,8 +21,8 @@ class Triangle extends React.Component {
 
     this.nested = this.draw.nested().viewbox(0, 0, 100, 100);
 
-    let rect = this.nested.rect(100, 100).attr({'fill': '#fff'});
-    let text = this.nested.text('XXXX').move(0, 25).font({ size: 36 }).fill({ color: '#000' });
+/*    let rect = this.nested.rect(100, 100).attr({'fill': '#fff'});
+    let text = this.nested.text('XXXX').move(0, 25).font({ size: 36 }).fill({ color: '#000' });*/
 
     //let text = this.nested.use(XXX).move(0, 25).fill({ color: '#000' });
 

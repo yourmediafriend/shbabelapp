@@ -1,18 +1,12 @@
-
-import PropTypes from "prop-types";
-
-import { TwoColumnLeft }  from '../../../Layout';
 import React, { Component } from 'react';
-
 import cx from 'classnames';
 import styles from './stickyElements.scss';
 
-
+import { TwoColumnLeft }  from '../../../Layout';
 import DummyText from '../../../DummyText/DummyTextLong'
 import StickyPanel from './StickyPanel';
 
 import HeroBanner from '../../../HeroBanner';
-
 import hero_480w from '../../../../media/hero6/hero_480w.jpg';
 import hero_660w from '../../../../media/hero6/hero_660w.jpg';
 import hero_960w from '../../../../media/hero6/hero_960w.jpg';

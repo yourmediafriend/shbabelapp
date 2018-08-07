@@ -2,17 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { get} from 'lodash/fp'
-
 import {
   attemptToRetrieveMenu,
 } from '../../modules/CatalogMenu';
-
-import retrieveCatalogMenuData from "../../modules/CatalogMenu";
-
 import style from './headerNavStyles';
-
 import HeaderNav from './HeaderNav';
-
 import data from '../../Data/CatalogMenu'
 
 class megaMenu extends Component {
@@ -44,7 +38,7 @@ class megaMenu extends Component {
 
   render() {
 
-    const { isLoading, hasErrored, items, currentUrl, subMenuToggle } = this.props
+    const { items } = this.props
 
     if (items.length) {
       return (

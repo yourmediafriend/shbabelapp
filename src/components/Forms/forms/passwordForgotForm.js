@@ -1,19 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import { FormRow, renderField } from '../formComponents'
 import { Button } from 'reactstrap';
 
-import styles from '../formStyles';
-
 const validate = values => {
-  const errors = {}
+  const errors = {};
   if (!values.email) {
     errors.username = 'Required'
   }
 
   return errors
-}
+};
 
 export const reduxFormDetails = {
   form: 'passwordForgotForm',
@@ -21,11 +18,11 @@ export const reduxFormDetails = {
   fields: [
     'email',
   ],
-}
+};
 
 const passwordForgotForm = props => {
 
-  const { handleSubmit, pristine, reset, submitting, isSending, hasErrored } = props;
+  const { handleSubmit, submitting, isSending, hasErrored } = props;
 
   return(
     <div>
@@ -42,7 +39,7 @@ const passwordForgotForm = props => {
       </form>
     </div>
   )
-}
+};
 
 // Decorate the form component
 export default reduxForm(

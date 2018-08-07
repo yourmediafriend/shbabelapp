@@ -1,5 +1,3 @@
-import { __ENV__ } from '../utils/constants';
-
 import request from './request';
 
 import {

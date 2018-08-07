@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import GoogleMap from '../GeoLoction/googleMap';
 import {connect} from "react-redux";
-import {get, getOr } from "lodash/fp";
+import { get } from "lodash/fp";
 import cx from 'classnames';
 import styles from './openWeather.scss';
 import { geolocated } from 'react-geolocated';
-
 import WeatherPanel from './WeatherPanel';
-
 import {attemptToRetrieveOpenWeather} from "../../modules/OpenWeather";
 import {attemptToRetrieveData as attemptToRetrieveReverseGeoData} from  "../../modules/GoogleMaps";
 
@@ -326,8 +324,8 @@ class WeatherApp extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      (getLat(nextProps) !== this.state.lat && getLng(nextProps) !== this.state.lng) ||
-      (get('coord.lat', nextProps.weatherData) !== get('coord.lat', this.props.weatherData)) && (get('coord.lon', nextProps.weatherData) !== get('coord.lon', this.props.weatherData))
+      ((getLat(nextProps) !== this.state.lat && getLng(nextProps) !== this.state.lng)) ||
+      ((get('coord.lat', nextProps.weatherData) !== get('coord.lat', this.props.weatherData)) && (get('coord.lon', nextProps.weatherData) !== get('coord.lon', this.props.weatherData)))
     );
   }
 

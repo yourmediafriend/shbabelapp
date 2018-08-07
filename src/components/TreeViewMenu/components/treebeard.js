@@ -1,19 +1,9 @@
-'use strict';
-
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import TreeNode from './node';
 import defaultDecorators from './decorators';
 import defaultTheme from '../themes/default';
 import defaultAnimations from '../themes/animations';
-
-import classNames from "classnames";
-
-import { Nav } from 'reactstrap'
-
-import { get } from 'lodash/fp';
-
 
 class TreeBeard extends React.Component {
 

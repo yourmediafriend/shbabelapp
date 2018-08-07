@@ -1,15 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-
 import verge from 'verge';
-import S from 'camel-case-selector';
-import PropTypes from 'prop-types';
-
 import ScrollMagic from 'scrollmagic-with-ssr';
+import { getOr } from 'lodash/fp';
 import 'AnimationGsap';
 //import 'debug.addIndicators';
-
-import { getOr } from 'lodash/fp';
 
 let globalOptions = {
   offset: 0,
@@ -118,9 +113,8 @@ function withSubscription(WrappedComponent, selectData) {
         return this.createScene();
       }
 
-      let options = this.getOptions();
-
-/*      let $holders = S(this.refs.scene).queryAll.sceneContentHolder;
+/*          let options = this.getOptions();
+  let $holders = S(this.refs.scene).queryAll.sceneContentHolder;
       let $holder = $holders[0];
       let firstScene = this.scenes[0];
 

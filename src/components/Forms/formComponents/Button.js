@@ -1,13 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from '../formStyles';
-import Radium from "radium";
-
+import styles from '../forms.scss';
 
 export const Button = ({ submitting, isSending }) => (
-  <button type="submit" disabled={submitting || isSending} style={{...styles.form.button}}>
+  <button type="submit" disabled={submitting || isSending} className={styles.button}>
     Submit
   </button>
 )
 
-export default Radium(Button);
+export default Button;

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from './grid.scss';
 import cx from 'classnames';
 
-import gridImgSrc from '../../media/leopard.png';
 import placeholderA from './media/placeholder-5000x500-1.jpg'
 import placeholderB from './media/placeholder-5000x500-2.jpg'
 import placeholderC from './media/placeholder-5000x500-3.jpg'
@@ -13,10 +12,6 @@ import placeholderF from './media/placeholder-5000x500-6.jpg'
 import scrollMagicParallax from './scrollMagicParallax';
 
 class GridViewItem extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   backgroundImageStyle = props => {
     return {

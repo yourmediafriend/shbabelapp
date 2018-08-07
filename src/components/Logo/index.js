@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
 import SVGInline from "react-svg-inline"
-import S from 'camel-case-selector';
 
-import Radium, { Style } from 'radium';
-import styles from './logoStyles.js';
+import styles from './logo.scss';
 
 import SvgLogoMain from './media/LogoMain.svg';
 import SvgWarningPanel from './media/warning-panel.svg';
-
-
-import { mediaQueries } from '../../utils/mediaQueries';
 
 class Logo extends Component {
 
   render() {
     return (
-      <span style={styles.logo.wrap}>
-        <span style={styles.logo.wrap.inner}>
-      {/*    <SVGInline svg={ SvgLogoMain }  style={Radium.getState(this.state, 'main', ':hover') ? {...styles.logo.svg, ...styles.logo.svg.hover } : styles.logo.svg } />
-          <SVGInline svg={ SvgWarningPanel }  style={Radium.getState(this.state, 'main', ':hover') ? {...styles.logo.svg, ...styles.logo.svg.hover } : styles.logo.svg } />*/}
+      <span className={styles.logoWrap}>
+        <span className={styles.logoInner}>
+          <SVGInline svg={ SvgLogoMain }  />
+          <SVGInline svg={ SvgWarningPanel } />
         </span>
       </span>
     )
   }
 }
 
-export default Radium(Logo);
+export default Logo;

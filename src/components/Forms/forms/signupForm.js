@@ -1,15 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
-
 import { FormRow, renderField } from '../formComponents'
-
 import { Button } from 'reactstrap';
 
-import styles from '../formStyles';
-
 const validate = values => {
-  const errors = {}
+  const errors = {};
+
   if (!values.firstName) {
     errors.firstName = 'Required'
   }
@@ -28,7 +24,7 @@ const validate = values => {
     errors.email = 'Invalid email address'
   }
   return errors
-}
+};
 
 export const reduxFormDetails = {
   form: 'ContactForm',
@@ -45,7 +41,7 @@ export const reduxFormDetails = {
 
 const ContactForm = props => {
 
-  const { handleSubmit, pristine, reset, submitting, isSending, hasErrored } = props;
+  const { handleSubmit, submitting, isSending, hasErrored } = props;
 
   return(
     <div>

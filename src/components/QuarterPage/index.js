@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import fp, { get, getOr, times } from 'lodash/fp';
-import {StyleRoot} from 'radium';
-
+import fp, { getOr } from 'lodash/fp';
 import OneQuarter from './OneQuarterComp';
 import Overlay from './Overlay';
 
@@ -18,7 +16,7 @@ import overlayImageB from './media/overlay-2-1.gif'
 import overlayImageC from './media/overlay-3-1.gif'
 import overlayImageD from './media/overlay-4-1.gif'
 
-import SvgLayerB from './PureHypnoComp'
+//import SvgLayerB from './PureHypnoComp'
 import SvgLayerC from './PureDottyComp'
 
 import VideoBackground from '../Background/video';
@@ -44,13 +42,6 @@ class QuarterPage extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (this.state.hoverIndex !== nextState.hoverIndex );
   }
-
-/*
-  render() {
-    return <SvgLayerC />
-  }
-*/
-
 
   render() {
 

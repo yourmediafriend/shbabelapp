@@ -1,16 +1,9 @@
-'use strict';
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import {VelocityComponent} from 'velocity-react';
 import { NavLink } from 'reactstrap'
-
 import Icon from '../Icons';
-
 import styles from './NestedMenu.scss';
-
-import { merge } from 'lodash/fp';
-
 
 const Loading = ({style}) => {
     return <div style={style}>loading...</div>;
@@ -54,7 +47,7 @@ class Container extends React.Component {
 
     NavLinkStyles() {
 
-      const {style, node, level, currentUrl, isActiveBranch} = this.props;
+      const {style, node, currentUrl, isActiveBranch} = this.props;
 
       let linkStyle= style.link;
 
@@ -69,7 +62,7 @@ class Container extends React.Component {
     }
 
     render() {
-      const {style, decorators, terminal, onClick, node, level, currentUrl, isActiveBranch} = this.props;
+      const {style, decorators, terminal, onClick, node, level } = this.props;
 
       return (
             <NavLink onClick={terminal ? null : onClick}

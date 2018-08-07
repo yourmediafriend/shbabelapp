@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import Radium, { Style } from 'radium';
-import styles from './articleStyles';
+import cx from 'classnames';
+import styles from './article.scss';
 import Picture from '../Picture';
-
 import tigerSrc from '../../media/tiger.jpg';
 import dunesSrc from '../../media/dunes.jpg';
 import rainforestSrc from '../../media/rainforest.jpg';
 import fractalSrc from '../../media/fractal.jpg';
-
 
 const imagesTiger = {
   700: tigerSrc
@@ -24,15 +22,11 @@ const imagesFractal = {
 
 class Article extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
-      <div style={styles.article.main}>
-        <div style={styles.content.column.main}>
-          <p style={styles.dateline}><time>Sun 24 Jun 2018</time></p>
+      <div className={styles.articleMain}>
+        <div className={styles.columnMain}>
+          <p className={styles.dateline}><time>Sun 24 Jun 2018</time></p>
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
             sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies
             nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
@@ -41,11 +35,9 @@ class Article extends Component {
             venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
             elementum semper nisi. Aenean vulputate eleifend tellus.</p>
 
-
-          <figure style={styles.figure.thumbnail}>
+          <figure className={cx(styles.figure, styles.thumbnail)}>
             <Picture images={imagesTiger} />
           </figure>
-
 
           <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra
             quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.
@@ -55,9 +47,10 @@ class Article extends Component {
             ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt
             tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante.</p>
 
-          <figure style={styles.figure.image}>
+
+          <figure className={cx(styles.figure, styles.image)}>
             <Picture images={imagesDunes}/>
-            <figcaption style={styles.figure.caption}>MDN Logo</figcaption>
+            <figcaption className={styles.caption}>MDN Logo</figcaption>
           </figure>
 
           <p>Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis
@@ -70,7 +63,7 @@ class Article extends Component {
             eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede.
             Sed lectus.</p>
 
-          <figure style={styles.figure.image.full}>
+          <figure className={cx(styles.figure, styles.image, styles.full)}>
             <Picture images={imagesRainforest}/>
           </figure>
 
@@ -84,8 +77,8 @@ class Article extends Component {
             congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Phasellus consectetuer vestibulum
             elit.</p>
 
-          <aside style={styles.aside.left}>
-            <blockquote style={styles.blockquote}>
+          <aside  className={cx(styles.aside, styles.left)}>
+            <blockquote className={styles.blockquote}>
               Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
             </blockquote>
           </aside>
@@ -116,7 +109,7 @@ class Article extends Component {
             vehicula leo, at malesuada velit leo quis pede. Donec interdum, metus et hendrerit aliquet, dolor diam
             sagittis ligula, eget egestas libero turpis vel mi.</p>
 
-          <figure style={styles.figure.thumbnail.landscape}>
+          <figure className={cx(styles.figure, styles.thumbnail,styles.landscape )}>
             <Picture images={imagesFractal}/>
           </figure>
 
@@ -185,4 +178,4 @@ class Article extends Component {
   }
 }
 
-export default Radium(Article);
+export default Article;

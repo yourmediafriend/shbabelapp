@@ -36,14 +36,12 @@ const SearchModal = ({searchIsOpen, searchModalClose}) => {
         timing: {duration: 500, ease: easeExpOut},
         events: {
           start() {
-            // dispatch action Opening
-            //console.log('isAnimating');
-            searchIsOpen ? this.setState({modalDisplay:'block'}) : null;
+            if (searchIsOpen){this.setState({modalDisplay: 'block'});}
           },
           end() {
             // dispatch action Opening
             //console.log('notAnimating');
-            !(searchIsOpen) ? this.setState({modalDisplay:'none'}) : null;
+            if (!searchIsOpen){this.setState({modalDisplay: 'none'});}
           },
         },
       })}
