@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 import cx from 'classnames'
 import styles from './svgPattern.scss';
 
@@ -40,15 +41,16 @@ class SvgPatternMagicScroll extends Component {
   }
 }
 
-
-
 export const mapStateToProps = (state) => {
   return {
     offCanvasMenuAnimating:get('offCanvasMenu.offCanvasMenuAnimating', state),
   }
 };
 
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {},
+    dispatch
+  );
 
-//export default connect(mapStateToProps)(SvgPatternMagicScroll);
-
-export default scrollMagicEnhanced( connect(mapStateToProps)(SvgPatternMagicScroll) );
+export default scrollMagicEnhanced( connect(mapStateToProps, mapDispatchToProps)(SvgPatternMagicScroll) );

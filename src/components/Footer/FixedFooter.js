@@ -33,8 +33,6 @@ class Footer extends Component {
     if (prevState.height !==  height ) {
       this.setState({ height })
       this.props.setFixedFooterHeight(this.state.height);
-      console.log('FF componentDidUpdate height', height);
-      console.log('FF componentDidUpdate state.height', this.state.height);
     }
 
   }

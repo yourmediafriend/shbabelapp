@@ -9,7 +9,13 @@
 }
 .modalClose {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 99;
+    width: 25px;
+    top: 15px;
+    right: 15px;
+    svg {
+        fill: #fff;
+    }
+    &:hover {
+        opacity: 0.6;
+    }
 }

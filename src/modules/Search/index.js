@@ -1,5 +1,5 @@
 import searchModal, { searchModalOpen, searchModalClose, searchModalToggle } from './reducers/searchModal';
-import {takeEvery} from "redux-saga";
+import {takeEvery} from "redux-saga/effects";
 
 import toggleSaga from "./sagas/toggle";
 

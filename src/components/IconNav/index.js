@@ -1,9 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { get } from "lodash/fp";
-
 import iconNavComponent from './IconNavComp';
-
 import { searchModalOpen, searchModalToggle } from '../../modules/Search';
 import { modalOpen, modalToggle } from "../../modules/Modal";
 

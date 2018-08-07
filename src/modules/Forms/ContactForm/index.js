@@ -1,7 +1,7 @@
 import postContactForm, { attemptToSubmit, attemptToSubmitFailed, attemptToSubmitSuccess } from './reducers/postContactForm';
 
 import postFormData from './sagas/post';
-import {takeEvery} from "redux-saga";
+import {takeEvery} from "redux-saga/effects";
 import {get} from "lodash/fp";
 
 // Export Reducers

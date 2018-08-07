@@ -1,6 +1,6 @@
 import {
   takeEvery,
-} from 'redux-saga';
+} from 'redux-saga/effects';
 
 import retrieveMenuData, { attemptToRetrieveMenu } from './reducers/retrieveMenuData';
 import getMenuData from './sagas/get';

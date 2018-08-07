@@ -58,7 +58,6 @@ let MenuItem = (props) => {
       hoverDelayInMs={props.hoverDelay ? props.hoverDelay : 0}
       hoverOffDelayInMs={props.hoverOffDelay ? props.hoverOffDelay : 0}
       className={cx(styles.ReactHoverObserver)}
-
     >
       {({ isHovering }) => {
         return(
@@ -79,17 +78,17 @@ const IconNav = (props) => {
     <Nav className={cx(styles.navList, styles[props.className])}>
       <NavItem>
         <MenuItem>
-         <Link icon="home" style={{color:'#ffffff'}} href={"/"}/>
+         <Link icon="home"  href={"/"}/>
         </MenuItem>
       </NavItem>
       <NavItem >
         <MenuItem>
-          <Link icon='search' style={{color:'#ffffff'}} clickEvent={props.searchModalToggle.bind(this)}/>
+          <Link icon='search' clickEvent={props.searchModalToggle.bind(this)}/>
         </MenuItem>
       </NavItem>
-      <NavItem hoverOffDelay={250}>
-        <MenuItem>
-          <Link icon="account" style={{color:'#ffffff'}} clickEvent={props.modalToggle.bind(this, 'account', 0)} />
+      <NavItem>
+        <MenuItem hoverOffDelay={250}>
+          <Link icon="account" clickEvent={props.modalToggle.bind(this, 'account', 0)} />
           <Dropdown>
             <AccountDropdown />
           </Dropdown>
@@ -97,17 +96,17 @@ const IconNav = (props) => {
       </NavItem>
       <NavItem>
         <MenuItem>
-          <Link icon="contact" style={{color:'#ffffff'}} href={"/contact"} />
+          <Link icon="contact" href={"/contact"} />
         </MenuItem>
       </NavItem>
       <NavItem>
         <MenuItem>
-          <Link icon="cart" style={{color:'#ffffff'}} />
+          <Link icon="cart" />
         </MenuItem>
       </NavItem>
       <NavItem>
         <MenuItem>
-          <Link icon="location" style={{color:'#ffffff', size:24}} clickEvent={props.modalOpen.bind(this, 'location')} />
+          <Link icon="location" clickEvent={props.modalOpen.bind(this, 'location')} />
         </MenuItem>
       </NavItem>
     </Nav>

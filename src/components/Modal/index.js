@@ -15,7 +15,7 @@ import LocationModal from './LocationModal'
 const ModalCloseButton = ({clickEvent}) => {
   return (
     <div className={styles.modalClose} onClick={clickEvent}>
-      <Icon icon={'close'} color={'#000000'} size={32} />
+      <Icon icon={'close'} />
     </div>
   )
 }

@@ -34,8 +34,8 @@ const Playlist = () => {
       {({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>;
         if (error) return `Error: ${error.message}`;
-        console.log(data);
-    console.log(data.nodeQuery.entities);
+        //console.log(data);
+        //console.log(data.nodeQuery.entities);
 
         if (data.length) {
           return (

@@ -63,21 +63,6 @@ const openMenunClass = function (isMenuOpen) {
   return isMenuOpen ? styles.open : '';
 };
 
-export const mapStateToProps = (state) => {
-  return {
-    isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
-    openMenunClass: openMenunClass,
-  }
-};
-
-export const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      offCanvasMenuStateChange,
-      offCanvasMenuToggleAnimation
-    },
-    dispatch
-  );
 
 const renderContentSwitch = (currentpage) => {
 
@@ -322,5 +307,22 @@ Home.propTypes = {
   offCanvasMenuStateChange: PropTypes.func,
   offCanvasMenuToggleAnimation: PropTypes.func,
 };
+
+export const mapStateToProps = (state) => {
+  return {
+    isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
+    openMenunClass: openMenunClass,
+  }
+};
+
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      offCanvasMenuStateChange,
+      offCanvasMenuToggleAnimation
+    },
+    dispatch
+  );
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
+import {bindActionCreators} from "redux";
 import stylesJs from './stickyHeaderStyles';
 import Animate from 'react-move/Animate';
 import { easeCubicInOut } from 'd3-ease';
@@ -10,6 +11,7 @@ import IconNav from '../IconNav';
 import styles from './header.scss';
 import cx from "classnames";
 import {get} from "lodash/fp";
+
 
 class Header extends Component {
 
@@ -85,7 +87,12 @@ export const mapStateToProps = (state) => {
   }
 };
 
-export const mapDispatchToProps = dispatch => {}
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {},
+    dispatch
+  );
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(scrollMagicEnhanced(Header));
 

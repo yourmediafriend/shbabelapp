@@ -1,5 +1,5 @@
 import googleMapModule, { clickMap, attemptToRetrieveData, failureToRetrieveData, successToRetrieveData } from './reducers/googleMap';
-import {takeEvery} from "redux-saga";
+import {takeEvery} from "redux-saga/effects";
 import {get} from "lodash/fp";
 import getData from "./sagas/getData";
 

@@ -216,6 +216,13 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  isMenuOpen: PropTypes.bool,
+  isModalOpen: PropTypes.bool,
+  offCanvasMenuStateChange: PropTypes.func,
+  offCanvasMenuToggleAnimation: PropTypes.func,
+};
+
 export const mapStateToProps = (state) => {
   return {
     isModalOpen: get('modalModule.modalIsOpen', state),
@@ -234,12 +241,5 @@ export const mapDispatchToProps = dispatch =>
     },
     dispatch
   );
-
-App.propTypes = {
-  isMenuOpen: PropTypes.bool,
-  isModalOpen: PropTypes.bool,
-  offCanvasMenuStateChange: PropTypes.func,
-  offCanvasMenuToggleAnimation: PropTypes.func,
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

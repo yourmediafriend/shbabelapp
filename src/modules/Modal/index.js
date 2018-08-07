@@ -1,5 +1,5 @@
 import modalModule, { modalOpen, modalClose, modalToggle } from './reducers/modal';
-import {takeEvery} from "redux-saga";
+import {takeEvery} from "redux-saga/effects";
 
 import toggleSaga from "./sagas/toggle";
 
