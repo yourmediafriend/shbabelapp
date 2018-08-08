@@ -58,8 +58,6 @@ megaMenu.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-/*    items: get('retrieveCatalogMenuData.items', state),*/
-
     items: data,
     hasErrored: get('retrieveCatalogMenuData.hasErrored', state),
     isLoading: get('retrieveCatalogMenuData.isLoading', state),

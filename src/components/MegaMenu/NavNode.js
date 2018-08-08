@@ -58,7 +58,6 @@ class NavNode extends React.Component {
     // remove click and replace with Radium Mouse over
 
     isHovering ? megaMenuOpen() : megaMenuClose();
-
     return (
       <NodeHeader level={level}
                   node={Object.assign({}, node)}

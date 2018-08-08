@@ -93,7 +93,11 @@
             font-size: 0.95em;
             padding: 0;
             a {
-                color: #fff
+                color: #fff;
+                &:hover {
+                    text-decoration: none;
+                    opacity: 0.6;
+                }
             }
         }
     }
@@ -122,9 +126,6 @@
             padding: 20px 15px
         }
     }
-
-
-
 
     :global(.menuTitle),
     .menuTitle {

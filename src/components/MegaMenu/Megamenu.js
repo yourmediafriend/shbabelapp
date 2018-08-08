@@ -1,10 +1,12 @@
 import React from 'react';
 import Animate from 'react-move/Animate';
 import { easeQuadOut   } from 'd3-ease';
-import {first, getOr, get, last, forEach, keys, map} from "lodash/fp";
+import {first, getOr, get, last, forEach, keys, map, flow} from "lodash/fp";
 import styles from './megaMenu.scss';
 import cx from 'classnames'
 import { Col, ListGroup, ListGroupItem } from 'reactstrap';
+
+import fractalSrc from '../../media/fractal.jpg';
 
 let menuAnimation = easeQuadOut;
 
@@ -44,6 +46,60 @@ class MenuItem extends React.Component {
     )
   }
 }
+
+class MenuBanner extends React.Component {
+
+  getSrc = (image) => {
+    switch (image) {
+      case 'fractalSrc':
+        return fractalSrc;
+      default: return;
+    }
+  }
+
+  render() {
+    return (
+      <img src={this.getSrc(this.props.image)} alt={''} style={{width:'100%'}}/>
+    )
+  }
+}
+
+class ExtraContent extends React.Component {
+
+
+  createMarkup = (markUp) => {
+    return {__html: markUp};
+  };
+
+  getContent = (node, pos) => flow(
+                              get(pos),
+                              first,
+                              get('content')
+                            )(node);
+
+  getType = (node, pos) => flow(
+                              get(pos),
+                              first,
+                              get('type')
+                            )(node);
+
+  render() {
+
+    const {node, pos, columns} = this.props;
+
+    if (this.getType(node, pos) === 'html') {
+      return <Col className={cx('column', pos)} style={{flexBasis: (100/columns) + '%', flexGrow: 0}} dangerouslySetInnerHTML={ this.createMarkup(this.getContent(node, pos)) } />
+    }
+    else if (this.getType(node, pos) === 'image') {
+      return <Col className={cx('column', pos)} style={{flexBasis: (100/columns) + '%', flexGrow: 0}}><MenuBanner image={this.getContent(node, pos)} /></Col>
+    }
+
+    return null;
+
+  }
+
+}
+
 
 class MenuBuilder extends React.Component {
 
@@ -216,6 +272,10 @@ class NodeMegamenu extends React.Component {
   render() {
     const {node, level, columns, isHovering } = this.props;
 
+    if (!get('children',node) && !get('before',node) && !get('after',node)) {
+      return null;
+    }
+
     let columnCnt = columns;
 
     if (getOr([],'before', node).length) {
@@ -226,7 +286,6 @@ class NodeMegamenu extends React.Component {
     }
     // this is in the wrong place, should'nt need to calaculate on every hover
     let ColumnMenuStructure = this.organiseMenu(node, columnCnt);
-
 
     return (
       <Animate
@@ -248,17 +307,11 @@ class NodeMegamenu extends React.Component {
       >
         {(state) => {
 
-          const createMarkup = (markUp) => {
-            return {__html: markUp};
-          }
-
-          const addColumn = (pos) =>  getOr([], pos, node).length  ? <Col className={cx('column', pos)} style={{flexBasis: (100/columns) + '%', flexGrow: 0}} dangerouslySetInnerHTML={createMarkup(get(pos, node))} /> : null;
-
           return (
             <div className={cx(styles.megaMenu, state.menuDisplay ? styles.show : '')}  style={isHovering ? {zIndex: 1} : {zIndex: -1}}  >
               <div className={cx(styles.inner)} style={{...{transform: 'translateY('+state.transformY+'%)'}}}>
                 <div className={cx(styles.layout)}>
-                  {addColumn('before')}
+                  <ExtraContent pos={'before'} columns={columns} node={node} />
                   {ColumnMenuStructure.map((child, index) =>  <MenuBuilder
                       key={index}
                       items = {child}
@@ -266,7 +319,7 @@ class NodeMegamenu extends React.Component {
                       columns = {columns}
                     />
                   )}
-                  {addColumn('after')}
+                  <ExtraContent pos={'after'}  columns={columns} node={node} />
                 </div>
               </div>
             </div>
