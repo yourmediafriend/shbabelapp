@@ -255,7 +255,7 @@ class NodeMegamenu extends React.Component {
           const addColumn = (pos) =>  getOr([], pos, node).length  ? <Col className={cx('column', pos)} style={{flexBasis: (100/columns) + '%', flexGrow: 0}} dangerouslySetInnerHTML={createMarkup(get(pos, node))} /> : null;
 
           return (
-            <div className={cx(styles.megaMenu, state.menuDisplay ? styles.show :styles.show)}  style={isHovering ? {zIndex: 1} : {zIndex: -1}}  >
+            <div className={cx(styles.megaMenu, state.menuDisplay ? styles.show : '')}  style={isHovering ? {zIndex: 1} : {zIndex: -1}}  >
               <div className={cx(styles.inner)} style={{...{transform: 'translateY('+state.transformY+'%)'}}}>
                 <div className={cx(styles.layout)}>
                   {addColumn('before')}

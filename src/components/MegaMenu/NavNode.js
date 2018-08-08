@@ -5,11 +5,14 @@ import {bindActionCreators} from "redux";
 import ReactHoverObserver from '../ReactHoverObserver';
 import NodeHeader from './NodeHeader';
 import NodeMegaMenu from './Megamenu';
+
 import { flow, get, has, isMatch, includes, map } from 'lodash/fp'
 
 import { megaMenuOpen, megaMenuClose } from '../../modules/MegaMenu';
 
 import { NavItem } from 'reactstrap';
+import styles from './megaMenu.scss'
+import cx from "classnames";
 
 class NavNode extends React.Component {
 
@@ -36,7 +39,7 @@ class NavNode extends React.Component {
         <ReactHoverObserver
           hoverDelayInMs={250}
           hoverOffDelayInMs={250}
-          styles={{height:'100%', display:'flex'}}
+          className={cx(styles.reactHoverObserver)}
         >
           {({ isHovering }) => (
               <div>

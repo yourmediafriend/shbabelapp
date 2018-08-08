@@ -57,7 +57,7 @@ let MenuItem = (props) => {
     <ReactHoverObserver
       hoverDelayInMs={props.hoverDelay ? props.hoverDelay : 0}
       hoverOffDelayInMs={props.hoverOffDelay ? props.hoverOffDelay : 0}
-      className={cx(styles.ReactHoverObserver)}
+      className={cx(styles.reactHoverObserver)}
     >
       {({ isHovering }) => {
         return(

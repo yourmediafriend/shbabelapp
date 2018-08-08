@@ -30,6 +30,12 @@
     }
 }
 
+.reactHoverObserver {
+    height: 100%;
+    display: flex;
+}
+
+
 .dropdown {
     display: none;
     height: 100%;
@@ -56,13 +62,10 @@
     top: 100%;
     width: 100%;
     overflow: hidden;
-    pointer-events: none;
     border-top: 15px solid #333333;
-
     &.show {
         display: block;
     }
-
     .inner {
         background-color: #333333;
         color: #fff;
