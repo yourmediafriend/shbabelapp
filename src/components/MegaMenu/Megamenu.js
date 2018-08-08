@@ -1,9 +1,10 @@
 import React from 'react';
 import Animate from 'react-move/Animate';
 import { easeQuadOut   } from 'd3-ease';
-import {first, getOr, last, forEach, keys, map} from "lodash/fp";
-import styles from './headerNavStyles';
-import fractalSrc from '../../media/fractal.jpg';
+import {first, getOr, get, last, forEach, keys, map} from "lodash/fp";
+import styles from './megaMenu.scss';
+import cx from 'classnames'
+import { Col, ListGroup, ListGroupItem } from 'reactstrap';
 
 let menuAnimation = easeQuadOut;
 
@@ -14,9 +15,9 @@ class MenuItem extends React.Component {
     const { item:{ name }, level } = this.props;
 
     if (level===1){
-      return (<h3 style={styles.menulist.menuTitle}>{ name }</h3>);
+      return (<h3 className={styles.menuTitle}>{ name }</h3>);
     } else {
-      return (<a style={styles.menulist.a} href=''>{ name }</a>);
+      return (<a href=''>{ name }</a>);
     }
   }
 
@@ -36,26 +37,29 @@ class MenuItem extends React.Component {
 
   render() {
     return (
-      <li>
+      <ListGroupItem className={styles.menuList}>
         {this.renderTitle()}
         {this.renderMenu()}
-      </li>
+      </ListGroupItem>
     )
   }
 }
 
 class MenuBuilder extends React.Component {
 
-  render() {
-    const {items, level } = this.props;
-    const compStyle = (level) =>  level===1 ? {...styles.megamenu.layout.columns.base, ...styles.megamenu.layout.columns.oneQuarter} : styles.menulist ;
+  listGroup = (items, level) => {
     return (
-      <ul style={{...compStyle(level)}} >
+      <ListGroup>
         {items.map((child, index) =>
           <MenuItem key={index} item={child} level={level} />
         )}
-      </ul>
-    )
+      </ListGroup>
+    );
+  }
+
+  render() {
+    const {items, level, columns } = this.props;
+    return level===1 ? <Col className="column" style={{flexBasis: (100/columns) + '%', flexGrow: 0}}>{this.listGroup(items, level)}</Col> : this.listGroup(items, level);
   }
 }
 
@@ -181,7 +185,6 @@ class NodeMegamenu extends React.Component {
 
   }
 
-
   organiseMenu(node, columns) {
 
     let children = node.children;
@@ -212,7 +215,19 @@ class NodeMegamenu extends React.Component {
 
   render() {
     const {node, level, columns, isHovering } = this.props;
-    let ColumnMenuStructure = this.organiseMenu(node, columns);
+
+    let columnCnt = columns;
+
+    if (getOr([],'before', node).length) {
+      columnCnt--;
+    }
+    if (getOr([],'after', node).length) {
+      columnCnt--;
+    }
+    // this is in the wrong place, should'nt need to calaculate on every hover
+    let ColumnMenuStructure = this.organiseMenu(node, columnCnt);
+
+
     return (
       <Animate
         start={() => ({
@@ -233,29 +248,25 @@ class NodeMegamenu extends React.Component {
       >
         {(state) => {
 
-          const compStyle = () => {
-            return isHovering ? {zIndex: 1} : {zIndex: -1};
+          const createMarkup = (markUp) => {
+            return {__html: markUp};
           }
 
-          const styleDisplay = () => {
-            return state.menuDisplay  ? {display: 'block'} : {display: 'none'}
-          }
+          const addColumn = (pos) =>  getOr([], pos, node).length  ? <Col className={cx('column', pos)} style={{flexBasis: (100/columns) + '%', flexGrow: 0}} dangerouslySetInnerHTML={createMarkup(get(pos, node))} /> : null;
 
           return (
-            <div style={{...styles.megamenu.outer, ...styleDisplay(), ...compStyle()}}>
-              <div style={{...styles.megamenu.inner, ...{transform: 'translateY('+state.transformY+'%)'}}}>
-                <div style={{...styles.megamenu.layout}}>
+            <div className={cx(styles.megaMenu, state.menuDisplay ? styles.show :styles.show)}  style={isHovering ? {zIndex: 1} : {zIndex: -1}}  >
+              <div className={cx(styles.inner)} style={{...{transform: 'translateY('+state.transformY+'%)'}}}>
+                <div className={cx(styles.layout)}>
+                  {addColumn('before')}
                   {ColumnMenuStructure.map((child, index) =>  <MenuBuilder
                       key={index}
                       items = {child}
                       level = {level}
+                      columns = {columns}
                     />
                   )}
-                  <ul style={{...styles.megamenu.layout.columns.base, ...styles.megamenu.layout.columns.oneQuarter, ...{borderRight: 0}}} >
-                    <li>
-                      <img src={fractalSrc} style={{width:'100%'}} alt='' />
-                    </li>
-                  </ul>
+                  {addColumn('after')}
                 </div>
               </div>
             </div>

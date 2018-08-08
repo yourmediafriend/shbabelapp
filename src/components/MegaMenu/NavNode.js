@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {bindActionCreators} from "redux";
-
 import ReactHoverObserver from '../ReactHoverObserver';
-
 import NodeHeader from './NodeHeader';
 import NodeMegaMenu from './Megamenu';
-
 import { flow, get, has, isMatch, includes, map } from 'lodash/fp'
 
 import { megaMenuOpen, megaMenuClose } from '../../modules/MegaMenu';
 
+import { NavItem } from 'reactstrap';
 
 class NavNode extends React.Component {
 
@@ -32,27 +30,27 @@ class NavNode extends React.Component {
     return false;
   }
 
-
   render() {
-
     return (
-      <ReactHoverObserver
-        hoverDelayInMs={250}
-        hoverOffDelayInMs={250}
-        styles={{height:'100%', display:'flex'}}
-      >
-        {({ isHovering }) => (
-          <li>
-              {this.renderHeaderNav(isHovering)}
-              {this.renderDropdown(isHovering)}
-          </li>
-          )}
-      </ReactHoverObserver>
+      <NavItem>
+        <ReactHoverObserver
+          hoverDelayInMs={250}
+          hoverOffDelayInMs={250}
+          styles={{height:'100%', display:'flex'}}
+        >
+          {({ isHovering }) => (
+              <div>
+                {this.renderHeaderNav(isHovering)}
+                {this.renderDropdown(isHovering)}
+              </div>
+            )}
+        </ReactHoverObserver>
+      </NavItem>
     )
   }
 
   renderHeaderNav(isHovering) {
-    const {node, style, level, megaMenuOpen, megaMenuClose} = this.props;
+    const {node, level, megaMenuOpen, megaMenuClose} = this.props;
     //it stores its own node and when asked to toggle. adds it to drawer
     // remove click and replace with Radium Mouse over
 
@@ -61,7 +59,6 @@ class NavNode extends React.Component {
     return (
       <NodeHeader level={level}
                   node={Object.assign({}, node)}
-                  style={style}
                   isHovering={isHovering} />
     );
   }
@@ -72,7 +69,7 @@ class NavNode extends React.Component {
 
     return (
         <NodeMegaMenu   level={level + 1}
-                        columns={3}
+                        columns={5}
                         node={Object.assign({}, node)}
                         isHovering = {isHovering}
                         />
@@ -81,7 +78,6 @@ class NavNode extends React.Component {
 }
 
 NavNode.propTypes = {
-    style: PropTypes.object.isRequired,
     node: PropTypes.object.isRequired,
     isToggled:  PropTypes.bool,
     onToggle: PropTypes.func,

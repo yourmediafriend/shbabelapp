@@ -5,7 +5,6 @@ import { get} from 'lodash/fp'
 import {
   attemptToRetrieveMenu,
 } from '../../modules/CatalogMenu';
-import style from './headerNavStyles';
 import HeaderNav from './HeaderNav';
 import data from '../../Data/CatalogMenu'
 
@@ -45,7 +44,6 @@ class megaMenu extends Component {
         <div style={{display:'flex', height:'100%'}}>
           <HeaderNav
             data={items}
-            style={style}
           />
         </div>
       );

@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './megaMenu.scss'
+import cx from "classnames";
 
 class NodeHeader extends React.Component {
   render() {
-    const {node, style, isHovering} = this.props;
-
-    const compStyle = () => {
-        return isHovering ? {...style.nav.link.hover} : '';
-    }
-
+    const {node, isHovering} = this.props;
     return (
-      <a href="" style={{...style.nav.link, ...compStyle() }}>
+      <a href="" className={cx(styles.link, isHovering ? styles.hover : '' )}>
         <span>
           {node.name}
         </span>
@@ -20,7 +17,6 @@ class NodeHeader extends React.Component {
 }
 
 NodeHeader.propTypes = {
-    style: PropTypes.object.isRequired,
     node: PropTypes.object.isRequired,
 };
 
