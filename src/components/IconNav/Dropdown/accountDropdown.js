@@ -26,7 +26,7 @@ const DropdownMenuItem = ({item, eventClick}) => {
 
 const DropdownMenu = props => {
   return (
-    <Nav className={cx(styles.dropdownMenu)}>
+    <Nav className={cx(styles.dropdownMenu, styles.account, styles.loggedOut)}>
       {menuJson.map((child, index) => <DropdownMenuItem
                                         key={index}
                                         item = {child}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PageTitle from '../../PageTitle';
 import Banner from '../../Banner';
-
 import { OneColumnCenter }  from '../../Layout';
 import GridParallax from '../../GridParallax'
 import styles from './gridpages.scss'
@@ -28,7 +27,7 @@ class GridPage extends Component {
     return (
       <div>
         <div className={cx(styles.section, styles.banner)}>
-          <Banner image={imagesHero}  content={<PageTitle title={ 'Paralax Grid!' } layout={'center'} style={{}} />}/>
+          <Banner image={imagesHero} content={<PageTitle title={ 'Paralax Grid!' } layout={'center'} style={{}} />}/>
         </div>
         <div className={cx(styles.section)}>
           <OneColumnCenter  contentMain={<GridParallax />}/>

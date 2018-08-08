@@ -26,7 +26,7 @@ let Link = ({icon, text, style, clickEvent, href }) => {
     <AppContext.Consumer>
       {(context) => {
         return (
-          <a  href={href} className={cx(styles.navLink)} onClick={clickEvent}>
+          <a  href={href} className={cx(styles.navLink, context.isHovering ? styles.hover : '' )} onClick={clickEvent}>
             <span className={cx(styles.icon, styles[icon])}>
               {icon ? <Icon icon={icon} /> : <div>{text}</div>}
             </span>
@@ -86,12 +86,14 @@ const IconNav = (props) => {
           <Link icon='search' clickEvent={props.searchModalToggle.bind(this)}/>
         </MenuItem>
       </NavItem>
-      <NavItem>
-        <MenuItem hoverOffDelay={250}>
+      <NavItem className={styles.account}>
+        <MenuItem hoverOffDelay={250} >
+
           <Link icon="account" clickEvent={props.modalToggle.bind(this, 'account', 0)} />
           <Dropdown>
             <AccountDropdown />
           </Dropdown>
+
         </MenuItem>
       </NavItem>
       <NavItem>

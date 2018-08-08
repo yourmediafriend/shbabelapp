@@ -8,17 +8,15 @@ import Picture from '../Picture';
 const baner = (props) => {
 
   const classes = {bottom: styles.bottom, center: styles.center}
+
   return(
     <div className={cx(styles.clipBanner)}>
-
       <div className={cx(styles.textOverMediaInnerText, classes['center'])}>
         <div className={cx(styles.textInner)}>
           {props.content}
         </div>
       </div>
-
       <div className={cx(styles.backgroundOverlay)} />
-
       <div className={cx(styles.sectionBackground)}>
         <Picture images={props.image} className={cx(styles.picture)}  />
       </div>
@@ -27,8 +25,8 @@ const baner = (props) => {
 };
 
 baner.propTypes = {
-  content: PropTypes.string,
-  image: PropTypes.array
+  content: PropTypes.object,
+  image: PropTypes.object
 };
 
 baner.defaultProps = {
