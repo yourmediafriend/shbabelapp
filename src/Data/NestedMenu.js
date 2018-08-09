@@ -31,6 +31,11 @@ const data = [
     ]
   },
   {
+    "id": 50,
+    "name": "Fullpage",
+    "url": "/fullpage"
+  },
+  {
     "id": 42,
     "name": "Parallax Grid",
     "url": "/grid-parallax"

@@ -41,7 +41,6 @@ export function closeQueuePopUp(data) {
 }
 
 export function toggleQueuePopUp(data) {
-  console.log('toggleQueuePopUp');
   return {
     type: TOGGLE_QUEUE_POPUP,
     data

@@ -8,8 +8,8 @@ import ScrollMagicParallax from '../ScrollMagicParallax';
 import ScrollMagicParallaxExtra from '../ScrollMagicParallaxExtra';
 
 import SvgPattern from '../SvgPattern';
-
 import QuarterPage from '../QuarterPage';
+import Fullpage from '../Fullpage';
 
 // Pages
 import ContactPage from '../Pages/ContactPage';
@@ -82,6 +82,12 @@ const Content = ({currentpage }) => {
       );
     case 'quarter':
       return  <QuarterPage />;
+    case 'fullpage':
+      return (
+        <MainContent className={styles.fullpage}>
+          <Fullpage />
+        </MainContent>
+      );
     case 'grid-parallax':
       return (
         <MainContent className={styles.grid}>
