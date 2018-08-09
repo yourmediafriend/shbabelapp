@@ -9,6 +9,15 @@ import OneColumnFlat from './pages/OneColumnFlat';
 import Recompose from './pages/RecomposeTest'
 import Strap from './pages/ReactStrapTest'
 
+/*
+//
+// OPTIONS
+//
+showHeader={false}
+showFooterReveal={false}
+showFooterFixed={false}
+*/
+
 const SwitchRoute = () => (
   <Switch>
     <Route exact path='/' render={() => <OneColumnSidebar currentpage='home' fullscreen={true} />} />
@@ -26,10 +35,31 @@ const SwitchRoute = () => (
     <Route exact path='/drupal-articles' render={() => <OneColumnSidebar currentpage='drupalArticles' />} />
 
     {/*/SVG.js/*/}
-    <Route exact path='/svgs/square' render={ (routeProps) => <OneColumnSidebar {...routeProps} currentpage='square' fullscreen={true} />} />
-    <Route exact path='/svgs/circle' render={(routeProps) => <OneColumnSidebar {...routeProps}  currentpage='circle' fullscreen={true} />} />
-    <Route exact path='/svgs/triangle' render={(routeProps) => <OneColumnSidebar currentpage='triangle' fullscreen={true}/>} />
-    <Route exact path='/svgs/hypno' render={(routeProps) => <OneColumnSidebar currentpage='hypno' fullscreen={true}/>} />
+    <Route exact path='/svgs/square' render={ (routeProps) => <OneColumnSidebar {...routeProps}
+                                                                                currentpage='square'
+                                                                                showHeader={false}
+                                                                                showFooterFixed={false}
+                                                                                showFooterReveal={false} />} />
+
+    <Route exact path='/svgs/circle' render={ (routeProps) => <OneColumnSidebar {...routeProps}
+                                                                                currentpage='circle'
+                                                                                showHeader={false}
+                                                                                showFooterFixed={false}
+                                                                                showFooterReveal={false} />} />
+
+    <Route exact path='/svgs/triangle' render={ (routeProps) => <OneColumnSidebar {...routeProps}
+                                                                                currentpage='triangle'
+                                                                                showHeader={false}
+                                                                                showFooterFixed={false}
+                                                                                showFooterReveal={false} />} />
+
+    <Route exact path='/svgs/hypno' render={ (routeProps) => <OneColumnSidebar {...routeProps}
+                                                                                  currentpage='hypno'
+                                                                                  showHeader={false}
+                                                                                  showFooterFixed={false}
+                                                                                  showFooterReveal={false} />} />
+
+
     <Route exact path='/svgs/patterns' render={() => <OneColumnSidebar currentpage='svgPattern' fullscreen={true}/>} />
 
     {/*/ScrollMagic/*/}
@@ -39,13 +69,20 @@ const SwitchRoute = () => (
 
     {/*/Layout Elements/*/}
     <Route exact path='/sticky-header' render={() => <OneColumnSidebar currentpage='stickyHeader' />} />
-    <Route exact path='/quarter' render={() => <OneColumnSidebar currentpage='quarter' />} />
+
+    <Route exact path='/quarter' render={() => <OneColumnSidebar currentpage='quarter'
+                                                                 showHeader={false}
+                                                                 showFooterFixed={false}
+                                                                 showFooterReveal={false} />} />
+
     <Route exact path='/grid-fixed' render={() => <OneColumnSidebar currentpage='grid-fixed' />} />
     <Route exact path='/grid-parallax' render={() => <OneColumnSidebar currentpage='grid-parallax' />} />
 
     {/*/Site Pages/*/}
     <Route exact path='/contact' render={() => <OneColumnSidebar currentpage='contact' />} />
-    <Route exact path='/weather' render={() => <OneColumnSidebar currentpage='weather' />} />
+    <Route exact path='/weather' render={() => <OneColumnSidebar currentpage='weather'
+                                                                 showFooterFixed={false}
+                                                                 showFooterReveal={false} />} />
 
     {/*/Test Pages/*/}
     <Route exact path='/test' render={() => <OneColumnSidebar currentpage='test' />} />

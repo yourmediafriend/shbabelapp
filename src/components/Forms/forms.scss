@@ -1,6 +1,7 @@
 
 .contactForm,
-.searchForm {
+.searchForm,
+.loginForm {
     :global(.form-control) {
         border-radius: 0;
         &:focus {
@@ -52,6 +53,32 @@
         }
     }
 }
+
+.loginForm {
+    :global(label){
+        display: block;
+        .required {
+            color: #dc3939;
+        }
+    }
+    :global(.form-control){
+        border-color: transparent transparent $gray-400 $gray-400;
+        &:global(.is-invalid){
+            border-color: transparent transparent #dc3939 #dc3939;
+        }
+        &:hover {
+            background: #f7f7f7;
+            border-color: $gray-500;
+        }
+        &:focus {
+            background: #fff;
+            border-color: $gray-500;
+            outline: none;
+        }
+    }
+}
+
+
 
 .button {
     background: #d2d7e4;

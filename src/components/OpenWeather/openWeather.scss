@@ -1,7 +1,12 @@
 .weatherWrapper {
     position: relative;
 }
-
+.weatherMap{
+    margin:0 auto;
+    height: 640px;
+    width: 100%;
+    position: relative;
+}
 .weatherPanel {
     position: absolute;
     top: 30px;
@@ -38,16 +43,13 @@
         .cell {
             width: 33.333%;
             text-align: center;
-
         }
     }
 }
-
 .temperature {
     font-size: 32px;
     display: flex;
     flex-direction: column;
-
     .tempCell {
         flex: 1;
         display: inline-flex;
@@ -61,42 +63,32 @@
         font-weight: 100;
     }
 }
-
 .date {
     font-size: 1.3em;
 }
-
 .location {
     font-size: 1.1em;
 }
-
 .icon {
     display: block;
     width: 100%;
 }
-
 .summary {
-
     .icon {
         &.sun {
             fill: #e8e800;
         }
     }
 }
-
-
 .details {
     .cell {
         font-size: 0.9em;
     }
-
     .icon {
         height: 50px;
         width: 50px;
         fill: #ffffff;
         margin: 0 auto;
-
-
         &.sun,
         &.precipitation {
             padding: 7px;
@@ -107,7 +99,6 @@
         }
     }
 }
-
 .extra {
     border-top: 1px solid rgba(239, 236, 236, 0.45098039215686275);
     padding: 20px 5px;

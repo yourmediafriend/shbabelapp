@@ -45,11 +45,23 @@ const Content = ({currentpage }) => {
     case 'svgs':
       return  <SvgAnimation />;
     case 'circle':
-      return  <SvgAnimation shape='circle' />;
+      return(
+        <MainContent style={{backgroundColor:'#464646'}}>
+          <SvgAnimation shape='circle'/>
+        </MainContent>
+      );
     case 'square':
-      return  <SvgAnimation shape='square'/>;
+      return(
+        <MainContent style={{backgroundColor:'#464646'}}>
+          <SvgAnimation shape='square'/>
+        </MainContent>
+      );
     case 'triangle':
-      return  <SvgAnimation shape='triangle'/>;
+      return(
+        <MainContent style={{backgroundColor:'#464646'}}>
+          <SvgAnimation shape='triangle'/>
+        </MainContent>
+      );
     case 'hypno':
       return  <SvgAnimation shape='hypno'/>;
     case 'parallax':
@@ -61,7 +73,7 @@ const Content = ({currentpage }) => {
         <MainContent style={{backgroundColor:'#000'}}>
           <SvgPattern />;
         </MainContent>
-      )
+      );
     case 'stickyHeader':
       return (
         <MainContent>

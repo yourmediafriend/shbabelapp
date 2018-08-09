@@ -1,7 +1,8 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import { FormRow, renderField } from '../formComponents'
-import { Button } from 'reactstrap';
+import { renderField } from '../formComponents'
+import { Button, Form, Row, Col, FormText } from 'reactstrap';
+import styles from '../forms.scss';
 
 const validate = values => {
   const errors = {};
@@ -30,22 +31,26 @@ const LoginForm = props => {
   const { handleSubmit, submitting, isSending, hasErrored } = props;
 
   return(
-    <div>
-      <form onSubmit={handleSubmit}>
+
+      <Form className={styles.loginForm} onSubmit={handleSubmit}>
         <fieldset>
-          <FormRow>
-            <Field labeltext={"Username"} name={"username"} component={renderField} type={"text"} isrequired={true}/>
-          </FormRow>
-          <FormRow>
-            <Field labeltext={"Password"} name={"password"} component={renderField} type={"password"} isrequired={true}/>
-          </FormRow>
+          <Row>
+            <Col>
+              <Field labeltext={"Username"} name={"username"} component={renderField} type={"text"} isrequired={true}/>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Field labeltext={"Password"} name={"password"} component={renderField} type={"password"} isrequired={true}/>
+            </Col>
+          </Row>
         </fieldset>
         <div>
           <Button type="submit" disabled={submitting || isSending}>Submit</Button>
-          {!hasErrored && !isSending ? null : <div>There has been an error. Please try again later</div> }
+          {!hasErrored && !isSending ? null : <FormText>There has been an error. Please try again later</FormText> }
         </div>
-      </form>
-    </div>
+      </Form>
+
   )
 };
 

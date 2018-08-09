@@ -10,11 +10,7 @@ export const initialState = { };
 export default function reducer(state=initialState, action = {}) {
 
   switch (action.type) {
-    // do reducer stuff
     case UPDATE_MAP:
-
-      // need to get the state of the menu
-      // there is an issue with the module as the lng and lat are incorrect.
       return {
         ...state,
         x: action.event.x,

@@ -164,28 +164,26 @@ class App extends Component {
           return (
             <div className={styles.outer}>
 
-
                 <div className={styles.sidebarMenuWrap} style={{...this.myStyles(state).menu}}>
                   <SidebarMenu/>
                 </div>
                 <MenuTrigger/>
 
-
               <div className={styles.mainContainer}>
 
-                { this.props.fullscreen ? '' :
+                { this.props.showHeader ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.header,styles.top)}>
                     <Header />
-                  </StickyContainer> }
+                  </StickyContainer> : '' }
 
                 { this.props.fullscreen ? '' :
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.top)}>
                         <SearchModal />
                   </StickyContainer> }
 
-                <div className={styles.menuFlexWrap}>
+                <div className={cx(styles.menuFlexWrap,'mainContent')}>
                   <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}}   />
-                  <div className={styles.mainFlex} style={{...this.props.fullscreen ? '' : {marginTop:'80px', marginBottom:`${this.props.revealFooterHeight}px`}}}>
+                  <div className={styles.mainFlex} style={{...this.props.showHeader ? {marginTop:'80px'} : '', ...{marginBottom:`${this.props.revealFooterHeight}px`}}}>
                     <div className={styles.content}>
                       <MainContent currentpage={this.props.currentpage} />
                     </div>
@@ -197,15 +195,15 @@ class App extends Component {
                     <Modal/>
                   </StickyContainer> }
 
-                { this.props.fullscreen ? '' :
+                { this.props.showFooterFixed ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isFixed)}>
                     <FixedFooter />
-                  </StickyContainer> }
+                  </StickyContainer> : '' }
 
-                { this.props.fullscreen ? '' :
+                { this.props.showFooterReveal ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isReveal)}>
                     <RevealFooter />
-                  </StickyContainer> }
+                  </StickyContainer> : '' }
 
               </div>
             </div>
@@ -217,11 +215,21 @@ class App extends Component {
 }
 
 App.propTypes = {
+  showFooterReveal: PropTypes.bool,
+  showFooterFixed: PropTypes.bool,
+  showHeader: PropTypes.bool,
   isMenuOpen: PropTypes.bool,
   isModalOpen: PropTypes.bool,
   offCanvasMenuStateChange: PropTypes.func,
   offCanvasMenuToggleAnimation: PropTypes.func,
 };
+
+App.defaultProps = {
+  showFooterReveal: true,
+  showFooterFixed: true,
+  showHeader: true,
+};
+
 
 export const mapStateToProps = (state) => {
   return {

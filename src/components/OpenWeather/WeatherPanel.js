@@ -53,6 +53,9 @@ class WeatherPanel extends Component {
             <div className={cx(styles.details)}>
               <div className={cx(styles.cell, styles.description)}>
                 <div className={cx(styles.icon)}>
+
+            {/*      {this.props.weatherData.weather[0].icon}*/}
+
                   <WeatherIcon iconId={this.props.weatherData.weather[0].icon} iconStyle={'simple'}/>
                 </div>
                 <div className={cx(styles.label)}>
@@ -67,10 +70,7 @@ class WeatherPanel extends Component {
               </div>
               <div className={cx(styles.cell, styles.perp)}>
                 <div className={cx(styles.icon)}>
-
-
                   <SVGInline svg={ Precipitation } className={cx(styles.icon, styles.precipitation )} />
-
                 </div>
                 <div className={cx(styles.label)}>
                   {this.rainFall(this.props.weatherData) + 'mm' }

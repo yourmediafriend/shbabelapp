@@ -5,15 +5,19 @@ import Clouds from './media/icons/clouds.svg'
 
 import SunSimple from './media/icons/simple/sun.svg'
 import SunCloudSimple from './media/icons/simple/sun-cloud.svg'
+import RainSimple from './media/icons/simple/rain.svg'
+import Rain from './media/icons/rain-colour.svg'
+
+
 // import SunHeavyCloudSimple from './media/icons/simple/sun-heavy-cloud.svg'
 import CloudsSimple from './media/icons/simple/clouds.svg'
 
 export default {
-  '01d': {
+  '01d': { // Clear Sunny
     icon: Sun,
     iconSimple: SunSimple,
   },
-  '01n': {
+  '01n': { // Clear Night
 
   },
   '02d': {
@@ -27,15 +31,17 @@ export default {
     icon: Clouds,
     iconSimple:CloudsSimple,
   },
-  '03n': {
-
+  '03n': {// Clouds Night
+    icon: Clouds,
+    iconSimple:CloudsSimple,
   },
   '04d': {
     icon: SunCloud,
     iconSimple:SunCloudSimple,
   },
-  '04n': {
-
+  '04n': { // Clouds Night
+    icon: Clouds,
+    iconSimple:CloudsSimple,
   },
   '05d': {
 
@@ -61,14 +67,21 @@ export default {
   '08n': {
 
   },
-  '09d': {
-
+  '09d': {// Rain
+    icon: Rain,
+    iconSimple:RainSimple,
   },
-  '10d': {
-
+  '09n': {// Rain
+    icon: Rain,
+    iconSimple:RainSimple,
   },
-  '10n': {
-
+  '10d': {// Rain
+    icon: Rain,
+    iconSimple:RainSimple,
+  },
+  '10n': { // Rain
+    icon: Rain,
+    iconSimple:RainSimple,
   },
   '11d': {
 

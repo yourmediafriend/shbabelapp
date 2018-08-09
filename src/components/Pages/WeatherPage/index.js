@@ -7,7 +7,7 @@ class Page extends Component {
   render() {
     return (
       <div>
-        <PageTitle title={ 'Weather' } layout={'full'} backgroundColor={ '#282828' }  backgroundImg={ bannerImg } style={{}} />
+    {/*    <PageTitle title={ 'Weather' } layout={'full'} backgroundColor={ '#282828' }  backgroundImg={ bannerImg } style={{}} />*/}
         <WeatherApp />
       </div>
     )

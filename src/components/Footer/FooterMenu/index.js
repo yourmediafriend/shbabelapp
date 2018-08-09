@@ -30,9 +30,7 @@ const Menu = props => {
       </Col>
     </Row>
   )
-
 }
-
 
 const FooterLayout = props => {
     return (

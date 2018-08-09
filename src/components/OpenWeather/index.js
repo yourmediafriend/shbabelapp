@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import GoogleMap from '../GeoLoction/googleMap';
+import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import { get } from "lodash/fp";
 import cx from 'classnames';
 import styles from './openWeather.scss';
+import GoogleMap from '../GeoLoction/googleMap';
 import { geolocated } from 'react-geolocated';
 import WeatherPanel from './WeatherPanel';
 import {attemptToRetrieveOpenWeather} from "../../modules/OpenWeather";
@@ -300,52 +301,6 @@ const mapOptions  = () => {
   }
 }
 
-const getLat = props => {
-  return props.upDateCords.latitude ?  props.upDateCords.latitude :  props.coords.latitude;
-}
-
-const getLng = props => {
-  return props.upDateCords.longitude ?  props.upDateCords.longitude :  props.coords.longitude;
-}
-
-class WeatherApp extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = { lat: getLat(this.props), lng: getLng(this.props) }
-    this.getData();
-  }
-
-  getData() {
-    this.props.getOpenWeatherData(this.state.lat, this.state.lng);
-   // this.props.getReverseGeoData(this.state.lat, this.state.lng);
-  }
-
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      ((getLat(nextProps) !== this.state.lat && getLng(nextProps) !== this.state.lng)) ||
-      ((get('coord.lat', nextProps.weatherData) !== get('coord.lat', this.props.weatherData)) && (get('coord.lon', nextProps.weatherData) !== get('coord.lon', this.props.weatherData)))
-    );
-  }
-
-  componentWillUpdate(nextProps, nextState){
-    this.setState({lat:getLat(nextProps),lng:getLng(nextProps)})
-    this.getData();
-  }
-
-  render () {
-    return (
-      <div className={cx(styles.weatherWrapper)}>
-        <WeatherPanel weatherData={this.props.weatherData} />
-        <div style={{margin:'0 auto', height: '640px', width: '100%', }} >
-          <GoogleMap latitude={this.state.lat} longitude={this.state.lng} options={mapOptions()} />
-        </div>
-      </div>
-    )
-  }
-}
-
 const geolocatedError = () => {
   return(<div style={{margin:'0 auto', height: '640px', width: '1200px' }}>Your browser does not support Geolocation</div>)
 }
@@ -369,14 +324,95 @@ class currentLocation extends React.Component {
   }
 }
 
+const getLat = props => {
+  return props.upDateCords.latitude ?  props.upDateCords.latitude :  props.coords.latitude;
+};
+
+const getLng = props => {
+  return props.upDateCords.longitude ?  props.upDateCords.longitude :  props.coords.longitude;
+};
+
+class WeatherApp extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      mapHeight: '640px',
+      lat: getLat(this.props),
+      lng: getLng(this.props),
+    }
+    this.getData();
+  }
+
+  componentWillMount(){
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+  };
+
+  componentDidMount() {
+    const { top } =  this.weatherMap.getBoundingClientRect();
+    this.setState({mapHeight:(window.innerHeight - top) + 'px'});
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+
+/*    const { height } =  this.weatherMap.getBoundingClientRect();
+    if (prevState.height !==  height ) {
+
+    }*/
+
+  }
+
+  onResize = () => {
+    if (this.weatherMap && this.weatherMap!== null) {
+      const { top } =  this.weatherMap.getBoundingClientRect();
+      this.setState({mapHeight:(window.innerHeight - top) + 'px'});
+    }
+  };
+
+  getData() {
+    this.props.getOpenWeatherData(this.state.lat, this.state.lng);
+   // this.props.getReverseGeoData(this.state.lat, this.state.lng);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      ((getLat(nextProps) !== this.state.lat && getLng(nextProps) !== this.state.lng)) ||
+      ((get('coord.lat', nextProps.weatherData) !== get('coord.lat', this.props.weatherData)) && (get('coord.lon', nextProps.weatherData) !== get('coord.lon', this.props.weatherData))) ||
+      ((nextState.mapHeight) !== this.state.mapHeight)
+    );
+  }
+
+  componentWillUpdate(nextProps, nextState){
+    this.setState({lat:getLat(nextProps),lng:getLng(nextProps)})
+    this.getData();
+  }
+
+  render () {
+    return (
+      <div ref={(element) => this.weatherMap = element} className={cx(styles.weatherMap)} style={{height: this.state.mapHeight}}>
+        <GoogleMap latitude={this.state.lat} longitude={this.state.lng} options={mapOptions()} />
+        <WeatherPanel weatherData={this.props.weatherData} />
+      </div>
+    )
+  }
+}
+
+WeatherApp.propTypes = {
+  weatherData: PropTypes.object,
+  hasErrored: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  upDateCords: PropTypes.object,
+};
+
 const mapStateToProps = (state) => {
   return {
     weatherData: get('retrieveOpenWeather.data', state),
     hasErrored: get('retrieveOpenWeather.hasErrored', state),
     isLoading: get('retrieveOpenWeather.isLoading', state),
     upDateCords: {
-      latitude: get('googleMapModule.lat', state),
-      longitude: get('googleMapModule.lng', state)
+      latitude: get('googleMapsModule.lat', state),
+      longitude: get('googleMapsModule.lng', state)
     }
   };
 };

@@ -8,6 +8,7 @@ import cx from "classnames";
 class HeaderNav extends React.Component {
 
   render() {
+
     const {data: propsData, onToggle, level, currentUrl } = this.props;
     let data = propsData;
 
@@ -32,7 +33,6 @@ class HeaderNav extends React.Component {
 }
 
 HeaderNav.propTypes = {
-    style: PropTypes.object,
     data: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.array
