@@ -34,26 +34,33 @@ const SwitchRoute = () => (
 
     <Route exact path='/drupal-articles' render={() => <OneColumnSidebar currentpage='drupalArticles' />} />
 
+
+    <Route exact path='/fullpage' render={(routeProps) => <OneColumnSidebar {...routeProps}
+                                                                            currentpage='fullpage'
+                                                                            showHeader={false}
+                                                                            showFooterFixed={false}
+                                                                            showFooterReveal={false} />} />
+
     {/*/SVG.js/*/}
-    <Route exact path='/svgs/square' render={ (routeProps) => <OneColumnSidebar {...routeProps}
+    <Route exact path='/svgs/square' render={(routeProps) => <OneColumnSidebar {...routeProps}
                                                                                 currentpage='square'
                                                                                 showHeader={false}
                                                                                 showFooterFixed={false}
                                                                                 showFooterReveal={false} />} />
 
-    <Route exact path='/svgs/circle' render={ (routeProps) => <OneColumnSidebar {...routeProps}
+    <Route exact path='/svgs/circle' render={(routeProps) => <OneColumnSidebar {...routeProps}
                                                                                 currentpage='circle'
                                                                                 showHeader={false}
                                                                                 showFooterFixed={false}
                                                                                 showFooterReveal={false} />} />
 
-    <Route exact path='/svgs/triangle' render={ (routeProps) => <OneColumnSidebar {...routeProps}
+    <Route exact path='/svgs/triangle' render={(routeProps) => <OneColumnSidebar {...routeProps}
                                                                                 currentpage='triangle'
                                                                                 showHeader={false}
                                                                                 showFooterFixed={false}
                                                                                 showFooterReveal={false} />} />
 
-    <Route exact path='/svgs/hypno' render={ (routeProps) => <OneColumnSidebar {...routeProps}
+    <Route exact path='/svgs/hypno' render={(routeProps) => <OneColumnSidebar {...routeProps}
                                                                                   currentpage='hypno'
                                                                                   showHeader={false}
                                                                                   showFooterFixed={false}

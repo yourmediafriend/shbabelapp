@@ -1,13 +1,14 @@
 import Sun from './media/icons/sun.svg'
 import SunCloud from './media/icons/sun-cloud.svg'
 import Clouds from './media/icons/clouds.svg'
+import CloudsNightColour from './media/icons/clouds-night-colour.svg'
 // import SunHeavyCloud from './media/icons/sun-heavy-cloud.svg'
 
 import SunSimple from './media/icons/simple/sun.svg'
 import SunCloudSimple from './media/icons/simple/sun-cloud.svg'
 import RainSimple from './media/icons/simple/rain.svg'
 import Rain from './media/icons/rain-colour.svg'
-
+import CloudsNight from './media/icons/simple/clouds-night.svg'
 
 // import SunHeavyCloudSimple from './media/icons/simple/sun-heavy-cloud.svg'
 import CloudsSimple from './media/icons/simple/clouds.svg'
@@ -24,8 +25,9 @@ export default {
     icon: SunCloud,
     iconSimple:SunCloudSimple,
   },
-  '02n': {
-
+  '02n': { // Couds Night
+    icon: CloudsNightColour,
+    iconSimple:CloudsNight,
   },
   '03d': {
     icon: Clouds,

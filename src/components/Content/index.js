@@ -10,6 +10,9 @@ import ScrollMagicParallaxExtra from '../ScrollMagicParallaxExtra';
 import SvgPattern from '../SvgPattern';
 
 import QuarterPage from '../QuarterPage';
+import Fullpage from '../Fullpage';
+
+
 
 // Pages
 import ContactPage from '../Pages/ContactPage';
@@ -132,7 +135,7 @@ const Content = ({currentpage }) => {
       );
     case 'mixedDemo':
       return (
-        <MainContent style={{backgroundColor:'#f5f5f5'}}>
+        <MainContent style={{backgroundColor:'#d2d2d2'}}>
           <MixedDemo />
         </MainContent>
       );
@@ -142,6 +145,13 @@ const Content = ({currentpage }) => {
           <DrupalArticles />
         </MainContent>
       );
+    case 'fullpage':
+      return (
+        <MainContent style={{backgroundColor:'#f5f5f5'}}>
+          <Fullpage />
+        </MainContent>
+      );
+
     default:
       return null;
   }

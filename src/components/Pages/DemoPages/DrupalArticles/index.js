@@ -19,7 +19,6 @@ const GET_ARTICLES = gql`
           ... on Node {
             nid
             title
-            field_track
             body {
               value
             }
