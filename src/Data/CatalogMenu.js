@@ -5,11 +5,11 @@ const data = [
     "url": "/meat",
     "before": [{
       "type": "html",
-      "content": '<ul class="list-group"><li class="list-group-item"><h3 class="menuTitle sale">SALE</h3><ul class="list-group"><li class="list-group-item"><a href="">Steak</a></li><li class="list-group-item"><a href="">Stewing</a></li><li class="list-group-item"><a href="">Mince</a></li></ul></li><li class="list-group-item"><h3 class="menuTitle new">NEW ARRIVALS</h3><ul class="list-group"><li class="list-group-item"><a href="">Gammon</a></li><li class="list-group-item"><a href="">Chops</a></li><li class="list-group-item"><a href="">Bacon</a></li><li class="list-group-item"><a href="">Sausages</a></li></ul></li></ul>'
+      "content": "<ul class=\"list-group\"><li class=\"list-group-item\"><h3 class=\"menuTitle sale\">SALE</h3><ul class=\"list-group\"><li class=\"list-group-item\"><a href=\"\">Steak</a></li><li class=\"list-group-item\"><a href=\"\">Stewing</a></li><li class=\"list-group-item\"><a href=\"\">Mince</a></li></ul></li><li class=\"list-group-item\"><h3 class=\"menuTitle new\">NEW ARRIVALS</h3><ul class=\"list-group\"><li class=\"list-group-item\"><a href=\"\">Gammon</a></li><li class=\"list-group-item\"><a href=\"\">Chops</a></li><li class=\"list-group-item\"><a href=\"\">Bacon</a></li><li class=\"list-group-item\"><a href=\"\">Sausages</a></li></ul></li></ul>"
     }],
     "after": [{
       "type": "image",
-      "content": 'fractalSrc'
+      "content": "fractalSrc"
     }],
     "children": [
       {
@@ -354,12 +354,12 @@ const data = [
   {
     "id": 4,
     "name": "Fruit",
-    "url": "/fruit",
+    "url": "/fruit"
   },
   {
     "id": 5,
     "name": "Groceries",
-    "url": "/groceries",
+    "url": "/groceries"
   }
 ];
 

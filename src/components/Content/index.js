@@ -25,8 +25,6 @@ import ThreeColumnDemo from '../Pages/DemoPages/ThreeColumn';
 import MixedDemo from '../Pages/DemoPages/Mixed';
 import DrupalArticles from '../Pages/DemoPages/DrupalArticles';
 
-
-
 import StickyElements from '../Pages/DemoPages/StickyElements';
 
 const MainContent = props => {
@@ -138,7 +136,7 @@ const Content = ({currentpage }) => {
       );
     case 'mixedDemo':
       return (
-        <MainContent style={{backgroundColor:'#f5f5f5'}}>
+        <MainContent style={{backgroundColor:'#d2d2d2'}}>
           <MixedDemo />
         </MainContent>
       );
@@ -148,6 +146,13 @@ const Content = ({currentpage }) => {
           <DrupalArticles />
         </MainContent>
       );
+    case 'fullpage':
+      return (
+        <MainContent style={{backgroundColor:'#f5f5f5'}}>
+          <Fullpage />
+        </MainContent>
+      );
+
     default:
       return null;
   }

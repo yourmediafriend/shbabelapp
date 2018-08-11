@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { OneColumnCenter }  from '../../../Layout';
 import Article from '../../../Article';
 import ArticleHero from '../../../Article/Hero';
+import styles from './mixed.scss'
 
 class DemoPage extends Component {
 
@@ -9,7 +10,7 @@ class DemoPage extends Component {
     return (
       <div>
         <ArticleHero />
-        <OneColumnCenter contentMain={<Article />} styles={{backgroundColor:'#ffffff'}}  />
+        <OneColumnCenter className={styles.article} contentMain={<Article />} />
       </div>
     )
   }
