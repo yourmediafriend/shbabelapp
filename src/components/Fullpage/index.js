@@ -1,44 +1,39 @@
 import React from 'react';
-import classNames from 'classnames';
+import ReactFullpage from '@fullpage/react-fullpage';
+import cx from 'classnames';
+import styles from './fullpage.scss';
 
-import { Fullpage, Slide } from 'fullpage-react';
+const FullpageWrapper = props => {
 
-import styles from './Fullpage.scss';
+  const fullPageOptions = {
+    sectionsColor: [ '#4BBFC3', '#7BAABE', '#000'],
+  };
 
-const fullPageOptions = {
+  return (
+    <ReactFullpage {...fullPageOptions}  render={({ state, fullpageApi }) => {
+      return (
+        <div>
 
-  // for mouse/wheel events
-  // represents the level of force required to generate a slide change on non-mobile, 10 is default
-  scrollSensitivity: 7,
+          <div className="section">
+            <p>Section 1 (welcome to fullpage.js)</p>
+            <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
+          </div>
 
-  // for touchStart/touchEnd/mobile scrolling
-  // represents the level of force required to generate a slide change on mobile, 10 is default
-  touchSensitivity: 7,
-  scrollSpeed: 500,
-  hideScrollBars: true,
-  enableArrowKeys: true
-};
+          <div className="section">
+            <p>Section 2</p>
+            <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
+          </div>
 
+          <div className="section">
+            <p>Section 3</p>
+          </div>
 
-const slides = [
-  <Slide>
-    <div className={classNames(styles.fullpageBg, styles.fullpageBgA)}></div>
-  </Slide>,
-  <Slide>
-    <div className={classNames(styles.fullpageBg, styles.fullpageBgB)}></div>
-  </Slide>,
-  <Slide>
-    <div className={classNames(styles.fullpageBg, styles.fullpageBgC)}></div>
-  </Slide>
-];
+        </div>
+      );
 
-fullPageOptions.slides = slides;
+  }}/>);
 
+}
 
-const FullpageComponent = () => (
+export default FullpageWrapper;
 
-  <Fullpage {...fullPageOptions} className={styles.fullpage} />
-
-)
-
-export default FullpageComponent

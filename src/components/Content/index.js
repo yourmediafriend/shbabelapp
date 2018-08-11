@@ -8,11 +8,8 @@ import ScrollMagicParallax from '../ScrollMagicParallax';
 import ScrollMagicParallaxExtra from '../ScrollMagicParallaxExtra';
 
 import SvgPattern from '../SvgPattern';
-
 import QuarterPage from '../QuarterPage';
 import Fullpage from '../Fullpage';
-
-
 
 // Pages
 import ContactPage from '../Pages/ContactPage';
@@ -27,8 +24,6 @@ import TwoColumnLeftDemo from '../Pages/DemoPages/TwoColumnLeft';
 import ThreeColumnDemo from '../Pages/DemoPages/ThreeColumn';
 import MixedDemo from '../Pages/DemoPages/Mixed';
 import DrupalArticles from '../Pages/DemoPages/DrupalArticles';
-
-
 
 import StickyElements from '../Pages/DemoPages/StickyElements';
 
@@ -85,6 +80,12 @@ const Content = ({currentpage }) => {
       );
     case 'quarter':
       return  <QuarterPage />;
+    case 'fullpage':
+      return (
+        <MainContent className={styles.fullpage}>
+          <Fullpage />
+        </MainContent>
+      );
     case 'grid-parallax':
       return (
         <MainContent className={styles.grid}>

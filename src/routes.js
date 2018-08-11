@@ -75,13 +75,22 @@ const SwitchRoute = () => (
     <Route exact path='/mscroll/svg-flasher' render={() => <OneColumnSidebar currentpage='svgFlasher' />} />
 
     {/*/Layout Elements/*/}
-    <Route exact path='/sticky-header' render={() => <OneColumnSidebar currentpage='stickyHeader' />} />
 
     <Route exact path='/quarter' render={() => <OneColumnSidebar currentpage='quarter'
                                                                  showHeader={false}
                                                                  showFooterFixed={false}
                                                                  showFooterReveal={false} />} />
 
+
+    <Route exact path='/fullpage' render={() => <OneColumnSidebar currentpage='fullpage'
+                                                                 showHeader={false}
+                                                                 showFooterFixed={false}
+                                                                 showFooterReveal={false} />} />
+
+
+
+
+    <Route exact path='/sticky-header' render={() => <OneColumnSidebar currentpage='stickyHeader' />} />
     <Route exact path='/grid-fixed' render={() => <OneColumnSidebar currentpage='grid-fixed' />} />
     <Route exact path='/grid-parallax' render={() => <OneColumnSidebar currentpage='grid-parallax' />} />
 
