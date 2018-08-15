@@ -22,9 +22,6 @@ const FullpageSlides = fullpageApi => {
   return (
     <div>
 
-
-
-
       <div className={cx(styles.section, styles.section_1, 'section')}>
         <div className={cx(styles.inner)}>
           <div className={cx(styles.layer)}>
@@ -58,12 +55,13 @@ const FullpageSlides = fullpageApi => {
       <div className={cx(styles.section, styles.section_2, 'section')}>
         <div className={cx(styles.inner)}>
           <div className={cx(styles.layer)}>
-            <Lightening />
+            <Lightening className={styles.Mainlightening}  />
           </div>
           <div className={cx(styles.layer, styles.sindy)}>
             <div className={cx(styles.center)}>
               <div className={cx(styles.imageWrap, styles.sindy_1)}>
                 <img src={sindy_1} alt="" />
+  {/*              <Lightening className={styles.lightening}/>*/}
                 <div className={styles.imageFrame} />
               </div>
               <div className={cx(styles.imageWrap, styles.sindy_2)}>
@@ -78,6 +76,7 @@ const FullpageSlides = fullpageApi => {
           </div>
         </div>
       </div>
+
 
 
       <div className={cx(styles.section, styles.section_3, 'section')}>
