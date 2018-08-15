@@ -1,4 +1,6 @@
 import Sun from './media/icons/sun.svg'
+import ClearNightColour from './media/icons/clear-night-colour.svg'
+
 import SunCloud from './media/icons/sun-cloud.svg'
 import Clouds from './media/icons/clouds.svg'
 import CloudsNightColour from './media/icons/clouds-night-colour.svg'
@@ -9,6 +11,8 @@ import SunCloudSimple from './media/icons/simple/sun-cloud.svg'
 import RainSimple from './media/icons/simple/rain.svg'
 import Rain from './media/icons/rain-colour.svg'
 import CloudsNight from './media/icons/simple/clouds-night.svg'
+import ClearNightSimple from './media/icons/simple/clear-night-simple.svg'
+
 
 // import SunHeavyCloudSimple from './media/icons/simple/sun-heavy-cloud.svg'
 import CloudsSimple from './media/icons/simple/clouds.svg'
@@ -19,7 +23,8 @@ export default {
     iconSimple: SunSimple,
   },
   '01n': { // Clear Night
-
+    icon: ClearNightColour,
+    iconSimple: ClearNightSimple,
   },
   '02d': {
     icon: SunCloud,

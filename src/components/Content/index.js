@@ -146,13 +146,6 @@ const Content = ({currentpage }) => {
           <DrupalArticles />
         </MainContent>
       );
-    case 'fullpage':
-      return (
-        <MainContent style={{backgroundColor:'#f5f5f5'}}>
-          <Fullpage />
-        </MainContent>
-      );
-
     default:
       return null;
   }
