@@ -80,10 +80,16 @@ const Content = ({currentpage }) => {
       );
     case 'quarter':
       return  <QuarterPage />;
-    case 'fullpage':
+    case 'fullpage/david-carson':
       return (
         <MainContent className={styles.fullpage}>
-          <Fullpage />
+          <Fullpage fullref={'david-carson'}/>
+        </MainContent>
+      );
+    case 'fullpage/fluro':
+      return (
+        <MainContent className={styles.fullpage}>
+          <Fullpage fullref={'fluro'}/>
         </MainContent>
       );
     case 'grid-parallax':
