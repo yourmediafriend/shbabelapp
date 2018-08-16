@@ -131,23 +131,83 @@
         }
     }
 
+    .layer {
+        &.lightening{
+            display: flex;
+            .svgWrap {
+                flex: 1;
+                position: relative;
+                pointer-events: none;
+                svg {
+                    position: absolute;
+                    right: 50px;
+                    width: auto;
+                    height: 84vh;
+                }
+            }
+        }
+    }
 }
-.section_2 {
 
+.section_2 {
     .layer {
         display: flex;
     }
 
-    .Mainlightening {
-        flex: 1;
-        position: relative;
-        pointer-events: none;
-        svg {
-            position: absolute;
-            left: 50px;
-            width: auto;
+    .layer {
+        &.content{
+
         }
     }
+
+    .textOverlayWrap {
+        font-size: 3em;
+        text-transform: uppercase;
+        font-weight: 800;
+        position: relative;
+        width: 30vw;
+        text-align: left;
+        .wrap {
+            font-family: "Montserrat-Medium";
+            position: absolute;
+            line-height: 1em;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            transition: color 0.5s ease, opacity 0.5s ease;
+            p {
+                margin: 0 0 1em 0;
+            }
+            &.wrap_1{
+                color: #318fb2;
+                opacity: 0.7;
+                &.active {
+
+                }
+            }
+            &.wrap_2{
+                color: #a60c0c;
+                opacity: 0.7;
+                &.active {
+                    color: #eaeaea;
+                }
+            }
+            &.wrap_3{
+                color: #54987d;
+                opacity: 0.7;
+                &.active {
+
+                }
+            }
+            &.active {
+                color: #eaeaea;
+                opacity: 1;
+                z-index: 99;
+            }
+        }
+    }
+
 
     .imageWrap {
         position: relative;
@@ -155,10 +215,14 @@
         margin: 0px 30px;
         pointer-events: all;
 
+        .reactHoverObserver {
+            display: inline-block;
+        }
+
         img {
             position: relative;
             z-index: 10;
-            opacity: 0.8;
+            opacity: 0.5;
             transition: all 0.5s ease;
         }
 

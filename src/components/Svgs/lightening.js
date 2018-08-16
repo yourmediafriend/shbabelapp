@@ -50,22 +50,19 @@ class Dotty extends React.Component {
       }
     }
 
-    // let DotsGroup_2 = DotsGroup.clone();
-    //
-    // map((d)=>{
-    //   d.setAttribute('fill','rgba(60, 5, 55, 0.82)');
-    // },((DotsGroup.node).querySelectorAll('circle')));
-    //
-    // let CircleMask = DotsGroup.circle(90,90).fill('#fff')
-    // DotsGroup.maskWith(CircleMask);
+    let DotsGroup_2 = DotsGroup.clone();
 
-    let Lightening = DotsGroup.polygon('52.711,0 84.521,0 66.561,30.078 84.521,30.078 20.47,99.538 40.81,51.716 28.043,51.716').fill('#fff');
-    DotsGroup.maskWith(Lightening.scale(0.9));
+    map((d)=>{
+      d.setAttribute('fill','rgba(60, 5, 55, 0.82)');
+    },((DotsGroup.node).querySelectorAll('circle')));
+
+    DotsGroup.maskWith(DotsGroup.polygon('52.711,0 84.521,0 66.561,30.078 84.521,30.078 20.47,99.538 40.81,51.716 28.043,51.716').fill('#fff').scale(0.9));
+
+    let Lightening = DotsGroup_2.polygon('52.711,0 84.521,0 66.561,30.078 84.521,30.078 20.47,99.538 40.81,51.716 28.043,51.716').fill('#fff');
+    DotsGroup_2.maskWith(Lightening.scale(0.9));
 
     let DotsGroupGroup = MainDraw.group();
     DotsGroupGroup.add(Lightening.clone().fill('transparent').stroke({'width': 0.75, 'color': dotsColor }));
-
-
 
     // Lightening Outline
      TweenMax.fromTo(DotsGroupGroup.node, 0.5, {scale:1, transformOrigin:"center center", ease: Linear.sineInOut }, {scale:1.03, transformOrigin:"center center", ease: Linear.sineInOut }).repeat(-1).yoyo(true);
@@ -75,15 +72,16 @@ class Dotty extends React.Component {
     TweenMax.fromTo(DotsGroupGroup.node, 0.01, {y:'0.5', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone },{y:'-0.5', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone }).yoyo(true);
 
     // Background Dots
-    // TweenMax.fromTo(DotsGroup.node, 0.5, {scale:1, transformOrigin:"center center", ease: Linear.sineInOut }, {scale:1.01, transformOrigin:"center center", ease: Linear.sineInOut }).repeat(-1).yoyo(true);
-    // TweenMax.fromTo(DotsGroup.node, 1, {rotation:'-0.7_ccw', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone },{rotation:'0.5_cw', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone }).yoyo(true);
-    // TweenMax.fromTo(DotsGroup.node, 0.01, {y:'0.3', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone },{y:'-0.3', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone }).yoyo(true);
-    // TweenMax.fromTo(DotsGroup.node, 0.5, {scale:1, transformOrigin:"center center", ease: Linear.sineInOut }, {scale:1.04, transformOrigin:"90% center", ease: Linear.sineInOut }).repeat(-1).yoyo(true);
+    TweenMax.fromTo(DotsGroup.node, 0.5, {scale:1, transformOrigin:"center center", ease: Linear.sineInOut }, {scale:1.01, transformOrigin:"center center", ease: Linear.sineInOut }).repeat(-1).yoyo(true);
+
+    TweenMax.fromTo(DotsGroup.node, 1, {rotation:'-0.7_ccw', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone },{rotation:'0.5_cw', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone }).yoyo(true);
+
+    TweenMax.fromTo(DotsGroup.node, 0.01, {y:'0.3', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone },{y:'-0.3', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone }).yoyo(true);
 
     // Lightening Dots
-    TweenMax.fromTo(DotsGroup.node, 1, {scale:1, transformOrigin:"center center", ease: Linear.sineInOut }, {scale:1.03, transformOrigin:"center center", ease: Linear.sineInOut }).repeat(-1).yoyo(true);
-    TweenMax.fromTo(DotsGroup.node, 0.2, {rotation:'0.5_cw', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone },{rotation:'-0.5_ccw', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone }).yoyo(true);
-    TweenMax.fromTo(DotsGroup.node,  0.1, {y:'-0.5', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone },{y:'0.5', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone }).yoyo(true);
+    TweenMax.fromTo(DotsGroup_2.node, 1, {scale:1, transformOrigin:"center center", ease: Linear.sineInOut }, {scale:1.03, transformOrigin:"center center", ease: Linear.sineInOut }).repeat(-1).yoyo(true);
+    TweenMax.fromTo(DotsGroup_2.node, 0.2, {rotation:'0.5_cw', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone },{rotation:'-0.5_ccw', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone }).yoyo(true);
+    TweenMax.fromTo(DotsGroup_2.node,  0.1, {y:'-0.5', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone },{y:'0.5', transformOrigin:"center center", repeat:-1, ease: Linear.easeNone }).yoyo(true);
 
     
   }
