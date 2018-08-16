@@ -1,39 +1,39 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactFullpage from '@fullpage/react-fullpage';
-import cx from 'classnames';
-import styles from './fullpage.scss';
+import DavidCarson from './DavidCarson';
+import Fluro from './Fluro';
 
 const FullpageWrapper = props => {
 
-  const fullPageOptions = {
-    sectionsColor: [ '#4BBFC3', '#7BAABE', '#000'],
-  };
+  const fullPageOptions = { };
+
+  console.log(props);
+
 
   return (
     <ReactFullpage {...fullPageOptions}  render={({ state, fullpageApi }) => {
-      return (
-        <div>
-
-          <div className="section">
-            <p>Section 1 (welcome to fullpage.js)</p>
-            <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
-          </div>
-
-          <div className="section">
-            <p>Section 2</p>
-            <button onClick={() => fullpageApi.moveSectionDown()}>Click me to move down</button>
-          </div>
-
-          <div className="section">
-            <p>Section 3</p>
-          </div>
-
-        </div>
-      );
-
+      switch (props.fullref) {
+        case 'david-carson':
+          return (<DavidCarson />);
+        case 'fluro':
+          return (<Fluro />);
+        default:
+          return (null);
+      }
   }}/>);
 
-}
+};
+
+FullpageWrapper.propTypes = {
+  fullref: PropTypes.string,
+};
+
+FullpageWrapper.defaultProps = {
+};
+
+
 
 export default FullpageWrapper;
+
 

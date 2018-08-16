@@ -80,10 +80,16 @@ const Content = ({currentpage }) => {
       );
     case 'quarter':
       return  <QuarterPage />;
-    case 'fullpage':
+    case 'fullpage/david-carson':
       return (
         <MainContent className={styles.fullpage}>
-          <Fullpage />
+          <Fullpage fullref={'david-carson'}/>
+        </MainContent>
+      );
+    case 'fullpage/fluro':
+      return (
+        <MainContent className={styles.fullpage}>
+          <Fullpage fullref={'fluro'}/>
         </MainContent>
       );
     case 'grid-parallax':
@@ -146,13 +152,6 @@ const Content = ({currentpage }) => {
           <DrupalArticles />
         </MainContent>
       );
-    case 'fullpage':
-      return (
-        <MainContent style={{backgroundColor:'#f5f5f5'}}>
-          <Fullpage />
-        </MainContent>
-      );
-
     default:
       return null;
   }
