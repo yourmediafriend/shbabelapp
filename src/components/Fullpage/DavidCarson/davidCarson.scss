@@ -56,6 +56,7 @@
         font-size: 7em;
         font-weight: bold;
         margin-top: 43vh;
+        line-height: 0.56em;
         transform: translateY(-50%);
         color: #ced7d7;
     }
@@ -259,6 +260,69 @@
         transform: translateX(-100%);
     }
 
-
-
 }
+
+.multiLayerHeading {
+    font-family: "OpenSans-Bold";
+    font-size: 8em;
+    position: absolute;
+    width: 100%;
+    bottom: 250px;
+    left: 90px;
+    .mlayer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        span {
+            display: inline-block;
+            transform-origin: top left;
+        }
+    }
+
+    .layer_1 {
+        color: #740001;
+        span {
+            &.line_1 {
+                transform: rotate(-5deg) translate3d(-9px, 11px, 0);
+            }
+            &.line_2 {
+                transform: rotate(1deg) translate3d(15px, -30px, 0)
+
+            }
+        }
+    }
+    .layer_2 {
+        color: #ffc107;
+        span {
+            &.line_1 {
+                transform: rotate(-5deg) translate3d(-5px, 5px, 0);
+            }
+            &.line_2 {
+                transform: rotate(1deg) translate3d(18px, -25px, 0);
+            }
+        }
+    }
+    .layer_3 {
+        color: #1d1d1d;
+        span {
+            &.line_1 {
+                transform: rotate(-5deg) translate3d(-1px, 10px, 0);
+            }
+            &.line_2 {
+                transform: rotate(1deg) translate3d(22px, -24px, 0);
+            }
+        }
+    }
+    .layer_4 {
+        color: #FFF;
+        span {
+            &.line_1 {
+                transform: rotate(-5deg) translate3d(4px, 5px, 0);
+            }
+            &.line_2 {
+                transform: rotate(1deg) translate3d(24px, -29px, 0);
+            }
+        }
+    }
+}
+

@@ -25,7 +25,6 @@ const FullpageSlides = (props, fullpageApi) => {
 
   return (
     <div>
-
       <div className={cx(styles.section, styles.section_1, 'section')}>
         <div className={cx(styles.inner)}>
           <div className={cx(styles.layer)}>
@@ -147,8 +146,30 @@ const FullpageSlides = (props, fullpageApi) => {
       </div>
 
       <div className={cx(styles.section, styles.section_3, 'section')}>
-
+        <div className={cx(styles.inner)}>
+          <div className={cx(styles.layer)}>
+            <h2 className={cx(styles.multiLayerHeading)} >
+              <span className={cx(styles.mlayer, styles.layer_1)} >
+                <span className={cx(styles.line_1)} >if you cannot measure it</span><br/>
+                <span className={cx(styles.line_2)}>it does not exist</span>
+              </span>
+              <span className={cx(styles.mlayer, styles.layer_2)} >
+                <span className={cx(styles.line_1)} >if you cannot measure it</span><br/>
+                <span className={cx(styles.line_2)}>it does not exist</span>
+              </span>
+              <span className={cx(styles.mlayer, styles.layer_3)} >
+                <span className={cx(styles.line_1)} >if you cannot measure it</span><br/>
+                <span className={cx(styles.line_2)}>it does not exist</span>
+              </span>
+              <span className={cx(styles.mlayer, styles.layer_4)} >
+                <span className={cx(styles.line_1)} >if you cannot measure it</span><br/>
+                <span className={cx(styles.line_2)}>it does not exist</span>
+              </span>
+            </h2>
+          </div>
+        </div>
       </div>
+
       <div className={cx(styles.section, styles.section_4, 'section')}>
 
       </div>

@@ -8,9 +8,6 @@ const FullpageWrapper = props => {
 
   const fullPageOptions = { };
 
-  console.log(props);
-
-
   return (
     <ReactFullpage {...fullPageOptions}  render={({ state, fullpageApi }) => {
       switch (props.fullref) {
