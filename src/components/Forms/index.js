@@ -3,6 +3,7 @@ import SearchForm from './formContainers/searchContainer';
 import LoginForm from './formContainers/loginContainer';
 import SignupForm from './formContainers/signupContainer';
 import PasswordForgotForm from './formContainers/passwordForgotContainer';
+import NewsletterSignUp from './formContainers/newsletterSignUpContainer';
 
 export {
   ContactForm,
@@ -10,4 +11,5 @@ export {
   LoginForm,
   SignupForm,
   PasswordForgotForm,
+  NewsletterSignUp,
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import { renderField } from '../formComponents'
+import { RenderField } from '../formComponents'
 import { Button, Form, Row, Col, FormText } from 'reactstrap';
 import styles from '../forms.scss';
 
@@ -36,12 +36,12 @@ const LoginForm = props => {
         <fieldset>
           <Row>
             <Col>
-              <Field labeltext={"Username"} name={"username"} component={renderField} type={"text"} isrequired={true}/>
+              <Field labeltext={"Username"} name={"username"} component={RenderField} type={"text"} isrequired={true}/>
             </Col>
           </Row>
           <Row>
             <Col>
-              <Field labeltext={"Password"} name={"password"} component={renderField} type={"password"} isrequired={true}/>
+              <Field labeltext={"Password"} name={"password"} component={RenderField} type={"password"} isrequired={true}/>
             </Col>
           </Row>
         </fieldset>

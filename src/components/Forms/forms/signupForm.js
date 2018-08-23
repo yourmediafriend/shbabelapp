@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import { FormRow, renderField } from '../formComponents'
+import { FormRow, RenderField } from '../formComponents'
 import { Button } from 'reactstrap';
 
 const validate = values => {
@@ -48,20 +48,20 @@ const ContactForm = props => {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <FormRow>
-            <Field labeltext={"First Name"} name={"firstName"} component={renderField} type={"text"} isrequired={true}/>
-            <Field labeltext={"Last Name"} name={"lastName"} component={renderField} type={"text"} isrequired={true}/>
+            <Field labeltext={"First Name"} name={"firstName"} component={RenderField} type={"text"} isrequired={true}/>
+            <Field labeltext={"Last Name"} name={"lastName"} component={RenderField} type={"text"} isrequired={true}/>
           </FormRow>
           <FormRow>
-            <Field labeltext={"Usename"} name={"username"} component={renderField} type={"text"} isrequired={false}/>
+            <Field labeltext={"Usename"} name={"username"} component={RenderField} type={"text"} isrequired={false}/>
           </FormRow>
           <FormRow>
-            <Field labeltext={"Email"} name={"email"} component={renderField} type={"email"} isrequired={true}/>
+            <Field labeltext={"Email"} name={"email"} component={RenderField} type={"email"} isrequired={true}/>
           </FormRow>
           <FormRow>
-            <Field labeltext={"Password"} name={"password"} component={renderField} type={"password"} isrequired={true}/>
+            <Field labeltext={"Password"} name={"password"} component={RenderField} type={"password"} isrequired={true}/>
           </FormRow>
           <FormRow>
-            <Field labeltext={"Repeat Password"} name={"repeatpassword"} component={renderField} type={"password"} isrequired={true}/>
+            <Field labeltext={"Repeat Password"} name={"repeatpassword"} component={RenderField} type={"password"} isrequired={true}/>
           </FormRow>
         </fieldset>
         <div>

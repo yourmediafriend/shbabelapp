@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import { renderField } from '../formComponents'
+import { RenderField } from '../formComponents'
 import { Button, Form, Row, Col, FormText } from 'reactstrap';
 import styles from '../forms.scss';
 
@@ -47,25 +47,25 @@ const ContactForm = props => {
         <fieldset>
           <Row>
             <Col md={6}>
-              <Field labeltext={"First Name"} name={"firstName"} component={renderField} type={"text"} isrequired={true}/>
+              <Field labeltext={"First Name"} name={"firstName"} component={RenderField} type={"text"} isrequired={true}/>
             </Col>
             <Col md={6}>
-              <Field labeltext={"Last Name"} name={"lastName"} component={renderField} type={"text"} isrequired={true}/>
+              <Field labeltext={"Last Name"} name={"lastName"} component={RenderField} type={"text"} isrequired={true}/>
             </Col>
           </Row>
           <Row>
             <Col>
-              <Field labeltext={"Phone Number"} name={"phoneNumber"} component={renderField} type={"text"} isrequired={false}/>
+              <Field labeltext={"Phone Number"} name={"phoneNumber"} component={RenderField} type={"text"} isrequired={false}/>
             </Col>
           </Row>
           <Row>
             <Col>
-              <Field labeltext={"Email"} name={"email"} component={renderField} type={"email"} isrequired={true}/>
+              <Field labeltext={"Email"} name={"email"} component={RenderField} type={"email"} isrequired={true}/>
             </Col>
           </Row>
           <Row>
             <Col>
-              <Field labeltext={"Message"} name={"message"} component={renderField} type={"textarea"} isrequired={true}/>
+              <Field labeltext={"Message"} name={"message"} component={RenderField} type={"textarea"} isrequired={true}/>
             </Col>
           </Row>
         </fieldset>

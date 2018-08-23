@@ -234,9 +234,9 @@ App.defaultProps = {
 export const mapStateToProps = (state) => {
   return {
     isModalOpen: get('modalModule.modalIsOpen', state),
+    isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
     revealFooterHeight: get('appModule.revealFooterHeight', state),
     fixedFooterHeight: get('appModule.fixedFooterHeight', state),
-    isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
   }
 };
 

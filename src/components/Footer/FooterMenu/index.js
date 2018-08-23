@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './footerMenu.scss';
 import OneColumnCenter from '../../Layout/1ColumnCenter';
+import { NewsletterSignUp } from '../../Forms'
 import { Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
 
 const Menu = props => {
@@ -24,9 +25,17 @@ const Menu = props => {
         </ListGroup>
       </Col>
       <Col sm={12} md={4}>
+        <div>
+          <p>Newsletter Signup</p>
+          <NewsletterSignUp />
+        </div>
+
+
         <p>Add Contact Details</p>
         <p>Social Media Links</p>
-        <p>Newsletter Signup</p>
+
+
+
       </Col>
     </Row>
   )

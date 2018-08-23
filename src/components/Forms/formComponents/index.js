@@ -1,8 +1,9 @@
-import { FormRow, renderField} from './Input';
+import { FormRow, RenderField, FormFieldInput} from './Input';
 import Button from './Button';
 
 export {
   FormRow,
-  renderField,
+  RenderField,
+  FormFieldInput,
   Button
 };

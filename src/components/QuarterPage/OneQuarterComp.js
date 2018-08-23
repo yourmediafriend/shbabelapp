@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Animate from 'react-move/Animate';
 import { easeExpInOut } from 'd3-ease';
 import styles from './quarterPageStyles';
-import Radium from "radium";
 
 class Qpanel extends Component {
 
@@ -13,28 +12,14 @@ class Qpanel extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
 
-    return (
-      (Radium.getState(this.state, 'main', ':hover') !== Radium.getState(nextState, 'main', ':hover'))
-       ||
-      (this.props.hoverIndex !== nextProps.hoverIndex)
-    );
+    return true
   }
 
   componentDidUpdate(prevProps, prevState){
 
-    if ( Radium.getState(this.state, 'main', ':hover')) {
-      this.props.onChange(this.props.index);
-    }
-    else if (this.props.hoverIndex === this.props.index) {
-      this.props.onChange('');
-    }
   }
 
   render() {
-
-    const stylesBackgroundColorHover = props => {
-      return Radium.getState(this.state, 'main', ':hover') ? {backgroundColor:props.bgColorHover}: {backgroundColor:props.bgColor};
-    };
 
     const stylesBackgroundImage = props => {
       return props.bgImg ? {backgroundImage: `url(${props.bgImg})`} : {backgroundImage:'none'};
@@ -71,7 +56,6 @@ class Qpanel extends Component {
       <div
         style={{
           ...styles.panel.backpanel,
-          ...stylesBackgroundColorHover(this.props)
         }}
       >
         { hasSVG(this.props) }
@@ -81,7 +65,6 @@ class Qpanel extends Component {
   }
 }
 
-Qpanel = Radium(Qpanel);
 
 class OneQuarter extends Component {
 
