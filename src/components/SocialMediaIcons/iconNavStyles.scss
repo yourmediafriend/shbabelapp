@@ -1,0 +1,41 @@
+.socialMediaMenu {
+    display: flex;
+    flex-direction: row;
+    :global(.list-group-item){
+        margin-right: 20px;
+        padding: 0;
+    }
+
+    @include media-breakpoint-down(md) {
+        justify-content: center;
+        :global(.list-group-item) {
+            margin: 0 15px;
+        }
+    }
+
+    .link {
+        .icon {
+            width: 24px;
+            display: inline-block;
+            &.facebook {
+                width: 22px;
+            }
+            &.googleplus {
+                width: 26px;
+            }
+            svg {
+                fill: #fff;
+            }
+        }
+        &:hover {
+            svg {
+                fill: #040505;
+            }
+        }
+    }
+}
+
+.reactHoverObserver {
+    height: 100%;
+    display: flex;
+}

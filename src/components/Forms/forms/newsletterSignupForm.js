@@ -68,7 +68,7 @@ const FormComp = ({
           <div>
             <Form className={cx(styles.newsletterSignUpForm)} onSubmit={handleSubmit}>
               <fieldset>
-                <FormGroup  >
+                <FormGroup >
                  <Field  placeholder="Your Email" name={"email"} component={RenderFieldSingle} type={"email"} isrequired={true}/>
                 </FormGroup>
               </fieldset>

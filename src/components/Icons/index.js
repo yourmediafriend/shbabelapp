@@ -5,10 +5,10 @@ import iconJson from '../../fonts/icons';
 
 const getIcon = (iconJson, icon) => {
 
-  let p = findKey(function(o) { return o.name === icon }, iconJson.selection);
+  let p = findKey(function(o) { return o.properties.name === icon }, iconJson.icons);
 
   if (p) {
-    return iconJson.icons[p]['paths'];
+    return iconJson.icons[p]['icon']['paths'];
   }
   return [];
 

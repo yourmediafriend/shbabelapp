@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
+import { Container, Row, Col } from 'reactstrap';
 import styles from './pageTitle.scss';
 
 
@@ -24,20 +25,19 @@ class PageTitle extends Component {
   render() {
     const { title } = this.props;
     return (
-      <div className={cx(styles.pageTitleContainer)}  style={{...this.setBackgroundColor(), ...this.setBackgroundImage(), ...this.props.style}}>
-        <div className={cx(styles.pageTitleInner, this.setLayout())}>
-          <div className={cx(styles.pageTitleCell, styles.titleCell)}>
+      <Container className={cx(styles.pageTitleContainer)}  style={{...this.setBackgroundColor(), ...this.setBackgroundImage(), ...this.props.style}}>
+        <Row className={cx(styles.pageTitleInner, this.setLayout())}>
+          <Col className={cx(styles.pageTitleCell, styles.titleCell)}>
             {this.setIcon()}
             <h1 className={cx(styles.pageTitle)}>{title}</h1>
-          </div>
+          </Col>
 
 {/*          <div className={cx(styles.pageTitleCell, styles.actionCell)}>
            Actions
           </div>*/}
 
-
-        </div>
-      </div>
+        </Row>
+      </Container>
     )
 
   }
