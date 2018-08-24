@@ -25,17 +25,10 @@ const Menu = props => {
         </ListGroup>
       </Col>
       <Col sm={12} md={4}>
-        <div>
-          <p>Newsletter Signup</p>
-          <NewsletterSignUp />
-        </div>
-
-
-        <p>Add Contact Details</p>
-        <p>Social Media Links</p>
-
-
-
+        <ListGroup className={styles.footerMenu}>
+          <ListGroupItem><NewsletterSignUp /></ListGroupItem>
+          <ListGroupItem>Social Media Links</ListGroupItem>
+        </ListGroup>
       </Col>
     </Row>
   )

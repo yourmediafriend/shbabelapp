@@ -37,21 +37,24 @@ const RenderFieldSingle = ({
                      }) => (
                       <UID>
                         {id => (
-                          <FormRow className={styles.formRow}>
-                              <FormFieldInput
-                                id={`input-${id}`}
-                                placeholder={placeholder}
-                                input={input}
-                                type={type}
-                                error={error}
-                                touched={touched}
-                                warning={warning}
-                              />
-                              <Button type="submit" disabled={submitting || isSending}>Sign UP</Button>
-                              {touched &&
-                              ((error && <FormFeedback className={cx(styles.FormFeedback)}>{error}</FormFeedback>) ||
-                                (warning && <FormFeedback className={cx(styles.FormFeedback)}>{warning}</FormFeedback>))}
-                          </FormRow>
+                          <div>
+                            <label htmlFor={`input-${id}`}>Newsletter Sign-up</label>
+                            <FormRow className={styles.formRow}>
+                                <FormFieldInput
+                                  id={`input-${id}`}
+                                  placeholder={placeholder}
+                                  input={input}
+                                  type={type}
+                                  error={error}
+                                  touched={touched}
+                                  warning={warning}
+                                />
+                                <Button type="submit" disabled={submitting || isSending}>Sign UP</Button>
+                                {touched &&
+                                ((error && <FormFeedback className={cx(styles.FormFeedback)}>{error}</FormFeedback>) ||
+                                  (warning && <FormFeedback className={cx(styles.FormFeedback)}>{warning}</FormFeedback>))}
+                            </FormRow>
+                          </div>
                           )}
                       </UID>);
 
