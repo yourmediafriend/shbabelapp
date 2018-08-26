@@ -11,23 +11,22 @@ import gql from "graphql-tag";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 
-
-//console.log(client);
-//client.resetStore();
-
-//client.cache.reset()
-
 const TESTQL = gql`
   {
     nodeQuery {
       entities {
         ... on Node {
           nid
+          title
+          body {
+            value
+          }
         }
       }
     }
   }
-`;
+  `;
+
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({
@@ -44,6 +43,9 @@ client
   })
   .then(({data}) => console.log({ data }));
 
+
+
+//debugger;
 
 
 

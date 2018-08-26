@@ -35,7 +35,7 @@ const MainContent = props => {
   )
 }
 
-const Content = ({currentpage }) => {
+const Content = ({currentpage, pageRef }) => {
 
   switch(currentpage) {
     case 'home':
@@ -80,16 +80,10 @@ const Content = ({currentpage }) => {
       );
     case 'quarter':
       return  <QuarterPage />;
-    case 'fullpage/david-carson':
+    case 'fullpage':
       return (
         <MainContent className={styles.fullpage}>
-          <Fullpage fullref={'david-carson'}/>
-        </MainContent>
-      );
-    case 'fullpage/fluro':
-      return (
-        <MainContent className={styles.fullpage}>
-          <Fullpage fullref={'fluro'}/>
+          <Fullpage pageRef={pageRef}/>
         </MainContent>
       );
     case 'grid-parallax':

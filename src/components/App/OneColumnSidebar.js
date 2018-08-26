@@ -185,7 +185,7 @@ class App extends Component {
                   <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}}   />
                   <div className={styles.mainFlex} style={{...this.props.showHeader ? {marginTop:'80px'} : '', ...{marginBottom:`${this.props.revealFooterHeight}px`}}}>
                     <div className={styles.content}>
-                      <MainContent currentpage={this.props.currentpage} />
+                      <MainContent currentpage={this.props.currentpage} pageRef={this.props.pageRef} />
                     </div>
                   </div>
                 </div>
