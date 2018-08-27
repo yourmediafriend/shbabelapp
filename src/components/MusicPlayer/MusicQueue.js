@@ -28,13 +28,32 @@ const GET_TRACKS = gql`
   }
   `;
 
+
+
+
+const TESTQL = gql`
+{
+nodeQuery {
+     entities {
+      entityId
+      entityLabel
+    }
+  }
+}
+  `;
+
+
+
+
 const Playlist = () => {
   return (
     <Query query={GET_TRACKS} >
       {({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>;
         if (error) return `Error: ${error.message}`;
-         // console.log(data);
+
+
+          console.log('music',data);
          // console.log(data.nodeQuery.entities);
 
         if (data.length) {

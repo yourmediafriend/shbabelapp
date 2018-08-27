@@ -32,10 +32,7 @@ FullpageWrapper.propTypes = {
   pageRef: PropTypes.string,
 };
 
-FullpageWrapper.defaultProps = {
-};
-
-
+FullpageWrapper.defaultProps = {};
 
 export default FullpageWrapper;
 
