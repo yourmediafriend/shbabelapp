@@ -16,7 +16,7 @@ const getIcon = (iconJson, icon) => {
 
 const Icon = props => {
 
-  const { icon } = props;
+  const { icon, className } = props;
 
   // we should be able to pass own style from parent eg I want svg to be a block.
   const styles = {
@@ -31,6 +31,7 @@ const Icon = props => {
       width="100%"
       height="100%"
       viewBox="0 0 1024 1024"
+      className={className}
     >
       {getIcon(iconJson, icon).map((child, index) => <path
           key={index}

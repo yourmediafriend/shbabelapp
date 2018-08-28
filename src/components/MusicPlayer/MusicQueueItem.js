@@ -8,15 +8,14 @@ import { Image } from 'cloudinary-react';
 
 
 const QueueItem = ({ article, loadTrack }) => {
-
   return (
-    <div className={cx(styles.item)} onClick={loadTrack.bind(this, article.fieldTrack.uri)}>
+    <div className={cx(styles.item)} onClick={loadTrack.bind(this, article)}>
       <div className={cx(styles.cover)}>
         <Image cloudName="dghff7rpa" publicId={`Mixes/${article.fieldCover}`} width="40" crop="scale" />
       </div>
       <div className={cx(styles.details)}>
         <div className={cx(styles.title)}>
-          <a href=''>{article.title}</a>
+          <span>{article.title}</span>
         </div>
         <div className={cx(styles.artist)}>{article.fieldArtist}</div>
       </div>

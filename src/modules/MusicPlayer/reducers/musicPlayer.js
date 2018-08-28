@@ -48,7 +48,6 @@ export function toggleQueuePopUp(data) {
 }
 
 export function loadTrack(track) {
-  console.log('loadTrack', track);
   return {
     type: LOAD_TRACK,
     payload: {

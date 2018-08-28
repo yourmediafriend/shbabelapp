@@ -8,15 +8,14 @@ import InputRange from 'react-input-range';
 import './inputRange.css';
 import Duration from './Duration';
 import styles from './musicPlayer.scss';
+import { Image } from 'cloudinary-react';
 import Icon from '../Icons';
-
 import MusicQueuePopUp from './MusicQueue'
 import {toggleQueuePopUp} from "../../modules/MusicPlayer";
 
-
 class MusicPlayer extends Component {
   state = {
-    url: null,
+    loadTrack: false,
     playing: false,
     volume: 0.8,
     muted: false,
@@ -31,17 +30,18 @@ class MusicPlayer extends Component {
   componentDidUpdate(prevProps, prevState) {
 
     // this doesn't help initial render.
-/*    if (prevProps.loadTrack !==  this.props.loadTrack ) {
+    if (prevProps.loadTrack !==  this.props.loadTrack ) {
       this.load(this.props.loadTrack)
     }
     else if (prevProps.loadTrack === this.props.loadTrack ) {
       // toggle play / pause
-    }*/
+    }
   }
 
-  load = url => {
+  load = loadTrack => {
     this.setState({
-      url,
+      loadTrack,
+      url: loadTrack.fieldTrack.uri,
       played: 0,
       loaded: 0,
       playing: true,
@@ -94,7 +94,7 @@ class MusicPlayer extends Component {
   }
 
   onProgress = state => {
-    console.log('onProgress', state)
+    //console.log('onProgress', state)
     // We only want to update time slider if we are not currently seeking
     if (!this.state.seeking) {
       this.setState(state)
@@ -102,12 +102,12 @@ class MusicPlayer extends Component {
   }
 
   onEnded = () => {
-    console.log('onEnded')
+    //console.log('onEnded')
     this.setState({ playing: this.state.loop })
   }
 
   onDuration = (duration) => {
-    console.log('onDuration', duration)
+    //console.log('onDuration', duration)
     this.setState({ duration })
   }
 
@@ -116,7 +116,7 @@ class MusicPlayer extends Component {
   }
 
   render () {
-    const { url, playing, volume, muted, loop, played, duration, playbackRate, showRemaining } = this.state;
+    const { loadTrack, url, playing, volume, muted, loop, played, duration, playbackRate, showRemaining } = this.state;
 
     return (
       <div className={cx(styles.player)}>
@@ -155,6 +155,9 @@ class MusicPlayer extends Component {
         </div>
 
         <div className={cx(styles.section, styles.timeline)}>
+          <div className={cx(styles.cover)}>
+            {loadTrack.fieldCover ? <Image cloudName="dghff7rpa" publicId={`Mixes/${loadTrack.fieldCover}`} width="40" crop="scale" /> : ''}
+          </div>
           <div className={cx(styles.elapsed)}>
             <Duration seconds={duration * played} />
           </div>
@@ -204,6 +207,9 @@ class MusicPlayer extends Component {
 
 
 export const mapStateToProps = (state) => {
+
+  //console.log(get('musicPlayerModule.loadTrack', state));
+
   return {
     loadTrack: get('musicPlayerModule.loadTrack', state),
   }
