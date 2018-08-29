@@ -11,8 +11,6 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
 import { onError } from "apollo-link-error";
 import { ApolloLink } from "apollo-link";
-import gql from "graphql-tag";
-
 
 const client = new ApolloClient({
   link: ApolloLink.from([
@@ -33,16 +31,20 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-const App = () => (
-  <ApolloProvider client={client}>
-    <Provider store={ store }>
-      <ConnectedRouter history={ history }>
-        <Routes />
-      </ConnectedRouter>
-    </Provider>
-  </ApolloProvider>
-);
+const App = () => {
 
-export default App;
+  //console.log(store.getState())
 
+  return (
+    <ApolloProvider client={client}>
+      <Provider store={ store }>
+        <ConnectedRouter history={ history }>
+          <Routes />
+        </ConnectedRouter>
+      </Provider>
+    </ApolloProvider>
+  );
+}
+
+ export default App;
 //export default hot(module)(App)

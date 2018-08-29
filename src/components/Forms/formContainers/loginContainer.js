@@ -6,33 +6,32 @@ import {get} from "lodash/fp";
 import LoginForm from '../forms/loginForm';
 
 import {
-  attemptToSubmit
-} from '../../../modules/Forms/ContactForm';
+  attemptToLogin
+} from '../../../modules/Forms/UserLogin';
 
 
 const submit = (values, dispatch ) => {
-  return dispatch(attemptToSubmit(values));
+  return dispatch(attemptToLogin(values));
 }
 
-const ContactFormView = props => {
+const LoginFormView = props => {
   return (<LoginForm onSubmit={submit} hasErrored={props.hasErrored} isSending={props.isSending}/>)
 }
 
 const mapStateToProps = (state) => {
   return {
-    hasErrored: get('postContactForm.hasErrored', state),
-    isSending: get('postContactForm.isSending', state),
+    hasErrored: get('postUserLoginForm.hasErrored', state),
+    isSending: get('postUserLoginForm.isSending', state),
   };
 };
 
 export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      attemptToSubmit
+      attemptToLogin
     },
     dispatch
   );
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactFormView);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginFormView);
 

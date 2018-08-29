@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {VelocityComponent} from 'velocity-react';
+
+import { Link } from 'react-router-dom';
+
 import { NavLink } from 'reactstrap'
 import Icon from '../Icons';
 import styles from './NestedMenu.scss';
@@ -65,16 +68,22 @@ class Container extends React.Component {
       const {style, decorators, terminal, onClick, node, level } = this.props;
 
       return (
-            <NavLink onClick={terminal ? null : onClick}
-                     href={terminal ? node.url : null}
-                     style={this.NavLinkStyles()}
-               >
-                <decorators.Header node={node}
-                                   level={level}
-                                   style={style.header}/>
+
+            <div onClick={!terminal ? onClick : ''}
+                     style={this.NavLinkStyles()} >
+
+
+              {node.url ? <Link to={node.url}>
+                          <decorators.Header node={node}
+                                 level={level}
+                                 style={style.header}/>
+
+                </Link> :  <decorators.Header node={node}
+                level={level}
+                style={style.header}/> }
 
                 {!terminal ? this.renderToggle() : null}
-            </NavLink>
+            </div>
         );
     }
 

@@ -208,7 +208,7 @@ class MusicPlayer extends Component {
 
 export const mapStateToProps = (state) => {
 
-  //console.log(get('musicPlayerModule.loadTrack', state));
+  console.log(get('musicPlayerModule.loadTrack', state));
 
   return {
     loadTrack: get('musicPlayerModule.loadTrack', state),
