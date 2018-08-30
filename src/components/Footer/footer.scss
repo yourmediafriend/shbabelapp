@@ -6,12 +6,16 @@ $footer-fixed-bg: #F1F2F2 !default;
 
 .footer {
     width: 100%;
-    padding: 20px;
+
     &.reveal {
-        padding-top: 25px;
-        @include media-breakpoint-down(md) {
-            padding-top: 15px;
+        .footerInner {
+            padding: 25px 0 50px;
+            @include media-breakpoint-down(md) {
+                padding: 15px 0 20px;
+            }
+
         }
+
         background-color: $footer-reveal-bg;
         color: $footer-reveal-color;
         font-size: $footer-reveal-font-size;

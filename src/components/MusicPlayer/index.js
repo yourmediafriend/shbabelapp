@@ -74,11 +74,11 @@ class MusicPlayer extends Component {
     this.setState({ playbackRate: parseFloat(e.target.value) })
   }
   onPlay = () => {
-    console.log('onPlay')
+    //console.log('onPlay')
     this.setState({ playing: true })
   }
   onPause = () => {
-    console.log('onPause')
+    //console.log('onPause')
     this.setState({ playing: false })
   }
 
@@ -205,11 +205,7 @@ class MusicPlayer extends Component {
   }
 }
 
-
 export const mapStateToProps = (state) => {
-
-  console.log(get('musicPlayerModule.loadTrack', state));
-
   return {
     loadTrack: get('musicPlayerModule.loadTrack', state),
   }

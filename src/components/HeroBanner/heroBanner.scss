@@ -2,10 +2,13 @@
     position: relative;
     width: 100%;
     flex: 1;
-    min-height: 50vh;
+
+/*    min-height: 50vh;
+
     @include media-breakpoint-up(md) {
         min-height: calc(100vh - 80px);
-    }
+    }*/
+
     .inner {
         object-fit: cover;
         height: 100%;

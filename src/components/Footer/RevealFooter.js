@@ -51,8 +51,10 @@ class Footer extends Component {
       case 'large':
       case 'medium':
         return (
-          <div ref={(element) => this.footerElement = element} className={cx(styles.footer,styles.reveal)} style={{ paddingBottom:`${this.props.fixedFooterHeight + 20}px`}}>
-            <FooterMenu />
+          <div ref={(element) => this.footerElement = element} className={cx(styles.footer,styles.reveal)} style={{ paddingBottom:`${this.props.fixedFooterHeight}px`}}>
+            <div className={styles.footerInner}>
+              <FooterMenu />
+            </div>
           </div>
         );
       default: return null;

@@ -1,28 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {VelocityComponent} from 'velocity-react';
-
-import { Link } from 'react-router-dom';
-
-import { NavLink } from 'reactstrap'
+import { NavLink } from 'reactstrap';
+import { NavLink as RRNavLink } from 'react-router-dom';
 import Icon from '../Icons';
 import styles from './NestedMenu.scss';
+import cx from 'classnames';
+
 
 const Loading = ({style}) => {
     return <div style={style}>loading...</div>;
 };
-
 Loading.propTypes = {
     style: PropTypes.object
 };
 
+
 const Toggle = ({style}) => {
     return (
-        <span style={style.base}>
-            <div style={style.wrapper}>
-              <Icon icon="menuCevron" color='#ccc' size={12} />
-            </div>
-        </span>
+      <span className={cx(styles.toggle)}>
+        <Icon icon="menu-cevron" />
+      </span>
     );
 };
 
@@ -40,6 +38,7 @@ const Header = ({level, node, style}) => {
     );
 };
 
+
 Header.propTypes = {
     style: PropTypes.object,
     node: PropTypes.object.isRequired,
@@ -50,15 +49,11 @@ class Container extends React.Component {
 
     NavLinkStyles() {
 
-      const {style, node, currentUrl, isActiveBranch} = this.props;
-
-      let linkStyle= style.link;
+      let linkStyle;
+      const { node, currentUrl, isActiveBranch} = this.props;
 
       if (isActiveBranch && !(node.url===currentUrl)) {
-        linkStyle = {...style.link,...style.link.activeBranch}
-      }
-      else if ((node.url===currentUrl)) {
-        linkStyle = {...style.link,...style.link.active}
+        linkStyle = cx(styles.active)
       }
 
       return linkStyle;
@@ -68,23 +63,19 @@ class Container extends React.Component {
       const {style, decorators, terminal, onClick, node, level } = this.props;
 
       return (
-
-            <div onClick={!terminal ? onClick : ''}
-                     style={this.NavLinkStyles()} >
-
-
-              {node.url ? <Link to={node.url}>
-                          <decorators.Header node={node}
-                                 level={level}
-                                 style={style.header}/>
-
-                </Link> :  <decorators.Header node={node}
-                level={level}
-                style={style.header}/> }
-
-                {!terminal ? this.renderToggle() : null}
+        <div>
+          {node.url ?
+            <NavLink to={node.url} activeClassName="active" tag={RRNavLink} className={this.NavLinkStyles()}   >
+              <decorators.Header node={node} level={level} style={style.header}/>
+            </NavLink>
+            :
+            <div onClick={!terminal ? onClick : ''} className={cx('nav-link', this.NavLinkStyles())} >
+              <decorators.Header node={node} level={level} style={style.header}/>
+              {!terminal ? this.renderToggle() : null}
             </div>
-        );
+          }
+        </div>
+      );
     }
 
     renderToggle() {
@@ -104,7 +95,7 @@ class Container extends React.Component {
 
     renderToggleDecorator() {
         const {style, decorators} = this.props;
-        return <decorators.Toggle style={style.toggle}/>;
+        return <decorators.Toggle />;
     }
 }
 

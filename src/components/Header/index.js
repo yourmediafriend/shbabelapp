@@ -11,7 +11,7 @@ import IconNav from '../IconNav';
 import styles from './header.scss';
 import cx from "classnames";
 import {get} from "lodash/fp";
-
+import { setStickyHeaderHeight } from "../../modules/App";
 
 class Header extends Component {
 
@@ -26,7 +26,7 @@ class Header extends Component {
   };
 
   render() {
-    const { breakpoint } = this.props;
+    const { breakpoint, setStickyHeaderHeight } = this.props;
 
     let baseHeight = parseInt(stylesJs.header.base.height, 10);
     let compactHeight = parseInt(stylesJs.header.compact.height, 10);
@@ -58,6 +58,9 @@ class Header extends Component {
 
           const compStyles = (state) => {
             const { header } = state;
+
+            setStickyHeaderHeight(header.height);
+
             return {
               header: {
                 height: `${header.height}px`,
@@ -89,7 +92,9 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = dispatch =>
   bindActionCreators(
-    {},
+    {
+      setStickyHeaderHeight
+    },
     dispatch
   );
 

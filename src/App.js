@@ -4,6 +4,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import { hot } from 'react-hot-loader'
 import store, { history } from './store';
 import Routes from './routes';
+import ScrollToTop from './components/ScrollTop';
+
 
 import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
@@ -39,7 +41,9 @@ const App = () => {
     <ApolloProvider client={client}>
       <Provider store={ store }>
         <ConnectedRouter history={ history }>
-          <Routes />
+          <ScrollToTop>
+            <Routes />
+          </ScrollToTop>
         </ConnectedRouter>
       </Provider>
     </ApolloProvider>

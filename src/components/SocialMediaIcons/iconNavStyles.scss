@@ -1,6 +1,11 @@
+:global(.list-group){
+    &.socialMediaMenu {
+        display: flex;
+        flex-direction: row;
+    }
+}
 .socialMediaMenu {
-    display: flex;
-    flex-direction: row;
+
     :global(.list-group-item){
         margin-right: 20px;
         padding: 0;

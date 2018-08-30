@@ -25,4 +25,3 @@ actionBanner.defaultProps = {
 };
 
 export default scrollMagicEnhanced(actionBanner);
-

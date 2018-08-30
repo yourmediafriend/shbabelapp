@@ -71,7 +71,7 @@ function withSubscription(WrappedComponent, selectData) {
         addIndicators: true
       });
 
-      console.log(options.container);
+      //console.log(options.container);
 
       // I could do with optimising this bit  as I am not suing it in the same way as the PAralax Mixin
       let $holders = S(this.refs.scene).queryAll.sceneContentHolder;

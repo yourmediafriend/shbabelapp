@@ -1,10 +1,13 @@
 const FIXED_FOOTER_HEIGHT = "appModule/FIXED_FOOTER_HEIGHT";
 const REVEAL_FOOTER_HEIGHT = "appModule/REVEAL_FOOTER_HEIGHT";
+const STICKY_HEADER_HEIGHT = "appModule/STICKY_HEADER_HEIGHT";
+
 const SET_CURRENT_BREAKPOINT = "appModule/SET_CURRENT_BREAKPOINT";
 
 export const initialState = {
-  fixedFooterHeight: 0,
-  revealFooterHeight: 0,
+  fixedFooterHeight: 61,
+  revealFooterHeight: 235,
+  stickyHeaderHeight: 80,
   breakpoint: '',
 };
 
@@ -23,6 +26,13 @@ export default function reducer(state=initialState, action = {}) {
         ...state,
         revealFooterHeight: action.payload.height,
       }
+
+    case STICKY_HEADER_HEIGHT:
+      return {
+        ...state,
+        stickyHeaderHeight: action.payload.height,
+      }
+
     case SET_CURRENT_BREAKPOINT:
       return {
         ...state,
@@ -47,6 +57,15 @@ export function setFixedFooterHeight(height) {
 export function setRevealFooterHeight(height) {
   return {
     type: REVEAL_FOOTER_HEIGHT,
+    payload: {
+      height
+    }
+  };
+}
+
+export function setStickyHeaderHeight(height) {
+  return {
+    type: STICKY_HEADER_HEIGHT,
     payload: {
       height
     }

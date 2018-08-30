@@ -86,8 +86,8 @@ const SwitchRoute = () => (
     <Route exact path='/fullpage/david-carson' render={(routeProps) => <OneColumnSidebar {...routeProps}
                                                                                          currentpage='fullpage'
                                                                                          pageRef={'david-carson'}
-                                                                                         showHeader={false}
-                                                                                         showFooterFixed={false}
+                                                                                         showHeader={true}
+                                                                                         showFooterFixed={true}
                                                                                          showFooterReveal={false} />} />
 
     <Route exact path='/fullpage/fluro' render={(routeProps) => <OneColumnSidebar {...routeProps}

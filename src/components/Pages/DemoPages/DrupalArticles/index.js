@@ -34,8 +34,7 @@ const ArticlesView = () => (
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return `Error: ${error.message}`;
-
-      console.log(data);
+      //console.log(data);
       return (
         <ul>
           {data.nodeQuery.entities.map(article => <li key={article.nid}><ArticleTeaser article={article} /></li>)}

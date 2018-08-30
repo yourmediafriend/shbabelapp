@@ -22,12 +22,13 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         offCanvasMenuOpen: !state.offCanvasMenuOpen,
+        offCanvasMenuAnimating: true,
       };
 
     case MENU_ANIMATING:
       return {
         ...state,
-        offCanvasMenuAnimating: !state.offCanvasMenuAnimating,
+        offCanvasMenuAnimating: action.payload.isAnimating,
       };
 
     default: return state;
@@ -36,20 +37,27 @@ export default function reducer(state = initialState, action = {}) {
 
 // Action Creators
 
-export function offCanvasMenuToggleAnimation() {
+export function offCanvasMenuToggleAnimation(isAnimating) {
+
+  //console.log('offCanvasMenuToggleAnimation');
   return {
     type: MENU_ANIMATING,
+    payload: {
+      isAnimating
+    }
   };
 }
 
 export function offCanvasMenuStateChange() {
-  // console.log('offCanvasMenuStateChange');
+
+   //console.log('offCanvasMenuStateChange');
   return {
     type: MENU_CHANGE,
   };
 }
 
 export function offCanvasMenuClose() {
+  //console.log('offCanvasMenuClose');
   return {
     type: MENU_CLOSE,
   };
