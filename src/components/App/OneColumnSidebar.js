@@ -149,7 +149,6 @@ class App extends Component {
             start() {
               // dispatch action Opening
                //console.log('isAnimating');
-              props.offCanvasMenuToggleAnimation(true);
             },
             end() {
               // dispatch action Opening
@@ -160,16 +159,18 @@ class App extends Component {
         })}
       >
         {(state) => {
+
+
+         // console.log('HideMenu', (!this.props.isMenuOpen && !this.props.isMenuAnimating));
+
+
           return (
             <div className={styles.outer}>
 
                 <div className={styles.sidebarMenuWrap} style={{...this.myStyles(state).menu}}>
-
-
-                  <SidebarMenu/>
-
-
+                  <SidebarMenu showMenu={ !(!this.props.isMenuOpen && !this.props.isMenuAnimating)  }/>
                 </div>
+
                 <MenuTrigger/>
 
               <div className={styles.mainContainer}>
@@ -228,6 +229,7 @@ App.propTypes = {
   showFooterFixed: PropTypes.bool,
   showHeader: PropTypes.bool,
   isMenuOpen: PropTypes.bool,
+  isMenuAnimating: PropTypes.bool,
   isModalOpen: PropTypes.bool,
   offCanvasMenuStateChange: PropTypes.func,
   offCanvasMenuToggleAnimation: PropTypes.func,
@@ -242,8 +244,9 @@ App.defaultProps = {
 
 export const mapStateToProps = (state) => {
   return {
-    isModalOpen: get('modalModule.modalIsOpen', state),
     isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
+    isMenuAnimating: get('offCanvasMenu.offCanvasMenuAnimating', state),
+    isModalOpen: get('modalModule.modalIsOpen', state),
     revealFooterHeight: get('appModule.revealFooterHeight', state),
     fixedFooterHeight: get('appModule.fixedFooterHeight', state),
     stickyHeaderHeight: get('appModule.stickyHeaderHeight', state),

@@ -2,10 +2,9 @@
     padding-top: 3.375em;
     background: #2b2b2b;
     width: 280px;
-    height: 100%;
-    min-height: 100vh;
+    height: 100vh;
     border-left: 1px solid #2B2B2B;
-    overflow: auto;
+    overflow-y: scroll;
 }
 .menuTriggerWrap {
     cursor: pointer;

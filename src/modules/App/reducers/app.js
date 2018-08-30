@@ -5,9 +5,9 @@ const STICKY_HEADER_HEIGHT = "appModule/STICKY_HEADER_HEIGHT";
 const SET_CURRENT_BREAKPOINT = "appModule/SET_CURRENT_BREAKPOINT";
 
 export const initialState = {
-  fixedFooterHeight: 61,
-  revealFooterHeight: 235,
-  stickyHeaderHeight: 80,
+  fixedFooterHeight: 0,
+  revealFooterHeight: 0,
+  stickyHeaderHeight: 0,
   breakpoint: '',
 };
 
