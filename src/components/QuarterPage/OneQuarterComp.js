@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Animate from 'react-move/Animate';
 import { easeExpInOut } from 'd3-ease';
-import styles from './quarterPageStyles';
+import stylesjs from './quarterPageStyles';
+import styles from './quarterPage.scss';
+
 
 class Qpanel extends Component {
 
@@ -21,7 +23,7 @@ class Qpanel extends Component {
 
   render() {
 
-    const stylesBackgroundImage = props => {
+    const stylesjsBackgroundImage = props => {
       return props.bgImg ? {backgroundImage: `url(${props.bgImg})`} : {backgroundImage:'none'};
     };
 
@@ -30,10 +32,10 @@ class Qpanel extends Component {
         return (
           <div
           style={{
-            ...styles.panel.layer.base,
-            ...stylesBackgroundImage(this.props),
+            ...stylesjs.panel.layer.base,
+            ...stylesjsBackgroundImage(this.props),
           }}>
-            <props.svgLayer style={{...styles.panel.layer.svg}}/>
+            <props.svgLayer style={{...stylesjs.panel.layer.svg}}/>
           </div>
         );
       }
@@ -44,8 +46,8 @@ class Qpanel extends Component {
       if (props.bgImg) {
         return <div
           style={{
-            ...styles.panel.layer.base,
-            ...stylesBackgroundImage(this.props),
+            ...stylesjs.panel.layer.base,
+            ...stylesjsBackgroundImage(this.props),
           }}
         />;
       }
@@ -55,7 +57,7 @@ class Qpanel extends Component {
     return (
       <div
         style={{
-          ...styles.panel.backpanel,
+          ...stylesjs.panel.backpanel,
         }}
       >
         { hasSVG(this.props) }
@@ -88,6 +90,7 @@ class OneQuarter extends Component {
   render() {
 
     return (
+
       <Animate
         start={() => ({
           panel: {
@@ -113,7 +116,7 @@ class OneQuarter extends Component {
       >
         {(state) => {
 
-          const stylesAnimate = (state) => {
+          const stylesjsAnimate = (state) => {
             const { panel } = state;
             return {
               panel: {
@@ -124,9 +127,10 @@ class OneQuarter extends Component {
 
           return (
             <div
+              className={styles.quarter}
               style={{
-                ...styles.panel.quarter,
-                ...stylesAnimate(state).panel,
+                ...stylesjs.panel.quarter,
+                ...stylesjsAnimate(state).panel,
               }}
             >
               <Qpanel index={this.props.index} onChange={this.props.onChange} bgColor={this.props.bgColor}  bgColorHover={this.props.bgColorHover} hoverIndex={this.props.hoverIndex} bgImg={this.props.bgImg} svgLayer={this.props.svgLayer}/>
@@ -134,6 +138,7 @@ class OneQuarter extends Component {
           );
         }}
       </Animate>
+
     )
   }
 }

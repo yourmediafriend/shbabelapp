@@ -38,27 +38,31 @@ const SwitchRoute = () => (
     {/*/SVG.js/*/}
     <Route exact path='/svgs/square' render={(routeProps) => <OneColumnSidebar {...routeProps}
                                                                                 currentpage='square'
-                                                                                showHeader={false}
-                                                                                showFooterFixed={false}
+                                                                                singlePage={true}
+                                                                                showHeader={true}
+                                                                                showFooterFixed={true}
                                                                                 showFooterReveal={false} />} />
 
     <Route exact path='/svgs/circle' render={(routeProps) => <OneColumnSidebar {...routeProps}
                                                                                 currentpage='circle'
-                                                                                showHeader={false}
-                                                                                showFooterFixed={false}
+                                                                                singlePage={true}
+                                                                                showHeader={true}
+                                                                                showFooterFixed={true}
                                                                                 showFooterReveal={false} />} />
 
     <Route exact path='/svgs/triangle' render={(routeProps) => <OneColumnSidebar {...routeProps}
                                                                                 currentpage='triangle'
-                                                                                showHeader={false}
-                                                                                showFooterFixed={false}
+                                                                                singlePage={true}
+                                                                                showHeader={true}
+                                                                                showFooterFixed={true}
                                                                                 showFooterReveal={false} />} />
 
     <Route exact path='/svgs/hypno' render={(routeProps) => <OneColumnSidebar {...routeProps}
-                                                                                  currentpage='hypno'
-                                                                                  showHeader={false}
-                                                                                  showFooterFixed={false}
-                                                                                  showFooterReveal={false} />} />
+                                                                                currentpage='hypno'
+                                                                                singlePage={true}
+                                                                                showHeader={false}
+                                                                                showFooterFixed={false}
+                                                                                showFooterReveal={false} />} />
 
 
     <Route exact path='/svgs/patterns' render={() => <OneColumnSidebar currentpage='svgPattern' fullscreen={true}/>} />
@@ -71,8 +75,8 @@ const SwitchRoute = () => (
     {/*/Layout Elements/*/}
 
     <Route exact path='/quarter' render={() => <OneColumnSidebar currentpage='quarter'
-                                                                 showHeader={false}
-                                                                 showFooterFixed={false}
+                                                                 showHeader={true}
+                                                                 showFooterFixed={true}
                                                                  showFooterReveal={false} />} />
 
 

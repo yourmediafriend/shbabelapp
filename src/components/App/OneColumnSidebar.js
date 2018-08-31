@@ -9,9 +9,10 @@ import Animate from 'react-move/Animate';
 import { easeExpOut } from 'd3-ease';
 import { setCurrentBreakPoint } from '../../modules/App';
 
-
 import {
   get,
+  maxBy,
+  max,
 } from 'lodash/fp';
 
 // Elements
@@ -160,9 +161,7 @@ class App extends Component {
       >
         {(state) => {
 
-
          // console.log('HideMenu', (!this.props.isMenuOpen && !this.props.isMenuAnimating));
-
 
           return (
             <div className={styles.outer}>
@@ -192,7 +191,7 @@ class App extends Component {
                 <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}} />
                   <div className={styles.mainFlex} style={{ ...this.props.showHeader ? {paddingTop:`${this.props.stickyHeaderHeight}px`} : '',
                                                           ...this.props.showFooterReveal ? {marginBottom:`${this.props.revealFooterHeight}px`} : '',
-                                                          ...{minHeight:  `calc(100vh - ${this.props.revealFooterHeight}px`}}}
+                                                          ...{minHeight:  `calc(100vh - ${( max([this.props.revealFooterHeight, this.props.fixedFooterHeight]))}px`}         }}
                                                         >
                     <div className={styles.content}>
                       <MainContent currentpage={this.props.currentpage} pageRef={this.props.pageRef} />
@@ -239,6 +238,7 @@ App.defaultProps = {
   showFooterReveal: true,
   showFooterFixed: true,
   showHeader: true,
+  singlePage: false,
 };
 
 

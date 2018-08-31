@@ -2,6 +2,9 @@ $link-color: #ccc;
 $link-color-hover: #fff;
 $link-bg-hover: #363636;
 
+$link-active-color: #ff00dc;
+$link-activeBranch-color: #424242;
+
 :global(.nav) {
     border-bottom: 0;
 }
@@ -19,7 +22,10 @@ $link-bg-hover: #363636;
     transition: all .25s ease;
     border-left: 3px transparent solid;
     &.active {
-        border-left: 3px #ff00dc solid;
+        border-left: 3px $link-active-color solid;
+        &.activeBranch {
+            border-color: $link-activeBranch-color;
+        }
     }
     &:hover {
         color: $link-color-hover;

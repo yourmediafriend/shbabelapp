@@ -11,10 +11,10 @@ import cx from 'classnames';
 const Loading = ({style}) => {
     return <div style={style}>loading...</div>;
 };
+
 Loading.propTypes = {
     style: PropTypes.object
 };
-
 
 const Toggle = ({style}) => {
     return (
@@ -30,14 +30,13 @@ Toggle.propTypes = {
 
 const Header = ({level, node, style}) => {
     return (
-        <span style={style.base}  className={styles.base}>
-            <div style={style.title}>
-              {node.name}
-            </div>
-        </span>
+      <span style={style.base}  className={styles.base}>
+        <div style={style.title}>
+          {node.name}
+        </div>
+      </span>
     );
 };
-
 
 Header.propTypes = {
     style: PropTypes.object,
@@ -53,7 +52,7 @@ class Container extends React.Component {
       const { node, currentUrl, isActiveBranch} = this.props;
 
       if (isActiveBranch && !(node.url===currentUrl)) {
-        linkStyle = cx(styles.active)
+        linkStyle = cx(styles.active, styles.activeBranch)
       }
 
       return linkStyle;

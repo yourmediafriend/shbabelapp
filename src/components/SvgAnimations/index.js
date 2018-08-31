@@ -7,7 +7,7 @@ import cx from 'classnames';
 import Background from '../Background';
 import VideoBackground from '../Background/video';
 
-import bgSrc from '../../media/backgrounds/video/Comp.mp4'
+import bgSrc from '../../media/backgrounds/video/Comp 4_1.mp4'
 
 import Triangle from './TriangleComp';
 import Circle from './CircleComp';
@@ -23,8 +23,10 @@ const SvgShape = (props) => {
   switch(props.shape) {
     case 'circle':
       return ( <div className={cx(styles.slide)} >
+
         <VideoBackground bgSrc={bgSrc} />
-        <Background className={styles.contentContainer} bgSrc={BackgroundImageUrlA}  />
+        <Background className={styles.contentContainer} bgSrc={BackgroundImageUrlA} />
+
         <Circle />
       </div>);
     case 'square':
