@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import styles from './quarterPageStyles';
+import styles from './quarterPage.scss';
+import cx from 'classnames';
 
 
 class QuickComp extends Component {
@@ -11,10 +12,9 @@ class QuickComp extends Component {
   render() {
 
     return (
-      <div style={{
-        ...styles.overlay.base,
-        ...this.stylesBackgroundImage(this.props)
-      }} />
+      <div
+        className={styles.overlay}
+        style={{ ...this.stylesBackgroundImage(this.props)}} />
     )
   }
 }

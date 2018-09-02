@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Animate from 'react-move/Animate';
 import { easeExpInOut } from 'd3-ease';
-import stylesjs from './quarterPageStyles';
 import styles from './quarterPage.scss';
-
+import cx from 'classnames';
+import ReactHoverObserver from '../ReactHoverObserver';
 
 class Qpanel extends Component {
 
@@ -12,42 +12,18 @@ class Qpanel extends Component {
     this.state = {};
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-
-    return true
-  }
-
-  componentDidUpdate(prevProps, prevState){
-
-  }
-
   render() {
 
-    const stylesjsBackgroundImage = props => {
+    const stylesBackgroundImage = props => {
       return props.bgImg ? {backgroundImage: `url(${props.bgImg})`} : {backgroundImage:'none'};
-    };
-
-    const hasSVG = props => {
-      if (props.svgLayer) {
-        return (
-          <div
-          style={{
-            ...stylesjs.panel.layer.base,
-            ...stylesjsBackgroundImage(this.props),
-          }}>
-            <props.svgLayer style={{...stylesjs.panel.layer.svg}}/>
-          </div>
-        );
-      }
-      return null;
     };
 
     const hasBG = props => {
       if (props.bgImg) {
         return <div
+          className={cx(styles.layer) }
           style={{
-            ...stylesjs.panel.layer.base,
-            ...stylesjsBackgroundImage(this.props),
+            ...stylesBackgroundImage(this.props),
           }}
         />;
       }
@@ -55,12 +31,7 @@ class Qpanel extends Component {
     };
 
     return (
-      <div
-        style={{
-          ...stylesjs.panel.backpanel,
-        }}
-      >
-        { hasSVG(this.props) }
+      <div className={cx(styles.backpanel)} >
         { hasBG(this.props) }
       </div>
     )
@@ -116,24 +87,39 @@ class OneQuarter extends Component {
       >
         {(state) => {
 
-          const stylesjsAnimate = (state) => {
+          const stylesAnimate = (state) => {
             const { panel } = state;
-            return {
-              panel: {
-                transform: `translate3d(0, ${ this.props.index%2 === 0 ? panel.transformYDown : panel.transformYUp }%, 0)`,
-              },
-            }
+            return { transform: `translate3d(0, ${ this.props.index%2 === 0 ? panel.transformYDown : panel.transformYUp }%, 0)`}
           };
 
           return (
             <div
               className={styles.quarter}
               style={{
-                ...stylesjs.panel.quarter,
-                ...stylesjsAnimate(state).panel,
+                ...stylesAnimate(state),
               }}
             >
-              <Qpanel index={this.props.index} onChange={this.props.onChange} bgColor={this.props.bgColor}  bgColorHover={this.props.bgColorHover} hoverIndex={this.props.hoverIndex} bgImg={this.props.bgImg} svgLayer={this.props.svgLayer}/>
+              <ReactHoverObserver
+                hoverDelayInMs={this.props.hoverDelay ? this.props.hoverDelay : 0}
+                hoverOffDelayInMs={this.props.hoverOffDelay ? this.props.hoverOffDelay : 0}
+                className={cx(styles.reactHoverObserver)}
+              >
+                {({ isHovering }) => {
+
+
+                //  console.log('isHovering', isHovering, this.props.index );
+                  return (
+                    <Qpanel index={this.props.index}
+                            isHovering={isHovering}
+                            onChange={ this.props.onChange.bind(this, isHovering, this.props.index )()}
+                            bgColor={this.props.bgColor}
+                            bgColorHover={this.props.bgColorHover}
+                            hoverIndex={this.props.hoverIndex}
+                            bgImg={isHovering ? this.props.bgImg: ''}
+                            svgLayer={this.props.svgLayer}/>
+                  )
+                }}
+              </ReactHoverObserver>
             </div>
           );
         }}

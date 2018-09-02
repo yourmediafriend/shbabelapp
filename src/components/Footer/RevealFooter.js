@@ -38,6 +38,10 @@ class Footer extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.setRevealFooterHeight(0);
+  }
+
   onResize = () => {
     if (this.footerElement && this.footerElement!== null) {
       const { height } =  this.footerElement.getBoundingClientRect();
