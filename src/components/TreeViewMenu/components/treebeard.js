@@ -24,7 +24,7 @@ class TreeBeard extends React.Component {
                         decorators={decorators}
                         key={node.id || index}
                         level={level}
-                        node={node}
+                        node={Object.assign({}, node)}
                         onToggle={onToggle}
                         style={style.tree.node}
                         currentUrl={currentUrl}

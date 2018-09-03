@@ -25,14 +25,12 @@ class NestedMenu extends Component {
     if (cursor) {
       cursor.active = false;
     }
-    debugger;
     node.active = true;
-    if (node.children) {
+    if (node.links.length) {
       node.toggled = toggled;
     }
     this.setState({cursor: node});
   }
-
 
   render() {
 

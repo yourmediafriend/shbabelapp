@@ -40,11 +40,9 @@ class TreeNode extends React.Component {
 
   animations() {
     const {animations, node} = this.props;
-
     if (animations === false) {
       return false;
     }
-
     const anim = Object.assign({}, animations, node.animations);
     return {
       toggle: anim.toggle(this.props),
@@ -63,7 +61,7 @@ class TreeNode extends React.Component {
     const {node, onToggle, currentUrl } = this.props;
     const isActiveBranch = this.isActiveBranch(node, currentUrl);
     if (isActiveBranch && node.toggled===undefined) {
-      if (node.children) {
+      if (node.links) {
         onToggle(node, true);
       }
     }
@@ -88,6 +86,9 @@ class TreeNode extends React.Component {
 
     const {node: {toggled}} = this.props;
 
+    console.log(this.props.node);
+
+
     if (!animations && !toggled) {
       return null;
     } else if (!animations && toggled) {
@@ -99,7 +100,11 @@ class TreeNode extends React.Component {
     return (
       <VelocityTransitionGroup {...restAnimationInfo}
                                ref={ref => this.velocityRef = ref}>
+     <div>
+
         {toggled ? this.renderChildren(decorators, animations) : null}
+
+     </div>
       </VelocityTransitionGroup>
     );
 
@@ -111,7 +116,7 @@ class TreeNode extends React.Component {
       <NodeHeader animations={animations}
                   decorators={decorators}
                   level={level}
-                  node={Object.assign({}, node)}
+                  node={node}
                   onClick={this.onClick}
                   style={style}
                   currentUrl={currentUrl}
@@ -127,6 +132,8 @@ class TreeNode extends React.Component {
       children = children ? [children] : [];
     }
 
+    debugger;
+
     return (
       <div style={{...style.subtree}}>
         <ul style={{...style.subtree.base, ...style.subtree[`level${level}`]}}
@@ -135,7 +142,7 @@ class TreeNode extends React.Component {
                                                     animations={animations}
                                                     decorators={propDecorators}
                                                     key={child.id || index}
-                                                    node={child}
+                                                    node={Object.assign({}, child)}
                                                     level={level+1}
                                                     style={style}
                                                     currentUrl={currentUrl}/>
