@@ -85,10 +85,6 @@ class TreeNode extends React.Component {
   renderDrawer(decorators, animations, isActiveBranch) {
 
     const {node: {toggled}} = this.props;
-
-    console.log(this.props.node);
-
-
     if (!animations && !toggled) {
       return null;
     } else if (!animations && toggled) {
@@ -142,7 +138,7 @@ class TreeNode extends React.Component {
                                                     animations={animations}
                                                     decorators={propDecorators}
                                                     key={child.id || index}
-                                                    node={Object.assign({}, child)}
+                                                    node={child}
                                                     level={level+1}
                                                     style={style}
                                                     currentUrl={currentUrl}/>
