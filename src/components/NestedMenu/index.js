@@ -43,7 +43,7 @@ class NestedMenu extends Component {
             return (
               <div>
               <Treebeard
-                  data={data.menuByName}
+                  data={Object.assign({}, data.menuByName.links) }
                   decorators={decorators}
                   animation={animations}
                   currentUrl={this.props.currentUrl}
