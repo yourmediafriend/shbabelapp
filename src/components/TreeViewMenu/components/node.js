@@ -128,8 +128,6 @@ class TreeNode extends React.Component {
       children = children ? [children] : [];
     }
 
-    debugger;
-
     return (
       <div style={{...style.subtree}}>
         <ul style={{...style.subtree.base, ...style.subtree[`level${level}`]}}

@@ -27,7 +27,7 @@ class NestedMenu extends Component {
           if (error) return `Error: ${error.message}`;
           if (data.menuByName.links.length) {
             return (
-              <Menu data={Object.assign({}, data.menuByName.links) } />
+              <Menu data={data.menuByName.links} />
             );
           }
           return null; // replace this with something relevant

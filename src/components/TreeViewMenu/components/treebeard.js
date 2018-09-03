@@ -21,6 +21,10 @@ class TreeBeard extends React.Component {
     return (
         <ul style={style.tree.base}>
           {data.map((node, index) => {
+
+            console.log(node);
+
+
             return (
               <TreeNode animations={animations}
                         decorators={decorators}
