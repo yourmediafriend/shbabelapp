@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  attemptToRetrieveMenu,
-} from '../../modules/NestedMenu';
+
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import nestedMenuQuery from '../../graphQL/nestedMenuQuery';
+
 import { get } from 'lodash/fp'
 import {Treebeard} from '../TreeViewMenu';
 import decorators from './decorators';
@@ -20,60 +22,48 @@ class NestedMenu extends Component {
 
   onToggle(node, toggled) {
     const {cursor} = this.state;
-
     if (cursor) {
       cursor.active = false;
     }
-
+    debugger;
     node.active = true;
-        if (node.children) {
-          node.toggled = toggled;
-        }
-
+    if (node.children) {
+      node.toggled = toggled;
+    }
     this.setState({cursor: node});
   }
 
-  componentWillMount() {
-    this.props.loadMenu();
-  }
 
   render() {
 
-    const { isLoading, hasErrored, items, currentUrl } = this.props;
-
-    if (hasErrored) {
-      return <p>Sorry! There was an error loading the items</p>;
-    }
-
-    if (isLoading) {
-      return <p>Loading…</p>;
-    }
-
-    if (items.length) {
-      return (
-        <div>
-          <Treebeard
-             data={items}
-             decorators={decorators}
-             animation={animations}
-             currentUrl={currentUrl}
-             style={theme}
-             onToggle={this.onToggle}
-          />
-        </div>
-      );
-    }
-
-    return null;
-
+    return (
+      <Query query={nestedMenuQuery} >
+        {({ loading, error, data }) => {
+          if (loading) return <p>Loading...</p>;
+          if (error) return `Error: ${error.message}`;
+          if (data.menuByName.links.length) {
+            return (
+              <div>
+              <Treebeard
+                  data={data.menuByName}
+                  decorators={decorators}
+                  animation={animations}
+                  currentUrl={this.props.currentUrl}
+                  style={theme}
+                  onToggle={this.onToggle}
+                />
+              </div>
+            );
+          }
+          return null; // replace this with something relevant
+        }}
+      </Query>
+    );
   }
 }
 
 NestedMenu.propTypes = {
-  items: PropTypes.array.isRequired,
-  hasErrored: PropTypes.bool.isRequired,
   currentUrl: PropTypes.string,
-  isLoading: PropTypes.bool.isRequired,
   decorators: PropTypes.object,
   animations: PropTypes.oneOfType([
     PropTypes.object,
@@ -82,21 +72,13 @@ NestedMenu.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-
-  //console.log('NestedMenu', state);
-
   return {
-    items: get('retrieveMenuData.items', state),
-    hasErrored: get('retrieveMenuData.hasErrored', state),
-    isLoading: get('retrieveMenuData.isLoading', state),
     currentUrl: get('router.location.pathname', state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    loadMenu: () => dispatch(attemptToRetrieveMenu())
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NestedMenu);

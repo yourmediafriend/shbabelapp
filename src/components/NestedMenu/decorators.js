@@ -29,10 +29,10 @@ Toggle.propTypes = {
 };
 
 const Header = ({level, node, style}) => {
-    return (
+  return (
       <span style={style.base}  className={styles.base}>
         <div style={style.title}>
-          {node.name}
+          {node.label}
         </div>
       </span>
     );
@@ -47,14 +47,11 @@ Header.propTypes = {
 class Container extends React.Component {
 
     NavLinkStyles() {
-
       let linkStyle;
       const { node, currentUrl, isActiveBranch} = this.props;
-
-      if (isActiveBranch && !(node.url===currentUrl)) {
+      if (isActiveBranch && !(node.url.path===currentUrl)) {
         linkStyle = cx(styles.active, styles.activeBranch)
       }
-
       return linkStyle;
     }
 
@@ -63,14 +60,14 @@ class Container extends React.Component {
 
       return (
         <div>
-          {node.url ?
-            <NavLink to={node.url} activeClassName="active" tag={RRNavLink} className={this.NavLinkStyles()}   >
+          {terminal  ?
+            <NavLink to={node.url.path} activeClassName="active" tag={RRNavLink} className={this.NavLinkStyles()}   >
               <decorators.Header node={node} level={level} style={style.header}/>
             </NavLink>
             :
-            <div onClick={!terminal ? onClick : ''} className={cx('nav-link', this.NavLinkStyles())} >
+            <div onClick={ onClick } className={cx('nav-link', this.NavLinkStyles())} >
               <decorators.Header node={node} level={level} style={style.header}/>
-              {!terminal ? this.renderToggle() : null}
+              { this.renderToggle() }
             </div>
           }
         </div>
@@ -79,22 +76,21 @@ class Container extends React.Component {
 
     renderToggle() {
       const {animations} = this.props;
-
       if (!animations) {
-            return this.renderToggleDecorator();
-        }
+        return this.renderToggleDecorator();
+      }
       return (
-          <VelocityComponent animation={animations.toggle.animation}
-                             duration={animations.toggle.duration}
-                             ref={ref => this.velocityRef = ref}>
-            {this.renderToggleDecorator()}
-          </VelocityComponent>
+        <VelocityComponent animation={animations.toggle.animation}
+                           duration={animations.toggle.duration}
+                           ref={ref => this.velocityRef = ref}>
+          {this.renderToggleDecorator()}
+        </VelocityComponent>
         );
     }
 
     renderToggleDecorator() {
-        const {style, decorators} = this.props;
-        return <decorators.Toggle />;
+      const {style, decorators} = this.props;
+      return <decorators.Toggle />;
     }
 }
 

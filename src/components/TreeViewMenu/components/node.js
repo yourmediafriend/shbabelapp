@@ -6,9 +6,10 @@ import NodeHeader from './header';
 import { flow, get, has, isMatch, includes, map } from 'lodash/fp'
 
 class TreeNode extends React.Component {
+
   constructor() {
-      super();
-      this.onClick = this.onClick.bind(this);
+    super();
+    this.onClick = this.onClick.bind(this);
   }
 
   onClick() {
@@ -26,9 +27,9 @@ class TreeNode extends React.Component {
     if (isMatch({'url':currentUrl},obj) ) {
       return true;
     }
-    else if (has('children', obj)) {
+    else if (has('links', obj)) {
       return  flow(
-        get('children'),
+        get('links'),
         map(mapChildren),
         includes(true)
       )(obj)
@@ -38,147 +39,118 @@ class TreeNode extends React.Component {
   }
 
   animations() {
-      const {animations, node} = this.props;
+    const {animations, node} = this.props;
 
-      if (animations === false) {
-          return false;
-      }
+    if (animations === false) {
+      return false;
+    }
 
-      const anim = Object.assign({}, animations, node.animations);
-      return {
-          toggle: anim.toggle(this.props),
-          drawer: anim.drawer(this.props)
-      };
+    const anim = Object.assign({}, animations, node.animations);
+    return {
+      toggle: anim.toggle(this.props),
+      drawer: anim.drawer(this.props)
+    };
   }
 
-    decorators() {
-        // Merge Any Node Based Decorators Into The Pack
-        const {decorators, node} = this.props;
-        let nodeDecorators = node.decorators || {};
+  decorators() {
+    // Merge Any Node Based Decorators Into The Pack
+    const {decorators, node} = this.props;
+    let nodeDecorators = node.decorators || {};
+    return Object.assign({}, decorators, nodeDecorators);
+  }
 
-        return Object.assign({}, decorators, nodeDecorators);
-    }
-
-    componentWillMount(){
-
-      const {node, onToggle, currentUrl } = this.props;
-      const isActiveBranch = this.isActiveBranch(node, currentUrl);
-
-      if (isActiveBranch && node.toggled===undefined) {
-        if (node.children) {
-          onToggle(node, true);
-        }
+  componentWillMount(){
+    const {node, onToggle, currentUrl } = this.props;
+    const isActiveBranch = this.isActiveBranch(node, currentUrl);
+    if (isActiveBranch && node.toggled===undefined) {
+      if (node.children) {
+        onToggle(node, true);
       }
     }
+  }
 
-    render() {
-      const {style, node, currentUrl } = this.props;
+  render() {
+    const {style, node, currentUrl } = this.props;
+    const decorators = this.decorators();
+    const animations = this.animations();
 
-      const decorators = this.decorators();
-      const animations = this.animations();
+    // I can probably stop running this twice
+    const isActiveBranch = this.isActiveBranch(node, currentUrl);
+    return (
+      <NavItem style={isActiveBranch ? (style.base, style.base.active) : style.base}>
+          {this.renderHeader(decorators, animations, isActiveBranch)}
+          {this.renderDrawer(decorators, animations, isActiveBranch)}
+      </NavItem>
+    );
+  }
 
-      // I can probably stop running this twice
-      const isActiveBranch = this.isActiveBranch(node, currentUrl);
+  renderDrawer(decorators, animations, isActiveBranch) {
 
-      return (
-            <NavItem
-                style={isActiveBranch ? (style.base, style.base.active) : style.base}>
-                {this.renderHeader(decorators, animations, isActiveBranch)}
-                {this.renderDrawer(decorators, animations, isActiveBranch)}
-            </NavItem>
-        );
+    const {node: {toggled}} = this.props;
+
+    if (!animations && !toggled) {
+      return null;
+    } else if (!animations && toggled) {
+      return this.renderChildren(decorators, animations);
     }
 
-    renderDrawer(decorators, animations, isActiveBranch) {
+    const {animation, duration, ...restAnimationInfo} = animations.drawer;
 
-      const {node: {toggled}} = this.props;
+    return (
+      <VelocityTransitionGroup {...restAnimationInfo}
+                               ref={ref => this.velocityRef = ref}>
+        {toggled ? this.renderChildren(decorators, animations) : null}
+      </VelocityTransitionGroup>
+    );
 
-      if (!animations && !toggled) {
-        return null;
-      } else if (!animations && toggled) {
-        return this.renderChildren(decorators, animations);
-      }
+  }
 
-      const {animation, duration, ...restAnimationInfo} = animations.drawer;
+  renderHeader(decorators, animations, isActiveBranch) {
+    const {node, style, level, currentUrl } = this.props;
+    return (
+      <NodeHeader animations={animations}
+                  decorators={decorators}
+                  level={level}
+                  node={Object.assign({}, node)}
+                  onClick={this.onClick}
+                  style={style}
+                  currentUrl={currentUrl}
+                  isActiveBranch={isActiveBranch}/>
+    );
+  }
 
-      return (
-        <VelocityTransitionGroup {...restAnimationInfo}
-                                 ref={ref => this.velocityRef = ref}>
-          {toggled ? this.renderChildren(decorators, animations) : null}
-        </VelocityTransitionGroup>
-      );
+  renderChildren(decorators) {
+    const {animations, decorators: propDecorators, node, style, level, currentUrl} = this.props;
+    let children = node.links;
 
-
+    if (!Array.isArray(children)) {
+      children = children ? [children] : [];
     }
 
-    renderHeader(decorators, animations, isActiveBranch) {
-        const {node, style, level, currentUrl } = this.props;
+    return (
+      <div style={{...style.subtree}}>
+        <ul style={{...style.subtree.base, ...style.subtree[`level${level}`]}}
+            ref={ref => this.subtreeRef = ref}>
+          {children.map((child, index) => <TreeNode {...this._eventBubbles()}
+                                                    animations={animations}
+                                                    decorators={propDecorators}
+                                                    key={child.id || index}
+                                                    node={child}
+                                                    level={level+1}
+                                                    style={style}
+                                                    currentUrl={currentUrl}/>
+          )}
+        </ul>
+    </div>
+    );
+  }
 
-
-        //it stores its own node and when asked to toggle. adds it to drawer
-
-        return (
-            <NodeHeader animations={animations}
-                        decorators={decorators}
-                        level={level}
-                        node={Object.assign({}, node)}
-                        onClick={this.onClick}
-                        style={style}
-                        currentUrl={currentUrl}
-                        isActiveBranch={isActiveBranch}/>
-        );
-    }
-
-    renderChildren(decorators) {
-        const {animations, decorators: propDecorators, node, style, level, currentUrl} = this.props;
-
-
-      if (node.loading) {
-            return this.renderLoading(decorators);
-        }
-
-        let children = node.children;
-        if (!Array.isArray(children)) {
-            children = children ? [children] : [];
-        }
-
-      return (
-        <div style={{...style.subtree}}>
-            <ul style={{...style.subtree.base, ...style.subtree[`level${level}`]}}
-                ref={ref => this.subtreeRef = ref}>
-                {children.map((child, index) => <TreeNode {...this._eventBubbles()}
-                                                          animations={animations}
-                                                          decorators={propDecorators}
-                                                          key={child.id || index}
-                                                          node={child}
-                                                          level={level+1}
-                                                          style={style}
-                                                          currentUrl={currentUrl}/>
-                )}
-            </ul>
-        </div>
-        );
-    }
-
-    renderLoading(decorators) {
-        const {style} = this.props;
-
-        return (
-            <ul style={style.subtree}>
-                <li>
-                    <decorators.Loading style={style.loading}/>
-                </li>
-            </ul>
-        );
-    }
-
-    _eventBubbles() {
-        const {onToggle} = this.props;
-
-        return {
-            onToggle
-        };
-    }
+  _eventBubbles() {
+    const { onToggle } = this.props;
+    return {
+      onToggle
+    };
+  }
 }
 
 TreeNode.propTypes = {

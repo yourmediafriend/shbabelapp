@@ -23,20 +23,20 @@ const SvgShape = (props) => {
   switch(props.shape) {
     case 'circle':
       return ( <div className={cx(styles.slide)} >
-
         <VideoBackground bgSrc={bgSrc} />
         <Background className={styles.contentContainer} bgSrc={BackgroundImageUrlA} />
-
         <Circle />
       </div>);
     case 'square':
       return (<div className={cx(styles.slide)} >
+        <VideoBackground bgSrc={bgSrc} />
         <Background  bgSrc={BackgroundImageUrlB} />
         <Square />
       </div>);
     case 'triangle':
       return (
         <div className={cx(styles.slide)} >
+          <VideoBackground bgSrc={bgSrc} />
           <Background bgSrc={BackgroundImageUrlC} />
           <Triangle />
         </div>
