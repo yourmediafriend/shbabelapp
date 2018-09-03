@@ -18,24 +18,6 @@ import Menu from './Menu';
 
 class NestedMenu extends Component {
 
-  constructor() {
-    super();
-    this.state = {};
-    this.onToggle = this.onToggle.bind(this);
-  }
-
-  onToggle(node, toggled) {
-    const {cursor} = this.state;
-    if (cursor) {
-      cursor.active = false;
-    }
-    node.active = true;
-    if (node.links.length) {
-      node.toggled = toggled;
-    }
-    this.setState({cursor: node});
-  }
-
   render() {
 
     return (

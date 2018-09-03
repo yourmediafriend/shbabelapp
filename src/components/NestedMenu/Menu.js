@@ -29,13 +29,20 @@ class NestedMenu extends Component {
     if (node.links.length) {
       node.toggled = toggled;
     }
-    this.setState({cursor: node});
+    this.setState({cursor: node });
+  }
+
+  componentWillMount() {
+    this.setState({node: this.props.data});
   }
 
   render() {
-      return (
+
+    console.log('render', this.state.node);
+
+    return (
           <Treebeard
-            data={this.props.data) }
+            data={this.state.node}
             decorators={decorators}
             animation={animations}
             currentUrl={this.props.currentUrl}
@@ -56,6 +63,9 @@ NestedMenu.propTypes = {
 };
 
 const mapStateToProps = (state) => {
+
+  //console.log(state);
+
   return {
     currentUrl: get('router.location.pathname', state),
   };
