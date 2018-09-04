@@ -9,6 +9,9 @@
     :global(.list-group-item){
         margin-right: 20px;
         padding: 0;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
     }
 
     @include media-breakpoint-down(md) {
@@ -18,7 +21,7 @@
         }
     }
 
-    .link {
+/*    .link {
         .icon {
             width: 24px;
             display: inline-block;
@@ -37,7 +40,10 @@
                 fill: #040505;
             }
         }
-    }
+    }*/
+
+
+
 }
 
 .reactHoverObserver {

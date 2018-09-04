@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Query } from "react-apollo";
 
+import styles from './nestedMenu.scss';
+
 import nestedMenuQuery from '../../graphQL/nestedMenuQuery';
 import { cloneDeep } from 'lodash/fp';
 import {Treebeard} from '../TreeViewMenu';
@@ -12,7 +14,6 @@ import Menu from './Menu';
 
 class NestedMenu extends Component {
 
-
   render() {
     return (
       <Query query={nestedMenuQuery} >
@@ -20,12 +21,11 @@ class NestedMenu extends Component {
           if (loading) return <p>Loading...</p>;
           if (error) return `Error: ${error.message}`;
           if (data.menuByName.links.length) {
-
-
             console.log(data.menuByName.links);
-
             return (
-              <Menu data={cloneDeep(data.menuByName.links)} />
+              <div className={styles.sidebarMenu}>
+                <Menu data={cloneDeep(data.menuByName.links)} />
+              </div>
             );
           }
           return null; // replace this with something relevant

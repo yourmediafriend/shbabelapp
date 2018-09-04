@@ -3,6 +3,8 @@ import scrollMagicEnhanced from "./scrollMagicEnhanced";
 import cx from 'classnames';
 import styles from './stickyElements.scss';
 
+import { MenuWidget, SocialWidget} from '../../../Widgets';
+
 class StickyPanel extends Component {
 
   constructor(props) {
@@ -21,16 +23,15 @@ class StickyPanel extends Component {
     };
 
     return (
-      <div>
+
         <div style={{...compStyles(this.state)}}>
-          <div className={cx(styles.panel, styles.stickyPanel)}>
-            Sticky Panel
-          </div>
-          <div className={cx(styles.panel, styles.stickyPanel)}>
-            Sticky Panel
-          </div>
+
+          <MenuWidget className={styles.stickyWidget} />
+
+          <SocialWidget className={styles.stickyWidget}/>
+
         </div>
-      </div>
+
     )
   }
 }

@@ -4,7 +4,7 @@ import {VelocityComponent} from 'velocity-react';
 import { NavLink } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import Icon from '../Icons';
-import styles from './NestedMenu.scss';
+import styles from './nestedMenu.scss';
 import cx from 'classnames';
 
 

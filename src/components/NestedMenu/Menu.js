@@ -29,13 +29,7 @@ class NestedMenu extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-
-
-
     console.log('getDerivedStateFromProps', props, state);
-
-
-
     return {node: props.data };
   }
 

@@ -26,7 +26,7 @@ let Link = ({icon, text, style, clickEvent, href }) => {
       {(context) => {
         return (
           <a  href={href} className={cx(styles.link, context.isHovering ? styles.hover : '' )} onClick={clickEvent}>
-            <span className={cx(styles.icon, styles[icon])}>
+            <span className={cx(styles.icon, styles[icon], 'icon')}>
               {icon ? <Icon icon={icon} /> : <div>{text}</div>}
             </span>
           </a>
@@ -58,7 +58,7 @@ let MenuItem = (props) => {
 
 const SocialIcons = (props) => {
   return (
-    <ListGroup className={styles.socialMediaMenu}>
+    <ListGroup className={cx(styles.socialMediaMenu, props.className  )}>
       <ListGroupItem><MenuItem><Link icon="facebook"  href={"/"}/></MenuItem></ListGroupItem>
       <ListGroupItem><MenuItem><Link icon="twitter"  href={"/"}/></MenuItem></ListGroupItem>
       <ListGroupItem><MenuItem><Link icon="googleplus"  href={"/"}/></MenuItem></ListGroupItem>

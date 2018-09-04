@@ -30,7 +30,7 @@ const Menu = props => {
       <Col className={styles.col_3} sm={12} md={4}>
         <ListGroup className={styles.footerMenu}>
           <ListGroupItem><NewsletterSignUp /></ListGroupItem>
-          <ListGroupItem><SocialMediaIcons /></ListGroupItem>
+          <ListGroupItem><SocialMediaIcons className={styles.footerSocialLinks}/></ListGroupItem>
         </ListGroup>
       </Col>
     </Row>
