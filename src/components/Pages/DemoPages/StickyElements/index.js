@@ -5,7 +5,7 @@ import styles from './stickyElements.scss';
 import { TwoColumnLeft }  from '../../../Layout';
 import DummyText from '../../../DummyText/DummyTextLong'
 import StickyPanel from './StickyPanel';
-import { PromoWidget} from '../../../Widgets';
+import { PromoWidget } from '../../../Widgets';
 
 import HeroBanner from '../../../HeroBanner';
 import hero_480w from '../../../../media/hero6/hero_480w.jpg';
