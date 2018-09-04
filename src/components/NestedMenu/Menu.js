@@ -22,32 +22,20 @@ class NestedMenu extends Component {
 
   onToggle(node, toggled) {
     const {cursor} = this.state;
-
-    //let newNode = Object.assign({}, node);
-
-    if (cursor) {
-      cursor.active = false;
-    }
-
     if (node.links.length) {
       node.toggled = toggled;
     }
-
-    this.setState({
-      node
-    });
-
+    this.setState({cursor: node});
   }
 
 
   static getDerivedStateFromProps(props, state) {
+    console.log('getDerivedStateFromProps', props, state);
     return {node: props.data };
   }
 
   render() {
-
     console.log('render', this.state.node);
-
     return (
           <Treebeard
             data={this.state.node}

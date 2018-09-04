@@ -19,7 +19,6 @@ import Menu from './Menu';
 class NestedMenu extends Component {
 
   render() {
-
     return (
       <Query query={nestedMenuQuery} >
         {({ loading, error, data }) => {
