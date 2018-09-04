@@ -3,19 +3,19 @@ import styles from './widget.scss';
 import cx from 'classnames';
 import { NavLink, ListGroup, ListGroupItem } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
+import { Button } from 'reactstrap';
 
-import SocialMediaIcons from '../SocialMediaIcons'
 
-class MenuWidget extends Component {
+class Widget extends Component {
   render() {
     return (
-      <div className={cx(styles.widget, styles.socialWidget, this.props.className)}>
+      <div className={cx(styles.widget, styles.promoWidget, this.props.className)}>
         <div className={styles.inner}>
-          <div className={styles.header}>
-            <h4 className={styles.title}>Social Widget</h4>
-          </div>
           <div className={styles.body}>
-            <SocialMediaIcons />
+            <img src={this.props.imgSrc} alt={''} />
+          </div>
+          <div className={styles.footer}>
+            <Button type="submit">Buy Me!</Button>
           </div>
         </div>
       </div>
@@ -23,4 +23,4 @@ class MenuWidget extends Component {
   }
 }
 
-export default MenuWidget;
+export default Widget;

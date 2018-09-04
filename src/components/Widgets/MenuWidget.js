@@ -38,8 +38,6 @@ class MenuWidget extends Component {
               </ListGroupItem>
             </ListGroup>
           </div>
-          <div className={styles.footer}>
-          </div>
         </div>
       </div>
     )

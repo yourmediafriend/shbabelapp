@@ -25,11 +25,8 @@ class StickyPanel extends Component {
     return (
 
         <div style={{...compStyles(this.state)}}>
-
-          <MenuWidget className={styles.stickyWidget} />
-
-          <SocialWidget className={styles.stickyWidget}/>
-
+          <MenuWidget className={styles.sidebarWidget} />
+          <SocialWidget className={styles.sidebarWidget}/>
         </div>
 
     )

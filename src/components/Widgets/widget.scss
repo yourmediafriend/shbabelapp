@@ -7,6 +7,11 @@ $link-bg-color-hover: transparent;
 
     border: 1px solid #bfbfbf;
 
+    .header,
+    .body,
+    .footer {
+        padding: 1rem;
+    }
     .header {
         padding: 1rem;
         background: #efefef;
@@ -15,9 +20,6 @@ $link-bg-color-hover: transparent;
             font-size: 0.9em;
             text-transform: uppercase;
         }
-    }
-    .body {
-        padding: 1rem;
     }
 }
 
@@ -54,4 +56,23 @@ $link-bg-color-hover: transparent;
             }
         }
     }
+}
+.promoWidget {
+
+    border: 0;
+
+    .body {
+        padding: 0;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    .footer {
+        border-style: solid;
+        border-color: #bfbfbf;
+        border-width: 0 1px 1px;
+    }
+
+
 }
