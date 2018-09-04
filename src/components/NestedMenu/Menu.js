@@ -28,14 +28,19 @@ class NestedMenu extends Component {
     this.setState({cursor: node});
   }
 
-
   static getDerivedStateFromProps(props, state) {
+
+
+
     console.log('getDerivedStateFromProps', props, state);
+
+
+
     return {node: props.data };
   }
 
   render() {
-    console.log('render', this.state.node);
+    //console.log('render', this.state.node);
     return (
           <Treebeard
             data={this.state.node}

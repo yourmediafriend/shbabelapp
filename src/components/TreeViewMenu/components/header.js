@@ -6,7 +6,10 @@ class NodeHeader extends React.Component {
   render() {
     const {animations, decorators, node, onClick, style, level, currentUrl, isActiveBranch} = this.props;
     const {active, links} = node;
-    const terminal = !links.length;
+
+    const terminal = links ? !links.length : true;
+
+
     const container = [style.link, active ? style.activeLink : null];
     const headerStyles = Object.assign({container}, style);
 

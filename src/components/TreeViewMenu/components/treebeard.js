@@ -21,13 +21,12 @@ class TreeBeard extends React.Component {
     return (
         <ul style={style.tree.base}>
           {data.map((node, index) => {
-            console.log(node);
             return (
               <TreeNode animations={animations}
                         decorators={decorators}
                         key={node.id || index}
                         level={level}
-                        node={Object.assign({}, node)}
+                        node={node}
                         onToggle={onToggle}
                         style={style.tree.node}
                         currentUrl={currentUrl}

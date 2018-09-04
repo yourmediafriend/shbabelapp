@@ -71,8 +71,6 @@ class TreeNode extends React.Component {
     const {style, node, currentUrl } = this.props;
     const decorators = this.decorators();
     const animations = this.animations();
-
-    // I can probably stop running this twice
     const isActiveBranch = this.isActiveBranch(node, currentUrl);
     return (
       <NavItem style={isActiveBranch ? (style.base, style.base.active) : style.base}>
@@ -94,16 +92,10 @@ class TreeNode extends React.Component {
     const {animation, duration, ...restAnimationInfo} = animations.drawer;
 
     return (
-      <VelocityTransitionGroup {...restAnimationInfo}
-                               ref={ref => this.velocityRef = ref}>
-     <div>
-
-        {toggled ? this.renderChildren(decorators, animations) : null}
-
-     </div>
+      <VelocityTransitionGroup {...restAnimationInfo} ref={ref => this.velocityRef = ref}>
+          {toggled ? this.renderChildren(decorators, animations) : null}
       </VelocityTransitionGroup>
     );
-
   }
 
   renderHeader(decorators, animations, isActiveBranch) {
@@ -112,7 +104,7 @@ class TreeNode extends React.Component {
       <NodeHeader animations={animations}
                   decorators={decorators}
                   level={level}
-                  node={Object.assign({}, node) }
+                  node={node}
                   onClick={this.onClick}
                   style={style}
                   currentUrl={currentUrl}
@@ -130,8 +122,7 @@ class TreeNode extends React.Component {
 
     return (
       <div style={{...style.subtree}}>
-        <ul style={{...style.subtree.base, ...style.subtree[`level${level}`]}}
-            ref={ref => this.subtreeRef = ref}>
+        <ul style={{...style.subtree.base, ...style.subtree[`level${level}`]}} ref={ref => this.subtreeRef = ref}>
           {children.map((child, index) => <TreeNode {...this._eventBubbles()}
                                                     animations={animations}
                                                     decorators={propDecorators}
@@ -142,7 +133,7 @@ class TreeNode extends React.Component {
                                                     currentUrl={currentUrl}/>
           )}
         </ul>
-    </div>
+      </div>
     );
   }
 
