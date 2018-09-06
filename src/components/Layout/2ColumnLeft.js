@@ -3,9 +3,6 @@ import { Container, Row, Col } from 'reactstrap';
 import cx from 'classnames'
 
 const Layout = (props) => {
-
-  console.log(props.className);
-
   return (
     <Container className={cx(props.className)}>
       <Row>

@@ -34,6 +34,10 @@ const SwitchRoute = () => (
 
     <Route exact path='/drupal-articles' render={() => <OneColumnSidebar currentpage='drupalArticles' />} />
 
+    {/*/ News /*/}
+
+    <Route exact path='/news' render={() => <OneColumnSidebar currentpage='news' />} />
+    <Route path='/news/:type/:article' render={({match}) => <OneColumnSidebar match={match} currentpage='news/article' />} />
 
     {/*/SVG.js/*/}
     <Route exact path='/svgs/square' render={(routeProps) => <OneColumnSidebar {...routeProps}

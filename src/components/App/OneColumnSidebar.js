@@ -194,7 +194,7 @@ class App extends Component {
                                                           ...{minHeight:  `calc(100vh - ${( max([this.props.revealFooterHeight, this.props.fixedFooterHeight]))}px`}         }}
                                                         >
                     <div className={styles.content}>
-                      <MainContent currentpage={this.props.currentpage} pageRef={this.props.pageRef} />
+                      <MainContent currentpage={this.props.currentpage} match={this.props.match} pageRef={this.props.pageRef} />
                     </div>
                   </div>
                 </div>
