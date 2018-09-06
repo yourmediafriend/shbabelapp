@@ -15,7 +15,8 @@ import Fullpage from '../Fullpage';
 import ContactPage from '../Pages/ContactPage';
 import WeatherPage from '../Pages/WeatherPage';
 import GridPage from '../Pages/GridPage';
-
+import News from '../News';
+import NewsArticle from '../News/Article';
 
 import TestPage from '../Pages/TestPage';
 
@@ -37,7 +38,7 @@ const MainContent = props => {
   )
 }
 
-const Content = ({currentpage, pageRef }) => {
+const Content = ({currentpage, pageRef, match }) => {
 
   switch(currentpage) {
     case 'home':
@@ -92,6 +93,19 @@ const Content = ({currentpage, pageRef }) => {
       return (
         <MainContent className={styles.grid}>
           <GridPage />
+        </MainContent>
+      );
+
+    case 'news':
+      return (
+        <MainContent className={styles.news}>
+          <News />
+        </MainContent>
+      );
+    case 'news/article':
+      return (
+        <MainContent className={styles.news}>
+          <NewsArticle match={match} />
         </MainContent>
       );
     case 'contact':
