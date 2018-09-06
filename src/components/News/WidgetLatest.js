@@ -3,11 +3,35 @@ import PropTypes from 'prop-types';
 import { Query } from "react-apollo";
 import styles from './news.scss';
 import { Link } from 'react-router-dom';
-import { TwoColumnRight }  from '../Layout';
-import newsArticlesIndexQuery from '../../graphQL/newsArticlesIndexQuery';
 import UtcSecondsToDate from './utcSecondsToDate';
-import PageTitle from '../PageTitle'
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import newsArticlesIndexQuery from "../../graphQL/newsArticlesIndexQuery";
+import { Image as CloudImage, Transformation } from 'cloudinary-react';
+
+
+const parseURL = (url) => {
+  var parser = document.createElement('a'),
+    searchObject = {},
+    queries, split, i;
+  // Let the browser do the work
+  parser.href = url;
+  // Convert query string to object
+  queries = parser.search.replace(/^\?/, '').split('&');
+  for( i = 0; i < queries.length; i++ ) {
+    split = queries[i].split('=');
+    searchObject[split[0]] = split[1];
+  }
+  return {
+    protocol: parser.protocol,
+    host: parser.host,
+    hostname: parser.hostname,
+    port: parser.port,
+    pathname: parser.pathname,
+    search: parser.search,
+    searchObject: searchObject,
+    hash: parser.hash
+  };
+}
 
 const Category = ({category}) => {
 
@@ -24,9 +48,17 @@ const Category = ({category}) => {
 const Image = ({image}) => {
 
   if (image) {
+
     return (
       <div className={styles.image}>
-        <img src={image.url} alt={image.alt} />
+
+{/*        <img src={`http://res.cloudinary.com/demo/image/fetch/w_40,h_40/${image.url}`}  />*/}
+
+
+
+
+       {/* <CloudImage cloudName="dghff7rpa" publicId={image.url} alt={image.alt} width="40" crop="scale" />*/}
+
       </div>
     );
   }
@@ -39,41 +71,29 @@ class NewsItem extends Component {
   render() {
     return (
       <ListGroupItem className={styles.item}>
-
         <div className={styles.summaryHeader}>
-          <h2><Link to={`/news${this.props.url}`} className={styles.articleLink} >{this.props.title}</Link></h2>
+          <h2 className={styles.title}><Link to={`/news${this.props.url}`} className={styles.articleLink} >{this.props.title}</Link></h2>
+          <Image image={this.props.image} />
           <div className={styles.created}>
             <UtcSecondsToDate created={this.props.created} />
           </div>
           <div className={styles.author}>
-            <Link to={this.props.author.entityUrl.path}>{this.props.author.entityLabel}</Link>
+            {this.props.author.entityLabel}
           </div>
-          <Category category={this.props.category} />
-        </div>
-        <Image image={this.props.image} />
-        <div className={styles.summaryContent}>
-          <div dangerouslySetInnerHTML={{ __html: this.props.summary }} />
         </div>
       </ListGroupItem>
     );
   }
 }
 
-class NewsArticlesIndex extends Component {
-
+class NewsLatestWidget extends Component {
   render() {
-
-    //console.log(Date.now());
-
     return (
-      <Query query={newsArticlesIndexQuery} variables={{ offset:0, limit:5, dateNow: '1536137598978'  }} >
+      <Query query={newsArticlesIndexQuery} variables={{offset:0, limit:5, dateNow: '1536137598978'  }} >
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return `Error: ${error.message}`;
           if (data.nodeQuery.entities.length) {
-
-
-
             return (
               <ListGroup className={styles.articlesIndex}>
                 {data.nodeQuery.entities.map(article =>
@@ -81,32 +101,21 @@ class NewsArticlesIndex extends Component {
                             title={article.title}
                             url={article.entityUrl.path}
                             author={article.entityOwner}
-                            created={article.created}
                             image={article.fieldImage}
-                            category={article.fieldCategory}
+                            created={article.created}
                             body={article.body.value}
-                            summary={article.body.summaryProcessed}/>
+                            summary={article.body.summaryProcessed}
+                  />
                 )}
               </ListGroup>
             );
           }
         }}
       </Query>
-    );
-  }
-}
-
-class NewsIndexLayout extends Component {
-  render() {
-    return (
-      <div>
-        <PageTitle title={'News Index'} layout={'center'} style={{}} />
-        <TwoColumnRight contentMain={<NewsArticlesIndex />}  contentColumnLeft={null} />
-      </div>
     )
   }
 }
 
-export default NewsIndexLayout;
+export default NewsLatestWidget;
 
 

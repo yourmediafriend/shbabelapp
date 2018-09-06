@@ -11,7 +11,7 @@ const QueueItem = ({ article, loadTrack }) => {
   return (
     <div className={cx(styles.item)} onClick={loadTrack.bind(this, article)}>
       <div className={cx(styles.cover)}>
-        <Image cloudName="dghff7rpa" publicId={`Mixes/${article.fieldCover}`} width="40" crop="scale" />
+        <Image cloudName="dghff7rpa" publicId={`mix/${article.fieldCover}`} width="40" crop="scale" />
       </div>
       <div className={cx(styles.details)}>
         <div className={cx(styles.title)}>

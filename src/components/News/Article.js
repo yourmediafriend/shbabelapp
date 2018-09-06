@@ -3,12 +3,41 @@ import PropTypes from 'prop-types';
 import { Query } from "react-apollo";
 
 import { Link } from 'react-router-dom';
-import { TwoColumnRight }  from '../Layout';
+import { TwoColumnLeft }  from '../Layout';
+
 import newsArticleQuery from '../../graphQL/newsArticleQuery';
 import UtcSecondsToDate from './utcSecondsToDate';
-import PageTitle from '../PageTitle'
+import Breadcrumbs from '../Breadcrumbs'
 import styles from './news.scss';
 import cx from 'classnames';
+import Latest from './WidgetLatest';
+
+import Widget from '../Widgets';
+import widgetStyles from '../Widgets/widget.scss';
+
+class ArticleSideBar extends Component {
+  render() {
+    return (
+      <div>
+        <Widget className={styles.widgetNewsLatest}  header={<h4 className={widgetStyles.title}>Latest News</h4>} body={<Latest />}/>
+      </div>
+    );
+  }
+}
+
+const Category = ({category}) => {
+
+  if (category) {
+    return (
+      <div className={styles.category}>
+        {category.entity.name}
+      </div>
+    );
+  }
+  return null;
+}
+
+
 
 class Article extends Component {
 
@@ -20,12 +49,10 @@ class Article extends Component {
           <div className={styles.created}>
             <UtcSecondsToDate created={this.props.created} />
           </div>
-
           <div className={styles.author}>
             <Link to={this.props.author.entityUrl.path}>{this.props.author.entityLabel}</Link>
           </div>
-
-
+          <Category category={this.props.category} />
         </header>
         <section className={styles.articleContent}>
           <div dangerouslySetInnerHTML={{ __html: this.props.body }} />
@@ -49,15 +76,14 @@ class NewsArticle extends Component {
           const article = data.route.entity;
 
          if (typeof article !== "undefined") {
-
-           debugger;
-
            return (
              <div className={styles.article}>
                 <Article body={article.body.processed}
+                         image={article.fieldImage}
                          title={article.title}
                          author={article.entityOwner}
                          created={article.created}
+                         category={article.fieldCategory}
                 />
              </div>
            );
@@ -77,7 +103,8 @@ class NewsArticleLayout extends Component {
   render() {
     return (
       <div>
-        <TwoColumnRight contentMain={<NewsArticle match={this.props.match}/>}  contentColumnLeft={null} />
+        <Breadcrumbs />
+        <TwoColumnLeft className={styles.contentMain} contentMain={<NewsArticle match={this.props.match}/>}  contentColumnLeft={<ArticleSideBar />} />
       </div>
     )
   }

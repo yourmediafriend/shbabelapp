@@ -12,14 +12,37 @@
     }
 }
 
+.contentMain {
+    margin-top: 40px;
+}
+
 .article {
     .articleHeader {
-        margin: 30px 0;
+        margin: 0 0 30px;
     }
     .articleContent {
         margin: 30px 0;
     }
     .articleFooter {
         margin: 30px 0;
+    }
+}
+
+.widgetNewsLatest {
+    .articlesIndex {
+        margin: -1rem;
+        .item {
+            padding: 1rem;
+            border-width: 0 0 1px 0;
+            margin: 0;
+            &:last-child {
+                border-bottom: 0;
+            }
+            .summaryHeader {
+                .title {
+                    font-size: 1.2em;
+                }
+            }
+        }
     }
 }

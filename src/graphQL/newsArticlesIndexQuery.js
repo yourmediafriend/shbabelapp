@@ -4,8 +4,8 @@ import gql from "graphql-tag";
 
 const GET_ARTICLES = gql`
 
-  query nodeQuery($dateNow: String!){
-    nodeQuery(offset:0, limit:10,  sort: [{field: "created", direction: DESC}], filter: {conditions: [{operator: EQUAL, field: "type", value: ["Article"]}, {operator: SMALLER_THAN_OR_EQUAL, field: "created", value: [$dateNow] }]}) {
+  query nodeQuery($dateNow: String!, $limit: Int!, $offset: Int!){
+    nodeQuery(offset:$offset, limit:$limit,  sort: [{field: "created", direction: DESC}], filter: {conditions: [{operator: EQUAL, field: "type", value: ["Article"]}, {operator: SMALLER_THAN_OR_EQUAL, field: "created", value: [$dateNow] }]}) {
       entities {
         ... on Node {
           created
@@ -15,8 +15,15 @@ const GET_ARTICLES = gql`
             path
             routed
           }
-          uid {
-            targetId
+          fieldCategory {
+            entity {
+              name
+              tid
+            }
+          }
+          fieldImage{
+            url
+            alt
           }
           body {
             value

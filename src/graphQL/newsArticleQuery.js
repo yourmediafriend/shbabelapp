@@ -14,8 +14,15 @@ query GetArticle($path: String!) {
             path
             routed
           }
-          uid {
-            targetId
+          fieldImage{
+            url
+            alt
+          }
+          fieldCategory {
+            entity {
+              name
+              tid
+            }
           }
           body {
             value
