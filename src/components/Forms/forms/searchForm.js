@@ -1,6 +1,6 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
-import { renderField } from '../formComponents'
+import {Form, Field, reduxForm} from 'redux-form';
+import { RenderField } from '../formComponents'
 import { Row, Col  } from 'reactstrap';
 import styles from '../forms.scss';
 
@@ -11,22 +11,22 @@ export const reduxFormDetails = {
   ],
 }
 
-const SearchForm = props => {
+const FormComp = props => {
 
   const { handleSubmit } = props;
 
   return(
-      <form className={styles.searchForm} onSubmit={handleSubmit}>
+      <Form className={styles.searchForm} onSubmit={handleSubmit}>
         <Row>
           <Col xs={12}>
-            <Field name={"search"} placeholder={"Search"} component={renderField} type={"text"} />
+            <Field name={"search"} placeholder={"Search"} component={RenderField} type={"text"} />
           </Col>
         </Row>
-      </form>
+      </Form>
   )
 }
 
 export default reduxForm(
   reduxFormDetails
-)(SearchForm);
+)(FormComp);
 

@@ -26,12 +26,8 @@ class GridPage extends Component {
   render() {
     return (
       <div>
-        <div className={cx(styles.section, styles.banner)}>
-          <Banner image={imagesHero} content={<PageTitle title={ 'Paralax Grid!' } layout={'center'} style={{}} />}/>
-        </div>
-        <div className={cx(styles.section)}>
-          <OneColumnCenter  contentMain={<GridParallax />}/>
-        </div>
+        <Banner image={imagesHero} content={<PageTitle title={ 'Paralax Grid!' } layout={'center'} style={{}} className={cx(styles.section)} />}/>
+        <OneColumnCenter  contentMain={<GridParallax />} className={cx(styles.section, styles.contentMain)}/>
       </div>
     )
   }

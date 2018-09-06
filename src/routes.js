@@ -35,42 +35,34 @@ const SwitchRoute = () => (
     <Route exact path='/drupal-articles' render={() => <OneColumnSidebar currentpage='drupalArticles' />} />
 
 
-    <Route exact path='/fullpage/david-carson' render={(routeProps) => <OneColumnSidebar {...routeProps}
-                                                                            currentpage='fullpage/david-carson'
-                                                                            showHeader={false}
-                                                                            showFooterFixed={false}
-                                                                            showFooterReveal={false} />} />
-
-    <Route exact path='/fullpage/fluro' render={(routeProps) => <OneColumnSidebar {...routeProps}
-                                                                                         currentpage='fullpage/fluro'
-                                                                                         showHeader={false}
-                                                                                         showFooterFixed={false}
-                                                                                         showFooterReveal={false} />} />
-
     {/*/SVG.js/*/}
     <Route exact path='/svgs/square' render={(routeProps) => <OneColumnSidebar {...routeProps}
                                                                                 currentpage='square'
-                                                                                showHeader={false}
-                                                                                showFooterFixed={false}
+                                                                                singlePage={true}
+                                                                                showHeader={true}
+                                                                                showFooterFixed={true}
                                                                                 showFooterReveal={false} />} />
 
     <Route exact path='/svgs/circle' render={(routeProps) => <OneColumnSidebar {...routeProps}
                                                                                 currentpage='circle'
-                                                                                showHeader={false}
-                                                                                showFooterFixed={false}
+                                                                                singlePage={true}
+                                                                                showHeader={true}
+                                                                                showFooterFixed={true}
                                                                                 showFooterReveal={false} />} />
 
     <Route exact path='/svgs/triangle' render={(routeProps) => <OneColumnSidebar {...routeProps}
                                                                                 currentpage='triangle'
-                                                                                showHeader={false}
-                                                                                showFooterFixed={false}
+                                                                                singlePage={true}
+                                                                                showHeader={true}
+                                                                                showFooterFixed={true}
                                                                                 showFooterReveal={false} />} />
 
     <Route exact path='/svgs/hypno' render={(routeProps) => <OneColumnSidebar {...routeProps}
-                                                                                  currentpage='hypno'
-                                                                                  showHeader={false}
-                                                                                  showFooterFixed={false}
-                                                                                  showFooterReveal={false} />} />
+                                                                                currentpage='hypno'
+                                                                                singlePage={true}
+                                                                                showHeader={false}
+                                                                                showFooterFixed={false}
+                                                                                showFooterReveal={false} />} />
 
 
     <Route exact path='/svgs/patterns' render={() => <OneColumnSidebar currentpage='svgPattern' fullscreen={true}/>} />
@@ -83,8 +75,8 @@ const SwitchRoute = () => (
     {/*/Layout Elements/*/}
 
     <Route exact path='/quarter' render={() => <OneColumnSidebar currentpage='quarter'
-                                                                 showHeader={false}
-                                                                 showFooterFixed={false}
+                                                                 showHeader={true}
+                                                                 showFooterFixed={true}
                                                                  showFooterReveal={false} />} />
 
 
@@ -93,7 +85,35 @@ const SwitchRoute = () => (
                                                                  showFooterFixed={false}
                                                                  showFooterReveal={false} />} />
 
+    {/*/Fullpage/*/}
 
+    <Route exact path='/fullpage/david-carson' render={(routeProps) => <OneColumnSidebar {...routeProps}
+                                                                                         currentpage='fullpage'
+                                                                                         pageRef={'david-carson'}
+                                                                                         showHeader={true}
+                                                                                         showFooterFixed={true}
+                                                                                         showFooterReveal={false} />} />
+
+    <Route exact path='/fullpage/fluro' render={(routeProps) => <OneColumnSidebar {...routeProps}
+                                                                                  currentpage='fullpage'
+                                                                                  pageRef={'fluro'}
+                                                                                  showHeader={false}
+                                                                                  showFooterFixed={false}
+                                                                                  showFooterReveal={false} />} />
+
+    <Route exact path='/fullpage/trees' render={(routeProps) => <OneColumnSidebar {...routeProps}
+                                                                                  currentpage='fullpage'
+                                                                                  pageRef={'trees'}
+                                                                                  showHeader={false}
+                                                                                  showFooterFixed={false}
+                                                                                  showFooterReveal={false} />} />
+
+    <Route exact path='/fullpage/wobble' render={(routeProps) => <OneColumnSidebar {...routeProps}
+                                                                                  currentpage='fullpage'
+                                                                                  pageRef={'wobble'}
+                                                                                  showHeader={false}
+                                                                                  showFooterFixed={false}
+                                                                                  showFooterReveal={false} />} />
 
 
     <Route exact path='/sticky-header' render={() => <OneColumnSidebar currentpage='stickyHeader' />} />

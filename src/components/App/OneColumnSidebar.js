@@ -9,9 +9,10 @@ import Animate from 'react-move/Animate';
 import { easeExpOut } from 'd3-ease';
 import { setCurrentBreakPoint } from '../../modules/App';
 
-
 import {
   get,
+  maxBy,
+  max,
 } from 'lodash/fp';
 
 // Elements
@@ -148,25 +149,27 @@ class App extends Component {
           events: {
             start() {
               // dispatch action Opening
-              // console.log('isAnimating');
-              props.offCanvasMenuToggleAnimation();
+               //console.log('isAnimating');
             },
             end() {
               // dispatch action Opening
-              // console.log('notAnimating');
-              props.offCanvasMenuToggleAnimation();
+               //console.log('notAnimating');
+              props.offCanvasMenuToggleAnimation(false);
             },
           },
         })}
       >
         {(state) => {
 
+         // console.log('HideMenu', (!this.props.isMenuOpen && !this.props.isMenuAnimating));
+
           return (
             <div className={styles.outer}>
 
                 <div className={styles.sidebarMenuWrap} style={{...this.myStyles(state).menu}}>
-                  <SidebarMenu/>
+                  <SidebarMenu showMenu={ !(!this.props.isMenuOpen && !this.props.isMenuAnimating)  }/>
                 </div>
+
                 <MenuTrigger/>
 
               <div className={styles.mainContainer}>
@@ -180,12 +183,18 @@ class App extends Component {
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.top)}>
                         <SearchModal />
                   </StickyContainer> }
+              {/*
+              ...this.props.showHeader ? {transform:`translateY(${this.props.stickyHeaderHeight}px)`, position:'relative', zIndex: '10'} : '',
+              */}
+              <div className={cx(styles.menuFlexWrap,'mainContent')}>
 
-                <div className={cx(styles.menuFlexWrap,'mainContent')}>
-                  <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}}   />
-                  <div className={styles.mainFlex} style={{...this.props.showHeader ? {marginTop:'80px'} : '', ...{marginBottom:`${this.props.revealFooterHeight}px`}}}>
+                <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}} />
+                  <div className={styles.mainFlex} style={{ ...this.props.showHeader ? {paddingTop:`${this.props.stickyHeaderHeight}px`} : '',
+                                                          ...this.props.showFooterReveal ? {marginBottom:`${this.props.revealFooterHeight}px`} : '',
+                                                          ...{minHeight:  `calc(100vh - ${( max([this.props.revealFooterHeight, this.props.fixedFooterHeight]))}px`}         }}
+                                                        >
                     <div className={styles.content}>
-                      <MainContent currentpage={this.props.currentpage} />
+                      <MainContent currentpage={this.props.currentpage} pageRef={this.props.pageRef} />
                     </div>
                   </div>
                 </div>
@@ -219,6 +228,7 @@ App.propTypes = {
   showFooterFixed: PropTypes.bool,
   showHeader: PropTypes.bool,
   isMenuOpen: PropTypes.bool,
+  isMenuAnimating: PropTypes.bool,
   isModalOpen: PropTypes.bool,
   offCanvasMenuStateChange: PropTypes.func,
   offCanvasMenuToggleAnimation: PropTypes.func,
@@ -228,15 +238,18 @@ App.defaultProps = {
   showFooterReveal: true,
   showFooterFixed: true,
   showHeader: true,
+  singlePage: false,
 };
 
 
 export const mapStateToProps = (state) => {
   return {
+    isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
+    isMenuAnimating: get('offCanvasMenu.offCanvasMenuAnimating', state),
     isModalOpen: get('modalModule.modalIsOpen', state),
     revealFooterHeight: get('appModule.revealFooterHeight', state),
     fixedFooterHeight: get('appModule.fixedFooterHeight', state),
-    isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
+    stickyHeaderHeight: get('appModule.stickyHeaderHeight', state),
   }
 };
 

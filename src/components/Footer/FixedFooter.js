@@ -26,15 +26,16 @@ class Footer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-
     // this doesn't help initial render.
     const { height } =  this.footerElement.getBoundingClientRect();
-
     if (prevState.height !==  height ) {
       this.setState({ height })
       this.props.setFixedFooterHeight(this.state.height);
     }
+  }
 
+  componentWillUnmount() {
+    this.props.setFixedFooterHeight(0);
   }
 
   onResize = () => {

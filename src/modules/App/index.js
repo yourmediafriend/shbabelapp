@@ -1,6 +1,7 @@
 import appModule, {
   setFixedFooterHeight,
   setRevealFooterHeight,
+  setStickyHeaderHeight,
   setCurrentBreakPoint,
 } from './reducers/app';
 
@@ -11,5 +12,6 @@ export default appModule;
 export {
   setFixedFooterHeight,
   setRevealFooterHeight,
+  setStickyHeaderHeight,
   setCurrentBreakPoint,
 };

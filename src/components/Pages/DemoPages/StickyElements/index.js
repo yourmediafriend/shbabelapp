@@ -5,6 +5,7 @@ import styles from './stickyElements.scss';
 import { TwoColumnLeft }  from '../../../Layout';
 import DummyText from '../../../DummyText/DummyTextLong'
 import StickyPanel from './StickyPanel';
+import { PromoWidget } from '../../../Widgets';
 
 import HeroBanner from '../../../HeroBanner';
 import hero_480w from '../../../../media/hero6/hero_480w.jpg';
@@ -25,9 +26,7 @@ const imagesHero = {
 
 let Sidebar = props => (
   <div>
-    <div className={cx(styles.panel)} >
-      Promo Panel
-    </div>
+    <PromoWidget imgSrc={hero_480w} className={styles.sidebarWidget}/>
     <StickyPanel />
   </div>
 )
@@ -35,10 +34,13 @@ let Sidebar = props => (
 class ColumnLayout extends Component {
 
   render() {
+
+    console.log(styles.containerMain);
+
     return (
       <div>
         <HeroBanner image={imagesHero}  />
-        <TwoColumnLeft contentMain={<DummyText />}  contentColumnLeft={<Sidebar />}  style={{container:{paddingTop: '30px'}}}/>
+        <TwoColumnLeft contentMain={<DummyText />}  contentColumnLeft={<Sidebar />} className={styles.containerMain}/>
       </div>
     )
   }

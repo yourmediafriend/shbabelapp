@@ -22,19 +22,24 @@ class Footer extends Component {
   };
 
   componentDidMount() {
-    const { height } =  this.footerElement.getBoundingClientRect();
-    this.setState({ height })
+    if (this.footerElement) {
+      const { height } = this.footerElement.getBoundingClientRect();
+      this.setState({ height })
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-
-    const { height } =  this.footerElement.getBoundingClientRect();
-
-    if (prevState.height !==  height ) {
-      this.setState({ height })
-      this.props.setRevealFooterHeight(this.state.height);
+    if (this.footerElement) {
+      const { height } =  this.footerElement.getBoundingClientRect();
+      if (prevState.height !==  height ) {
+        this.setState({ height })
+        this.props.setRevealFooterHeight(this.state.height);
+      }
     }
+  }
 
+  componentWillUnmount() {
+    this.props.setRevealFooterHeight(0);
   }
 
   onResize = () => {
@@ -45,19 +50,26 @@ class Footer extends Component {
   }
 
   render() {
-    return (
-      <div ref={(element) => this.footerElement = element} className={cx(styles.footer,styles.reveal)} style={{ paddingBottom:`${this.props.fixedFooterHeight + 20}px`}}>
-          <FooterMenu />
-      </div>
-    )
+
+    switch(this.props.breakpoint) {
+      case 'large':
+      case 'medium':
+        return (
+          <div ref={(element) => this.footerElement = element} className={cx(styles.footer,styles.reveal)} style={{ paddingBottom:`${this.props.fixedFooterHeight}px`}}>
+            <div className={styles.footerInner}>
+              <FooterMenu />
+            </div>
+          </div>
+        );
+      default: return null;
+    }
   }
 }
-
-
 
 export const mapStateToProps = (state) => {
   return {
     fixedFooterHeight: get('appModule.fixedFooterHeight', state),
+    breakpoint: get('appModule.breakpoint', state),
   }
 };
 

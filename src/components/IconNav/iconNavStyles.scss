@@ -7,6 +7,7 @@
 }
 .navItem {
     position: relative;
+    flex: 1;
     .navLink {
         height: 100%;
         color: #ffffff;
@@ -19,6 +20,7 @@
         padding: 0 20px 0;
         .icon {
             width: 22px;
+            display: inline-block;
             svg {
                 fill: #fff;
             }

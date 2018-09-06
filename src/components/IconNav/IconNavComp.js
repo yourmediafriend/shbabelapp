@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import ReactHoverObserver from '../ReactHoverObserver';
+import { Link } from 'react-router-dom';
 import Icon from '../Icons';
 import cx from 'classnames';
 import AccountDropdown from './Dropdown/accountDropdown'
@@ -21,16 +22,16 @@ class AppProvider extends React.Component {
   }
 }
 
-let Link = ({icon, text, style, clickEvent, href }) => {
+let MenuLink = ({icon, text, style, clickEvent, href }) => {
   return (
     <AppContext.Consumer>
       {(context) => {
         return (
-          <a  href={href} className={cx(styles.navLink, context.isHovering ? styles.hover : '' )} onClick={clickEvent}>
+          <Link  to={href ? href : '#'} className={cx(styles.navLink, context.isHovering ? styles.hover : '' )} onClick={clickEvent}>
             <span className={cx(styles.icon, styles[icon])}>
               {icon ? <Icon icon={icon} /> : <div>{text}</div>}
             </span>
-          </a>
+          </Link>
         )
       }}
     </AppContext.Consumer>
@@ -78,18 +79,18 @@ const IconNav = (props) => {
     <Nav className={cx(styles.navList, styles[props.className])}>
       <NavItem>
         <MenuItem>
-         <Link icon="home"  href={"/"}/>
+         <MenuLink icon="home"  href={"/"}/>
         </MenuItem>
       </NavItem>
       <NavItem >
         <MenuItem>
-          <Link icon='search' clickEvent={props.searchModalToggle.bind(this)}/>
+          <MenuLink icon='search' clickEvent={props.searchModalToggle.bind(this)}/>
         </MenuItem>
       </NavItem>
       <NavItem className={styles.account}>
         <MenuItem hoverOffDelay={250} >
 
-          <Link icon="account" clickEvent={props.modalToggle.bind(this, 'account', 0)} />
+          <MenuLink icon="account" clickEvent={props.modalToggle.bind(this, 'account', 0)} />
           <Dropdown>
             <AccountDropdown />
           </Dropdown>
@@ -98,17 +99,17 @@ const IconNav = (props) => {
       </NavItem>
       <NavItem>
         <MenuItem>
-          <Link icon="contact" href={"/contact"} />
+          <MenuLink icon="contact" href={"/contact"} />
         </MenuItem>
       </NavItem>
       <NavItem>
         <MenuItem>
-          <Link icon="cart" />
+          <MenuLink icon="cart" />
         </MenuItem>
       </NavItem>
       <NavItem>
         <MenuItem>
-          <Link icon="location" clickEvent={props.modalOpen.bind(this, 'location')} />
+          <MenuLink icon="location" clickEvent={props.modalOpen.bind(this, 'location')} />
         </MenuItem>
       </NavItem>
     </Nav>

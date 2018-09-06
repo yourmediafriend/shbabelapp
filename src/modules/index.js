@@ -7,6 +7,8 @@ import modal from './Modal';
 import nestedMenuReducers from './NestedMenu';
 import retrieveCatalogMenuData from './CatalogMenu';
 import postContactForm from './Forms/ContactForm';
+import postUserLoginForm from './Forms/UserLogin';
+
 import retrieveOpenWeather from './OpenWeather';
 import offCanvasMenu from './OffCanvasMenu';
 import googleMapsModule from "./GoogleMaps";
@@ -18,6 +20,7 @@ export default combineReducers({
   router: routerReducer,
   form: formReducer,
   postContactForm,
+  postUserLoginForm,
   offCanvasMenu,
   retrieveCatalogMenuData,
   searchModal,

@@ -156,9 +156,6 @@ class SimpleSlider extends React.Component {
 class ModalContent extends React.Component {
 
   render() {
-
-    console.log(this.props.contentId);
-
     return (
       <div style={{maxWidth: '620px', display:'block', width: '100%', height: '100%', margin: '0 auto 0'}}>
         <SimpleSlider style={{width:'100%', height:'100%'}} contentId={this.props.contentId}/>

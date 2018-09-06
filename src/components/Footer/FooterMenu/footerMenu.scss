@@ -1,7 +1,7 @@
 .footerMenu {
     :global(.list-group-item ){
         background: transparent;
-        padding: 0.35rem;
+        padding: 0.15rem;
         border: 0;
         border-radius: 0;
         a {
@@ -11,5 +11,33 @@
                 opacity: 0.6;
             }
         }
+    }
+}
+
+.footerSocialLinks {
+    :global(.icon) {
+        width: 24px;
+        display: inline-block;
+        svg {
+            fill: #fff;
+        }
+        &:hover {
+            svg {
+                fill: #040505;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .col_1,
+    .col_2 {
+        display: none;
+    }
+    .col_3 {
+        order: -1;
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center;
     }
 }

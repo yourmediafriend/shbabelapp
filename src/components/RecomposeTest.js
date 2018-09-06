@@ -27,7 +27,7 @@ const StatusList = () =>
 
 const Status = withToggle(({ status, toggledOn, toggle }) => {
 
-  console.log(toggledOn);
+  //console.log(toggledOn);
 
   return (
     <span onClick={ toggle }>
@@ -41,7 +41,7 @@ const Status = withToggle(({ status, toggledOn, toggle }) => {
 
 const Tooltip = withToggle(({ text, children, toggledOn, show, hide }) => {
 
-  console.log(toggledOn);
+  //console.log(toggledOn);
 
   return (<span>
         { toggledOn && <div className="Tooltip">{ text }</div> }

@@ -1,0 +1,62 @@
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+.fullScreenImage {
+    position: relative;
+    z-index: 2;
+}
+.quarterWrapper {
+    display: flex;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+
+    .reactHoverObserver {
+        width: 100%;
+        height: 100%;
+    }
+    .quarter {
+        flex: 1 100%;
+        &:nth-child(odd){
+            background: rgba(255, 193, 7, 0.30);
+        }
+        &:nth-child(even){
+            background: rgba(37, 236, 231, 0.30)
+        }
+
+        .backpanel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            overflow: hidden;
+        }
+    }
+}
+.overlay {
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+ }
+

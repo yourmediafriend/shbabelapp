@@ -9,6 +9,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import QueueItem from './MusicQueueItem';
+import Icon from '../Icons';
 
 const GET_TRACKS = gql`
   {
@@ -34,10 +35,8 @@ const Playlist = () => {
       {({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>;
         if (error) return `Error: ${error.message}`;
-        // console.log(data);
-        // console.log(data.nodeQuery.entities);
-
-        if (data.length) {
+        if (data.nodeQuery.entities.length) {
+          //console.log('music',data.nodeQuery.entities);
           return (
             <ListGroup>
               {data.nodeQuery.entities.map(article => <ListGroupItem key={article.nid}><QueueItem article={article} /></ListGroupItem>)}
@@ -45,17 +44,20 @@ const Playlist = () => {
           )
         }
         return null; // replace this with something relevant
-
       }}
     </Query>
   );
 }
 
-
-const musicQueuePopUp  = ({popUpIsOpen, loadTrack}) => {
+const musicQueuePopUp  = ({popUpIsOpen, loadTrack, closeQueuePopUp}) => {
   return (
     <div className={cx(styles.popUp, popUpIsOpen ? styles.visible : '')}>
       <div className={cx(styles.inner)}>
+        <div className={cx(styles.header)}>
+          <div onClick={closeQueuePopUp} className={cx(styles.close)}>
+            <Icon icon={'close'}  />
+          </div>
+        </div>
         <Playlist />
       </div>
     </div>

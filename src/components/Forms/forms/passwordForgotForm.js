@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import { FormRow, renderField } from '../formComponents'
+import { FormRow, RenderField } from '../formComponents'
 import { Button } from 'reactstrap';
 
 const validate = values => {
@@ -29,7 +29,7 @@ const passwordForgotForm = props => {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <FormRow>
-            <Field labeltext={"Email"} name={"email"} component={renderField} type={"email"} isrequired={true}/>
+            <Field labeltext={"Email"} name={"email"} component={RenderField} type={"email"} isrequired={true}/>
           </FormRow>
         </fieldset>
         <div>

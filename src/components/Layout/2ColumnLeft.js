@@ -1,9 +1,13 @@
 import React  from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import cx from 'classnames'
 
 const Layout = (props) => {
+
+  console.log(props.className);
+
   return (
-    <Container>
+    <Container className={cx(props.className)}>
       <Row>
         <Col sm={12} md={3}>
           {props.contentColumnLeft}

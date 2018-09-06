@@ -55,11 +55,11 @@ class MusicPlayer extends Component {
     this.setState({ playbackRate: parseFloat(e.target.value) })
   }
   onPlay = () => {
-    console.log('onPlay')
+    //console.log('onPlay')
     this.setState({ playing: true })
   }
   onPause = () => {
-    console.log('onPause')
+    //onsole.log('onPause')
     this.setState({ playing: false })
   }
   onSeekMouseDown = e => {
@@ -73,14 +73,14 @@ class MusicPlayer extends Component {
     this.player.seekTo(parseFloat(e.target.value))
   }
   onProgress = state => {
-    console.log('onProgress', state)
+    //console.log('onProgress', state)
     // We only want to update time slider if we are not currently seeking
     if (!this.state.seeking) {
       this.setState(state)
     }
   }
   onEnded = () => {
-    console.log('onEnded')
+    //console.log('onEnded')
     this.setState({ playing: this.state.loop })
   }
   onDuration = (duration) => {
