@@ -18,16 +18,23 @@ class NewsItem extends Component {
     return (
       <ListGroupItem className={styles.item}>
         <article>
-          <div className={styles.summaryHeader}>
+          <div className={styles.thumbnail}>
             <Image image={this.props.image} />
+          </div>
+          <div className={styles.summaryHeader}>
             <Category category={this.props.category} />
             <h2><Link to={`/news${this.props.url}`} className={styles.articleLink} >{this.props.title}</Link></h2>
-            <div className={styles.created}>
-              <UtcSecondsToDate created={this.props.created} />
+
+            <div className={styles.meta}>
+              <div className={styles.created}>
+                <UtcSecondsToDate created={this.props.created} />
+              </div>
+              <div className={styles.author}>
+                <Link to={this.props.author.entityUrl.path}>{this.props.author.entityLabel}</Link>
+              </div>
             </div>
-            <div className={styles.author}>
-              <Link to={this.props.author.entityUrl.path}>{this.props.author.entityLabel}</Link>
-            </div>
+
+
           </div>
         </article>
       </ListGroupItem>

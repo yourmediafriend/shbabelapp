@@ -1,20 +1,23 @@
 .articlesIndex {
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin: 0px -20px;
 
     .item {
         margin-bottom: 30px;
         margin-top: 30px;
+        padding: 0px 20px;
         border: 0;
-        padding: 0;
         flex-basis: 50%;
+    }
+    article {
+        background: #2b2b2b;
+        @include clearfix();
 
         img{
             width: 100%;
         }
-
         .articleLink {
             color: inherit;
             &:hover {
@@ -22,8 +25,34 @@
                 opacity: 0.7;
             }
         }
+        .summaryHeader{
+            position: relative;
+            z-index: 1;
+            background: #35363a;
+            color: #fff;
+            padding: 15px;
+            top: 0;
+            margin: -50px 0 0 0px;
+            width: 75%;
+            display: block;
+            float: right;
+        }
+        .category {
+            margin-bottom: 0.7rem;
+            color: #ffc107;
+        }
+        .meta {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            > div {
+                display: inline-block;
+                margin-right: 10px;
+            }
+        }
     }
 }
+
+
 .contentMain {
     margin-top: 40px;
 }
