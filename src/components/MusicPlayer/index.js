@@ -156,7 +156,7 @@ class MusicPlayer extends Component {
 
         <div className={cx(styles.section, styles.timeline)}>
           <div className={cx(styles.cover)}>
-            {loadTrack.fieldCover ? <Image cloudName="dghff7rpa" publicId={`Mixes/${loadTrack.fieldCover}`} width="40" crop="scale" /> : ''}
+            {loadTrack.fieldCover ? <Image cloudName="dghff7rpa" publicId={`mix/${loadTrack.fieldCover}`} width="40" crop="scale" /> : ''}
           </div>
           <div className={cx(styles.elapsed)}>
             <Duration seconds={duration * played} />

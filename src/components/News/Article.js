@@ -14,7 +14,6 @@ import Latest from './WidgetLatest';
 
 import Widget from '../Widgets';
 import widgetStyles from '../Widgets/widget.scss';
-
 import { Category } from './ArticleElements';
 
 
@@ -27,6 +26,7 @@ class ArticleSideBar extends Component {
     );
   }
 }
+
 
 class Article extends Component {
 
@@ -42,7 +42,6 @@ class Article extends Component {
           <div className={styles.author}>
             <Link to={this.props.author.entityUrl.path}>{this.props.author.entityLabel}</Link>
           </div>
-
         </header>
         <section className={styles.articleContent}>
           <div dangerouslySetInnerHTML={{ __html: this.props.body }} />

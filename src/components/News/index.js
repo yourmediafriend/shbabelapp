@@ -11,6 +11,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 
 import { Category, Image } from './ArticleElements';
 
+
 class NewsItem extends Component {
 
   render() {

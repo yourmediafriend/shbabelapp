@@ -9,29 +9,14 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import QueueItem from './MusicQueueItem';
-import Icon from '../Icons';
 
-const GET_TRACKS = gql`
-  {
-    nodeQuery(filter: {conditions: [{operator: EQUAL, field: "type", value: ["mixes"]}]}) {
-      entities {
-        ... on Node {
-          nid
-          title
-          fieldTrack {
-            uri
-          }
-          fieldArtist
-          fieldCover
-        }
-      }
-    }
-  }
-  `;
+import musicPlayerQuery from '../../graphQL/musicPlayerQuery';
+
+import Icon from '../Icons';
 
 const Playlist = () => {
   return (
-    <Query query={GET_TRACKS} >
+    <Query query={musicPlayerQuery} >
       {({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>;
         if (error) return `Error: ${error.message}`;

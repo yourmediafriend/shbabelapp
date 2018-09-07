@@ -21,7 +21,7 @@ class NestedMenu extends Component {
           if (loading) return <p>Loading...</p>;
           if (error) return `Error: ${error.message}`;
           if (data.menuByName.links.length) {
-            console.log(data.menuByName.links);
+          //  console.log(data.menuByName.links);
             return (
               <div className={styles.sidebarMenu}>
                 <Menu data={cloneDeep(data.menuByName.links)} />
