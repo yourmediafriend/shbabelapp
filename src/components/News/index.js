@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Query } from "react-apollo";
 import styles from './news.scss';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { TwoColumnRight }  from '../Layout';
 import newsArticlesIndexQuery from '../../graphQL/newsArticlesIndexQuery';
 import UtcSecondsToDate from './utcSecondsToDate';
@@ -11,36 +11,51 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 
 import { Category, Image } from './ArticleElements';
 
-
 class NewsItem extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+                    redirect: false,
+                 };
+  }
+
+  handleOnClick = () => {
+    // some action...
+    // then redirect
+    this.setState({redirect: true});
+  }
+
   render() {
+
+    if (this.state.redirect) {
+      return <Redirect push to={`/news${this.props.url}`} />;
+    }
+
     return (
       <ListGroupItem className={styles.item}>
-        <article>
-          <div className={styles.thumbnail}>
-            <Image image={this.props.image} />
-          </div>
-          <div className={styles.summaryHeader}>
-            <Category category={this.props.category} />
-            <h2><Link to={`/news${this.props.url}`} className={styles.articleLink} >{this.props.title}</Link></h2>
-
-            <div className={styles.meta}>
-              <div className={styles.created}>
-                <UtcSecondsToDate created={this.props.created} />
-              </div>
-              <div className={styles.author}>
-                <Link to={this.props.author.entityUrl.path}>{this.props.author.entityLabel}</Link>
+          <article onClick={this.handleOnClick}>
+            <div className={styles.thumbnail}>
+              <Image image={this.props.image} />
+            </div>
+            <div className={styles.summaryHeader}>
+              <Category category={this.props.category} />
+              <h2><Link to={`/news${this.props.url}`} className={styles.articleLink} >{this.props.title}</Link></h2>
+              <div className={styles.meta}>
+                <div className={styles.created}>
+                  <UtcSecondsToDate created={this.props.created} />
+                </div>
+                <div className={styles.author}>
+                  <Link to={this.props.author.entityUrl.path}>{this.props.author.entityLabel}</Link>
+                </div>
               </div>
             </div>
-
-
-          </div>
-        </article>
+          </article>
       </ListGroupItem>
     );
   }
 }
+
 
 class NewsArticlesIndex extends Component {
 

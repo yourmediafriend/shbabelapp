@@ -6,44 +6,9 @@ import { Link } from 'react-router-dom';
 import UtcSecondsToDate from './utcSecondsToDate';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import newsArticlesIndexQuery from "../../graphQL/newsArticlesIndexQuery";
-import { Image as CloudImage, Transformation } from 'cloudinary-react';
 
+import { Category } from './ArticleElements';
 
-const parseURL = (url) => {
-  var parser = document.createElement('a'),
-    searchObject = {},
-    queries, split, i;
-  // Let the browser do the work
-  parser.href = url;
-  // Convert query string to object
-  queries = parser.search.replace(/^\?/, '').split('&');
-  for( i = 0; i < queries.length; i++ ) {
-    split = queries[i].split('=');
-    searchObject[split[0]] = split[1];
-  }
-  return {
-    protocol: parser.protocol,
-    host: parser.host,
-    hostname: parser.hostname,
-    port: parser.port,
-    pathname: parser.pathname,
-    search: parser.search,
-    searchObject: searchObject,
-    hash: parser.hash
-  };
-}
-
-const Category = ({category}) => {
-
-  if (category) {
-    return (
-      <div className={styles.category}>
-        {category.entity.name}
-      </div>
-    );
-  }
-  return null;
-}
 
 const Image = ({image}) => {
 
@@ -51,14 +16,7 @@ const Image = ({image}) => {
 
     return (
       <div className={styles.image}>
-
-{/*        <img src={`http://res.cloudinary.com/demo/image/fetch/w_40,h_40/${image.url}`}  />*/}
-
-
-
-
-       {/* <CloudImage cloudName="dghff7rpa" publicId={image.url} alt={image.alt} width="40" crop="scale" />*/}
-
+        <img src={'http://res.cloudinary.com/dghff7rpa/image/upload/c_fit,w_380/v1536331737/2018-09/me.jpg'} alt={image.alt} />
       </div>
     );
   }
@@ -71,16 +29,21 @@ class NewsItem extends Component {
   render() {
     return (
       <ListGroupItem className={styles.item}>
-        <div className={styles.summaryHeader}>
-          <h2 className={styles.title}><Link to={`/news${this.props.url}`} className={styles.articleLink} >{this.props.title}</Link></h2>
-          <Image image={this.props.image} />
-          <div className={styles.created}>
-            <UtcSecondsToDate created={this.props.created} />
+        <article>
+          <Link  to={`/news${this.props.url}`}><Image image={this.props.image} /></Link>
+          <div className={styles.summaryHeader}>
+            <Category category={this.props.category} />
+            <h2 className={styles.title}><Link to={`/news${this.props.url}`} className={styles.articleLink} >{this.props.title}</Link></h2>
+            <div className={styles.meta}>
+              <div className={styles.created}>
+                <UtcSecondsToDate created={this.props.created} />
+              </div>
+              <div className={styles.author}>
+                <Link to={this.props.author.entityUrl.path}>{this.props.author.entityLabel}</Link>
+              </div>
+            </div>
           </div>
-          <div className={styles.author}>
-            {this.props.author.entityLabel}
-          </div>
-        </div>
+        </article>
       </ListGroupItem>
     );
   }
@@ -95,7 +58,7 @@ class NewsLatestWidget extends Component {
           if (error) return `Error: ${error.message}`;
           if (data.nodeQuery.entities.length) {
             return (
-              <ListGroup className={styles.articlesIndex}>
+              <ListGroup className={styles.articlesWidget}>
                 {data.nodeQuery.entities.map(article =>
                   <NewsItem key={article.nid}
                             title={article.title}
@@ -103,6 +66,7 @@ class NewsLatestWidget extends Component {
                             author={article.entityOwner}
                             image={article.fieldImage}
                             created={article.created}
+                            category={article.fieldCategory}
                             body={article.body.value}
                             summary={article.body.summaryProcessed}
                   />
