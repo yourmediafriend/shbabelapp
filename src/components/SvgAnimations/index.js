@@ -14,9 +14,10 @@ import Circle from './CircleComp';
 import Square from './SquareComp'
 import Hypno from './HypnoComp';
 
-import BackgroundImageUrlA from './media/factory-1.gif';
-import BackgroundImageUrlB  from './media/factory-4.gif';
-import BackgroundImageUrlC from './media/factory-3.gif';
+import BackgroundImageUrlA from '../../media/backgrounds/images/factory-1.gif';
+import BackgroundImageUrlB from '../../media/backgrounds/images/factory-4.gif';
+import BackgroundImageUrlC from '../../media/backgrounds/images/factory-3.gif';
+
 
 const SvgShape = (props) => {
 

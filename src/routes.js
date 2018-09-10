@@ -20,7 +20,16 @@ showFooterFixed={false}
 
 const SwitchRoute = () => (
   <Switch>
-    <Route exact path='/' render={() => <OneColumnSidebar currentpage='home' fullscreen={true} />} />
+
+    {/*/ Homepage /*/}
+    <Route exact path='/' render={(routeProps) => <OneColumnSidebar {...routeProps}
+                                                                    currentpage='home'
+                                                                    singlePage={false}
+                                                                    showHeader={true}
+                                                                    showFooterFixed={true}
+                                                                    showFooterReveal={false} />} />
+
+
     <Route exact path='/full' render={() => <OneColumnFlat currentpage='full' />} />
     <Route exact path='/svgs' render={() => <OneColumnSidebar currentpage='svgs' />} />
 
