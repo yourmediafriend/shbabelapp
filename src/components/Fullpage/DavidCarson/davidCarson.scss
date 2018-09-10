@@ -1,3 +1,16 @@
+.section_1 {
+    background-image: url('https://res.cloudinary.com/dghff7rpa/image/upload/v1536611005/fullpage/carson/slide-1.jpg');
+}
+.section_2 {
+    background-image: url('https://res.cloudinary.com/dghff7rpa/image/upload/v1536611005/fullpage/carson/slide-2.jpg');
+}
+.section_3 {
+    background-image: url('https://res.cloudinary.com/dghff7rpa/image/upload/v1536611005/fullpage/carson/slide-3.jpg');
+}
+.section_4 {
+    background-image: url('https://res.cloudinary.com/dghff7rpa/image/upload/v1536611005/fullpage/carson/slide-4.jpg');
+}
+
 .fullpageBg {
     position: absolute;
     z-index: 1;
@@ -35,20 +48,6 @@
         pointer-events: none;
     }
 }
-.section_1 {
-    background-image: url('../../../media/fullpage-slides/dark/slide-1.jpg');
-}
-.section_2 {
-    background-image: url('../../../media/fullpage-slides/dark/slide-2.jpg');
-}
-.section_3 {
-    background-image: url('../../../media/fullpage-slides/dark/slide-3.jpg');
- }
-.section_4 {
-    background-image: url('../../../media/fullpage-slides/dark/slide-4.jpg');
-}
-
-
 .section_1 {
 
     color: #fff;
