@@ -60,18 +60,12 @@ class NewsItem extends Component {
 class NewsArticlesIndex extends Component {
 
   render() {
-
-    //console.log(Date.now());
-
     return (
       <Query query={newsArticlesIndexQuery} variables={{ offset:0, limit:5, dateNow: '1536137598978'  }} >
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return `Error: ${error.message}`;
           if (data.nodeQuery.entities.length) {
-
-
-
             return (
               <ListGroup className={styles.articlesIndex}>
                 {data.nodeQuery.entities.map(article =>

@@ -6,12 +6,12 @@ import GridParallax from '../../GridParallax'
 import styles from './gridpages.scss'
 import cx from 'classnames';
 
-import hero_480w from '../../../media/hero6/hero_480w.jpg';
-import hero_660w from '../../../media/hero6/hero_660w.jpg';
-import hero_960w from '../../../media/hero6/hero_960w.jpg';
-import hero_980w from '../../../media/hero6/hero_980w.jpg';
-import hero_1320w from '../../../media/hero6/hero_1320w.jpg';
-import hero_1900w from '../../../media/hero6/hero_1900w.jpg';
+let hero_480w  = 'https://res.cloudinary.com/dghff7rpa/image/upload/c_scale,w_660/v1536370812/hero/hero_2600w.jpg';
+let hero_660w  = 'https://res.cloudinary.com/dghff7rpa/image/upload/c_scale,w_960/v1536370812/hero/hero_2600w.jpg';
+let hero_960w  = 'https://res.cloudinary.com/dghff7rpa/image/upload/c_scale,w_980/v1536370812/hero/hero_2600w.jpg';
+let hero_980w  = 'https://res.cloudinary.com/dghff7rpa/image/upload/c_scale,w_1320/v1536370812/hero/hero_2600w.jpg';
+let hero_1320w = 'https://res.cloudinary.com/dghff7rpa/image/upload/c_scale,w_1900/v1536370812/hero/hero_2600w.jpg';
+let hero_1900w = 'https://res.cloudinary.com/dghff7rpa/image/upload/v1536370812/hero/hero_2600w.jpg';
 
 const imagesHero = {
   0: hero_480w,

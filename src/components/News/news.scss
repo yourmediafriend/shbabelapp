@@ -10,6 +10,7 @@
         padding: 0px 20px;
         border: 0;
         flex-basis: 50%;
+
     }
     article {
         background: #2b2b2b;
@@ -17,6 +18,13 @@
         flex-direction: column;
         height: 100%;
         cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+            @include media-breakpoint-up(md) {
+                transform: translateZ(0) scale(1.02);
+                box-shadow: 0 5px 8px 0px rgba(29, 29, 29, 0.3);
+            }
+        }
 
         img{
             width: 100%;

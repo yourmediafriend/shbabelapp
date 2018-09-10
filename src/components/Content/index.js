@@ -12,6 +12,7 @@ import QuarterPage from '../QuarterPage';
 import Fullpage from '../Fullpage';
 
 // Pages
+import Homepage from '../Pages/Homepage';
 import ContactPage from '../Pages/ContactPage';
 import WeatherPage from '../Pages/WeatherPage';
 import GridPage from '../Pages/GridPage';
@@ -42,7 +43,7 @@ const Content = ({currentpage, pageRef, match }) => {
 
   switch(currentpage) {
     case 'home':
-      return null;
+      return <Homepage />;
     case 'svgs':
       return  <SvgAnimation />;
     case 'circle':
