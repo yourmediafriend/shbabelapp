@@ -20,16 +20,14 @@ const Playlist = () => {
       {({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>;
         if (error) return `Error: ${error.message}`;
-        if (data.nodeQuery.entities.length) {
-          //console.log('music',data.nodeQuery.entities);
-          return (
-
-            <div>
-              xxxx
-            </div>
-
-          )
-        }
+        // if (data.nodeQuery.entities.length) {
+        //   //console.log('music',data.nodeQuery.entities);
+        //   return (
+        //     <ListGroup>
+        //       {data.nodeQuery.entities.map(article => <ListGroupItem key={article.nid}><QueueItem article={article} /></ListGroupItem>)}
+        //     </ListGroup>
+        //   )
+        // }
         return null; // replace this with something relevant
       }}
     </Query>
