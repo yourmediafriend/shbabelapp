@@ -1,7 +1,5 @@
 import gql from "graphql-tag";
 
-
-
 const GET_ARTICLES = gql`
 
   query nodeQuery($dateNow: String!, $limit: Int!, $offset: Int!){
