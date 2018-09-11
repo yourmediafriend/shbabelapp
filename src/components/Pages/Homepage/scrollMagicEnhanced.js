@@ -69,8 +69,8 @@ function withSubscription(WrappedComponent, selectData) {
       let $el = ReactDOM.findDOMNode(this.myRef.current);
       this.controller = new ScrollMagic.Controller({
         container: options.container,
+        addIndicators: true
         // loglevel: 2,
-        // addIndicators: true
       });
 
       this.scenes.push(new ScrollMagic.Scene({
@@ -84,6 +84,9 @@ function withSubscription(WrappedComponent, selectData) {
           this.myRef.current.toggleCompactHeader();
         }.bind(this))
         .addTo(this.controller));
+
+
+      console.log(this.controller);
 
       this.sceneCreated = true;
 
