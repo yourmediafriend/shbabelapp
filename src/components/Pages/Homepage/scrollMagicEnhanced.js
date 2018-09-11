@@ -6,6 +6,7 @@ import 'AnimationGsap';
 import 'debug.addIndicators';
 
 import { getOr } from 'lodash/fp';
+import S from "camel-case-selector";
 
 let globalOptions = {
   offset: 0,
@@ -73,17 +74,27 @@ function withSubscription(WrappedComponent, selectData) {
         // addIndicators: true
       });
 
-      this.scenes.push(new ScrollMagic.Scene({
-        offset: ($el.clientHeight * 5)+'px',
-        triggerHook: 0,
-      })
-        .on("enter", function (event) {
-          this.myRef.current.toggleCompactHeader();
-        }.bind(this))
-        .on("leave", function (event) {
-          this.myRef.current.toggleCompactHeader();
-        }.bind(this))
-        .addTo(this.controller));
+
+      let i;
+
+      for (i = 0; i < 3; i++) {
+
+        this.scenes.push(new ScrollMagic.Scene({
+          offset: window.innerHeight * i,
+          duration: window.innerHeight,
+          triggerHook: 0,
+        })
+          .on("enter", function (event) {
+            console.log('enter - start this now');
+          }.bind(this))
+          .on("leave", function (event) {
+            console.log('leave - stop it now');
+          }.bind(this))
+          .addTo(this.controller));
+
+      }
+
+
 
       this.sceneCreated = true;
 
@@ -103,11 +114,31 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     recalculateDurations() {
+
       if(this.sceneCreated && !this.shouldEnable()){
         return this.destroyScene();
       }else if(!this.sceneCreated && this.shouldEnable()){
         return this.createScene();
       }
+
+      let options = this.getOptions();
+      let firstScene = this.scenes[0];
+      let otherScenes = this.scenes.slice(1);
+
+      this.scenes.forEach((scene, index) => {
+        scene.offset( window.innerHeight * index );
+        scene.duration( window.innerHeight );
+      });
+
+      // if(firstScene){
+      //   firstScene.duration($firstHolder.clientHeight + options.offset + 'px');
+      //   firstScene.setTween(this.firstSceneExit($firstHolder, options));
+      // }
+      //
+      // otherScenes.forEach((scene, index) => {
+      //   scene.duration($otherHolders[holderIndex].clientHeight + options.offset + 'px');
+      // });
+
     }
 
     render() {
