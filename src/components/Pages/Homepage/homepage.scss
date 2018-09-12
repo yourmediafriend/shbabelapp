@@ -12,14 +12,11 @@
     z-index: 1;
     color: #fff;
     font-weight: bold;
-
     .section {
         position: relative;
         height: 100vh;
     }
-
 }
-
 .mainText {
     display: table;
     position: absolute;
@@ -31,12 +28,9 @@
     letter-spacing: 0.01em;
     line-height: 1.25;
     z-index: 10;
-
     left: 20%;
     font-size: 60px;
     width: 520px;
-
-
     .inner {
         display: table-cell;
         vertical-align: middle;
