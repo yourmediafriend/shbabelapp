@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fullpage/react-fullpage": "0.0.9",
+    "@inlet/react-pixi": "^0.1.4",
     "apollo-boost": "^0.1.15",
     "apollo-cache-inmemory": "^1.2.9",
     "apollo-link-http": "^1.5.4",
@@ -67,7 +68,6 @@
     "react-move": "^2.8.0",
     "react-open-weather": "^0.4.0",
     "react-open-weather-map": "^2.3.0",
-    "react-pixi": "^0.9.18",
     "react-player": "^1.6.4",
     "react-redux": "^5.0.7",
     "react-redux-lifecycle": "^2.2.0",

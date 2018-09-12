@@ -2,50 +2,18 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import styles from './homepage.scss'
 
-import ReactPIXI from 'react-pixi';
-import PIXI from 'pixi.js';
+import { Stage, Sprite, Container } from '@inlet/react-pixi'
+import * as PIXI from 'pixi.js';
 
-const Sprite = React.createFactory(ReactPIXI.Sprite);
-const DisplayObjectContainer = React.createFactory(ReactPIXI.DisplayObjectContainer);
+import cat from './media/cat.png'
 
-// const CupcakeComponent = React.createClass({
-//   displayName: 'CupcakeComponent',
-//   // maps from cupcake toppings to the appropriate sprite
-//   spritemapping : {
-//     'vanilla' : assetpath('creamVanilla.png'),
-//     'chocolate' : assetpath('creamChoco.png'),
-//     'mocha' : assetpath('creamMocha.png'),
-//     'pink' : assetpath('creamPink.png'),
-//   },
-//   render : function () {
-//     let creamimagename = this.spritemapping[this.props.topping];
-//     let xposition = this.props.xposition;
-//     return DisplayObjectContainer(
-//       {x:xposition, y:100 },
-//       Sprite({image:creamimagename, y:-35, anchor: new PIXI.Point(0.5,0.5), key:'topping'}, null),
-//       Sprite({image:assetpath('cupCake.png'), y:35, anchor: new PIXI.Point(0.5,0.5), key:'cake'}, null)
-//     );
-//   }
-// });
-
-const assetpath = (filename) => { return '../../media/pixi/' + filename; };
-
-const spritemapping = {
-  'vanilla' : assetpath('creamVanilla.png'),
-  'chocolate' : assetpath('creamChoco.png'),
-  'mocha' : assetpath('creamMocha.png'),
-  'pink' : assetpath('creamPink.png'),
-}
-
-class CupcakeComponent extends Component {
-
+class CanvasTest extends Component {
   render() {
-    let creamimagename = this.spritemapping[this.props.topping];
-    let xposition = this.props.xposition;
-    return DisplayObjectContainer(
-      {x:xposition, y:100 },
-      Sprite({image:creamimagename, y:-35, anchor: new PIXI.Point(0.5,0.5), key:'topping'}, null),
-      Sprite({image:assetpath('cupCake.png'), y:35, anchor: new PIXI.Point(0.5,0.5), key:'cake'}, null)
+    return (
+      <Stage width={window.innerWidth} height={window.innerHeight}  options={{ backgroundColor: 0xff00ea }}>
+        <Sprite texture={PIXI.Texture.fromImage(cat)} />
+        <Container></Container>
+      </Stage>
     );
   }
 }
@@ -54,7 +22,7 @@ class HomeCanvas extends Component {
   render() {
     return (
       <div>
-        <CupcakeComponent topping='chocolate' />
+        <CanvasTest />
       </div>
     )
   }
