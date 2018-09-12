@@ -77,6 +77,4 @@ class HomeCanvas extends Component {
   }
 }
 
-
-
 export default HomeCanvas;
