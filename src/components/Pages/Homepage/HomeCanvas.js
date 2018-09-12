@@ -2,36 +2,38 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import styles from './homepage.scss'
 
-import createjs from 'easeljs-react';
+import ReactPIXI from 'react-pixi';
+import PIXI from 'pixi.js';
 
-import {
-  StageComponent, BitmapComponent, ContainerComponent, ShapeComponent, TextComponent
-} from "easeljs-react";
+const Sprite = React.createFactory(ReactPIXI.Sprite);
+const DisplayObjectContainer = React.createFactory(ReactPIXI.DisplayObjectContainer);
 
-const Shape = createjs.Shape;
-const Stage = createjs.Stage;
+const CupcakeComponent = React.createClass({
+  displayName: 'CupcakeComponent',
+  // maps from cupcake toppings to the appropriate sprite
+  spritemapping : {
+    'vanilla' : assetpath('creamVanilla.png'),
+    'chocolate' : assetpath('creamChoco.png'),
+    'mocha' : assetpath('creamMocha.png'),
+    'pink' : assetpath('creamPink.png'),
+  },
+  render : function () {
+    let creamimagename = this.spritemapping[this.props.topping];
+    let xposition = this.props.xposition;
+    return DisplayObjectContainer(
+      {x:xposition, y:100 },
+      Sprite({image:creamimagename, y:-35, anchor: new PIXI.Point(0.5,0.5), key:'topping'}, null),
+      Sprite({image:assetpath('cupCake.png'), y:35, anchor: new PIXI.Point(0.5,0.5), key:'cake'}, null)
+    );
+  }
+});
 
-
-
-// class CanvasComponent extends React.Component {
-//   stage;
-//   shape;
-//   setStageRef = n => this.stage = n.stage;
-//   setShapeRef = n => this.shape = n;
-//   render() {
-//     return (
-//       <StageComponent width={640} height={480} ref={this.setStageRef}>
-//         <ShapeComponent ref={this.setShapeRef} />
-//       </StageComponent>
-//     );
-//   }
-// }
 
 class HomeCanvas extends Component {
   render() {
     return (
       <div>
-
+<CupcakeComponent />
       </div>
     )
   }
