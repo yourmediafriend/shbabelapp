@@ -5,7 +5,7 @@ import ScrollMagic from 'scrollmagic-with-ssr';
 import 'AnimationGsap';
 import 'debug.addIndicators';
 
-import { getOr } from 'lodash/fp';
+import { getOr, assign } from 'lodash/fp';
 import S from "camel-case-selector";
 
 let globalOptions = {
@@ -20,7 +20,7 @@ function withSubscription(WrappedComponent, selectData) {
     constructor() {
       super(...arguments);
       this.myRef = React.createRef();
-      this.state = {};
+      this.state = {activeSceneId:0};
       this.scenes = [];
       this.tweens = [];
       this.controller = null;
@@ -74,7 +74,6 @@ function withSubscription(WrappedComponent, selectData) {
         // loglevel: 2,
       });
 
-
       let i;
 
       for (i = 0; i < 3; i++) {
@@ -82,26 +81,25 @@ function withSubscription(WrappedComponent, selectData) {
         this.scenes.push(new ScrollMagic.Scene({
           offset: window.innerHeight * i,
           duration: window.innerHeight,
-          triggerHook: 0,
         })
-          .on("enter", function (event) {
-            console.log('enter - start this now');
-          }.bind(this))
-          .on("leave", function (event) {
-            console.log('leave - stop it now');
-          }.bind(this))
+          .on("enter", function (i, event) {
+            this.setState({activeSceneId:i});
+            console.log('enter - start this now', i);
+          }.bind(this, i))
+          .on("leave", function (i, even) {
+        /*    this.setState({title:'title'});
+            console.log('leave - stop it now', i);*/
+          }.bind(this, i))
           .addTo(this.controller));
 
       }
 
-
-
-
-      console.log(this.controller);
+      console.log('B ',this.props);
 
       this.sceneCreated = true;
 
     }
+
 
     destroyScene() {
       if(this.controller) this.controller.destroy(true);
@@ -145,11 +143,10 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     render() {
-      const {extraProp, ...passThroughProps} = this.props;
+      const { extraProp } = this.props;
       return <WrappedComponent
         ref={this.myRef}
-        {...passThroughProps}
-
+        activeSceneId={this.state.activeSceneId}
       />;
     }
   }

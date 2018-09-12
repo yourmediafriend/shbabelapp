@@ -7,10 +7,22 @@ import { OneColumnCenter }  from '../../Layout';
 import Dummytext from '../../DummyText/DummyTextLong';
 import HomeCanvas from './HomeCanvas';
 
+
+const UpdateTileCount = (count) => {
+
+  console.log(count);
+
+}
+
+
+
 const FixedBackground = (props) => {
   return (
     <div className={cx(styles.fixedBackgroundLayer)} >
-      <HomeCanvas />
+      <HomeCanvas activeSceneId={props.activeSceneId} />
+      <div style={{position:'absolute',top:'100px',left:'100px'}}>
+        {props.activeSceneId}
+      </div>
     </div>
   )
 };
@@ -19,11 +31,12 @@ class Page extends Component {
   render() {
     return (
       <div className={cx(styles.homepage)}>
-        <FixedBackground />
+        <FixedBackground activeSceneId={this.props.activeSceneId} />
         <div className={cx(styles.content)}>
           <section className={cx(styles.section)}>
             <div className={cx(styles.mainText)}>
               <div className={cx(styles.inner)}>
+                <h1>{this.props.title}</h1>
                 Creative vision, technologies and digital experience
               </div>
             </div>
