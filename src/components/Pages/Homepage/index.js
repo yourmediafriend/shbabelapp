@@ -15,6 +15,42 @@ const UpdateTileCount = (count) => {
 }
 
 
+const HomeContent = (props) => {
+  return (
+    <div className={cx(styles.content)}>
+      <section className={cx(styles.section)}>
+        <div className={cx(styles.mainText)}>
+          <div className={cx(styles.inner)}>
+            <h1>{props.title}</h1>
+            Creative vision, technologies and digital experience
+          </div>
+        </div>
+      </section>
+      <section className={cx(styles.section)}>
+        <div className={cx(styles.mainText)}>
+          <div className={cx(styles.inner)}>
+            section 2
+          </div>
+        </div>
+      </section>
+      <section className={cx(styles.section)}>
+        <div className={cx(styles.mainText)}>
+          <div className={cx(styles.inner)}>
+            section 3
+          </div>
+        </div>
+      </section>
+      <section className={cx(styles.section)}>
+        <div className={cx(styles.mainText)}>
+          <div className={cx(styles.inner)}>
+            section 4
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 
 const FixedBackground = (props) => {
   return (
@@ -32,37 +68,7 @@ class Page extends Component {
     return (
       <div className={cx(styles.homepage)}>
         <FixedBackground activeSceneId={this.props.activeSceneId} />
-        <div className={cx(styles.content)}>
-          <section className={cx(styles.section)}>
-            <div className={cx(styles.mainText)}>
-              <div className={cx(styles.inner)}>
-                <h1>{this.props.title}</h1>
-                Creative vision, technologies and digital experience
-              </div>
-            </div>
-          </section>
-          <section className={cx(styles.section)}>
-            <div className={cx(styles.mainText)}>
-              <div className={cx(styles.inner)}>
-                section 2
-              </div>
-            </div>
-          </section>
-          <section className={cx(styles.section)}>
-            <div className={cx(styles.mainText)}>
-              <div className={cx(styles.inner)}>
-                section 3
-              </div>
-            </div>
-          </section>
-          <section className={cx(styles.section)}>
-            <div className={cx(styles.mainText)}>
-              <div className={cx(styles.inner)}>
-                section 4
-              </div>
-            </div>
-          </section>
-        </div>
+        <HomeContent title={this.props.title}/>
       </div>
     )
   }

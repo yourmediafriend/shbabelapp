@@ -8,6 +8,7 @@
     background: #35363a;
 }
 .content {
+    pointer-events: none;
     position: relative;
     z-index: 1;
     color: #fff;

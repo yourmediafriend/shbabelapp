@@ -43,7 +43,11 @@ const Content = ({currentpage, pageRef, match }) => {
 
   switch(currentpage) {
     case 'home':
-      return <Homepage />;
+      return(
+        <MainContent className={styles.homepage}>
+          <Homepage />
+        </MainContent>
+      );
     case 'svgs':
       return  <SvgAnimation />;
     case 'circle':
