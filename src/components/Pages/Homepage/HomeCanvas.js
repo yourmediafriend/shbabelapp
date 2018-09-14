@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import styles from './homepage.scss'
 
-import { Stage, Sprite, Container, TilingSprite, Text } from '@inlet/react-pixi'
+import { Stage, Sprite, Container, TilingSprite, Text, Graphics } from '@inlet/react-pixi'
 import * as PIXI from 'pixi.js';
 
 import cat from './media/cat.png'
@@ -21,7 +21,6 @@ let bgVideo = 'http://res.cloudinary.com/dghff7rpa/video/upload/ac_none/v1536614
 
 
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
-
 
 const textBanner = ['Degredation','Exploitation','Despair'];
 
@@ -63,12 +62,6 @@ class SpriteTest extends Component {
     //requestAnimationFrame(this.loop)
   }
 
-  onMousemove = (event) =>{
-
-    let mouseposition = event.data.global;
-    console.log('onMousemove',mouseposition);
-
-  }
 
   render() {
     return (
@@ -81,11 +74,33 @@ class SpriteTest extends Component {
         scale={[2 + Math.abs(2 * this.state.rotation), 2 + Math.abs(2 * this.state.rotation)]}
         rotation={this.state.rotation}
         anchor={[0.5,0.5]}
-        mousemove={this.onMousemove}
-        interactive={true}
       />
     );
   }
+}
+
+class SpriteMaskTest extends Component {
+
+
+}
+
+class GraphicsTest extends Component {
+  render() {
+    return (
+      <Graphics
+        draw={g => {
+          // clear the graphics
+          g.clear()
+          // start drawing
+          g.lineStyle(0)
+          g.beginFill(0xffff0b, 0.5)
+          g.drawCircle(window.innerWidth/2, window.innerHeight/2, window.innerHeight/3)
+          g.endFill()
+        }}
+      />
+    );
+  }
+
 }
 
 class TilingSpriteTest extends Component {
@@ -115,11 +130,12 @@ class SmallSpriteTest extends Component {
         interactive={true}
         buttonMode={true}
         pointerdown={this.onClick}
+        cursor={'none'}
         texture={PIXI.Texture.fromImage(bgImages[this.props.activeSceneId])}
         width={450}
         height={450}
-        x={window.innerWidth/2}
-        y={window.innerHeight/2}
+        x={this.props.mouseposition.x}
+        y={this.props.mouseposition.y}
         anchor={[0.5,0.5]}
       />
     );
@@ -156,8 +172,15 @@ class TextTest extends Component {
 
 class CanvasTest extends Component {
 
-  onMousemove = (event) => {
-    console.log('onMousemove', event);
+  constructor(props) {
+    super(props);
+    this.state={mouseposition:{x:0,y:0}}
+    this.onMousemove.bind(this);
+  }
+
+  onMousemove = (event) =>{
+    let mouseposition = event.data.global;
+    this.setState({mouseposition})
   }
 
   render() {
@@ -179,19 +202,30 @@ class CanvasTest extends Component {
       /*      transparent: true,*/
     };
 
+    let thing = new PIXI.Graphics();
+
+    thing.x = window.innerWidth / 2;
+    thing.y = window.innerHeight / 2;
+    thing.lineStyle(0);
+
+    console.log(thing);
+
     return (
       <Stage
         width={window.innerWidth}
         height={window.innerHeight}
         options={canvasOptions}
       >
-        {/* <SpriteVideo />*/}
-        <SpriteTest activeSceneId={this.props.activeSceneId} />
-        <TilingSpriteTest activeSceneId={this.props.activeSceneId} />
-
-        <Container>
+        <Container
+          mousemove={this.onMousemove}
+          interactive={true}
+          mask={thing}
+        >
+          {/* <SpriteVideo />*/}
+          <SpriteTest activeSceneId={this.props.activeSceneId}  />
+          <TilingSpriteTest activeSceneId={this.props.activeSceneId} />
           <TextTest activeSceneId={this.props.activeSceneId} />
-          <SmallSpriteTest activeSceneId={this.props.activeSceneId}/>
+          <SmallSpriteTest activeSceneId={this.props.activeSceneId} mouseposition={this.state.mouseposition}   />
         </Container>
       </Stage>
     );
