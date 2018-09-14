@@ -70,7 +70,7 @@ function withSubscription(WrappedComponent, selectData) {
       let $el = ReactDOM.findDOMNode(this.myRef.current);
       this.controller = new ScrollMagic.Controller({
         container: options.container,
-        addIndicators: true
+       // addIndicators: true
         // loglevel: 2,
       });
 

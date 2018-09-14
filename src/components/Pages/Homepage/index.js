@@ -7,6 +7,7 @@ import { OneColumnCenter }  from '../../Layout';
 import Dummytext from '../../DummyText/DummyTextLong';
 import HomeCanvas from './HomeCanvas';
 
+import CanvasEnhanced from './CanvasSimple';
 
 const UpdateTileCount = (count) => {
 
@@ -52,16 +53,17 @@ const HomeContent = (props) => {
 }
 
 
-const FixedBackground = (props) => {
+let FixedBackground = (props) => {
   return (
     <div className={cx(styles.fixedBackgroundLayer)} >
-      <HomeCanvas activeSceneId={props.activeSceneId} />
+      <HomeCanvas activeSceneId={props.activeSceneId}/>
       <div style={{position:'absolute',top:'100px',left:'100px'}}>
         {props.activeSceneId}
       </div>
     </div>
   )
 };
+
 
 class Page extends Component {
   render() {

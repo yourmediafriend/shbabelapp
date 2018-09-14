@@ -11,18 +11,26 @@ import mouse from './media/mouse.png'
 
 const bgImages = [cat, puppy, mouse];
 
-let factory_1 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536613725/backgrounds/images/factory-1.gif";
-let factory_2 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536613725/backgrounds/images/factory-2.gif";
-let factory_3 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536613725/backgrounds/images/factory-3.gif";
+// let bg_1 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536613725/backgrounds/images/factory-1.gif";
+// let bg_2 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536613725/backgrounds/images/factory-2.gif";
+// let bg_3 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536613725/backgrounds/images/factory-3.gif";
 
-const bgImagesFactories = [factory_1, factory_2, factory_3];
+let bg_1 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939919/backgrounds/images/brutalist_1.gif";
+let bg_2 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_2.gif";
+let bg_3 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_3.gif";
+let bg_4 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_4.gif";
+let bg_5 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_5.gif";
+let bg_6 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_6.gif";
+let bg_7 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_7.gif";
+
+const bgImagesFactories = [bg_7, bg_4, bg_3];
 
 let bgVideo = 'http://res.cloudinary.com/dghff7rpa/video/upload/ac_none/v1536614709/backgrounds/video/abstract_bw.mp4';
 
 
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
-const textBanner = ['Degredation','Exploitation','Despair'];
+const textBanner = ['Power','Exploitation','Corruption','Despair'];
 
 
 class SpriteVideo extends Component {
@@ -80,14 +88,38 @@ class SpriteTest extends Component {
 }
 
 class SpriteMaskTest extends Component {
-
+  render() {
+    return (
+      <Graphics
+        draw={g => {
+          // clear the graphics
+          g.clear()
+          // start drawing
+          g.lineStyle(0)
+          g.beginFill(0x000000, 1)
+          g.drawCircle(window.innerWidth/2, window.innerHeight/2, window.innerHeight/3)
+          g.endFill()
+        }}
+      />
+    );
+  }
 
 }
 
 class GraphicsTest extends Component {
+
+
+  constructor() {
+    super(...arguments);
+    this.myRef = React.createRef();
+  }
+
+
   render() {
     return (
       <Graphics
+        ref={this.myRef}
+     /*   visible={false}*/
         draw={g => {
           // clear the graphics
           g.clear()
@@ -116,7 +148,6 @@ class TilingSpriteTest extends Component {
     );
   }
 }
-
 
 class SmallSpriteTest extends Component {
 
@@ -176,6 +207,7 @@ class CanvasTest extends Component {
     super(props);
     this.state={mouseposition:{x:0,y:0}}
     this.onMousemove.bind(this);
+    this.onMount.bind(this);
   }
 
   onMousemove = (event) =>{
@@ -183,16 +215,48 @@ class CanvasTest extends Component {
     this.setState({mouseposition})
   }
 
+  componentDidMount() {
+    this.createMask()
+  }
+
+  componentDidUpdate() {
+    this.updateMask();
+  }
+
+  createMask(){
+    this.mask = new PIXI.Graphics();
+    this.updateMask();
+  }
+  updateMask(){
+    this.mask.lineStyle(0);
+    this.mask.clear();
+    this.mask.beginFill(0x8bc5ff, 0.4);
+    this.mask.drawCircle(window.innerWidth/2, window.innerHeight/2, window.innerHeight/3)
+    this.mask.endFill()
+  }
+
+  onMount(app){
+    console.log('App', app);
+    console.log('Ticker', app.ticker);
+
+    let children =  app.stage.children[0].children
+
+    console.log('Children', app.stage.children[0].children);
+    // children[1].mask = children[2];
+    // children[2].visible = false;
+
+    // app.ticker.stop();
+    // app.ticker.add((deltaTime) => {
+    //   // do something every frame
+    //    console.log(deltaTime);
+    //
+    //  });
+    // app.ticker.start();
+
+  }
+
+
   render() {
-
-      // const ticker = new PIXI.ticker.Ticker();
-      // ticker.stop();
-      // ticker.add((deltaTime) => {
-      //   // do something every frame
-      //
-      // });
-      // ticker.start();
-
 
     let canvasOptions = {
       width: window.innerWidth,
@@ -202,30 +266,27 @@ class CanvasTest extends Component {
       /*      transparent: true,*/
     };
 
-    let thing = new PIXI.Graphics();
-
-    thing.x = window.innerWidth / 2;
-    thing.y = window.innerHeight / 2;
-    thing.lineStyle(0);
-
-    console.log(thing);
-
     return (
       <Stage
         width={window.innerWidth}
         height={window.innerHeight}
         options={canvasOptions}
+        onMount={this.onMount}
       >
         <Container
           mousemove={this.onMousemove}
           interactive={true}
-          mask={thing}
         >
           {/* <SpriteVideo />*/}
           <SpriteTest activeSceneId={this.props.activeSceneId}  />
-          <TilingSpriteTest activeSceneId={this.props.activeSceneId} />
+          <Container
+            mask={this.mask}
+          >
+            <SpriteVideo />
+          </Container>
+         {/* <GraphicsTest />*/}
           <TextTest activeSceneId={this.props.activeSceneId} />
-          <SmallSpriteTest activeSceneId={this.props.activeSceneId} mouseposition={this.state.mouseposition}   />
+     {/*     <SmallSpriteTest activeSceneId={this.props.activeSceneId} mouseposition={this.state.mouseposition}   />*/}
         </Container>
       </Stage>
     );
