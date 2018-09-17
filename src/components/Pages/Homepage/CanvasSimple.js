@@ -52,8 +52,9 @@ class HomeCanvas extends Component {
 
     container = new PIXI.Container();
     
-    this.bg_A = PIXI.Sprite.fromImage(bgImages_Brutalist[0]);
-    this.bg_B = PIXI.Sprite.fromImage(bgImages_Brutalist[0]);
+    this.bg_A = PIXI.Sprite.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
+    this.bg_B = PIXI.Sprite.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
+    this.bg_C = PIXI.Sprite.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
 
     this.bg_A.anchor.set(0.5);
     this.bg_A.width = this.app.screen.width;
@@ -67,6 +68,13 @@ class HomeCanvas extends Component {
     this.bg_B.height = this.app.screen.height;
     this.bg_B.x = this.app.screen.width / 2;
     this.bg_B.y = this.app.screen.height / 2;
+
+    this.bg_C.anchor.set(0.5);
+    this.bg_C.width = this.app.screen.width;
+    this.bg_C.height = this.app.screen.height;
+    this.bg_C.x = this.app.screen.width / 2;
+    this.bg_C.y = this.app.screen.height / 2;
+    this.bg_C.alpha = 0.2;
 
 
     container.addChild(this.bg_B);
@@ -85,6 +93,7 @@ class HomeCanvas extends Component {
     this.drawGraphics(this.bg_Container);
 
     container.addChild(this.bg_Container);
+    container.addChild(this.bg_A);
 
     this.addText()
 
@@ -106,6 +115,20 @@ class HomeCanvas extends Component {
     if (this.text_B){
       this.text_B.text = textBanner[this.props.activeSceneId].toUpperCase();
     }
+    if (this.text_C){
+      this.text_C.text = textBanner[this.props.activeSceneId].toUpperCase();
+    }
+    if (this.bg_A){
+      this.bg_A.texture = PIXI.Texture.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
+    }
+    if (this.bg_B){
+      this.bg_B.texture = PIXI.Texture.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
+    }
+    if (this.bg_C){
+      this.bg_C.texture = PIXI.Texture.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
+    }
+
+
   }
 
 
@@ -130,12 +153,11 @@ class HomeCanvas extends Component {
 
   };
 
-
   drawGraphics(shape) {
     let border = 200;
     shape.lineStyle(0);
     shape.clear();
-    shape.beginFill(0x000000,1);
+    shape.beginFill(0x3D3D3D,1);
     shape.moveTo(0+border,0+border);
     shape.lineTo(this.app.screen.width-border,0+border);
     shape.lineTo(this.app.screen.width-border,this.app.screen.height-border);
@@ -168,15 +190,6 @@ class HomeCanvas extends Component {
     });
 
     let container = new PIXI.Container();
-    let sprite = PIXI.Sprite.fromImage(bgImages_Brutalist[0]);
-
-
-    sprite.width = this.app.screen.width;
-    sprite.height = this.app.screen.height;
-    sprite.x = this.app.screen.width / 2;
-    sprite.y = this.app.screen.height / 2;
-    sprite.anchor.set(0.5);
-    sprite.alpha = 0.5;
 
     this.text_A = new PIXI.Text(textBanner[this.props.activeSceneId].toUpperCase(), style);
     this.text_A.anchor.set(0.5);
@@ -201,19 +214,35 @@ class HomeCanvas extends Component {
     this.text_B.x = this.app.screen.width/2;
     this.text_B.y = this.app.screen.height/2;
 
+
+    style = new PIXI.TextStyle({
+      align: 'center',
+      fontFamily: 'Helvetica, sans-serif',
+      fontSize: 177,
+      fontWeight: 700,
+      fill: ['#ffffff'],
+      letterSpacing: 25,
+      dropShadow: false,
+      wordWrap: false,
+      wordWrapWidth: window.innerWidth + 200,
+      padding: 50,
+    });
+
+    this.text_C = new PIXI.Text(textBanner[this.props.activeSceneId].toUpperCase(), style);
+    this.text_C.anchor.set(0.5);
+    this.text_C.x = this.app.screen.width/2;
+    this.text_C.y = this.app.screen.height/2;
+
     this.app.stage.addChild(this.text_B);
 
-    container.addChild(sprite);
-    container.addChild(this.text_B);
+    container.addChild(this.bg_C);
+    container.addChild(this.text_C);
 
-    this.app.stage.addChild(this.text_A);
+    container.addChild(this.text_A);
     container.mask = this.text_A
 
+    this.app.stage.addChild(this.text_B);
     this.app.stage.addChild(container);
-
-
-
-
 
   }
 
