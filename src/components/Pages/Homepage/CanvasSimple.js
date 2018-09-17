@@ -36,6 +36,11 @@ class HomeCanvas extends Component {
     super(...arguments);
   }
 
+  componentWillMount() {
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+  }
+
   componentDidMount() {
     let container;
     const width = this.mount.clientWidth;
@@ -50,47 +55,36 @@ class HomeCanvas extends Component {
     this.bg_B = PIXI.Sprite.fromImage(bgImages_Brutalist[0]);
 
     this.bg_A.anchor.set(0.5);
-    this.bg_B.anchor.set(0.5);
-
+    this.bg_A.width = this.app.screen.width;
+    this.bg_A.height = this.app.screen.height;
     this.bg_A.x = this.app.screen.width / 2;
     this.bg_A.y = this.app.screen.height / 2;
+    this.bg_A.alpha = 0.5;
 
+    this.bg_B.anchor.set(0.5);
+    this.bg_B.width = this.app.screen.width;
+    this.bg_B.height = this.app.screen.height;
     this.bg_B.x = this.app.screen.width / 2;
     this.bg_B.y = this.app.screen.height / 2;
+
 
     container.addChild(this.bg_B);
     this.app.stage.addChild(container);
 
     container = new PIXI.Container();
-
-    let myMask = new PIXI.Graphics();
-    myMask.lineStyle(0);
-    myMask.clear();
-    myMask.beginFill(0x000000,1);
-    // myMask.drawCircle(window.innerWidth/2, window.innerHeight/2, window.innerHeight/3)
-
-    let border = 200;
-    myMask.moveTo(0+border,0+border);
-    myMask.lineTo(this.app.screen.width-border,0+border);
-    myMask.lineTo(this.app.screen.width-border,this.app.screen.height-border);
-    myMask.lineTo(0+border,this.app.screen.height-border);
-    myMask.endFill()
-    container.addChild(myMask);
     this.app.stage.addChild(container);
 
-    container.mask = myMask
 
-    let bg_Container = new PIXI.Graphics();
-    bg_Container.lineStyle(0);
-    bg_Container.clear();
-    bg_Container.beginFill(0xff00ea,1);
-    bg_Container.moveTo(0+border,0+border);
-    bg_Container.lineTo(this.app.screen.width-border,0+border);
-    bg_Container.lineTo(this.app.screen.width-border,this.app.screen.height-border);
-    bg_Container.lineTo(0+border,this.app.screen.height-border);
-    bg_Container.endFill()
+    this.myMask = new PIXI.Graphics();
+    this.onDrawGraphics(this.myMask);
 
-    container.addChild(bg_Container);
+    container.addChild(this.myMask);
+    container.mask = this.myMask
+
+    this.bg_Container = new PIXI.Graphics();
+    this.onDrawGraphics(this.bg_Container);
+
+    container.addChild(this.bg_Container);
     container.addChild(this.bg_A);
 
     this.addText()
@@ -99,6 +93,42 @@ class HomeCanvas extends Component {
     this.app.stage.mousemove = this.stageMouseMove.bind(this);
 
   }
+
+  componentWillUnmount() {
+    this.mount.removeChild(this.app.domElement)
+  }
+
+
+  onResize = () => {
+
+
+    if (this.app){
+      const parent = this.app.view.parentNode;
+      this.app.renderer.resize(parent.clientWidth, parent.clientHeight);
+      this.onDrawMask(this.myMask);
+      this.onDrawMask(this.bg_Container);
+
+      this.richText.x = this.app.screen.width/2;
+      this.richText.y = this.app.screen.height/2;
+
+    }
+
+  };
+
+
+  onDrawGraphics(shape) {
+    let border = 200;
+    shape.lineStyle(0);
+    shape.clear();
+    shape.beginFill(0x000000,1);
+    shape.moveTo(0+border,0+border);
+    shape.lineTo(this.app.screen.width-border,0+border);
+    shape.lineTo(this.app.screen.width-border,this.app.screen.height-border);
+    shape.lineTo(0+border,this.app.screen.height-border);
+    shape.endFill();
+  }
+
+
 
   addText() {
 
@@ -115,14 +145,14 @@ class HomeCanvas extends Component {
       padding: 50,
     });
 
-    let richText = new PIXI.Text(textBanner[1].toUpperCase(), style);
+    this.richText = new PIXI.Text(textBanner[0].toUpperCase(), style);
 
-    richText.anchor.set(0.5);
+    this.richText.anchor.set(0.5);
 
-    richText.x = this.app.screen.width/2;
-    richText.y = this.app.screen.height/2;
+    this.richText.x = this.app.screen.width/2;
+    this.richText.y = this.app.screen.height/2;
 
-    this.app.stage.addChild(richText);
+    this.app.stage.addChild(this.richText);
 
 
   }
