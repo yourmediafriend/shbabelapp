@@ -48,6 +48,7 @@ class HomeCanvas extends Component {
 
     this.app = new PIXI.Application(window.innerWidth, window.innerHeight, { antialias: true, backgroundColor: '0x191A1E' });
     this.mount.appendChild(this.app.view);
+    this.ticker = new PIXI.ticker.Ticker();
 
     container = new PIXI.Container();
     
@@ -74,49 +75,63 @@ class HomeCanvas extends Component {
     container = new PIXI.Container();
     this.app.stage.addChild(container);
 
-
     this.myMask = new PIXI.Graphics();
-    this.onDrawGraphics(this.myMask);
+    this.drawGraphics(this.myMask);
 
     container.addChild(this.myMask);
     container.mask = this.myMask
 
     this.bg_Container = new PIXI.Graphics();
-    this.onDrawGraphics(this.bg_Container);
+    this.drawGraphics(this.bg_Container);
 
     container.addChild(this.bg_Container);
-    container.addChild(this.bg_A);
 
     this.addText()
+
+    this.stopTicker();
+    this.ticker.add(this.textAnimation)
+    this.startTicker();
 
     this.app.stage.interactive = true;
     this.app.stage.mousemove = this.stageMouseMove.bind(this);
 
   }
 
+  componentDidUpdate() {
+
+    if (this.text_A){
+      this.text_A.text = textBanner[this.props.activeSceneId].toUpperCase();
+      this.text_A.style.letterSpacing = 25;
+    }
+    if (this.text_B){
+      this.text_B.text = textBanner[this.props.activeSceneId].toUpperCase();
+    }
+  }
+
+
   componentWillUnmount() {
-    this.mount.removeChild(this.app.domElement)
+    this.stopTicker();
+    this.mount.removeChild(this.app.domElement);
   }
 
 
   onResize = () => {
 
-
     if (this.app){
       const parent = this.app.view.parentNode;
       this.app.renderer.resize(parent.clientWidth, parent.clientHeight);
-      this.onDrawMask(this.myMask);
-      this.onDrawMask(this.bg_Container);
-
-      this.richText.x = this.app.screen.width/2;
-      this.richText.y = this.app.screen.height/2;
-
+      this.drawGraphics(this.myMask);
+      this.drawGraphics(this.bg_Container);
+      this.text_A.x = this.app.screen.width/2;
+      this.text_A.y = this.app.screen.height/2;
+      this.text_B.x = this.app.screen.width/2;
+      this.text_B.y = this.app.screen.height/2;
     }
 
   };
 
 
-  onDrawGraphics(shape) {
+  drawGraphics(shape) {
     let border = 200;
     shape.lineStyle(0);
     shape.clear();
@@ -128,11 +143,47 @@ class HomeCanvas extends Component {
     shape.endFill();
   }
 
+  startTicker() {
+    this.ticker.start();
+  }
 
+  stopTicker() {
+    this.ticker.stop();
+  }
 
   addText() {
 
     let style = new PIXI.TextStyle({
+      align: 'center',
+      fontFamily: 'Helvetica, sans-serif',
+      fontSize: 250,
+      fontWeight: 700,
+      fill: ['#ffffff'],
+      letterSpacing: 0,
+      dropShadow: false,
+      wordWrap: false,
+      wordWrapWidth: window.innerWidth + 200,
+      padding: 50,
+      cacheAsBitmap: true
+    });
+
+    let container = new PIXI.Container();
+    let sprite = PIXI.Sprite.fromImage(bgImages_Brutalist[0]);
+
+
+    sprite.width = this.app.screen.width;
+    sprite.height = this.app.screen.height;
+    sprite.x = this.app.screen.width / 2;
+    sprite.y = this.app.screen.height / 2;
+    sprite.anchor.set(0.5);
+    sprite.alpha = 0.5;
+
+    this.text_A = new PIXI.Text(textBanner[this.props.activeSceneId].toUpperCase(), style);
+    this.text_A.anchor.set(0.5);
+    this.text_A.x = this.app.screen.width/2;
+    this.text_A.y = this.app.screen.height/2;
+
+    style = new PIXI.TextStyle({
       align: 'center',
       fontFamily: 'Helvetica, sans-serif',
       fontSize: 180,
@@ -145,18 +196,31 @@ class HomeCanvas extends Component {
       padding: 50,
     });
 
-    this.richText = new PIXI.Text(textBanner[0].toUpperCase(), style);
+    this.text_B = new PIXI.Text(textBanner[this.props.activeSceneId].toUpperCase(), style);
+    this.text_B.anchor.set(0.5);
+    this.text_B.x = this.app.screen.width/2;
+    this.text_B.y = this.app.screen.height/2;
 
-    this.richText.anchor.set(0.5);
+    this.app.stage.addChild(this.text_B);
 
-    this.richText.x = this.app.screen.width/2;
-    this.richText.y = this.app.screen.height/2;
+    container.addChild(sprite);
+    container.addChild(this.text_B);
 
-    this.app.stage.addChild(this.richText);
+    this.app.stage.addChild(this.text_A);
+    container.mask = this.text_A
+
+    this.app.stage.addChild(container);
+
+
+
 
 
   }
 
+  textAnimation = (deltaTime) => {
+    // do something every frame
+    this.text_A.style.letterSpacing += 0.5;
+  }
 
 
   stageMouseMove(event){
@@ -179,7 +243,6 @@ class HomeCanvas extends Component {
     let borderPercY = 200/this.app.screen.height/2;
 */
 
-
     let x = 0.1 * distPerc;
 
     this.bg_A.scale.set(1-x);
@@ -196,6 +259,7 @@ class HomeCanvas extends Component {
   render() {
     return (
       <div
+        activeSceneId={this.props.activeSceneId}
         style={{ width: '100%', height: '100%' }}
         ref={(mount) => { this.mount = mount }}
       />
