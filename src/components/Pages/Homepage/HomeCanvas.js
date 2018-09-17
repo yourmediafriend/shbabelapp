@@ -22,15 +22,28 @@ let bg_4 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgr
 let bg_5 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_5.gif";
 let bg_6 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_6.gif";
 let bg_7 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_7.gif";
+let bg_8 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_8.gif";
+let bg_9 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_9.gif";
+let bg_10 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_10.gif";
+let bg_11= "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_11.gif";
 
-const bgImagesFactories = [bg_7, bg_4, bg_3];
+let bgImagesFactories = [bg_4, bg_10, bg_3];
 
-let bgVideo = 'http://res.cloudinary.com/dghff7rpa/video/upload/ac_none/v1536614709/backgrounds/video/abstract_bw.mp4';
+let wallpaper_1 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536944627/backgrounds/images/wallpaper-1.jpg";
+let wallpaper_2 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536944627/backgrounds/images/wallpaper-2.jpg";
+let wallpaper_3 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536944627/backgrounds/images/wallpaper-3.jpg";
 
+let cellsPng = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536954496/backgrounds/images/cells.png";
+
+
+let bgImagesWallpaper = [wallpaper_1, wallpaper_2, wallpaper_3];
+
+//let bgVideo = 'http://res.cloudinary.com/dghff7rpa/video/upload/ac_none/v1536614709/backgrounds/video/abstract_bw.mp4';
+let bgVideo = 'http://res.cloudinary.com/dghff7rpa/video/upload/v1536614709/backgrounds/video/abstract_bw.mp4';
 
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
-const textBanner = ['Power','Exploitation','Corruption','Despair'];
+let textBanner = ['Power','Exploitation','Corruption','Despair', 'Fake News','Exploitation','Shaming','Trolls'];
 
 
 class SpriteVideo extends Component {
@@ -41,6 +54,7 @@ class SpriteVideo extends Component {
         texture={PIXI.Texture.fromVideo(bgVideo)}
         width={window.innerWidth}
         height={window.innerHeight}
+        loop={true}
         autoPlay={true}
         muted={'muted'}
       />
@@ -79,13 +93,53 @@ class SpriteTest extends Component {
         height={window.innerHeight}
         x={window.innerWidth/2}
         y={window.innerHeight/2}
-        scale={[2 + Math.abs(2 * this.state.rotation), 2 + Math.abs(2 * this.state.rotation)]}
-        rotation={this.state.rotation}
+/*        scale={[2 + Math.abs(2 * this.state.rotation), 2 + Math.abs(2 * this.state.rotation)]}
+        rotation={this.state.rotation}*/
         anchor={[0.5,0.5]}
       />
     );
   }
 }
+
+
+
+class Wallpaper extends Component {
+
+
+  constructor() {
+    super(...arguments);
+    this.myRef = React.createRef();
+  }
+
+  render() {
+    return (
+
+      <TilingSprite
+        ref={this.myRef}
+        texture={PIXI.Texture.fromImage(bgImagesWallpaper[this.props.activeSceneId])}
+        width={window.innerWidth}
+        height={window.innerHeight}
+        tilePosition={{ x: 10, y: 10 }}
+        tileScale={{ x: 0.2, y: 0.2 }}
+       blendMode={PIXI.BLEND_MODES.HARD_LIGHT}
+        alpha={0.7}
+      />
+
+/*
+     <Sprite
+        texture={PIXI.Texture.fromImage(bgImagesWallpaper[this.props.activeSceneId])}
+        width={window.innerWidth/2}
+        height={window.innerWidth/2}
+        x={window.innerWidth/2}
+        y={window.innerHeight/2}
+        anchor={[0.5,0.5]}
+        blendMode={PIXI.BLEND_MODES.HARD_LIGHT}
+        alpha={0.4}
+      />*/
+    );
+  }
+}
+
 
 class SpriteMaskTest extends Component {
   render() {
@@ -114,7 +168,6 @@ class GraphicsTest extends Component {
     this.myRef = React.createRef();
   }
 
-
   render() {
     return (
       <Graphics
@@ -125,7 +178,7 @@ class GraphicsTest extends Component {
           g.clear()
           // start drawing
           g.lineStyle(0)
-          g.beginFill(0xffff0b, 0.5)
+          g.beginFill(0xff00ea, 0.1)
           g.drawCircle(window.innerWidth/2, window.innerHeight/2, window.innerHeight/3)
           g.endFill()
         }}
@@ -182,6 +235,8 @@ class TextTest extends Component {
         anchor={0.5}
         x={window.innerWidth/2}
         y={window.innerHeight/2}
+        blendMode={PIXI.BLEND_MODES.LIGHTEN}
+        alpha={0.4}
         style={
           new PIXI.TextStyle({
             align: 'center',
@@ -200,6 +255,38 @@ class TextTest extends Component {
     );
   }
 }
+
+
+class TextTestB extends Component {
+  render() {
+    return (
+      <Text
+        text={textBanner[this.props.activeSceneId].toUpperCase()}
+        anchor={0.5}
+        x={window.innerWidth/2}
+        y={window.innerHeight/2}
+        blendMode={PIXI.BLEND_MODES.LIGHTEN}
+        alpha={0.4}
+        style={
+          new PIXI.TextStyle({
+            align: 'center',
+            fontFamily: 'Helvetica, sans-serif',
+            fontSize: 180,
+            fontWeight: 700,
+            fill: ['#35363a'],
+            letterSpacing: 25,
+            dropShadow: false,
+            wordWrap: false,
+            wordWrapWidth: window.innerWidth + 200,
+            padding: 50,
+          })
+        }
+      />
+    );
+  }
+}
+
+
 
 class CanvasTest extends Component {
 
@@ -230,7 +317,7 @@ class CanvasTest extends Component {
   updateMask(){
     this.mask.lineStyle(0);
     this.mask.clear();
-    this.mask.beginFill(0x8bc5ff, 0.4);
+    this.mask.beginFill(0x000000,0.1);
     this.mask.drawCircle(window.innerWidth/2, window.innerHeight/2, window.innerHeight/3)
     this.mask.endFill()
   }
@@ -242,6 +329,11 @@ class CanvasTest extends Component {
     let children =  app.stage.children[0].children
 
     console.log('Children', app.stage.children[0].children);
+
+    let wallpaper =  app.stage.children[0].children[1].children[0]
+
+
+    console.log('wallpaper', wallpaper);
     // children[1].mask = children[2];
     // children[2].visible = false;
 
@@ -277,15 +369,20 @@ class CanvasTest extends Component {
           mousemove={this.onMousemove}
           interactive={true}
         >
+
           {/* <SpriteVideo />*/}
           <SpriteTest activeSceneId={this.props.activeSceneId}  />
-          <Container
-            mask={this.mask}
-          >
-            <SpriteVideo />
+
+          <Container mask={this.mask}>
+            <Wallpaper  activeSceneId={this.props.activeSceneId}/>
           </Container>
-         {/* <GraphicsTest />*/}
+
+        {/*  <GraphicsTest />*/}
           <TextTest activeSceneId={this.props.activeSceneId} />
+          <TextTestB activeSceneId={this.props.activeSceneId} />
+
+
+
      {/*     <SmallSpriteTest activeSceneId={this.props.activeSceneId} mouseposition={this.state.mouseposition}   />*/}
         </Container>
       </Stage>

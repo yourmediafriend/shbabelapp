@@ -56,7 +56,7 @@ const HomeContent = (props) => {
 let FixedBackground = (props) => {
   return (
     <div className={cx(styles.fixedBackgroundLayer)} >
-      <HomeCanvas activeSceneId={props.activeSceneId}/>
+      <CanvasEnhanced activeSceneId={props.activeSceneId}/>
       <div style={{position:'absolute',top:'100px',left:'100px'}}>
         {props.activeSceneId}
       </div>
