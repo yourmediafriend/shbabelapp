@@ -1,35 +1,34 @@
 $footer-reveal-bg: #CCCCCC !default;
 $footer-reveal-color: #000 !default;
 $footer-reveal-font-size: 0.85em !default;
-
 $footer-fixed-bg: #F1F2F2 !default;
+
+
+$footer-reveal-ht-large: 260px !default;
+$footer-fixed-ht-large: 60px !default;
 
 .footer {
     width: 100%;
-
     &.reveal {
+        height: $footer-reveal-ht-large;
+        background-color: $footer-reveal-bg;
+        color: $footer-reveal-color;
+        font-size: $footer-reveal-font-size;
         .footerInner {
             padding: 25px 0 50px;
             @include media-breakpoint-down(md) {
                 padding: 15px 0 20px;
             }
-
         }
-
-        background-color: $footer-reveal-bg;
-        color: $footer-reveal-color;
-        font-size: $footer-reveal-font-size;
-        max-height: 50vh;
     }
     &.fixed {
+        height: $footer-fixed-ht-large;
         background-color: $footer-fixed-bg;
         border-top: 1px solid #cecece;
         padding: 0;
         box-shadow: 0 -5px 5px -5px rgba(58, 57, 57, 0.15);
-
         @include media-breakpoint-up(md) {
             padding: 0;
         }
-
     }
 }

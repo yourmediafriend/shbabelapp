@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import cx from 'classnames';
-import styles from './stickyElements.scss';
-
 import { TwoColumnLeft }  from '../../../Layout';
+import cx from "classnames";
+import MainLayer from '../../../Content/MainLayer'
+import ContentLayer from '../../../Content/ContentLayer'
+import styles from '../demoPages.scss';
 import DummyText from '../../../DummyText/DummyTextLong'
 import StickyPanel from './StickyPanel';
 import { PromoWidget } from '../../../Widgets';
@@ -31,19 +32,21 @@ let Sidebar = props => (
   </div>
 )
 
-class ColumnLayout extends Component {
+class Page extends Component {
 
   render() {
-
-    console.log(styles.containerMain);
-
     return (
-      <div>
-        <HeroBanner image={imagesHero}  />
-        <TwoColumnLeft contentMain={<DummyText />}  contentColumnLeft={<Sidebar />} className={styles.containerMain}/>
-      </div>
+      <MainLayer className={cx(styles.mainLayer)}>
+        <ContentLayer className={cx(styles.contentLayer)} >
+          <HeroBanner image={imagesHero}  />
+          <TwoColumnLeft contentMain={<DummyText />}  contentColumnLeft={<Sidebar />} className={styles.containerMain}/>
+        </ContentLayer>
+      </MainLayer>
     )
   }
 }
 
-export default ColumnLayout;
+export default Page;
+
+
+

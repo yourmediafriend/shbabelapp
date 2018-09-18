@@ -11,7 +11,8 @@ import Breadcrumbs from '../Breadcrumbs'
 import styles from './news.scss';
 import cx from 'classnames';
 import Latest from './WidgetLatest';
-
+import MainLayer from '../Content/MainLayer'
+import ContentLayer from '../Content/ContentLayer'
 import Widget from '../Widgets';
 import widgetStyles from '../Widgets/widget.scss';
 import { Category } from './ArticleElements';
@@ -91,10 +92,12 @@ class NewsArticle extends Component {
 class NewsArticleLayout extends Component {
   render() {
     return (
-      <div>
-        <Breadcrumbs />
-        <TwoColumnLeft className={styles.contentMain} contentMain={<NewsArticle match={this.props.match}/>}  contentColumnLeft={<ArticleSideBar />} />
-      </div>
+      <MainLayer className={cx(styles.mainLayer)}>
+        <ContentLayer className={cx(styles.contentLayer)} >
+          <Breadcrumbs />
+          <TwoColumnLeft className={styles.contentMain} contentMain={<NewsArticle match={this.props.match}/>}  contentColumnLeft={<ArticleSideBar />} />
+        </ContentLayer>
+      </MainLayer>
     )
   }
 }

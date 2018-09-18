@@ -8,8 +8,11 @@ import newsArticlesIndexQuery from '../../graphQL/newsArticlesIndexQuery';
 import UtcSecondsToDate from './utcSecondsToDate';
 import PageTitle from '../PageTitle'
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import MainLayer from '../Content/MainLayer'
+import ContentLayer from '../Content/ContentLayer'
 
 import { Category, Image } from './ArticleElements';
+import cx from "classnames";
 
 class NewsItem extends Component {
 
@@ -91,10 +94,12 @@ class NewsArticlesIndex extends Component {
 class NewsIndexLayout extends Component {
   render() {
     return (
-      <div>
-        <PageTitle title={'News Index'} layout={'center'} style={{}} />
-        <TwoColumnRight contentMain={<NewsArticlesIndex />}  contentColumnLeft={null} />
-      </div>
+      <MainLayer className={cx(styles.mainLayer)}>
+        <ContentLayer className={cx(styles.contentLayer)} >
+          <PageTitle title={'News Index'} layout={'center'} style={{}} />
+          <TwoColumnRight contentMain={<NewsArticlesIndex />}  contentColumnLeft={null} />
+        </ContentLayer>
+      </MainLayer>
     )
   }
 }

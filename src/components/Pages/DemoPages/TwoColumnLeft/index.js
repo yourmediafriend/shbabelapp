@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import { TwoColumnLeft }  from '../../../Layout';
+import { MenuWidget} from '../../../Widgets';
 import PageTitle from '../../../PageTitle'
 import Dummytext from '../../../DummyText/DummyTextLong';
-import { MenuWidget} from '../../../Widgets';
+import cx from "classnames";
+import MainLayer from '../../../Content/MainLayer'
+import ContentLayer from '../../../Content/ContentLayer'
+import styles from '../demoPages.scss';
 
-class DemoPage extends Component {
+class Page extends Component {
+
   render() {
     return (
-      <div>
-        <PageTitle title={ 'Two Column Left Page Layout!' } layout={'center'} />
-        <TwoColumnLeft contentMain={<Dummytext />}  contentColumnLeft={<MenuWidget />} />
-      </div>
+      <MainLayer className={cx(styles.mainLayer)}>
+        <ContentLayer className={cx(styles.contentLayer)} >
+          <PageTitle title={ 'Two Column Left Page Layout!' } layout={'center'} />
+          <TwoColumnLeft contentMain={<Dummytext />}  contentColumnLeft={<MenuWidget />} />
+        </ContentLayer>
+      </MainLayer>
     )
   }
 }
 
-export default DemoPage;
+export default Page;
+
+

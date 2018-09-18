@@ -131,7 +131,10 @@ const SwitchRoute = () => (
 
     <Route exact path='/sticky-header' render={() => <OneColumnSidebar currentpage='stickyHeader' />} />
     <Route exact path='/grid-fixed' render={() => <OneColumnSidebar currentpage='grid-fixed' />} />
-    <Route exact path='/grid-parallax' render={() => <OneColumnSidebar currentpage='grid-parallax' />} />
+    <Route exact path='/grid-parallax' render={() => <OneColumnSidebar currentpage='grid-parallax'
+                                                                       showHeader={true}
+                                                                       showFooterFixed={true}
+                                                                       showFooterReveal={true} />} />
 
     {/*/Site Pages/*/}
     <Route exact path='/contact' render={() => <OneColumnSidebar currentpage='contact' />} />
