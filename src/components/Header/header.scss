@@ -1,21 +1,25 @@
+$header-bg: #565656 !default;
+$header-bg: rgba(86, 86, 86, 0.69);
+$header-ht: 80px;
+$header-ht-compact: 54px;
+
 .stickyHeader {
     &.base {
         display: flex;
         width: 100%;
-        height: 80px;
-        background: #565656;
-        color: #ffffff;
+        height: $header-ht;
+        background: $header-bg;
     }
     &.isSticky {
         position: relative;
     }
     &.compact {
-        height: 54px;
+        height: $header-ht-compact;
     }
 
     &.padding {
         display: block;
-        height: 80px;
+        height: $header-ht;
     }
 
 }

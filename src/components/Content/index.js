@@ -31,43 +31,19 @@ import DrupalArticles from '../Pages/DemoPages/DrupalArticles';
 
 import StickyElements from '../Pages/DemoPages/StickyElements';
 
-const MainContent = props => {
-  return (
-    <div className={cx(styles.content,props.className)} style={{...props.style}}>
-      {props.children}
-    </div>
-  )
-}
-
 const Content = ({currentpage, pageRef, match }) => {
 
   switch(currentpage) {
     case 'home':
-      return(
-        <MainContent className={styles.homepage}>
-          <Homepage />
-        </MainContent>
-      );
+      return <Homepage />;
     case 'svgs':
       return  <SvgAnimation />;
     case 'circle':
-      return(
-        <MainContent style={{backgroundColor:'#464646'}}>
-          <SvgAnimation shape='circle'/>
-        </MainContent>
-      );
+      return <SvgAnimation shape='circle'/>;
     case 'square':
-      return(
-        <MainContent style={{backgroundColor:'#464646'}}>
-          <SvgAnimation shape='square'/>
-        </MainContent>
-      );
+      return <SvgAnimation shape='square'/>;
     case 'triangle':
-      return(
-        <MainContent style={{backgroundColor:'#464646'}}>
-          <SvgAnimation shape='triangle'/>
-        </MainContent>
-      );
+      return <SvgAnimation shape='triangle'/>;
     case 'hypno':
       return  <SvgAnimation shape='hypno'/>;
     case 'parallax':
@@ -75,98 +51,37 @@ const Content = ({currentpage, pageRef, match }) => {
     case 'parallaxExtra':
       return  <ScrollMagicParallaxExtra />;
     case 'svgPattern':
-      return(
-        <MainContent style={{backgroundColor:'#000'}}>
-          <SvgPattern />;
-        </MainContent>
-      );
+      return <SvgPattern />;
     case 'stickyHeader':
-      return (
-        <MainContent>
-          <StickyElements />
-        </MainContent>
-      );
+      return <StickyElements />;
     case 'quarter':
       return  <QuarterPage />;
     case 'fullpage':
-      return (
-        <MainContent className={styles.fullpage}>
-          <Fullpage pageRef={pageRef}/>
-        </MainContent>
-      );
+      return <Fullpage pageRef={pageRef}/>;
     case 'grid-parallax':
-      return (
-        <MainContent className={styles.grid}>
-          <GridPage />
-        </MainContent>
-      );
-
+      return <GridPage />;
     case 'news':
-      return (
-        <MainContent className={styles.news}>
-          <News />
-        </MainContent>
-      );
+      return <News />;
     case 'news/article':
-      return (
-        <MainContent className={styles.news}>
-          <NewsArticle match={match} />
-        </MainContent>
-      );
+      return <NewsArticle match={match} />;
     case 'contact':
-      return (
-        <MainContent style={{backgroundColor:'#fff'}}>
-          <ContactPage />
-        </MainContent>
-      );
+      return <ContactPage />;
     case 'weather':
-      return (
-        <MainContent style={{backgroundColor:'#fff'}}>
-          <WeatherPage />
-        </MainContent>
-      );
+      return <WeatherPage />;
     case 'test':
-      return (
-        <MainContent style={{backgroundColor:'#fff'}}>
-          <TestPage />
-        </MainContent>
-      );
+      return <TestPage />;
     case 'oneColumnCenterDemo':
-      return (
-        <MainContent style={{backgroundColor:'#fff'}}>
-          <OneColumnCenterDemo />
-        </MainContent>
-      );
+      return <OneColumnCenterDemo />;
     case 'twoColumnRightDemo':
-      return (
-        <MainContent style={{backgroundColor:'#fff'}}>
-          <TwoColumnRightDemo />
-        </MainContent>
-      );
+      return <TwoColumnRightDemo />;
     case 'twoColumnLeftDemo':
-      return (
-        <MainContent style={{backgroundColor:'#fff'}}>
-          <TwoColumnLeftDemo />
-        </MainContent>
-      );
+      return <TwoColumnLeftDemo />;
     case 'threeColumnDemo':
-      return (
-        <MainContent style={{backgroundColor:'#fff'}}>
-          <ThreeColumnDemo />
-        </MainContent>
-      );
+      return <ThreeColumnDemo />;
     case 'mixedDemo':
-      return (
-        <MainContent style={{backgroundColor:'#d2d2d2'}}>
-          <MixedDemo />
-        </MainContent>
-      );
+      return <MixedDemo />;
     case 'drupalArticles':
-      return (
-        <MainContent style={{backgroundColor:'#f5f5f5'}}>
-          <DrupalArticles />
-        </MainContent>
-      );
+      return <DrupalArticles />;
     default:
       return null;
   }

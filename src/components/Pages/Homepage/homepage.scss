@@ -1,3 +1,9 @@
+.contentLayer {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    font-weight: bold;
+}
 .fixedBackgroundLayer{
     position: fixed;
     z-index: 0;

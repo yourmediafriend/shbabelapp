@@ -1,0 +1,23 @@
+.contentLayer {
+    background-color: #ffffff;
+}
+
+
+
+
+// StickyElements
+
+.containerMain {
+    margin-top: 40px;
+}
+
+.sidebarWidget {
+    margin-bottom: 20px;
+    /* &.stickyPanel {
+         display: none;
+         @include media-breakpoint-up(md) {
+             display: inherit;
+         }
+     }*/
+}
+

@@ -1,7 +1,13 @@
+.svgContainer {
+    height: 100vh;
+}
+
 .contentContainer {
     position: relative;
     z-index: 2;
 }
+
+
 
 .slide {
     position: absolute;
@@ -10,6 +16,7 @@
     right: 0;
     bottom: 0;
     overflow: hidden;
+    z-index: 0;
 }
 
 .svgOuter {

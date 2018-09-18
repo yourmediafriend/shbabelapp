@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './homepage.scss'
 import ScrollMagicEnhanced from './scrollMagicEnhanced';
-
+import MainLayer from '../../Content/MainLayer';
+import ContentLayer from '../../Content/ContentLayer';
+import Background from '../../Background';
 import { OneColumnCenter }  from '../../Layout';
 import Dummytext from '../../DummyText/DummyTextLong';
 import HomeCanvas from './HomeCanvas';
-
 import CanvasEnhanced from './CanvasSimple';
 
 const UpdateTileCount = (count) => {
@@ -64,17 +66,17 @@ let FixedBackground = (props) => {
   )
 };
 
-
 class Page extends Component {
   render() {
     return (
-      <div className={cx(styles.homepage)}>
+      <MainLayer className={cx(styles.mainLayer)}>
         <FixedBackground activeSceneId={this.props.activeSceneId} />
-        <HomeContent title={this.props.title}/>
-      </div>
+        <ContentLayer className={cx(styles.contentLayer)} >
+          <HomeContent title={this.props.title}/>
+        </ContentLayer>
+      </MainLayer>
     )
   }
 }
 
-//export default Page;
 export default ScrollMagicEnhanced(Page);

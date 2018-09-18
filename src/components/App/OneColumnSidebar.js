@@ -31,6 +31,9 @@ import {
   offCanvasMenuToggleAnimation
 } from '../../modules/OffCanvasMenu';
 
+let footerRevealHeightLarge = 260;
+let footerFixedHeightLarge = 60;
+
 
 const StickyContainer = (props) => {
   return (
@@ -183,16 +186,10 @@ class App extends Component {
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.top)}>
                         <SearchModal />
                   </StickyContainer> }
-              {/*
-              ...this.props.showHeader ? {transform:`translateY(${this.props.stickyHeaderHeight}px)`, position:'relative', zIndex: '10'} : '',
-              */}
-              <div className={cx(styles.menuFlexWrap,'mainContent')}>
 
+              <div className={cx(styles.menuFlexWrap,'mainContent')}>
                 <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}} />
-                  <div className={styles.mainFlex} style={{ ...this.props.showHeader ? {paddingTop:`${this.props.stickyHeaderHeight}px`} : '',
-                                                          ...this.props.showFooterReveal ? {marginBottom:`${this.props.revealFooterHeight}px`} : '',
-                                                          ...{minHeight:  `calc(100vh - ${( max([this.props.revealFooterHeight, this.props.fixedFooterHeight]))}px`}         }}
-                                                        >
+                  <div className={styles.mainFlex}>
                     <div className={styles.content}>
                       <MainContent currentpage={this.props.currentpage} match={this.props.match} pageRef={this.props.pageRef} />
                     </div>

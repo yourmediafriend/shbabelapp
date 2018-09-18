@@ -1,15 +1,10 @@
-.content {
+.mainLayer {
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: #ffffff;
-    &.grid {
-        background: #ececec;
-    }
-    &.news {
-        background: #fff;
-    }
-    &.homepage {
-        background: #ff00ea;
-    }
+}
+.contentLayer {
+    position: relative;
+    z-index: 1;
+    height: 100%;
 }
