@@ -5,7 +5,9 @@ import MusicPlayer from '../../MusicPlayer';
 
 const FooterMusicPlayer = props => {
   return (
-    <OneColumnCenter contentMain={ <MusicPlayer />} />
+    <div>
+      <OneColumnCenter contentMain={ <MusicPlayer />} />
+    </div>
   )
 }
 

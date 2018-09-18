@@ -3,7 +3,6 @@ const CLOSE_MODAL = "modal/CLOSE_MODAL";
 const TOGGLE_MODAL = "modal/TOGGLE_MODAL";
 const OPEN_SEARCH = "searchModal/OPEN_SEARCH";
 
-
 export const initialState = {
   modalIsOpen: false,
   modalRef: 'default',
@@ -16,7 +15,7 @@ export default function reducer(state=initialState, action = {}) {
   switch (action.type) {
     // do reducer stuff
     case TOGGLE_MODAL:
-
+      console.log('TOGGLE_MODAL');
       // need to get the state of the menu
       if (!state.modalIsOpen) {
         // dispatch SEARCH_CLOSE
@@ -30,6 +29,7 @@ export default function reducer(state=initialState, action = {}) {
       }
 
     case OPEN_MODAL:
+      console.log('OPEN_MODAL');
       // need to get the state of the menu
       return {
         ...state,

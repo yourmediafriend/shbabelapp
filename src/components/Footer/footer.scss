@@ -13,7 +13,6 @@ $footer-fixed-bg: #F1F2F2 !default;
             @include media-breakpoint-down(md) {
                 padding: 15px 0 20px;
             }
-
         }
 
         background-color: $footer-reveal-bg;
@@ -22,14 +21,41 @@ $footer-fixed-bg: #F1F2F2 !default;
         max-height: 50vh;
     }
     &.fixed {
-        background-color: $footer-fixed-bg;
-        border-top: 1px solid #cecece;
-        padding: 0;
-        box-shadow: 0 -5px 5px -5px rgba(58, 57, 57, 0.15);
+        .footerSlide {
+            background-color: $footer-fixed-bg;
+            border-top: 1px solid #cecece;
+            padding: 0;
+            box-shadow: 0 -5px 5px -5px rgba(58, 57, 57, 0.15);
+        }
 
         @include media-breakpoint-up(md) {
             padding: 0;
         }
+        &.open {
 
+        }
+        &.closed {
+            overflow: hidden;
+            .footerSlide {
+                transition: all 0.2s ease;
+                transform: translateY(100%);
+            }
+        }
+    }
+
+    .footerClose {
+        position: absolute;
+        display: flex;
+        width: 20px;
+        height: 100%;
+        top: 0;
+        right: 15px;
+        align-items: center;
+        svg {
+            fill: #000;
+        }
+        &:hover {
+            opacity: 0.6;
+        }
     }
 }
