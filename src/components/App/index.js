@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import Animate from 'react-move/Animate';
 import { easeExpOut } from 'd3-ease';
 import { setCurrentBreakPoint } from '../../modules/App';
+import { Player as MusicPlayer } from  '../MusicPlayer';
 
 import {
   get,
@@ -30,10 +31,6 @@ import {
   offCanvasMenuStateChange,
   offCanvasMenuToggleAnimation
 } from '../../modules/OffCanvasMenu';
-
-let footerRevealHeightLarge = 260;
-let footerFixedHeightLarge = 60;
-
 
 const StickyContainer = (props) => {
   return (
@@ -196,11 +193,6 @@ class App extends Component {
                   </div>
                 </div>
 
-                { this.props.fullscreen ? '' :
-                  <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.full, this.modalState(this.props) )}>
-                    <Modal/>
-                  </StickyContainer> }
-
                 { this.props.fixedFooter ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isFixed)}>
                     <FixedFooter />
@@ -210,6 +202,12 @@ class App extends Component {
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isReveal)}>
                     <RevealFooter />
                   </StickyContainer> : '' }
+
+                <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.full, this.modalState(this.props) )}>
+                  <Modal/>
+                </StickyContainer>
+
+                <MusicPlayer />
 
               </div>
             </div>
@@ -221,9 +219,9 @@ class App extends Component {
 }
 
 App.propTypes = {
-  showFooterReveal: PropTypes.bool,
-  showFooterFixed: PropTypes.bool,
-  showHeader: PropTypes.bool,
+  stickyHeader: PropTypes.bool,
+  fixedFooter: PropTypes.bool,
+  revealFooter: PropTypes.bool,
   isMenuOpen: PropTypes.bool,
   isMenuAnimating: PropTypes.bool,
   isModalOpen: PropTypes.bool,
@@ -237,7 +235,6 @@ App.defaultProps = {
   showHeader: true,
   singlePage: false,
 };
-
 
 export const mapStateToProps = (state) => {
   return {

@@ -75,12 +75,12 @@ class QuarterPage extends Component {
     return (
 
       <MainLayer className={styles.svgContainer}>
-
-        <VideoBackground bgSrc={bgSrc} />
-        <Background className={styles.fullScreenImage} bgSrc={bgImg}  />
-
         <ContentLayer className={cx(styles.contentLayer)}>
           <div className={cx(styles.slide)} >
+          <VideoBackground bgSrc={bgSrc} />
+          <Background className={styles.fullScreenImage} bgSrc={bgImg}  />
+
+
             <div className={cx(styles.quarterWrapper)} >
               {fp.times(function(index) {
                 return <OneQuarter key={index}

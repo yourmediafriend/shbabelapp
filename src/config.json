@@ -1,18 +1,18 @@
 {
   "header": {
     "height": {
-      "full": 80,
-      "compact": 54
+      "max": 80,
+      "min": 54
     }
   },
   "footerFixed": {
     "height": {
-      "full": 60
+      "max": 60
     }
   },
   "footerReveal": {
     "height": {
-      "full": 200
+      "max": 200
     }
   }
 }

@@ -12,19 +12,8 @@ import FooterSpacer from "../Footer/FooterSpacer";
 
 import {footerClose} from "../../modules/Footer";
 
+import appConfig from '../../config'
 
-let stickyHeaderHeight = 80;
-let stickyHeaderHeightCompact = 54;
-let footerRevealHeightLarge = 200;
-let footerFixedHeightLarge = 60;
-
-//   height: [props.footerIsOpen ? footerRevealHeightLarge + footerFixedHeightLarge : footerRevealHeightLarge ]
-
-/*style={{
-...props.showFooterReveal ? {height:`${footerRevealHeightLarge}px`} : '',
-...props.showFooterFixed ? {height:`${footerFixedHeightLarge}px`} : '',
-...props.showFooterFixed && props.showFooterReveal ? {height:`${( max([footerRevealHeightLarge,footerFixedHeightLarge]))}px`} : '',
-}}*/
 
 class HeaderSpacer extends Component {
 
@@ -43,7 +32,7 @@ class HeaderSpacer extends Component {
       <Animate
         start={() => ({
           HeaderSpacer:{
-            height: stickyHeaderHeight
+            height: appConfig.header.height.max
           }
         })}
 
@@ -73,12 +62,13 @@ class HeaderSpacer extends Component {
     );
   }
 }
+
 const spacerCalcMax = props => {
-  return  props.revealFooter ?  props.fixedFooter ? footerRevealHeightLarge + footerFixedHeightLarge : footerRevealHeightLarge : props.fixedFooter ? footerFixedHeightLarge : 0 ;
+  return  props.revealFooter ?  props.fixedFooter && props.footerFixedOpen ? appConfig.footerReveal.height.max + appConfig.footerFixed.height.max : appConfig.footerReveal.height.max : props.fixedFooter && props.footerFixedOpen ? appConfig.footerFixed.height.max : 0 ;
 }
 
 const spacerCalcMin = props => {
-  return footerRevealHeightLarge;
+  return  props.revealFooter ? appConfig.footerReveal.height.max : props.fixedFooter && props.footerFixedOpen ? appConfig.footerFixed.height.max : 0 ;
 }
 
 const ContentLayer = props => {

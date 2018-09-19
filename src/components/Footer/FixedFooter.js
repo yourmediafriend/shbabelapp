@@ -24,7 +24,7 @@ const FooterCloseComp = ({clickEvent}) => {
 class Footer extends Component {
 
   myStyles = (state) => {
-    const {footer} = state;
+    const {footer, show} = state;
     return {
       transform: `translateY(${footer.translateY}%)` ,
     }
@@ -38,6 +38,7 @@ class Footer extends Component {
 
         <Animate
           start={() => ({
+            showFooter:true,
             footer:{
               translateY: 0
             }
@@ -50,25 +51,26 @@ class Footer extends Component {
             timing: { duration: 250, ease: easeCubicInOut },
             events: {
               start() {
-
+                this.setState({showFooter:true})
               },
               end() {
                 // hide the element
+                this.setState({showFooter:false})
               },
             },
           })}
         >
           {(state) => {
-
-           // console.log(state.footer.translateY);
-            return (
-              <div ref={(element) => this.footerElement = element}
+            return state.showFooter ?
+              (
+                <div ref={(element) => this.footerElement = element}
                    className={cx(styles.footer, styles.fixed )}
                    style={{...this.myStyles(state)}} >
                   <FooterMusicPlayer />
                   <FooterCloseComp  clickEvent={this.props.footerClose}/>
-              </div>
-            );
+                </div>
+              ) : null;
+
           }}
         </Animate>
 

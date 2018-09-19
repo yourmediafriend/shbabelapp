@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from "prop-types";
-
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {get} from "lodash/fp";
@@ -8,11 +7,9 @@ import IconNav from '../IconNav';
 import { Controls } from '../MusicPlayer';
 import Animate from 'react-move/Animate';
 import { easeCubicInOut } from 'd3-ease';
-
 import {
   offCanvasMenuStateChange
 } from '../../modules/OffCanvasMenu';
-
 import BurgerIcon from '../BurgerIcon';
 import styles from './sideMenu.scss';
 import cx from 'classnames';
@@ -27,44 +24,42 @@ class MusicControler extends Component {
     }
   };
 
-
   render() {
 
     let props = this.props;
 
-    console.log(!props.footerIsOpen);
-
     return (
       <Animate
         start={() => ({
+          showPlayer:false,
           musicPlayer:{
             translateY: 100
           }
         })}
         update={() => ({
           musicPlayer:{
-            translateY: [!props.footerIsOpen ? 0 : 100]
+            translateY: [!props.footerFixedOpen ? 0 : 100]
           },
           timing: { duration: 250, ease: easeCubicInOut },
           events: {
             start() {
-
+              this.setState({showPlayer:true})
             },
             end() {
 
             },
           },
         })}
-
       >
         {(state) => {
-          return (
-            <div className={cx(styles.sidebarControls)}>
-              <div style={{...this.myStyles(state)}}>
-                <Controls class={'sidebar'} />
+          return state.showPlayer ?
+            (
+              <div className={cx(styles.sidebarControls)}>
+                <div style={{...this.myStyles(state)}}>
+                  <Controls class={'sidebar'} />
+                </div>
               </div>
-            </div>
-          );
+            ) : null;
         }}
       </Animate>
     );
@@ -73,7 +68,7 @@ class MusicControler extends Component {
 
 }
 
-const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, breakpoint, footerIsOpen, musicPlayerPosition}) => {
+const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, breakpoint, footerFixedOpen, musicPlayerPosition}) => {
   return (
     <div className={styles.menuTriggerWrap} >
       <div onClick={offCanvasMenuStateChange} className={styles.menuTrigger}/>
@@ -87,7 +82,7 @@ const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, breakpoint, footerIs
 
       {/*    can't make it appear and activate animation*/}
 
-      <MusicControler footerIsOpen={footerIsOpen} />
+      <MusicControler footerFixedOpen={footerFixedOpen} />
 
 {/*{musicPlayerPosition === 'sidebar' ?  <MusicControler footerIsOpen={footerIsOpen} />  : null}*/}
     </div>
@@ -106,7 +101,7 @@ const mapStateToProps = state => {
     menuIsOpen:get('offCanvasMenu.offCanvasMenuOpen', state),
     breakpoint: get('appModule.breakpoint', state),
     musicPlayerPosition: get('musicPlayerModule.position', state),
-    footerIsOpen: get('footerModule.footerIsOpen', state),
+    footerFixedOpen: get('footerModule.footerFixedOpen', state),
   });
 }
 
