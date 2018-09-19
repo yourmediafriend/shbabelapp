@@ -73,25 +73,29 @@ class HeaderSpacer extends Component {
     );
   }
 }
+const spacerCalcMax = props => {
+  return  props.revealFooter ?  props.fixedFooter ? footerRevealHeightLarge + footerFixedHeightLarge : footerRevealHeightLarge : props.fixedFooter ? footerFixedHeightLarge : 0 ;
+}
 
+const spacerCalcMin = props => {
+  return footerRevealHeightLarge;
+}
 
 const ContentLayer = props => {
   return (
-    <div>
+    <div className={cx(styles.contentLayerWrapper)}>
       <HeaderSpacer />
       <div className={cx(styles.contentLayer, props.className)}
            style={{
              ...props.revealFooter ? {boxShadow:'0 7px 15px -7px rgba(58, 57, 57, 0.50)'} : '',
-             ...{minHeight:  `calc(100vh - ${( max([footerRevealHeightLarge, footerFixedHeightLarge]))}px`}}}
+           }}
       >
         {props.children}
       </div>
-      <FooterSpacer trigger={props.footerFixedOpen}  spacerMax={260} spacerMin={200}  />
+      <FooterSpacer trigger={props.footerFixedOpen}  spacerMax={spacerCalcMax(props)} spacerMin={spacerCalcMin(props)}  />
     </div>
   );
 }
-
-
 
 ContentLayer.propTypes = {
   stickyHeader: PropTypes.bool,

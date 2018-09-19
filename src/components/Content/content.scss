@@ -6,11 +6,17 @@
     height: 100%;
     pointer-events: none;
 }
+.contentLayerWrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 .contentLayer {
     position: relative;
+    pointer-events: all;
     z-index: 1;
     height: 100%;
-
+    flex: 1;
 }
 .footerSpacer{
     pointer-events: none;

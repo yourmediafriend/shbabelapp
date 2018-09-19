@@ -3,7 +3,8 @@ import fp, { getOr } from 'lodash/fp';
 import OneQuarter from './OneQuarterComp';
 import Overlay from './Overlay';
 import styles from './quarterPage.scss';
-
+import MainLayer from '../Content/MainLayer';
+import ContentLayer from '../Content/ContentLayer';
 import Background from '../Background';
 import VideoBackground from '../Background/video';
 
@@ -72,27 +73,30 @@ class QuarterPage extends Component {
     };
 
     return (
-      <div className={cx(styles.slide)} >
+
+      <MainLayer className={styles.svgContainer}>
 
         <VideoBackground bgSrc={bgSrc} />
         <Background className={styles.fullScreenImage} bgSrc={bgImg}  />
 
-        <div className={cx(styles.quarterWrapper)} >
-          {fp.times(function(index) {
-            return <OneQuarter key={index}
-                               index={index}
-                               hoverIndex={this.state.hoverIndex}
-                               bgColor={this.hoverState.bgColor[index]}
-                               bgColorHover={this.hoverState.bgColorHover[index]}
-                               onChange={onChildHover}
-                               svgLayer={getOr('', index, this.hoverState.svgLayer)}
-                               bgImg={getOr('', index, this.hoverState.bgImage)}/>
-          }.bind(this),4)}
-        </div>
-
-       <Overlay bgImg={getOr('', this.state.hoverIndex, this.hoverState.overlay) }/>
-
-      </div>
+        <ContentLayer className={cx(styles.contentLayer)}>
+          <div className={cx(styles.slide)} >
+            <div className={cx(styles.quarterWrapper)} >
+              {fp.times(function(index) {
+                return <OneQuarter key={index}
+                                   index={index}
+                                   hoverIndex={this.state.hoverIndex}
+                                   bgColor={this.hoverState.bgColor[index]}
+                                   bgColorHover={this.hoverState.bgColorHover[index]}
+                                   onChange={onChildHover}
+                                   svgLayer={getOr('', index, this.hoverState.svgLayer)}
+                                   bgImg={getOr('', index, this.hoverState.bgImage)}/>
+              }.bind(this),4)}
+            </div>
+           <Overlay bgImg={getOr('', this.state.hoverIndex, this.hoverState.overlay) }/>
+          </div>
+        </ContentLayer>
+      </MainLayer>
     )
   }
 }

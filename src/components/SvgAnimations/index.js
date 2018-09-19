@@ -70,9 +70,9 @@ const SvgShape = (props) => {
 
 const SvgAnimation = (props) => {
   return (
-    <MainLayer className={styles.svgContainer} showHeader={true} showFooterReveal={false} showFooterFixed={true}>
+    <MainLayer className={styles.svgContainer}>
         {SvgBackground(props)}
-      <ContentLayer className={cx(styles.contentLayer)} showHeader={true} showFooterReveal={false} showFooterFixed={true}>
+      <ContentLayer className={cx(styles.contentLayer)}>
          {SvgShape(props)}
       </ContentLayer>
     </MainLayer>
