@@ -1,10 +1,17 @@
 .mainLayer {
+    position: relative;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     height: 100%;
+    pointer-events: none;
 }
 .contentLayer {
     position: relative;
     z-index: 1;
     height: 100%;
+
+}
+.footerSpacer{
+    pointer-events: none;
 }

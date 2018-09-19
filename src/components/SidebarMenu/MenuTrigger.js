@@ -32,6 +32,8 @@ class MusicControler extends Component {
 
     let props = this.props;
 
+    console.log(!props.footerIsOpen);
+
     return (
       <Animate
         start={() => ({
@@ -41,7 +43,7 @@ class MusicControler extends Component {
         })}
         update={() => ({
           musicPlayer:{
-            translateY: props.footerIsOpen ? 100 : 0
+            translateY: [!props.footerIsOpen ? 0 : 100]
           },
           timing: { duration: 250, ease: easeCubicInOut },
           events: {
@@ -56,10 +58,6 @@ class MusicControler extends Component {
 
       >
         {(state) => {
-
-          console.log(state.musicPlayer.translateY);
-
-
           return (
             <div className={cx(styles.sidebarControls)}>
               <div style={{...this.myStyles(state)}}>
@@ -75,10 +73,7 @@ class MusicControler extends Component {
 
 }
 
-const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, breakpoint, musicPlayerPosition, footerIsOpen}) => {
-
-  console.log(!(footerIsOpen));
-
+const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, breakpoint, footerIsOpen, musicPlayerPosition}) => {
   return (
     <div className={styles.menuTriggerWrap} >
       <div onClick={offCanvasMenuStateChange} className={styles.menuTrigger}/>
@@ -86,7 +81,15 @@ const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, breakpoint, musicPla
         <BurgerIcon menuIsOpen={menuIsOpen}/>
       </span>
       {breakpoint === 'small' ?  <IconNav className={'iconNavSide'} /> : null}
-      {musicPlayerPosition === 'sidebar' && !(footerIsOpen) ? <MusicControler footerIsOpen={footerIsOpen} /> : null}
+
+{/*      <MusicControler footerIsOpen={footerIsOpen} />*/}
+
+
+      {/*    can't make it appear and activate animation*/}
+
+      <MusicControler footerIsOpen={footerIsOpen} />
+
+{/*{musicPlayerPosition === 'sidebar' ?  <MusicControler footerIsOpen={footerIsOpen} />  : null}*/}
     </div>
   )
 }

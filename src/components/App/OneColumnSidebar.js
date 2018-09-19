@@ -190,9 +190,7 @@ class App extends Component {
               <div className={cx(styles.menuFlexWrap,'mainContent')}>
                 <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}} />
                   <div className={styles.mainFlex}>
-                    <div className={styles.content}>
                       <MainContent currentpage={this.props.currentpage} match={this.props.match} pageRef={this.props.pageRef} />
-                    </div>
                   </div>
                 </div>
 
