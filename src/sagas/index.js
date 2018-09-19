@@ -12,7 +12,7 @@ import { googleMapModuleSaga } from '../modules/GoogleMaps';
 
 import { modalSaga } from '../modules/Modal';
 import { searchModalSaga } from '../modules/Search';
-
+import { musicPlayerSaga } from '../modules/MusicPlayer';
 
 export {
   nestedMenuSaga,
@@ -22,6 +22,7 @@ export {
   googleMapModuleSaga,
   modalSaga,
   searchModalSaga,
+  musicPlayerSaga,
 };
 
 export default function *() {
@@ -34,5 +35,6 @@ export default function *() {
     fork(googleMapModuleSaga),
     fork(modalSaga),
     fork(searchModalSaga),
+    fork(musicPlayerSaga),
   ];
 }

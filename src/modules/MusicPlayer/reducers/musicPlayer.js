@@ -1,10 +1,12 @@
 const CLOSE_QUEUE_POPUP = "musicPlayer/CLOSE_QUEUE_POPUP";
 const TOGGLE_QUEUE_POPUP = "musicPlayer/TOGGLE_QUEUE_POPUP";
 const LOAD_TRACK = "musicPlayer/LOAD_TRACK";
+const MOVE_CONTROLS = "musicPlayer/MOVE_CONTROLS";
 
 export const initialState = {
   popUpIsOpen: false,
-  loadTrack: ''
+  loadTrack: '',
+  position: 'footer',
 };
 
 // Reducer
@@ -27,6 +29,11 @@ export default function reducer(state=initialState, action = {}) {
         ...state,
         loadTrack: action.payload.track
       }
+    case MOVE_CONTROLS:
+      return {
+        ...state,
+        position: action.payload.position
+    }
 
     default: return state;
   }
@@ -53,6 +60,14 @@ export function loadTrack(track) {
     payload: {
       track
     }
+  };
+}
 
+export function positionControls(position) {
+  return {
+    type: MOVE_CONTROLS,
+    payload: {
+      position
+    }
   };
 }

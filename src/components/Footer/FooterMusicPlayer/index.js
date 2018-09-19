@@ -1,12 +1,12 @@
 import React from 'react'
 
 import OneColumnCenter from '../../Layout/1ColumnCenter';
-import MusicPlayer from '../../MusicPlayer';
+import { Controls } from '../../MusicPlayer';
 
 const FooterMusicPlayer = props => {
   return (
     <div>
-      <OneColumnCenter contentMain={ <MusicPlayer />} />
+      <OneColumnCenter contentMain={ <Controls />} />
     </div>
   )
 }

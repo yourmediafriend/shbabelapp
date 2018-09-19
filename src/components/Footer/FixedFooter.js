@@ -4,12 +4,14 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import { setFixedFooterHeight } from "../../modules/App";
 import { footerClose } from "../../modules/Footer";
-
 import styles from './footer.scss';
 import cx from 'classnames';
 import FooterMusicPlayer from './FooterMusicPlayer';
 import Icon from '../Icons';
 import {get} from "lodash/fp";
+import Animate from 'react-move/Animate';
+import { easeCubicInOut } from 'd3-ease';
+
 
 const FooterCloseComp = ({clickEvent}) => {
   return (
@@ -20,15 +22,55 @@ const FooterCloseComp = ({clickEvent}) => {
 }
 
 class Footer extends Component {
+
+  myStyles = (state) => {
+    const {footer} = state;
+    return {
+      transform: `translateY(${footer.translateY}%)` ,
+    }
+  };
+
   render() {
+
+    let props = this.props;
+
     return (
-      <div ref={(element) => this.footerElement = element} className={cx(styles.footer, styles.fixed, this.props.footerIsOpen ? styles.open : styles.closed )}>
-        <div className={styles.footerSlide}>
-          <FooterMusicPlayer />
-          <FooterCloseComp  clickEvent={this.props.footerClose}/>
-        </div>
-      </div>
-    )
+      <Animate
+        start={() => ({
+          footer:{
+            translateY: 0
+          }
+        })}
+
+        update={() => ({
+          footer:{
+            translateY: [props.footerIsOpen ? 0: 100 ]
+          },
+          timing: { duration: 250, ease: easeCubicInOut },
+          events: {
+            start() {
+
+            },
+            end() {
+
+            },
+          },
+        })}
+      >
+        {(state) => {
+
+         // console.log(state.footer.translateY);
+          return (
+            <div ref={(element) => this.footerElement = element}
+                 className={cx(styles.footer, styles.fixed )}
+                 style={{...this.myStyles(state)}} >
+                <FooterMusicPlayer />
+                <FooterCloseComp  clickEvent={this.props.footerClose}/>
+            </div>
+          );
+        }}
+      </Animate>
+    );
   }
 }
 
