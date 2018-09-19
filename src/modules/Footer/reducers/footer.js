@@ -3,7 +3,7 @@ const CLOSE_FOOTER = "footerModule/CLOSE_FOOTER";
 const TOGGLE_FOOTER = "footerModule/TOGGLE_FOOTER";
 
 export const initialState = {
-  footerIsOpen: true
+  footerFixedOpen: true
 };
 
 // Reducer
@@ -14,21 +14,21 @@ export default function reducer(state=initialState, action = {}) {
     case TOGGLE_FOOTER:
       return {
         ...state,
-        footerIsOpen: !state.footerIsOpen
+        footerFixedOpen: !state.footerIsOpen
       }
 
     case OPEN_FOOTER:
       // need to get the state of the menu
       return {
         ...state,
-        footerIsOpen: true,
+        footerFixedOpen: true,
       }
 
     case CLOSE_FOOTER:
       // need to get the state of the menu
       return {
         ...state,
-        footerIsOpen: false,
+        footerFixedOpen: false,
       }
 
     default: return state;

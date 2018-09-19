@@ -8,6 +8,7 @@ $footer-fixed-ht-large: 60px !default;
 
 .footer {
     width: 100%;
+    pointer-events: all;
     &.reveal {
         height: $footer-reveal-ht-large;
         background-color: $footer-reveal-bg;
@@ -58,4 +59,7 @@ $footer-fixed-ht-large: 60px !default;
             padding: 0;
         }
     }
+}
+.footerSpacer {
+    pointer-events: none;
 }

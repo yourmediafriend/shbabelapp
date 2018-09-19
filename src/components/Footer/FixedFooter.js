@@ -35,48 +35,50 @@ class Footer extends Component {
     let props = this.props;
 
     return (
-      <Animate
-        start={() => ({
-          footer:{
-            translateY: 0
-          }
-        })}
 
-        update={() => ({
-          footer:{
-            translateY: [props.footerIsOpen ? 0: 100 ]
-          },
-          timing: { duration: 250, ease: easeCubicInOut },
-          events: {
-            start() {
+        <Animate
+          start={() => ({
+            footer:{
+              translateY: 0
+            }
+          })}
 
+          update={() => ({
+            footer:{
+              translateY: [props.footerFixedOpen ? 0: 100 ]
             },
-            end() {
+            timing: { duration: 250, ease: easeCubicInOut },
+            events: {
+              start() {
 
+              },
+              end() {
+                // hide the element
+              },
             },
-          },
-        })}
-      >
-        {(state) => {
+          })}
+        >
+          {(state) => {
 
-         // console.log(state.footer.translateY);
-          return (
-            <div ref={(element) => this.footerElement = element}
-                 className={cx(styles.footer, styles.fixed )}
-                 style={{...this.myStyles(state)}} >
-                <FooterMusicPlayer />
-                <FooterCloseComp  clickEvent={this.props.footerClose}/>
-            </div>
-          );
-        }}
-      </Animate>
+           // console.log(state.footer.translateY);
+            return (
+              <div ref={(element) => this.footerElement = element}
+                   className={cx(styles.footer, styles.fixed )}
+                   style={{...this.myStyles(state)}} >
+                  <FooterMusicPlayer />
+                  <FooterCloseComp  clickEvent={this.props.footerClose}/>
+              </div>
+            );
+          }}
+        </Animate>
+
     );
   }
 }
 
 export const mapStateToProps = (state) => {
   return {
-    footerIsOpen: get('footerModule.footerIsOpen', state),
+    footerFixedOpen: get('footerModule.footerFixedOpen', state),
   }
 };
 

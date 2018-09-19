@@ -66,6 +66,8 @@ class App extends Component {
     this.onResize();
   };
 
+
+
   onResize = () => {
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
       // Desktop
@@ -177,7 +179,7 @@ class App extends Component {
 
               <div className={styles.mainContainer}>
 
-                { this.props.showHeader ?
+                { this.props.stickyHeader ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.header,styles.top)}>
                     <Header />
                   </StickyContainer> : '' }
@@ -199,12 +201,12 @@ class App extends Component {
                     <Modal/>
                   </StickyContainer> }
 
-                { this.props.showFooterFixed ?
+                { this.props.fixedFooter ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isFixed)}>
                     <FixedFooter />
                   </StickyContainer> : '' }
 
-                { this.props.showFooterReveal ?
+                { this.props.revealFooter ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isReveal)}>
                     <RevealFooter />
                   </StickyContainer> : '' }
@@ -239,12 +241,14 @@ App.defaultProps = {
 
 export const mapStateToProps = (state) => {
   return {
+    stickyHeader: get('appModule.stickyHeader', state),
+    fixedFooter: get('appModule.fixedFooter', state),
+    revealFooter: get('appModule.revealFooter', state),
+
+
     isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
     isMenuAnimating: get('offCanvasMenu.offCanvasMenuAnimating', state),
     isModalOpen: get('modalModule.modalIsOpen', state),
-    revealFooterHeight: get('appModule.revealFooterHeight', state),
-    fixedFooterHeight: get('appModule.fixedFooterHeight', state),
-    stickyHeaderHeight: get('appModule.stickyHeaderHeight', state),
   }
 };
 

@@ -7,13 +7,18 @@ import { easeCubicInOut } from 'd3-ease';
 import cx from 'classnames'
 import styles from './content.scss';
 import {get, max} from "lodash/fp";
+
+import FooterSpacer from "../Footer/FooterSpacer";
+
 import {footerClose} from "../../modules/Footer";
 
 
 let stickyHeaderHeight = 80;
+let stickyHeaderHeightCompact = 54;
 let footerRevealHeightLarge = 200;
 let footerFixedHeightLarge = 60;
 
+//   height: [props.footerIsOpen ? footerRevealHeightLarge + footerFixedHeightLarge : footerRevealHeightLarge ]
 
 /*style={{
 ...props.showFooterReveal ? {height:`${footerRevealHeightLarge}px`} : '',
@@ -21,12 +26,12 @@ let footerFixedHeightLarge = 60;
 ...props.showFooterFixed && props.showFooterReveal ? {height:`${( max([footerRevealHeightLarge,footerFixedHeightLarge]))}px`} : '',
 }}*/
 
-class FooterSpacer extends Component {
+class HeaderSpacer extends Component {
 
   myStyles = (state) => {
-    const {footerSpacer} = state;
+    const {HeaderSpacer} = state;
     return {
-      height: `${footerSpacer.height}px` ,
+      height: `${HeaderSpacer.height}px` ,
     }
   };
 
@@ -37,15 +42,15 @@ class FooterSpacer extends Component {
     return (
       <Animate
         start={() => ({
-          footerSpacer:{
-            height: [props.footerIsOpen ? footerRevealHeightLarge + footerFixedHeightLarge : footerRevealHeightLarge ]
+          HeaderSpacer:{
+            height: stickyHeaderHeight
           }
         })}
 
         update={() => ({
-          footerSpacer:{
-            height: [props.footerIsOpen ? footerRevealHeightLarge + footerFixedHeightLarge  : footerRevealHeightLarge ]
-          },
+        /*  HeaderSpacer:{
+            height: [props.XXX ? stickyHeaderHeight  : stickyHeaderHeight ]
+          },*/
           timing: { duration: 250, ease: easeCubicInOut },
           events: {
             start() {
@@ -58,9 +63,8 @@ class FooterSpacer extends Component {
         })}
       >
         {(state) => {
-
           return (
-            <div className={cx(styles.footerSpacer)}
+            <div className={cx(styles.headerSpacer)}
                  style={{...this.myStyles(state)}} />
 
           );
@@ -68,21 +72,21 @@ class FooterSpacer extends Component {
       </Animate>
     );
   }
-
 }
 
 
 const ContentLayer = props => {
   return (
     <div>
+      <HeaderSpacer />
       <div className={cx(styles.contentLayer, props.className)}
-           style={{ ...props.showHeader ? {paddingTop:`${stickyHeaderHeight}px`} : '',
-             ...props.showFooterReveal ? {boxShadow:'0 7px 15px -7px rgba(58, 57, 57, 0.50)'} : '',
+           style={{
+             ...props.revealFooter ? {boxShadow:'0 7px 15px -7px rgba(58, 57, 57, 0.50)'} : '',
              ...{minHeight:  `calc(100vh - ${( max([footerRevealHeightLarge, footerFixedHeightLarge]))}px`}}}
       >
         {props.children}
       </div>
-      <FooterSpacer footerIsOpen={props.footerIsOpen} showFooterReveal={props.showFooterReveal} showFooterFixed={props.showFooterFixed}    />
+      <FooterSpacer trigger={props.footerFixedOpen}  spacerMax={260} spacerMin={200}  />
     </div>
   );
 }
@@ -90,20 +94,17 @@ const ContentLayer = props => {
 
 
 ContentLayer.propTypes = {
-  showHeader: PropTypes.bool,
-  showFooterReveal: PropTypes.bool,
-  showFooterFixed:  PropTypes.bool,
-};
-
-ContentLayer.defaultProps = {
-  showHeader: true,
-  showFooterReveal: true,
-  showFooterFixed: true
+  stickyHeader: PropTypes.bool,
+  fixedFooter: PropTypes.bool,
+  revealFooter:  PropTypes.bool,
 };
 
 export const mapStateToProps = (state) => {
   return {
-    footerIsOpen: get('footerModule.footerIsOpen', state),
+    stickyHeader: get('appModule.stickyHeader', state),
+    fixedFooter: get('appModule.fixedFooter', state),
+    revealFooter: get('appModule.revealFooter', state),
+    footerFixedOpen: get('footerModule.footerFixedOpen', state),
   }
 };
 

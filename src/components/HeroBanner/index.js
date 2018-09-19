@@ -6,12 +6,10 @@ import cx from 'classnames';
 import styles from './heroBanner.scss';
 import {get} from "lodash/fp";
 
-
-
-
 const HeroBanner = (props) => {
 
-  let stickCalc = props.stickyHeaderHeight + props.fixedFooterHeight;
+  // TODO: Fix Calcs based on App Configs
+  const stickCalc = 55 + 60;
 
   return (
     <div className={cx(styles.heroBanner)} style={{minHeight:`calc(100vh - ${stickCalc}px)`}}>
