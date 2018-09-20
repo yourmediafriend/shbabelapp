@@ -66,6 +66,10 @@ export default function reducer(state=initialState, action = {}) {
         loop: !state.loop,
       }
     case SET_VOLUME:
+
+
+      console.log('SET_VOLUME',action.payload.volume );
+
       return {
         ...state,
         volume: action.payload.volume,
@@ -182,7 +186,7 @@ export const setVolume = value => {
   return {
     type: SET_VOLUME,
     payload: {
-      volume: parseFloat(value/100)
+      volume: value
     }
   };
 }
