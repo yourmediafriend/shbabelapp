@@ -4,7 +4,7 @@ import {bindActionCreators} from "redux";
 import {get} from "lodash/fp";
 import cx from 'classnames';
 import ReactPlayer from 'react-player';
-
+import ReactHoverObserver from '../ReactHoverObserver';
 import InputSlider from 'react-input-slider';
 
 
@@ -38,9 +38,7 @@ import {
 class TrackDetails extends Component {
 
   render () {
-
     const {title, fieldArtist} = this.props;
-
     return (
       <div className={cx(styles.trackDetails)}>
         <span className={styles.artist}>{fieldArtist}</span>
@@ -144,11 +142,51 @@ class TimelineSlider extends Component {
   }
 }
 
+
+
+class VolumeControl extends Component {
+
+  render() {
+
+    const { hoverDelay, hoverOffDelay, volume, muted, toggleMuted, setVolume } = this.props;
+
+    return (
+      <ReactHoverObserver
+        hoverDelayInMs={hoverDelay ? hoverDelay : 0}
+        hoverOffDelayInMs={hoverOffDelay ? hoverOffDelay : 0}
+        className={cx(styles.reactHoverObserver)}
+      >
+        {({ isHovering }) => {
+          return(
+            <div className={cx(styles.section, styles.volume)}>
+              <button className={cx(styles.button)} onClick={toggleMuted}>
+                {muted ? <span className={cx(styles.icon, styles.mute)}><Icon icon={'mute'} /></span> : <span className={cx(styles.icon, styles.volume)}><Icon icon={'volume'} /></span>}
+              </button>
+
+              <div className={cx(styles.barWrap, styles.setVolume, isHovering ? styles.show : styles.hide )}>
+                <div className={cx(styles.inner)}>
+                  <VolumeSlider volume={volume} setVolume={setVolume} />
+                </div>
+              </div>
+
+            </div>
+          )
+        }}
+      </ReactHoverObserver>
+    )
+  }
+}
+
+
+
+
+
+
 class Controls extends Component {
 
   render () {
 
-    const { playPause, toggleLoop, toggleShowRemaining, toggleMuted, toggleQueuePopUp, track, playing, volume, muted, progress, duration, showRemaining, loadTrack } = this.props;
+    const { playPause, toggleLoop, toggleShowRemaining, toggleMuted, setVolume, toggleQueuePopUp, track, playing, volume, muted, progress, duration, showRemaining } = this.props;
 
     return (
       <div className={cx(styles.controls, this.props.className, styles[this.props.class] )}>
@@ -191,21 +229,10 @@ class Controls extends Component {
             <div className={styles.barWrap}>
               <TimelineSlider  progress={progress} setSeekTo={this.props.setSeekTo} />
             </div>
-
-
-
-          </div>
-
-        </div>
-
-        <div className={cx(styles.section, styles.volume)}>
-          <button className={cx(styles.button)} onClick={toggleMuted}>
-            {muted ? <span className={cx(styles.icon, styles.mute)}><Icon icon={'mute'} /></span> : <span className={cx(styles.icon, styles.volume)}><Icon icon={'volume'} /></span>}
-          </button>
-          <div className={cx(styles.barWrap, styles.setVolume )}>
-            <VolumeSlider volume={volume} setVolume={this.props.setVolume}    />
           </div>
         </div>
+
+        <VolumeControl hoverDelay={0} hoverOffDelay={100} muted={muted} volume={volume} toggleMuted={toggleMuted} setVolume={setVolume}/>
 
         <MusicQueuePopUp />
         {/* https://storage.googleapis.com/media-session/elephants-dream/the-wires.mp3*/}

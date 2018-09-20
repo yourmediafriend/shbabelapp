@@ -39,7 +39,6 @@ let MenuLink = ({icon, text, style, clickEvent, href }) => {
 }
 
 let Dropdown = props => {
-
   return (
     <AppContext.Consumer>
       {(context) => {
@@ -89,12 +88,10 @@ const IconNav = (props) => {
       </NavItem>
       <NavItem className={styles.account}>
         <MenuItem hoverOffDelay={250} >
-
           <MenuLink icon="account" clickEvent={props.modalToggle.bind(this, 'account', 0)} />
           <Dropdown>
             <AccountDropdown />
           </Dropdown>
-
         </MenuItem>
       </NavItem>
       <NavItem>
