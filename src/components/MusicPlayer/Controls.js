@@ -151,28 +151,29 @@ class VolumeControl extends Component {
     const { hoverDelay, hoverOffDelay, volume, muted, toggleMuted, setVolume } = this.props;
 
     return (
-      <ReactHoverObserver
-        hoverDelayInMs={hoverDelay ? hoverDelay : 0}
-        hoverOffDelayInMs={hoverOffDelay ? hoverOffDelay : 0}
-        className={cx(styles.reactHoverObserver)}
-      >
-        {({ isHovering }) => {
-          return(
-            <div className={cx(styles.section, styles.volume)}>
-              <button className={cx(styles.button)} onClick={toggleMuted}>
-                {muted ? <span className={cx(styles.icon, styles.mute)}><Icon icon={'mute'} /></span> : <span className={cx(styles.icon, styles.volume)}><Icon icon={'volume'} /></span>}
-              </button>
+      <div className={cx(styles.section, styles.volume)}>
+        <ReactHoverObserver
+          hoverDelayInMs={hoverDelay ? hoverDelay : 0}
+          hoverOffDelayInMs={hoverOffDelay ? hoverOffDelay : 0}
+          className={cx(styles.reactHoverObserver)}
+        >
+          {({ isHovering }) => {
+            return(
+              <div>
+                <button className={cx(styles.button)} onClick={toggleMuted}>
+                  {muted ? <span className={cx(styles.icon, styles.mute)}><Icon icon={'mute'} /></span> : <span className={cx(styles.icon, styles.volume)}><Icon icon={'volume'} /></span>}
+                </button>
 
-              <div className={cx(styles.barWrap, styles.setVolume, isHovering ? styles.show : styles.hide )}>
-                <div className={cx(styles.inner)}>
-                  <VolumeSlider volume={volume} setVolume={setVolume} />
+                <div className={cx(styles.barWrap, styles.setVolume, isHovering ? styles.show : styles.hide )}>
+                  <div className={cx(styles.inner)}>
+                    <VolumeSlider volume={volume} setVolume={setVolume} />
+                  </div>
                 </div>
               </div>
-
-            </div>
-          )
-        }}
-      </ReactHoverObserver>
+            )
+          }}
+        </ReactHoverObserver>
+      </div>
     )
   }
 }
@@ -197,14 +198,13 @@ class Controls extends Component {
           </button>
         </div>
 
-        <div className={cx(styles.section, styles.controls)}>
-          <button className={cx(styles.button, styles.loop)} onClick={toggleLoop}>
-              <span className={cx(styles.icon, styles.loop)}>
+        <div className={cx(styles.section, styles.controls, styles.loop)}>
+          <button className={cx(styles.button)} onClick={toggleLoop}>
+              <span className={cx(styles.icon)}>
                 <Icon icon={'loop'} />
               </span>
           </button>
         </div>
-
 
         <div className={cx(styles.section, styles.timeline)}>
           <div className={cx(styles.cover)}>

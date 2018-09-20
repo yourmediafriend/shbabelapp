@@ -56,7 +56,7 @@ class MusicControler extends Component {
             (
               <div className={cx(styles.sidebarControls)}>
                 <div style={{...this.myStyles(state)}}>
-               {/*   <Controls class={'sidebar'} />*/}
+                  <Controls class={'sidebar'} />
                 </div>
               </div>
             ) : null;
