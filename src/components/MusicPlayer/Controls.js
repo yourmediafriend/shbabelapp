@@ -4,11 +4,12 @@ import {bindActionCreators} from "redux";
 import {get} from "lodash/fp";
 import cx from 'classnames';
 import ReactPlayer from 'react-player';
+
 import InputSlider from 'react-input-slider';
 
-import InputRange from 'react-input-range';
-import './inputRange.css';
 
+import Slider from 'react-rangeslider'
+import 'react-rangeslider/lib/index.css'
 
 import Duration from './Duration';
 import styles from './musicPlayer.scss';
@@ -46,7 +47,7 @@ class TrackDetails extends Component {
         {fieldArtist && title ? <span className={styles.divide}>  -  </span> : '' }
         <span className={styles.title}>{title}</span>
       </div>
-      );
+    );
   }
 }
 
@@ -55,27 +56,29 @@ class VolumeSlider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ymin: 0,
-      ymax: 100,
-      y: 100 - (props.volume * 100)
+      min: 0,
+      max: 100,
+      value: props.volume * 100,
     };
   }
 
   onChange = value => {
     this.setState({
-      y: value.y,
+      value: value
     });
-    this.props.setVolume(parseFloat(((this.state.ymax)-(this.state.y))/100))
+    this.props.setVolume(parseFloat(this.state.value/100))
   }
 
   render() {
     return (
-      <InputSlider
-        className={cx(styles.slider, styles.sliderY)}
-        axis="y"
-        y={this.state.y}
-        ymin={this.state.ymin}
-        ymax={this.state.ymax}
+      <Slider
+        className={cx(styles.slider)}
+        orientation="vertical"
+        value={this.state.value}
+        min={this.state.min}
+        max={this.state.max}
+        tooltip={false}
+        step={0.1}
         onChange={this.onChange.bind(this)}
       />
     );
@@ -87,69 +90,61 @@ class TimelineSlider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      xmin: 0,
-      xmax: 100,
-      x: 0,
+      min: 0,
+      max: 100,
+      value: 0,
+      seek: false
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-
-    // this doesn't help initial render.
-    if (prevProps.played !==  this.props.played ) {
+    if ((prevProps.progress.played !==  this.props.progress.played  && !this.state.seek)) {
       this.setState({
-        x: this.props.played,
+        value: this.props.progress.played * 100,
       });
     }
-
   }
 
-  onChange = value => {
+  onChangeStart = value => {
     this.setState({
-      x: value.x,
+      seek: true
     });
   }
 
-  onDragEnd = value => {
-    this.props.setSeekTo(parseFloat(this.state.x/100))
+  onChange = value => {
+    if (this.props.progress.loaded !== 0) {
+      this.setState({
+        value: value
+      });
+    }
+  }
+
+  onChangeComplete = value => {
+    this.setState({
+      seek: false
+    });
+    this.props.setSeekTo(parseFloat(this.state.value/100))
   }
 
   render() {
     return (
-      <InputSlider
-        className={cx(styles.slider, styles.sliderX)}
-        axis="x"
-        x={this.state.x}
-        xymin={this.state.xmin}
-        xmax={this.state.xmax}
+      <Slider
+        className={cx(styles.slider, this.props.progress.loaded === 0 ? styles.disabled : styles.active)}
+        orientation="horizontal"
+        value={this.state.value}
+        min={this.state.xmin}
+        max={this.state.xmax}
+        tooltip={false}
+        step={0.1}
+        onChangeStart={this.onChangeStart.bind(this)}
         onChange={this.onChange.bind(this)}
-        onDragEnd={this.onDragEnd.bind(this)}
+        onChangeComplete={this.onChangeComplete.bind(this)}
       />
     );
   }
 }
 
-
-
-
 class Controls extends Component {
-
-  onSeekMouseDown = value => {
-    console.log('onSeekMouseDown', value);
-    this.props.setSeek(true)
-  }
-
-  onSeekChange = value => {
-    console.log('onSeekChange', value);
-    this.props.setPlayheadPositon(parseFloat(value/100))
-  }
-
-  onSeekMouseUp = value => {
-    console.log('onSeekMouseUp', value);
-    this.props.setSeekTo(parseFloat(value/100))
-    this.props.setSeek(false)
-  }
-
 
   render () {
 
@@ -194,20 +189,7 @@ class Controls extends Component {
 
 
             <div className={styles.barWrap}>
-
-              <TimelineSlider played={progress.played * 100} setSeekTo={this.props.setSeekTo} />
-
-     {/*         <InputRange
-                maxValue={100}
-                minValue={0}
-                value={ progress.played * 100 }
-                onChangeStart={value => this.onSeekMouseDown(value)}
-                onChange={value => this.onSeekChange(value)}
-                onChangeComplete={value => this.onSeekMouseUp(value)}
-              />
-*/}
-
-
+              <TimelineSlider  progress={progress} setSeekTo={this.props.setSeekTo} />
             </div>
 
 
@@ -217,12 +199,12 @@ class Controls extends Component {
         </div>
 
         <div className={cx(styles.section, styles.volume)}>
-            <button className={cx(styles.button)} onClick={toggleMuted}>
-              {muted ? <span className={cx(styles.icon, styles.mute)}><Icon icon={'mute'} /></span> : <span className={cx(styles.icon, styles.volume)}><Icon icon={'volume'} /></span>}
-            </button>
-            <div className={cx(styles.barWrap, styles.setVolume )}>
-              <VolumeSlider volume={volume} setVolume={this.props.setVolume}    />
-            </div>
+          <button className={cx(styles.button)} onClick={toggleMuted}>
+            {muted ? <span className={cx(styles.icon, styles.mute)}><Icon icon={'mute'} /></span> : <span className={cx(styles.icon, styles.volume)}><Icon icon={'volume'} /></span>}
+          </button>
+          <div className={cx(styles.barWrap, styles.setVolume )}>
+            <VolumeSlider volume={volume} setVolume={this.props.setVolume}    />
+          </div>
         </div>
 
         <MusicQueuePopUp />

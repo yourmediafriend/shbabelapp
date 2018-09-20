@@ -24,7 +24,6 @@
             padding: 0px 10px;
         }
     }
-
     .timeline {
         display: flex;
         align-items: center;
@@ -113,58 +112,58 @@
 .timeline {
     .slider{
         width: 100%;
+        border-radius: 2px;
         height: 4px;
-        position: relative;
-        display: inline-block;
-        background-color: #ddd;
+        margin: 5px 0;
 
-        :global(.value) {
-            position: absolute;
-            background-color: #ff00ea;
-            height: 100%;
-            transition: all 0.3s ease;
+        &.disabled {
+            :global(.rangeslider__handle) {
+                display: none;
+            }
+        }
+
+
+        :global(.rangeslider__fill) {
+            background: #ff00ea;
+        }
+        :global(.rangeslider__handle) {
+            box-shadow: none;
+            border: 0;
+            background: transparent;
+            width: 0px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            &::before {
+                content: '';
+                width: 20px;
+                height: 20px;
+                background: transparent;
+                display: block;
+                position: absolute;
+                left: -10px;
+                top: 5px;
+            }
+
             &::after {
                 content:'';
-                display: block;
                 width: 10px;
                 height: 10px;
-                background-color: #ff00ea;
-                position: absolute;
-                border-radius: 50%;
-                right: -5px;
-                top: calc(-50% - 1px);
+                top: 10px;
+                left: -5px;
+                background: #ff00ea;
+                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), 0 -1px 1px rgba(0, 0, 0, 0.2);
             }
-        }
-
-        :global(.handle) {
-            position: absolute;
-            width: 10px;
-            height: 10px;
         }
     }
-
-  /*  .barWrap{
-        .bar {
-            -webkit-appearance: none;
-            appearance: none;
-            height: 2px;
-            background: transparent;
-            width: 100%;
-            position: relative;
-        }
-        &.range {
-            z-index: 3;
-            background: transparent;
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1d2e38', endColorstr='#2b4254',GradientType=1 );
-            outline: none;
-            .bar {
-                top: -3px;
-                &:focus{
-                    outline: none;
-                }
-            }
-        }
-    }*/
 }
 
 .button {
@@ -187,50 +186,57 @@
         box-shadow: 2px 2px 7px -2px rgba(0, 0, 0, 0.25);
         background-color: #fff;
         position: absolute;
-        padding: 10px;
+        padding: 20px;
         height: 120px;
         bottom: 100%;
         margin-bottom: 10px;
         left: 50%;
         transform: translateX(-50%);
+        margin-left: -3px;
     }
 
     .slider{
-/*        transform: rotate(-180deg);
-        transform-origin: 50%;*/
         width: 2px;
+        border-radius: 1px;
         height: 100%;
-        position: relative;
-        display: inline-block;
-        background-color: #ff00ea;
-
-        :global(.value) {
-            position: absolute;
-            background-color: #ddd;
-            width: 100%;
+        margin: 0px auto;
+        :global(.rangeslider__fill) {
+            background: #ff00ea;
         }
+        :global(.rangeslider__handle) {
+            box-shadow: none;
+            border: 0;
+            background: transparent;
+            width: 0;
+            height: 0;
+            &:focus {
+                outline: none;
+            }
+            &::before {
+                content: '';
+                width: 20px;
+                height: 20px;
+                background: transparent;
+                display: block;
+                position: absolute;
+                left: 1px;
+                top: -10px;
 
-        :global(.handle) {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-
+            }
             &::after {
                 content:'';
-                display: block;
                 width: 10px;
                 height: 10px;
-                background-color: #ff00ea;
-
-                border-radius: 50%;
-                left: calc(-50% + 1px);
-                top: -50%;
+                top: -5px;
+                left: 6px;
                 position: absolute;
-
+                border-radius: 50%;
+                display: block;
+                background: #ff00ea;
+                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), 0 -1px 1px rgba(0, 0, 0, 0.2);
             }
         }
     }
-
 }
 
 .popUp {

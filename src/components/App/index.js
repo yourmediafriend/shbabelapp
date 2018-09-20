@@ -193,10 +193,14 @@ class App extends Component {
                   </div>
                 </div>
 
-                { this.props.fixedFooter ?
+                <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isFixed)}>
+                  <FixedFooter />
+                </StickyContainer>
+
+{/*                { this.props.fixedFooter ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isFixed)}>
                     <FixedFooter />
-                  </StickyContainer> : '' }
+                  </StickyContainer> : '' }*/}
 
                 { this.props.revealFooter ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isReveal)}>

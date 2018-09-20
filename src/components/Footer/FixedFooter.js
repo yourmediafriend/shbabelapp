@@ -61,6 +61,18 @@ class Footer extends Component {
           })}
         >
           {(state) => {
+
+
+            return (
+              <div ref={(element) => this.footerElement = element}
+                   className={cx(styles.footer, styles.fixed )}
+                   style={{...this.myStyles(state)}} >
+                <FooterMusicPlayer />
+                <FooterCloseComp  clickEvent={this.props.footerClose}/>
+              </div>
+            )
+
+
             return state.showFooter ?
               (
                 <div ref={(element) => this.footerElement = element}

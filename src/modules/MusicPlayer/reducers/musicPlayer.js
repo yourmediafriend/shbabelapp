@@ -29,7 +29,7 @@ export const initialState = {
             title: ''
           },
   playing: false,
-  volume: 0.8,
+  volume: 0.4,
   muted: false,
   played: 0,
   loaded: 0,
@@ -66,10 +66,6 @@ export default function reducer(state=initialState, action = {}) {
         loop: !state.loop,
       }
     case SET_VOLUME:
-
-
-      console.log('SET_VOLUME',action.payload.volume );
-
       return {
         ...state,
         volume: action.payload.volume,
@@ -90,7 +86,6 @@ export default function reducer(state=initialState, action = {}) {
         playbackRate: action.payload.playbackRate
       }
 
-
     case SET_PLAYHEAD_POSITION:
       return {
         ...state,
@@ -105,7 +100,6 @@ export default function reducer(state=initialState, action = {}) {
         seeking: action.payload.seeking
       }
     case SET_SEEK_TO:
-      console.log('SET_SEEK_TO', action.payload.seekTo);
       return {
         ...state,
         seekTo: action.payload.seekTo
@@ -154,7 +148,7 @@ export default function reducer(state=initialState, action = {}) {
     case MOVE_CONTROLS:
       return {
         ...state,
-        position: action.payload.position
+/*        position: action.payload.position*/
     }
 
     default: return state;
@@ -162,7 +156,6 @@ export default function reducer(state=initialState, action = {}) {
 }
 
 // Action Creators
-
 
 export const playPause = () => {
   return {

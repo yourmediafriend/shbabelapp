@@ -4,8 +4,8 @@ import {bindActionCreators} from "redux";
 import {get} from "lodash/fp";
 import cx from 'classnames';
 import ReactPlayer from 'react-player';
-import InputRange from 'react-input-range';
-import './inputRange.css';
+
+
 import Duration from './Duration';
 import styles from './musicPlayer.scss';
 import { Image } from 'cloudinary-react';
