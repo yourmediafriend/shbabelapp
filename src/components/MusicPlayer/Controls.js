@@ -11,151 +11,83 @@ import styles from './musicPlayer.scss';
 import { Image } from 'cloudinary-react';
 import Icon from '../Icons';
 import MusicQueuePopUp from './MusicQueue'
-import {toggleQueuePopUp} from "../../modules/MusicPlayer";
+import {
+  playPause,
+  stop,
+  toggleLoop,
+  setVolume,
+  toggleMuted,
+  toggleShowRemaining,
+  setPlaybackRate,
+  setPlayheadPositon,
+  setSeek,
+  setSeekTo,
+  onPlay,
+  onPause,
+  closeQueuePopUp,
+  toggleQueuePopUp,
+  loadTrack,
+  positionControls
+} from "../../modules/MusicPlayer";
 
 class Controls extends Component {
-  state = {
-    loadTrack: false,
-    playing: false,
-    volume: 0.8,
-    muted: false,
-    played: 0,
-    loaded: 0,
-    duration: 0,
-    playbackRate: 1.0,
-    loop: false,
-    showRemaining: false,
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
-    // this doesn't help initial render.
-    if (prevProps.loadTrack !==  this.props.loadTrack ) {
-      this.load(this.props.loadTrack)
-    }
-    else if (prevProps.loadTrack === this.props.loadTrack ) {
-      // toggle play / pause
-    }
-  }
-
-  load = loadTrack => {
-    this.setState({
-      loadTrack,
-      url: loadTrack.fieldTrack.uri,
-      played: 0,
-      loaded: 0,
-      playing: true,
-    })
-  }
-
-  playPause = () => {
-    this.setState({ playing: !this.state.playing })
-  }
-  stop = () => {
-    this.setState({ url: null, playing: false })
-  }
-  toggleLoop = () => {
-    this.setState({ loop: !this.state.loop })
-  }
-
-  setVolume = value => {
-    this.setState({ volume: parseFloat(value/100) })
-  }
-
-  toggleMuted = () => {
-    this.setState({ muted: !this.state.muted })
-  }
-
-  toggleShowRemaining = () => {
-    this.setState({ showRemaining: !this.state.showRemaining })
-  }
-
-  setPlaybackRate = e => {
-    this.setState({ playbackRate: parseFloat(e.target.value) })
-  }
-  onPlay = () => {
-    //console.log('onPlay')
-    this.setState({ playing: true })
-  }
-  onPause = () => {
-    //console.log('onPause')
-    this.setState({ playing: false })
-  }
 
   onSeekMouseDown = value => {
-    this.setState({ seeking: true })
+    console.log('onSeekMouseDown', value);
+    this.props.setSeek(true)
   }
+
   onSeekChange = value => {
-    this.setState({ played: parseFloat(value/100)})
+    console.log('onSeekChange', value);
+    this.props.setPlayheadPositon(parseFloat(value/100))
   }
+
   onSeekMouseUp = value => {
-    this.setState({ seeking: false })
-    this.player.seekTo(parseFloat(value/100))
-  }
-
-  onProgress = state => {
-    //console.log('onProgress', state)
-    // We only want to update time slider if we are not currently seeking
-    if (!this.state.seeking) {
-      this.setState(state)
-    }
-  }
-
-  onEnded = () => {
-    //console.log('onEnded')
-    this.setState({ playing: this.state.loop })
-  }
-
-  onDuration = (duration) => {
-    //console.log('onDuration', duration)
-    this.setState({ duration })
-  }
-
-  ref = player => {
-    this.player = player
+    console.log('onSeekMouseUp', value);
+    this.props.setSeekTo(parseFloat(value/100))
+    this.props.setSeek(false)
   }
 
   render () {
-    const { loadTrack, url, playing, volume, muted, loop, played, duration, playbackRate, showRemaining } = this.state;
+
+    const { playPause, toggleLoop, toggleShowRemaining, toggleMuted, toggleQueuePopUp, track, playing, volume, muted, progress, duration, showRemaining, loadTrack } = this.props;
 
     return (
       <div className={cx(styles.controls, this.props.className, styles[this.props.class] )}>
-
         <div className={cx(styles.section, styles.controls)}>
-          <button className={cx(styles.button)} onClick={this.playPause}>
+          <button className={cx(styles.button, styles.playpause)} onClick={playPause}>
             {playing ? <span className={cx(styles.icon, styles.pause)}><Icon icon={'pause'} /></span> : <span className={cx(styles.icon, styles.play)}><Icon icon={'play'} /></span>}
           </button>
-          <button className={cx(styles.button)} onClick={this.toggleLoop}>
+          <button className={cx(styles.button, styles.loop)} onClick={toggleLoop}>
             <span className={cx(styles.icon, styles.loop)}>
               <Icon icon={'loop'} />
             </span>
           </button>
         </div>
-
         <div className={cx(styles.section, styles.timeline)}>
           <div className={cx(styles.cover)}>
-            {loadTrack.fieldCover ? <Image cloudName="dghff7rpa" publicId={`mix/${loadTrack.fieldCover}`} width="40" crop="scale" /> : ''}
+            {track.fieldCover ? <Image cloudName="dghff7rpa" publicId={`mix/${track.fieldCover}`} width="40" crop="scale" /> : ''}
           </div>
           <div className={cx(styles.elapsed)}>
-            <Duration seconds={duration * played} />
+            <Duration seconds={duration * progress.played} />
           </div>
           <div className={cx(styles.timelineWrap)}>
             <InputRange
               maxValue={100}
               minValue={0}
-              value={ played * 100 }
+              value={ progress.played * 100 }
               onChangeStart={value => this.onSeekMouseDown(value)}
               onChange={value => this.onSeekChange(value)}
               onChangeComplete={value => this.onSeekMouseUp(value)}
             />
           </div>
           <div className={cx(styles.duration)}>
-            <div onClick={this.toggleShowRemaining}>{!(showRemaining) ?  <Duration seconds={duration} /> : <span>- <Duration seconds={duration * (1 - played)} /></span>}</div>
+            <div onClick={toggleShowRemaining}>{!(showRemaining) ?  <Duration seconds={duration} /> : <span>- <Duration seconds={duration * (1 - progress.played)} /></span>}</div>
           </div>
         </div>
 
         <div className={cx(styles.section, styles.volume)}>
-          <button className={cx(styles.button)} onClick={this.toggleMuted}>
+          <button className={cx(styles.button)} onClick={toggleMuted}>
             {muted ? <span className={cx(styles.icon, styles.mute)}><Icon icon={'mute'} /></span> : <span className={cx(styles.icon, styles.volume)}><Icon icon={'volume'} /></span>}
           </button>
           <div className={cx(styles.barWrap, styles.setVolume )}>
@@ -172,7 +104,7 @@ class Controls extends Component {
         {/* https://storage.googleapis.com/media-session/elephants-dream/the-wires.mp3*/}
         <div className={cx(styles.section, styles.select)}>
           {/*this.load('https://res.cloudinary.com/dghff7rpa/video/upload/v1533465886/Mixes/test.mp3')*/}
-          <button className={cx(styles.button)} onClick={this.props.toggleQueuePopUp}>
+          <button className={cx(styles.button)} onClick={toggleQueuePopUp}>
             <span className={cx(styles.icon, styles.queue)}>
               <Icon icon={'queue'} color={'#000'} size={22} />
             </span>
@@ -185,14 +117,35 @@ class Controls extends Component {
 
 export const mapStateToProps = (state) => {
   return {
-    loadTrack: get('musicPlayerModule.loadTrack', state),
+    track: get('musicPlayerModule.track', state),
+    playing: get('musicPlayerModule.playing', state),
+    volume: get('musicPlayerModule.volume', state),
+    muted: get('musicPlayerModule.muted', state),
+    duration: get('musicPlayerModule.duration', state),
+    progress: get('musicPlayerModule.progress', state),
+    showRemaining: get('musicPlayerModule.showRemaining', state),
   }
 };
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      playPause,
+      stop,
+      toggleLoop,
+      setVolume,
+      toggleMuted,
+      toggleShowRemaining,
+      setPlaybackRate,
+      setPlayheadPositon,
+      setSeek,
+      setSeekTo,
+      onPlay,
+      onPause,
+      closeQueuePopUp,
       toggleQueuePopUp,
+      loadTrack,
+      positionControls
     },
     dispatch);
 

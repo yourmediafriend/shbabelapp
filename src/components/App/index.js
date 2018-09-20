@@ -241,8 +241,6 @@ export const mapStateToProps = (state) => {
     stickyHeader: get('appModule.stickyHeader', state),
     fixedFooter: get('appModule.fixedFooter', state),
     revealFooter: get('appModule.revealFooter', state),
-
-
     isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
     isMenuAnimating: get('offCanvasMenu.offCanvasMenuAnimating', state),
     isModalOpen: get('modalModule.modalIsOpen', state),

@@ -107,7 +107,7 @@ class MusicPlayer extends Component {
   }
 
   onDuration = (duration) => {
-    //console.log('onDuration', duration)
+    console.log('onDuration', duration)
     this.setState({ duration })
   }
 
