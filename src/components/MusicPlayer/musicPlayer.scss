@@ -177,6 +177,7 @@
 .volume{
     margin-left: auto;
     position: relative;
+    z-index: 10;
 
     @include media-breakpoint-up(md) {
         margin-left: 0;
