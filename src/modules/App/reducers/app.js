@@ -1,36 +1,45 @@
-const FIXED_FOOTER_HEIGHT = "appModule/FIXED_FOOTER_HEIGHT";
-const REVEAL_FOOTER_HEIGHT = "appModule/REVEAL_FOOTER_HEIGHT";
-const STICKY_HEADER_HEIGHT = "appModule/STICKY_HEADER_HEIGHT";
+const PAGE_SETUP = "appModule/PAGE_SETUP";
+
+
+const FIXED_FOOTER = "appModule/FIXED_FOOTER";
+const REVEAL_FOOTER = "appModule/REVEAL_FOOTER";
+const STICKY_HEADER = "appModule/STICKY_HEADER";
 
 const SET_CURRENT_BREAKPOINT = "appModule/SET_CURRENT_BREAKPOINT";
 
 export const initialState = {
-  fixedFooterHeight: 0,
-  revealFooterHeight: 0,
-  stickyHeaderHeight: 0,
-  breakpoint: '',
+  fixedFooter: true,
+  revealFooter: true,
+  stickyHeader: true,
 };
 
 // Reducer
 export default function reducer(state=initialState, action = {}) {
   switch (action.type) {
     // do reducer stuff
-    case FIXED_FOOTER_HEIGHT:
+
+    case PAGE_SETUP:
       return {
         ...state,
-        fixedFooterHeight: action.payload.height,
+        ...action.payload
       }
 
-    case REVEAL_FOOTER_HEIGHT:
+    case FIXED_FOOTER:
       return {
         ...state,
-        revealFooterHeight: action.payload.height,
+        fixedFooterHeight: true,
       }
 
-    case STICKY_HEADER_HEIGHT:
+    case REVEAL_FOOTER:
       return {
         ...state,
-        stickyHeaderHeight: action.payload.height,
+        revealFooterHeight: true,
+      }
+
+    case STICKY_HEADER:
+      return {
+        ...state,
+        stickyHeaderHeight: true,
       }
 
     case SET_CURRENT_BREAKPOINT:
@@ -44,31 +53,32 @@ export default function reducer(state=initialState, action = {}) {
   }
 }
 
+
+export function setUpPage(appSetup) {
+  return {
+    type: PAGE_SETUP,
+    payload: {
+      ...appSetup
+    }
+  };
+}
+
 // Action Creators
-export function setFixedFooterHeight(height) {
+export function setFixedFooter() {
   return {
-    type: FIXED_FOOTER_HEIGHT,
-    payload: {
-      height
-    }
+    type: STICKY_HEADER,
   };
 }
 
-export function setRevealFooterHeight(height) {
+export function setRevealFooter() {
   return {
-    type: REVEAL_FOOTER_HEIGHT,
-    payload: {
-      height
-    }
+    type: REVEAL_FOOTER,
   };
 }
 
-export function setStickyHeaderHeight(height) {
+export function setStickyHeader() {
   return {
-    type: STICKY_HEADER_HEIGHT,
-    payload: {
-      height
-    }
+    type: STICKY_HEADER,
   };
 }
 

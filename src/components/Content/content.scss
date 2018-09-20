@@ -1,12 +1,27 @@
-.content {
+.mainLayer {
+    position: relative;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: #ffffff;
-    &.grid {
-        background: #ececec;
-    }
-    &.news {
-        background: #fff;
-    }
+    pointer-events: none;
+}
+.contentLayerWrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.contentLayer {
+    position: relative;
+    pointer-events: all;
+    z-index: 1;
+    height: 100%;
+    flex: 1;
+}
+.footerSpacer{
+    pointer-events: none;
+}
+.headerSpacer {
+    pointer-events: none;
+    background: #3c3c3c;
 }

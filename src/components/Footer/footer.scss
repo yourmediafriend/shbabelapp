@@ -1,27 +1,30 @@
 $footer-reveal-bg: #CCCCCC !default;
 $footer-reveal-color: #000 !default;
 $footer-reveal-font-size: 0.85em !default;
-
 $footer-fixed-bg: #F1F2F2 !default;
+
+$footer-reveal-ht-large: 200px !default;
+$footer-fixed-ht-large: 60px !default;
 
 .footer {
     width: 100%;
-
+    pointer-events: all;
     &.reveal {
+        height: $footer-reveal-ht-large;
+        background-color: $footer-reveal-bg;
+        color: $footer-reveal-color;
+        font-size: $footer-reveal-font-size;
+        box-sizing: content-box;
+
         .footerInner {
             padding: 25px 0 50px;
             @include media-breakpoint-down(md) {
                 padding: 15px 0 20px;
             }
-
         }
-
-        background-color: $footer-reveal-bg;
-        color: $footer-reveal-color;
-        font-size: $footer-reveal-font-size;
-        max-height: 50vh;
     }
     &.fixed {
+
         background-color: $footer-fixed-bg;
         border-top: 1px solid #cecece;
         padding: 0;
@@ -30,6 +33,29 @@ $footer-fixed-bg: #F1F2F2 !default;
         @include media-breakpoint-up(md) {
             padding: 0;
         }
-
     }
+
+    .footerClose {
+        position: absolute;
+        display: flex;
+        width: 20px;
+        height: 100%;
+        top: 0;
+        right: 15px;
+        padding: 0;
+        align-items: center;
+
+        svg {
+            fill: #000;
+        }
+        &:hover {
+            opacity: 0.6;
+        }
+        @include media-breakpoint-up(md) {
+            padding: 0;
+        }
+    }
+}
+.footerSpacer {
+    pointer-events: none;
 }

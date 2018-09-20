@@ -1,0 +1,18 @@
+{
+  "header": {
+    "height": {
+      "max": 80,
+      "min": 54
+    }
+  },
+  "footerFixed": {
+    "height": {
+      "max": 60
+    }
+  },
+  "footerReveal": {
+    "height": {
+      "max": 200
+    }
+  }
+}

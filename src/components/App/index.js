@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import Animate from 'react-move/Animate';
 import { easeExpOut } from 'd3-ease';
 import { setCurrentBreakPoint } from '../../modules/App';
+import { Player as MusicPlayer } from  '../MusicPlayer';
 
 import {
   get,
@@ -30,7 +31,6 @@ import {
   offCanvasMenuStateChange,
   offCanvasMenuToggleAnimation
 } from '../../modules/OffCanvasMenu';
-
 
 const StickyContainer = (props) => {
   return (
@@ -62,6 +62,8 @@ class App extends Component {
     window.addEventListener('resize', this.onResize);
     this.onResize();
   };
+
+
 
   onResize = () => {
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
@@ -174,7 +176,7 @@ class App extends Component {
 
               <div className={styles.mainContainer}>
 
-                { this.props.showHeader ?
+                { this.props.stickyHeader ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.header,styles.top)}>
                     <Header />
                   </StickyContainer> : '' }
@@ -183,36 +185,33 @@ class App extends Component {
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.top)}>
                         <SearchModal />
                   </StickyContainer> }
-              {/*
-              ...this.props.showHeader ? {transform:`translateY(${this.props.stickyHeaderHeight}px)`, position:'relative', zIndex: '10'} : '',
-              */}
-              <div className={cx(styles.menuFlexWrap,'mainContent')}>
 
+              <div className={cx(styles.menuFlexWrap,'mainContent')}>
                 <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}} />
-                  <div className={styles.mainFlex} style={{ ...this.props.showHeader ? {paddingTop:`${this.props.stickyHeaderHeight}px`} : '',
-                                                          ...this.props.showFooterReveal ? {marginBottom:`${this.props.revealFooterHeight}px`} : '',
-                                                          ...{minHeight:  `calc(100vh - ${( max([this.props.revealFooterHeight, this.props.fixedFooterHeight]))}px`}         }}
-                                                        >
-                    <div className={styles.content}>
+                  <div className={styles.mainFlex}>
                       <MainContent currentpage={this.props.currentpage} match={this.props.match} pageRef={this.props.pageRef} />
-                    </div>
                   </div>
                 </div>
 
-                { this.props.fullscreen ? '' :
-                  <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.full, this.modalState(this.props) )}>
-                    <Modal/>
-                  </StickyContainer> }
+                <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isFixed)}>
+                  <FixedFooter />
+                </StickyContainer>
 
-                { this.props.showFooterFixed ?
+{/*                { this.props.fixedFooter ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isFixed)}>
                     <FixedFooter />
-                  </StickyContainer> : '' }
+                  </StickyContainer> : '' }*/}
 
-                { this.props.showFooterReveal ?
+                { this.props.revealFooter ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isReveal)}>
                     <RevealFooter />
                   </StickyContainer> : '' }
+
+                <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.full, this.modalState(this.props) )}>
+                  <Modal/>
+                </StickyContainer>
+
+                <MusicPlayer />
 
               </div>
             </div>
@@ -224,9 +223,9 @@ class App extends Component {
 }
 
 App.propTypes = {
-  showFooterReveal: PropTypes.bool,
-  showFooterFixed: PropTypes.bool,
-  showHeader: PropTypes.bool,
+  stickyHeader: PropTypes.bool,
+  fixedFooter: PropTypes.bool,
+  revealFooter: PropTypes.bool,
   isMenuOpen: PropTypes.bool,
   isMenuAnimating: PropTypes.bool,
   isModalOpen: PropTypes.bool,
@@ -241,15 +240,14 @@ App.defaultProps = {
   singlePage: false,
 };
 
-
 export const mapStateToProps = (state) => {
   return {
+    stickyHeader: get('appModule.stickyHeader', state),
+    fixedFooter: get('appModule.fixedFooter', state),
+    revealFooter: get('appModule.revealFooter', state),
     isMenuOpen: get('offCanvasMenu.offCanvasMenuOpen', state),
     isMenuAnimating: get('offCanvasMenu.offCanvasMenuAnimating', state),
     isModalOpen: get('modalModule.modalIsOpen', state),
-    revealFooterHeight: get('appModule.revealFooterHeight', state),
-    fixedFooterHeight: get('appModule.fixedFooterHeight', state),
-    stickyHeaderHeight: get('appModule.stickyHeaderHeight', state),
   }
 };
 

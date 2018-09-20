@@ -5,7 +5,8 @@ import ScrollMagic from 'scrollmagic-with-ssr';
 import 'AnimationGsap';
 import 'debug.addIndicators';
 
-import { getOr } from 'lodash/fp';
+import { getOr, assign } from 'lodash/fp';
+import S from "camel-case-selector";
 
 let globalOptions = {
   offset: 0,
@@ -19,7 +20,7 @@ function withSubscription(WrappedComponent, selectData) {
     constructor() {
       super(...arguments);
       this.myRef = React.createRef();
-      this.state = {};
+      this.state = {activeSceneId:0};
       this.scenes = [];
       this.tweens = [];
       this.controller = null;
@@ -69,28 +70,36 @@ function withSubscription(WrappedComponent, selectData) {
       let $el = ReactDOM.findDOMNode(this.myRef.current);
       this.controller = new ScrollMagic.Controller({
         container: options.container,
-        addIndicators: true
+       // addIndicators: true
         // loglevel: 2,
       });
 
-      this.scenes.push(new ScrollMagic.Scene({
-        offset: ($el.clientHeight * 5)+'px',
-        triggerHook: 0,
-      })
-        .on("enter", function (event) {
-          this.myRef.current.toggleCompactHeader();
-        }.bind(this))
-        .on("leave", function (event) {
-          this.myRef.current.toggleCompactHeader();
-        }.bind(this))
-        .addTo(this.controller));
+      let i;
 
+      for (i = 0; i < 3; i++) {
 
-      console.log(this.controller);
+        this.scenes.push(new ScrollMagic.Scene({
+          offset: window.innerHeight * i,
+          duration: window.innerHeight,
+        })
+          .on("enter", function (i, event) {
+            this.setState({activeSceneId:i});
+            console.log('enter - start this now', i);
+          }.bind(this, i))
+          .on("leave", function (i, even) {
+        /*    this.setState({title:'title'});
+            console.log('leave - stop it now', i);*/
+          }.bind(this, i))
+          .addTo(this.controller));
+
+      }
+
+      console.log('B ',this.props);
 
       this.sceneCreated = true;
 
     }
+
 
     destroyScene() {
       if(this.controller) this.controller.destroy(true);
@@ -106,19 +115,38 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     recalculateDurations() {
+
       if(this.sceneCreated && !this.shouldEnable()){
         return this.destroyScene();
       }else if(!this.sceneCreated && this.shouldEnable()){
         return this.createScene();
       }
+
+      let options = this.getOptions();
+      let firstScene = this.scenes[0];
+      let otherScenes = this.scenes.slice(1);
+
+      this.scenes.forEach((scene, index) => {
+        scene.offset( window.innerHeight * index );
+        scene.duration( window.innerHeight );
+      });
+
+      // if(firstScene){
+      //   firstScene.duration($firstHolder.clientHeight + options.offset + 'px');
+      //   firstScene.setTween(this.firstSceneExit($firstHolder, options));
+      // }
+      //
+      // otherScenes.forEach((scene, index) => {
+      //   scene.duration($otherHolders[holderIndex].clientHeight + options.offset + 'px');
+      // });
+
     }
 
     render() {
-      const {extraProp, ...passThroughProps} = this.props;
+      const { extraProp } = this.props;
       return <WrappedComponent
         ref={this.myRef}
-        {...passThroughProps}
-
+        activeSceneId={this.state.activeSceneId}
       />;
     }
   }

@@ -3,17 +3,26 @@ import { OneColumnCenter }  from '../../../Layout';
 import Article from '../../../Article';
 import ArticleHero from '../../../Article/Hero';
 import styles from './mixed.scss'
+import cx from "classnames";
+import MainLayer from '../../../Content/MainLayer'
+import ContentLayer from '../../../Content/ContentLayer'
 
-class DemoPage extends Component {
+class Page extends Component {
 
   render() {
     return (
-      <div>
-        <ArticleHero />
-        <OneColumnCenter className={styles.article} contentMain={<Article />} />
-      </div>
+      <MainLayer className={cx(styles.mainLayer)}>
+        <ContentLayer className={cx(styles.contentLayer)} >
+          <ArticleHero />
+          <OneColumnCenter className={styles.article} contentMain={<Article />} />
+        </ContentLayer>
+      </MainLayer>
     )
   }
 }
 
-export default DemoPage;
+export default Page;
+
+
+
+

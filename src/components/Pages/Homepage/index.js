@@ -1,18 +1,67 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './homepage.scss'
-import { ThreeColumn }  from '../../Layout';
-import PageTitle from '../../PageTitle'
-import Dummytext from '../../DummyText/DummyTextLong';
 import ScrollMagicEnhanced from './scrollMagicEnhanced';
+import MainLayer from '../../Content/MainLayer';
+import ContentLayer from '../../Content/ContentLayer';
 import Background from '../../Background';
+import { OneColumnCenter }  from '../../Layout';
+import Dummytext from '../../DummyText/DummyTextLong';
+import HomeCanvas from './HomeCanvas';
+import CanvasEnhanced from './CanvasSimple';
 
-import BackgroundImageUrlC from '../../../media/backgrounds/images/factory-1.gif';
+const UpdateTileCount = (count) => {
 
-const FixedBackground = (props) => {
+  console.log(count);
+
+}
+
+
+const HomeContent = (props) => {
+  return (
+    <div className={cx(styles.content)}>
+      <section className={cx(styles.section)}>
+        <div className={cx(styles.mainText)}>
+          <div className={cx(styles.inner)}>
+            <h1>{props.title}</h1>
+            Creative vision, technologies and digital experience
+          </div>
+        </div>
+      </section>
+      <section className={cx(styles.section)}>
+        <div className={cx(styles.mainText)}>
+          <div className={cx(styles.inner)}>
+            section 2
+          </div>
+        </div>
+      </section>
+      <section className={cx(styles.section)}>
+        <div className={cx(styles.mainText)}>
+          <div className={cx(styles.inner)}>
+            section 3
+          </div>
+        </div>
+      </section>
+      <section className={cx(styles.section)}>
+        <div className={cx(styles.mainText)}>
+          <div className={cx(styles.inner)}>
+            section 4
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+
+let FixedBackground = (props) => {
   return (
     <div className={cx(styles.fixedBackgroundLayer)} >
-      <Background className={styles.contentContainer} bgSrc={BackgroundImageUrlC} />
+      <CanvasEnhanced activeSceneId={props.activeSceneId}/>
+      <div style={{position:'absolute',top:'100px',left:'100px'}}>
+        {props.activeSceneId}
+      </div>
     </div>
   )
 };
@@ -20,16 +69,14 @@ const FixedBackground = (props) => {
 class Page extends Component {
   render() {
     return (
-      <div>
-        <FixedBackground />
-        <div className={cx(styles.textLayer)}>
-          <PageTitle title={ 'HOMEPAGE!' } layout={'center'} />
-          <ThreeColumn  contentColumnLeft="contentColumnLeft" contentMain={<Dummytext />}  contentColumnRight="contentColumnRight"  />
-        </div>
-      </div>
+      <MainLayer className={cx(styles.mainLayer)}>
+        <FixedBackground activeSceneId={this.props.activeSceneId} />
+        <ContentLayer className={cx(styles.contentLayer)} >
+          <HomeContent title={this.props.title}/>
+        </ContentLayer>
+      </MainLayer>
     )
   }
 }
 
-//export default Page;
 export default ScrollMagicEnhanced(Page);

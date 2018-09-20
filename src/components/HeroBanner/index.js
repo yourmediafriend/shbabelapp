@@ -5,16 +5,15 @@ import Picture from '../Picture';
 import cx from 'classnames';
 import styles from './heroBanner.scss';
 import {get} from "lodash/fp";
+import appConfig from '../../config'
 
-
-
+const heroBannerHeightCalc = (props) => {
+ return props.fixedFooter && props.footerFixedOpen ? appConfig.header.height.max + appConfig.footerFixed.height.max : appConfig.header.height.max ;
+}
 
 const HeroBanner = (props) => {
-
-  let stickCalc = props.stickyHeaderHeight + props.fixedFooterHeight;
-
   return (
-    <div className={cx(styles.heroBanner)} style={{minHeight:`calc(100vh - ${stickCalc}px)`}}>
+    <div className={cx(styles.heroBanner)} style={{minHeight:`calc(100vh - ${heroBannerHeightCalc(props)}px)`}}>
       <div className={cx(styles.inner)}>
         <Picture images={props.image} imageClass={'heroImg'}/>
         <div className={cx(styles.overlay)}>
@@ -28,8 +27,9 @@ const HeroBanner = (props) => {
 
 export const mapStateToProps = (state) => {
   return {
-    fixedFooterHeight: get('appModule.fixedFooterHeight', state),
-    stickyHeaderHeight: get('appModule.stickyHeaderHeight', state),
+    stickyHeader: get('appModule.stickyHeader', state),
+    fixedFooter: get('appModule.fixedFooter', state),
+    footerFixedOpen: get('footerModule.footerFixedOpen', state),
   }
 };
 
