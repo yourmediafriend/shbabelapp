@@ -3,14 +3,9 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {get} from "lodash/fp";
 import cx from 'classnames';
-import ReactPlayer from 'react-player';
 import ReactHoverObserver from '../ReactHoverObserver';
-import InputSlider from 'react-input-slider';
-
-
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
-
 import Duration from './Duration';
 import styles from './musicPlayer.scss';
 import { Image } from 'cloudinary-react';
