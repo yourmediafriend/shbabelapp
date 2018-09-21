@@ -42,6 +42,21 @@ const SwitchRoute = () => (
                                currentpage='home'/>
     }} />
 
+
+    {/* User Account */}
+
+    <Route exact path='/account' render={(routeProps) => {
+      // do I set the initial App State here
+      connect(setUpPage({
+        stickyHeader: true,
+        fixedFooter: true,
+        revealFooter: true,
+      }));
+      return <OneColumnSidebar {...routeProps}
+                               currentpage='account'/>
+    }} />
+
+
     {/*/ Demo Layout /*/}
 
     <Route exact path='/layouts/1-column' render={() => {

@@ -37,8 +37,8 @@ class NavNode extends React.Component {
     return (
       <NavItem>
         <ReactHoverObserver
-          hoverDelayInMs={250}
-          hoverOffDelayInMs={250}
+          hoverDelayInMs={100}
+          hoverOffDelayInMs={100}
           className={cx(styles.reactHoverObserver)}
         >
           {({ isHovering }) => (

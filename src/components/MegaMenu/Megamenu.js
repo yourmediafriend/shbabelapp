@@ -294,7 +294,7 @@ class NodeMegamenu extends React.Component {
         })}
         update={() => ({
           transformY:[isHovering ? 0 : -100 ],
-          timing: {duration: 500, ease: menuAnimation},
+          timing: {duration: 0, ease: menuAnimation},
           events: {
             start() {
              if (isHovering){this.setState({menuDisplay: true}); }
