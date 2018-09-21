@@ -57,6 +57,7 @@
     "rc-progress": "^2.2.5",
     "react": "^16.3.1",
     "react-apollo": "^2.1.11",
+    "react-cookie": "^3.0.4",
     "react-dev-utils": "^5.0.2",
     "react-dom": "^16.3.1",
     "react-fns": "^1.4.0",
