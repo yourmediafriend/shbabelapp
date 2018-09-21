@@ -178,11 +178,6 @@ class VolumeControl extends Component {
   }
 }
 
-
-
-
-
-
 class Controls extends Component {
 
   render () {
@@ -232,7 +227,7 @@ class Controls extends Component {
           </div>
         </div>
 
-        <VolumeControl hoverDelay={0} hoverOffDelay={100} muted={muted} volume={volume} toggleMuted={toggleMuted} setVolume={setVolume}/>
+        <VolumeControl hoverDelay={0} hoverOffDelay={800} muted={muted} volume={volume} toggleMuted={toggleMuted} setVolume={setVolume}/>
 
         <MusicQueuePopUp />
         {/* https://storage.googleapis.com/media-session/elephants-dream/the-wires.mp3*/}
