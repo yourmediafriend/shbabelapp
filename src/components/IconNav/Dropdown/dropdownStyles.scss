@@ -24,9 +24,9 @@
 }
 
 .dropdownMenu {
+    flex-direction: column;
     &.account.loggedOut {
         .menuItem {
-            width: 50%;
             a {
                 border-bottom: 0;
                 &:hover {
