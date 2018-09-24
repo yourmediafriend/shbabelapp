@@ -20,32 +20,25 @@ import signUpFormData from '../selectors/signUpFormSelector';
 
 const baseUrl = get('adminUrl', __ENV__);
 
-export const constructUrl = () => `${baseUrl}/user/register?_format=json`;
+export const constructUrl = () => `${baseUrl}user/register?_format=json`;
 
 export default function * () {
 
   const formData = yield select(signUpFormData);
 
-
- let signUpData = {
-    "name": { "value": "www" },
-    "mail": { "value": "yourmediafriend+10@gmail.com" }
+  let signUpData = {
+    "name": { "value": get('name', formData)},
+    "mail": { "value": get('email', formData)}
   }
-
-
-  console.log('Saga', formData);
 
   try {
 
     const url = yield call(constructUrl);
-
-    console.log(url);
-
     yield call(
       sendPost,
       url,
       {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       signUpData,
     );

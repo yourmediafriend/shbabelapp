@@ -33,6 +33,7 @@ export default function *(url, { method, headers = {}, body = null }) {
     referrer: 'no-referrer', // *client, no-referrer
   };
   const request = new Request(url, init);
+
   yield put(requestMade(request));
   let response;
   try {

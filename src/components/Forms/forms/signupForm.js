@@ -18,11 +18,11 @@ const validate = values => {
     errors.message = 'Required'
   }
 
-  if (!values.email) {
+/*  if (!values.email) {
     errors.email = 'Required'
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address'
-  }
+  }*/
   return errors
 };
 
@@ -32,7 +32,7 @@ export const reduxFormDetails = {
   fields: [
     'firstName',
     'lastName',
-    'username',
+    'name',
     'email',
     'password',
     'repeatpassword',
@@ -52,10 +52,10 @@ const ContactForm = props => {
             <Field labeltext={"Last Name"} name={"lastName"} component={RenderField} type={"text"} isrequired={true}/>
           </FormRow>*/}
           <FormRow>
-            <Field labeltext={"Usename"} name={"username"} component={RenderField} type={"text"} isrequired={false}/>
+            <Field labeltext={"Username"} name={"name"} component={RenderField} type={"text"} isrequired={false}/>
           </FormRow>
           <FormRow>
-            <Field labeltext={"Email"} name={"email"} component={RenderField} type={"email"} isrequired={true}/>
+            <Field labeltext={"Email"} name={"email"} component={RenderField} type={"text"} isrequired={true}/>
           </FormRow>
   {/*        <FormRow>
             <Field labeltext={"Password"} name={"password"} component={RenderField} type={"password"} isrequired={true}/>
