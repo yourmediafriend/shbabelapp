@@ -4,7 +4,8 @@ import ReactHoverObserver from '../ReactHoverObserver';
 import { Link } from 'react-router-dom';
 import Icon from '../Icons';
 import cx from 'classnames';
-import AccountDropdown from './Dropdown/accountDropdown'
+
+import { AccountDropdownMenu } from '../User'
 
 import { Nav, NavItem } from 'reactstrap';
 import styles from './iconNavStyles.scss';
@@ -12,7 +13,6 @@ import styles from './iconNavStyles.scss';
 const AppContext = React.createContext();
 
 class AppProvider extends React.Component {
-
   render() {
     return (
       <AppContext.Provider value={this.props.value}>
@@ -89,9 +89,12 @@ const IconNav = (props) => {
       <NavItem className={styles.account}>
         <MenuItem hoverOffDelay={250} >
           <MenuLink icon="account" clickEvent={props.modalToggle.bind(this, 'account', 0)} />
+
+
           <Dropdown>
-            <AccountDropdown />
+            <AccountDropdownMenu />
           </Dropdown>
+
         </MenuItem>
       </NavItem>
       <NavItem>

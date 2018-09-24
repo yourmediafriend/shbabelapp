@@ -11,9 +11,6 @@ import {
   getOr,
 } from 'lodash/fp';
 
-import {
-  btoa,
-} from 'isomorphic-base64';
 
 export function getUrl() {
   return getOr('no-base-url')('baseUrl')(__ENV__);

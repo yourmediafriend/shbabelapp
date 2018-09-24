@@ -2,6 +2,8 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import store from './store';
 
+import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
+
 
 // Common Page Layouts
 import OneColumnSidebar from './components/App';
@@ -13,14 +15,28 @@ import { setUpPage } from './modules/App';
 import Recompose from './pages/RecomposeTest'
 import Strap from './pages/ReactStrapTest'
 
-/*
-//
-// OPTIONS
-//
-showHeader={false}
-showFooterReveal={false}
-showFooterFixed={false}
-*/
+
+// this works but disrupts certain Componenets (Music player and Sidemenu) with a page refresh
+const userIsAuthenticated = connectedRouterRedirect({
+  redirectPath: '/login',
+  authenticatedSelector: () => { return false },
+})
+
+const MyAccount = () => {
+  connect(setUpPage({
+    stickyHeader: true,
+    fixedFooter: true,
+    revealFooter: true,
+  }));
+  return (
+    <OneColumnSidebar currentpage='account'/>
+  )
+}
+
+const checkAuthentication = userIsAuthenticated(MyAccount);
+
+
+
 
 const connect = (fn) => {
   return store.dispatch(fn);
@@ -40,6 +56,34 @@ const SwitchRoute = () => (
       }));
       return <OneColumnSidebar {...routeProps}
                                currentpage='home'/>
+    }} />
+
+
+    {/* User Account */}
+
+    <Route exact path='/account' component={checkAuthentication} />
+
+
+    <Route exact path='/sign-up' render={(routeProps) => {
+      // do I set the initial App State here
+      connect(setUpPage({
+        stickyHeader: true,
+        fixedFooter: true,
+        revealFooter: true,
+      }));
+      return <OneColumnSidebar {...routeProps}
+                               currentpage='signup'/>
+    }} />
+
+    <Route exact path='/login' render={(routeProps) => {
+      // do I set the initial App State here
+      connect(setUpPage({
+        stickyHeader: true,
+        fixedFooter: true,
+        revealFooter: true,
+      }));
+      return <OneColumnSidebar {...routeProps}
+                               currentpage='login'/>
     }} />
 
     {/*/ Demo Layout /*/}

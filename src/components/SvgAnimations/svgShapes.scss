@@ -1,3 +1,7 @@
+.contentLayer {
+    background: transparent;
+}
+
 .svgContainer {
     height: 100vh;
 }
@@ -6,9 +10,6 @@
     position: relative;
     z-index: 2;
 }
-
-
-
 .slide {
     position: absolute;
     top: 0;

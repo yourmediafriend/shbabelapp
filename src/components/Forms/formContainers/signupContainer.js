@@ -7,7 +7,7 @@ import SignupForm from '../forms/signupForm';
 
 import {
   attemptToSubmit
-} from '../../../modules/Forms/ContactForm';
+} from '../../../modules/Forms/SignUp';
 
 
 const submit = (values, dispatch ) => {

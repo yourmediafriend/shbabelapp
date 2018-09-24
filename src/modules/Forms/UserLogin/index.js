@@ -1,5 +1,5 @@
 import postUserLoginForm, { attemptToLogin, failureToLogin, successToLogin } from './reducers/postUserLoginForm';
-import postFormData from './sagas/post';
+import login from './sagas/login';
 import {takeEvery} from "redux-saga/effects";
 import {get} from "lodash/fp";
 
@@ -16,6 +16,6 @@ export {
 // Export Saga
 export const userLoginFormSaga = function *() {
   yield [
-    takeEvery(get('type', attemptToLogin()), postFormData),
+    takeEvery(get('type', attemptToLogin()), login),
   ];
 }

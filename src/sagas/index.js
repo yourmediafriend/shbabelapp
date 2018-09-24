@@ -5,6 +5,8 @@ import {
 import { nestedMenuSaga } from '../modules/NestedMenu';
 import { contactFormSaga } from '../modules/Forms/ContactForm';
 import { userLoginFormSaga } from '../modules/Forms/UserLogin';
+import { signUpFormSaga } from '../modules/Forms/SignUp';
+
 
 import { catalogMenuSaga } from '../modules/CatalogMenu';
 import { openWeatherSaga } from '../modules/OpenWeather';
@@ -23,6 +25,7 @@ export {
   modalSaga,
   searchModalSaga,
   musicPlayerSaga,
+  signUpFormSaga,
 };
 
 export default function *() {
@@ -31,6 +34,7 @@ export default function *() {
     fork(catalogMenuSaga),
     fork(contactFormSaga),
     fork(userLoginFormSaga),
+    fork(signUpFormSaga),
     fork(openWeatherSaga),
     fork(googleMapModuleSaga),
     fork(modalSaga),

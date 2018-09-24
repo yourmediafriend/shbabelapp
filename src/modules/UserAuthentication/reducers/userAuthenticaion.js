@@ -3,6 +3,7 @@ const FAILURE_TO_LOGIN = "fetchMenuData/FAILURE_TO_FETCH_DATA";
 const SUCCESS_TO_LOGIN = "fetchMenuData/SUCCESS_TO_FETCH_DATA";
 
 const initialState = {
+  userID: 1,
   isLoading: false,
   hasErrored: false,
   items: [],
