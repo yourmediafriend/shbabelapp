@@ -15,13 +15,18 @@ const submit = (values, dispatch ) => {
 }
 
 const SignupFormView = props => {
-  return (<SignupForm onSubmit={submit} hasErrored={props.hasErrored} isSending={props.isSending}/>)
+  return (<SignupForm onSubmit={submit} hasErrored={props.hasErrored} isSending={props.isSending}   message={props.message} />)
 }
 
 const mapStateToProps = (state) => {
+
+  // console.log(state);
+  // console.log('mapStateToProps', get('signUpFormModule.message', state));
+
   return {
-    hasErrored: get('postContactForm.hasErrored', state),
-    isSending: get('postContactForm.isSending', state),
+    hasErrored: get('signUpFormModule.hasErrored', state),
+    message: get('signUpFormModule.message', state),
+    isSending: get('signUpFormModule.isSending', state),
   };
 };
 

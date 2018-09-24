@@ -7,7 +7,6 @@ import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
 
 // Common Page Layouts
 import OneColumnSidebar from './components/App';
-import OneColumnFlat from './pages/OneColumnFlat';
 import { setUpPage } from './modules/App';
 
 
@@ -34,8 +33,6 @@ const MyAccount = () => {
 }
 
 const checkAuthentication = userIsAuthenticated(MyAccount);
-
-
 
 
 const connect = (fn) => {

@@ -50,11 +50,13 @@ export default function *(url, { method, headers = {}, body = null }) {
     throw new TypeError(
       getOr(
         'Bad response returned from API',
-        'errors[0].title',
+        'message',
         json
-      )
+      ),
+      response
     );
   }
+
   return response;
 }
 

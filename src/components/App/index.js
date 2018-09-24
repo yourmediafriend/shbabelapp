@@ -9,12 +9,7 @@ import Animate from 'react-move/Animate';
 import { easeExpOut } from 'd3-ease';
 import { setCurrentBreakPoint } from '../../modules/App';
 import { Player as MusicPlayer } from  '../MusicPlayer';
-
-import {
-  get,
-  maxBy,
-  max,
-} from 'lodash/fp';
+import { get } from 'lodash/fp';
 
 // Elements
 import MainContent from '../Content';

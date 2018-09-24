@@ -2,6 +2,8 @@ import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import { FormRow, RenderField } from '../formComponents'
 import { Button } from 'reactstrap';
+import cx from 'classnames';
+import styles from '../forms.scss'
 
 const validate = values => {
   const errors = {};
@@ -39,9 +41,11 @@ export const reduxFormDetails = {
   ],
 }
 
-const ContactForm = props => {
+const SignUpForm = props => {
 
-  const { handleSubmit, submitting, isSending, hasErrored } = props;
+  const { handleSubmit, submitting, isSending, hasErrored, message } = props;
+
+  console.log('SignUpForm', message);
 
   return(
     <div>
@@ -66,7 +70,9 @@ const ContactForm = props => {
         </fieldset>
         <div>
           <Button type="submit" disabled={submitting || isSending}>Submit</Button>
-          {!hasErrored && !isSending ? null : <div>There has been an error. Please try again later</div> }
+          {!hasErrored && !isSending ? null : <div className={cx(styles.errorMessage)}>
+            {message ? <div dangerouslySetInnerHTML={{ __html: message }} /> : 'There has been an error. Please try again later' }
+          </div> }
         </div>
       </form>
     </div>
@@ -76,5 +82,5 @@ const ContactForm = props => {
 // Decorate the form component
 export default reduxForm(
   reduxFormDetails
-)(ContactForm);
+)(SignUpForm);
 

@@ -19,6 +19,7 @@ export default function reducer(state = initialState, action = {}) {
     case FAILURE_TO_SIGNUP:
       return {
         ...state,
+        ...action.payload,
       };
     case SUCCESS_TO_SIGNUP:
       return {
@@ -40,10 +41,13 @@ export function attemptToSubmit(values) {
   };
 }
 
-export function failureToSubmit(bool) {
+export function failureToSubmit(e) {
   return {
     type: FAILURE_TO_SIGNUP,
-    hasErrored: bool
+    payload: {
+      hasErrored: true,
+      message: e.message
+    },
   };
 }
 
