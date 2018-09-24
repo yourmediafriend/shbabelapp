@@ -13,7 +13,10 @@ import Fullpage from '../Fullpage';
 
 // Pages
 import Homepage from '../Pages/Homepage';
-import AccountPage from '../Pages/AccountPage';
+
+import { LoginPage, SignUpPage, AccountPage } from '../Pages/AccountPages';
+
+
 import ContactPage from '../Pages/ContactPage';
 import WeatherPage from '../Pages/WeatherPage';
 import GridPage from '../Pages/GridPage';
@@ -39,6 +42,10 @@ const Content = ({currentpage, pageRef, match }) => {
       return <Homepage />;
     case 'account':
       return <AccountPage />;
+    case 'login':
+      return <LoginPage />;
+    case 'signup':
+      return <SignUpPage />;
     case 'svgs':
       return  <SvgAnimation />;
     case 'circle':

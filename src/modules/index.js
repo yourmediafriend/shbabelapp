@@ -7,10 +7,14 @@ import searchModal from './Search';
 import modal from './Modal';
 import nestedMenuReducers from './NestedMenu';
 import retrieveCatalogMenuData from './CatalogMenu';
-import postContactForm from './Forms/ContactForm';
-import postUserLoginForm from './Forms/UserLogin';
 import retrieveOpenWeather from './OpenWeather';
 import offCanvasMenu from './OffCanvasMenu';
+
+// Forms
+import postContactForm from './Forms/ContactForm';
+import postUserLoginForm from './Forms/UserLogin';
+import signUpFormModule from './Forms/SignUp';
+
 
 import appModule from "./App";
 import footerModule from './Footer';
@@ -24,6 +28,7 @@ export default combineReducers({
   form: formReducer,
   postContactForm,
   postUserLoginForm,
+  signUpFormModule,
   offCanvasMenu,
   retrieveCatalogMenuData,
   searchModal,

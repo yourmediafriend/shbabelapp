@@ -1,6 +1,6 @@
 export const __ENV__ = {
   baseUrl: 'http://5adb77bfb80f490014fb87cd.mockapi.io/api/v1/',
-  adminUrl: 'http://35.178.60.120/',
+  adminUrl: 'https://admin.shbabel.com/',
   apiKey: 'xxxxxxx',
   localStorageKey: 'ShBabel-69',
   tokenLocalStorageKey: 'ShBabelToken-69',

@@ -27,7 +27,7 @@ const validate = values => {
 };
 
 export const reduxFormDetails = {
-  form: 'ContactForm',
+  form: 'SignUpForm',
   validate,
   fields: [
     'firstName',
@@ -47,22 +47,22 @@ const ContactForm = props => {
     <div>
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <FormRow>
+    {/*      <FormRow>
             <Field labeltext={"First Name"} name={"firstName"} component={RenderField} type={"text"} isrequired={true}/>
             <Field labeltext={"Last Name"} name={"lastName"} component={RenderField} type={"text"} isrequired={true}/>
-          </FormRow>
+          </FormRow>*/}
           <FormRow>
             <Field labeltext={"Usename"} name={"username"} component={RenderField} type={"text"} isrequired={false}/>
           </FormRow>
           <FormRow>
             <Field labeltext={"Email"} name={"email"} component={RenderField} type={"email"} isrequired={true}/>
           </FormRow>
-          <FormRow>
+  {/*        <FormRow>
             <Field labeltext={"Password"} name={"password"} component={RenderField} type={"password"} isrequired={true}/>
           </FormRow>
           <FormRow>
             <Field labeltext={"Repeat Password"} name={"repeatpassword"} component={RenderField} type={"password"} isrequired={true}/>
-          </FormRow>
+          </FormRow>*/}
         </fieldset>
         <div>
           <Button type="submit" disabled={submitting || isSending}>Submit</Button>

@@ -21,7 +21,7 @@ const DropdownMenuItem = ({article, eventClick}) => {
 
 const DropdownMenu = props => {
 
-  let loggedIn = true
+  let loggedIn = false;
 
   return (
     <Query query={loggedIn ? userAccountMenuQuery : loginMenuQuery} >
@@ -29,9 +29,6 @@ const DropdownMenu = props => {
         if (loading) return <p>Loading...</p>;
         if (error) return `Error: ${error.message}`;
         if (data.menuByName.links.length) {
-
-          console.log(data.menuByName.links);
-
           return (
             <Nav className={cx(styles.dropdownMenu, styles.account, styles.loggedOut)}>
               {data.menuByName.links.map((article, index) => <DropdownMenuItem key={index} article={article} eventClick={props.modalOpen} />)}
