@@ -16,8 +16,8 @@ const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     new HttpLink({
-      uri: "http://admin.shbabel.com/graphql",
-      credentials: "include",
+      uri: "https://admin.shbabel.com/graphql",
+      credentials: "include"
     })
   ]),
   cache: new InMemoryCache()
