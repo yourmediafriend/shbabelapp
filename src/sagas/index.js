@@ -4,7 +4,7 @@ import {
 
 import { nestedMenuSaga } from '../modules/NestedMenu';
 import { contactFormSaga } from '../modules/Forms/ContactForm';
-import { userLoginFormSaga } from '../modules/Forms/UserLogin';
+import { loginFormSaga } from '../modules/Forms/Login';
 import { signUpFormSaga } from '../modules/Forms/SignUp';
 
 
@@ -26,6 +26,7 @@ export {
   searchModalSaga,
   musicPlayerSaga,
   signUpFormSaga,
+  loginFormSaga,
 };
 
 export default function *() {
@@ -33,7 +34,7 @@ export default function *() {
     fork(nestedMenuSaga),
     fork(catalogMenuSaga),
     fork(contactFormSaga),
-    fork(userLoginFormSaga),
+    fork(loginFormSaga),
     fork(signUpFormSaga),
     fork(openWeatherSaga),
     fork(googleMapModuleSaga),

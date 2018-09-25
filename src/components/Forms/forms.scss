@@ -15,7 +15,7 @@
 }
 
 .contactForm {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 
     :global(label){
         display: block;
@@ -107,9 +107,18 @@
             margin-bottom: 20px;
         }
     }
-
-
 }
+
+.errorMessage {
+    padding: 10px;
+    background: #F44336;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 
 .button {
     background: #d2d7e4;

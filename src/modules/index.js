@@ -12,7 +12,7 @@ import offCanvasMenu from './OffCanvasMenu';
 
 // Forms
 import postContactForm from './Forms/ContactForm';
-import postUserLoginForm from './Forms/UserLogin';
+import loginFormModule from './Forms/Login';
 import signUpFormModule from './Forms/SignUp';
 
 
@@ -27,7 +27,7 @@ export default combineReducers({
   router: routerReducer,
   form: formReducer,
   postContactForm,
-  postUserLoginForm,
+  loginFormModule,
   signUpFormModule,
   offCanvasMenu,
   retrieveCatalogMenuData,

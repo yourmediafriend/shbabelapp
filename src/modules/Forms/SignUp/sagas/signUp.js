@@ -20,32 +20,25 @@ import signUpFormData from '../selectors/signUpFormSelector';
 
 const baseUrl = get('adminUrl', __ENV__);
 
-export const constructUrl = () => `${baseUrl}/user/register?_format=json`;
+export const constructUrl = () => `${baseUrl}user/register?_format=json`;
 
 export default function * () {
 
   const formData = yield select(signUpFormData);
 
-
- let signUpData = {
-    "name": { "value": "www" },
-    "mail": { "value": "yourmediafriend+10@gmail.com" }
+  let signUpData = {
+    "name": { "value": get('name', formData)},
+    "mail": { "value": get('email', formData)}
   }
-
-
-  console.log('Saga', formData);
 
   try {
 
     const url = yield call(constructUrl);
-
-    console.log(url);
-
     yield call(
       sendPost,
       url,
       {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       signUpData,
     );
@@ -55,7 +48,16 @@ export default function * () {
     ];
 
   } catch (e) {
-    console.error(e);
-    return yield put(failureToSubmit());
+
+    // console.log(e instanceof TypeError); // true
+    // console.log(e.message);              // "null has no properties"
+    // console.log(e.name);                 // "TypeError"
+    // console.log(e.fileName);             // "Scratchpad/1"
+    // console.log(e.lineNumber);           // 2
+    // console.log(e.columnNumber);         // 2
+    // console.log(e.stack);                // "@Scratchpad/2:2:3\n"
+
+
+    return yield put(failureToSubmit(e));
   }
 }

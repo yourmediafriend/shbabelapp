@@ -5,9 +5,6 @@ import {
 } from 'redux-saga/effects';
 
 export default function *(url, headers = {}, body) {
-
-  console.log('POST', body);
-
   const params = {
     body,
     method: 'POST',

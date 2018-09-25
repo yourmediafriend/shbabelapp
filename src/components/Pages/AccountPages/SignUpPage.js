@@ -17,7 +17,7 @@ class Page extends Component {
       <MainLayer className={cx(styles.mainLayer)}>
         <ContentLayer className={cx(styles.contentLayer)} >
           <PageTitle title={ 'Sign Up' } layout={'center'} style={{}} />
-          <OneColumnCenter contentMain={<SignupForm />} />
+          <OneColumnCenter className={styles.MainContent} contentMain={<SignupForm />} />
         </ContentLayer>
       </MainLayer>
     )

@@ -2,6 +2,8 @@ import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import { FormRow, RenderField } from '../formComponents'
 import { Button } from 'reactstrap';
+import cx from 'classnames';
+import styles from '../forms.scss'
 
 const validate = values => {
   const errors = {};
@@ -18,11 +20,11 @@ const validate = values => {
     errors.message = 'Required'
   }
 
-  if (!values.email) {
+/*  if (!values.email) {
     errors.email = 'Required'
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address'
-  }
+  }*/
   return errors
 };
 
@@ -32,16 +34,18 @@ export const reduxFormDetails = {
   fields: [
     'firstName',
     'lastName',
-    'username',
+    'name',
     'email',
     'password',
     'repeatpassword',
   ],
 }
 
-const ContactForm = props => {
+const SignUpForm = props => {
 
-  const { handleSubmit, submitting, isSending, hasErrored } = props;
+  const { handleSubmit, submitting, isSending, hasErrored, message } = props;
+
+  console.log('SignUpForm', message);
 
   return(
     <div>
@@ -52,10 +56,10 @@ const ContactForm = props => {
             <Field labeltext={"Last Name"} name={"lastName"} component={RenderField} type={"text"} isrequired={true}/>
           </FormRow>*/}
           <FormRow>
-            <Field labeltext={"Usename"} name={"username"} component={RenderField} type={"text"} isrequired={false}/>
+            <Field labeltext={"Username"} name={"name"} component={RenderField} type={"text"} isrequired={false}/>
           </FormRow>
           <FormRow>
-            <Field labeltext={"Email"} name={"email"} component={RenderField} type={"email"} isrequired={true}/>
+            <Field labeltext={"Email"} name={"email"} component={RenderField} type={"text"} isrequired={true}/>
           </FormRow>
   {/*        <FormRow>
             <Field labeltext={"Password"} name={"password"} component={RenderField} type={"password"} isrequired={true}/>
@@ -66,7 +70,9 @@ const ContactForm = props => {
         </fieldset>
         <div>
           <Button type="submit" disabled={submitting || isSending}>Submit</Button>
-          {!hasErrored && !isSending ? null : <div>There has been an error. Please try again later</div> }
+          {!hasErrored && !isSending ? null : <div className={cx(styles.errorMessage)}>
+            {message ? <div dangerouslySetInnerHTML={{ __html: message }} /> : 'There has been an error. Please try again later' }
+          </div> }
         </div>
       </form>
     </div>
@@ -76,5 +82,5 @@ const ContactForm = props => {
 // Decorate the form component
 export default reduxForm(
   reduxFormDetails
-)(ContactForm);
+)(SignUpForm);
 

@@ -7,7 +7,7 @@ import LoginForm from '../forms/loginForm';
 
 import {
   attemptToLogin
-} from '../../../modules/Forms/UserLogin';
+} from '../../../modules/Forms/Login';
 
 
 const submit = (values, dispatch ) => {
@@ -20,8 +20,8 @@ const LoginFormView = props => {
 
 const mapStateToProps = (state) => {
   return {
-    hasErrored: get('postUserLoginForm.hasErrored', state),
-    isSending: get('postUserLoginForm.isSending', state),
+    hasErrored: get('loginFormModule.hasErrored', state),
+    isSending: get('loginFormModule.isSending', state),
   };
 };
 
