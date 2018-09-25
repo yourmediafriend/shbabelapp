@@ -1,4 +1,4 @@
-import signUpFormModule, { attemptToSubmit, failureToSubmit, successToSubmit } from './reducers/signUpFormReducer';
+import signUpFormModule, { attemptToSubmit, failureToSubmit, successToSubmit, resetErrorMessage } from './reducers/signUpFormReducer';
 import signUp from './sagas/signUp';
 import {takeEvery} from "redux-saga/effects";
 import {get} from "lodash/fp";
@@ -10,7 +10,8 @@ export default signUpFormModule;
 export {
   attemptToSubmit,
   failureToSubmit,
-  successToSubmit
+  successToSubmit,
+  resetErrorMessage
 };
 
 // Export Saga

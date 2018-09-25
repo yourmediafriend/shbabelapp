@@ -20,6 +20,7 @@ $page-bg-color: #ffffff !default;
     height: 100%;
     flex: 1;
     background-color: $page-bg-color;
+    padding-bottom: 40px;
 }
 .footerSpacer{
     pointer-events: none;

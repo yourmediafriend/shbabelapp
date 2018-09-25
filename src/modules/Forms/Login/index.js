@@ -1,10 +1,10 @@
-import postUserLoginForm, { attemptToLogin, failureToLogin, successToLogin } from './reducers/postUserLoginForm';
+import loginFormModule, { attemptToLogin, failureToLogin, successToLogin } from './reducers/loginFormReducer';
 import login from './sagas/login';
 import {takeEvery} from "redux-saga/effects";
 import {get} from "lodash/fp";
 
 // Export Reducers
-export default postUserLoginForm;
+export default loginFormModule;
 
 // Export Actions
 export {
@@ -14,7 +14,7 @@ export {
 };
 
 // Export Saga
-export const userLoginFormSaga = function *() {
+export const loginFormSaga = function *() {
   yield [
     takeEvery(get('type', attemptToLogin()), login),
   ];

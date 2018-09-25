@@ -31,26 +31,24 @@ const LoginForm = props => {
   const { handleSubmit, submitting, isSending, hasErrored } = props;
 
   return(
-
-      <Form className={styles.loginForm} onSubmit={handleSubmit}>
-        <fieldset>
-          <Row>
-            <Col>
-              <Field labeltext={"Username"} name={"username"} component={RenderField} type={"text"} isrequired={true}/>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Field labeltext={"Password"} name={"password"} component={RenderField} type={"password"} isrequired={true}/>
-            </Col>
-          </Row>
-        </fieldset>
-        <div>
-          <Button type="submit" disabled={submitting || isSending}>Submit</Button>
-          {!hasErrored && !isSending ? null : <FormText>There has been an error. Please try again later</FormText> }
-        </div>
-      </Form>
-
+    <Form className={styles.loginForm} onSubmit={handleSubmit}>
+      <fieldset>
+        <Row>
+          <Col>
+            <Field labeltext={"Username"} name={"username"} component={RenderField} type={"text"} isrequired={true}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Field labeltext={"Password"} name={"password"} component={RenderField} type={"password"} isrequired={true}/>
+          </Col>
+        </Row>
+      </fieldset>
+      <div>
+        <Button type="submit" disabled={submitting || isSending}>Submit</Button>
+        {!hasErrored && !isSending ? null : <FormText>There has been an error. Please try again later</FormText> }
+      </div>
+    </Form>
   )
 };
 

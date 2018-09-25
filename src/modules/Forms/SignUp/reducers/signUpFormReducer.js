@@ -1,11 +1,14 @@
 const ATTEMPT_TO_SIGNUP = "signUpForm/ATTEMPT_TO_SIGNUP";
 const FAILURE_TO_SIGNUP = "signUpForm/FAILURE_TO_SIGNUP";
 const SUCCESS_TO_SIGNUP = "signUpForm/SUCCESS_TO_SIGNUP";
+const RESET_ERROR = "signUpForm/RESET_ERROR";
+
+
 
 const initialState = {
   isLoading: false,
   hasErrored: false,
-  items: [],
+  message:'',
 };
 
 // Reducer
@@ -14,16 +17,30 @@ export default function reducer(state = initialState, action = {}) {
     // do reducer stuff
     case ATTEMPT_TO_SIGNUP:
       return {
-        ...state
+        ...state,
+        isLoading: initialState.isLoading,
+        hasErrored: initialState.hasErrored,
+        message: initialState.message,
       };
     case FAILURE_TO_SIGNUP:
       return {
         ...state,
         ...action.payload,
+        isLoading: initialState.isLoading,
       };
     case SUCCESS_TO_SIGNUP:
       return {
-        ...state
+        ...state,
+        isLoading: initialState.isLoading,
+        hasErrored: initialState.hasErrored,
+        message: initialState.message,
+      };
+    case RESET_ERROR:
+      return {
+        ...state,
+        isLoading: initialState.isLoading,
+        hasErrored: initialState.hasErrored,
+        message: initialState.message,
       };
     default: return state;
   }
@@ -54,5 +71,11 @@ export function failureToSubmit(e) {
 export function successToSubmit() {
   return {
     type: SUCCESS_TO_SIGNUP
+  };
+}
+
+export function resetErrorMessage() {
+  return {
+    type: RESET_ERROR
   };
 }

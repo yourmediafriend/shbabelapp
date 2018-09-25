@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {get} from "lodash/fp";
@@ -6,23 +6,24 @@ import {get} from "lodash/fp";
 import SignupForm from '../forms/signupForm';
 
 import {
-  attemptToSubmit
+  attemptToSubmit,
+  resetErrorMessage,
 } from '../../../modules/Forms/SignUp';
-
 
 const submit = (values, dispatch ) => {
   return dispatch(attemptToSubmit(values));
 }
 
-const SignupFormView = props => {
-  return (<SignupForm onSubmit={submit} hasErrored={props.hasErrored} isSending={props.isSending}   message={props.message} />)
+class SignupFormView extends Component {
+  componentWillUnmount(prevProps) {
+    this.props.resetErrorMessage();
+  }
+  render() {
+    return (<SignupForm onSubmit={submit} hasErrored={this.props.hasErrored} isSending={this.props.isSending}   message={this.props.message} />)
+  }
 }
 
 const mapStateToProps = (state) => {
-
-  // console.log(state);
-  // console.log('mapStateToProps', get('signUpFormModule.message', state));
-
   return {
     hasErrored: get('signUpFormModule.hasErrored', state),
     message: get('signUpFormModule.message', state),
@@ -33,7 +34,8 @@ const mapStateToProps = (state) => {
 export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      attemptToSubmit
+      attemptToSubmit,
+      resetErrorMessage
     },
     dispatch
   );
