@@ -5,7 +5,7 @@ const GET_ARTICLES = gql`
   query nodeQuery($dateNow: String!, $limit: Int!, $offset: Int!){
     nodeQuery(offset:$offset, limit:$limit,  sort: [{field: "created", direction: DESC}], filter: {conditions: [{operator: EQUAL, field: "type", value: ["Article"]}, {operator: SMALLER_THAN_OR_EQUAL, field: "created", value: [$dateNow] }]}) {
       entities {
-        ... on Node {
+        ... on NodeArticle {
           created
           nid
           title

@@ -6,7 +6,7 @@ query GetArticle($path: String!) {
   route:route(path: $path) {
     ... on EntityCanonicalUrl {
       entity {
-        ... on Node {
+        ... on NodeArticle {
           created
           nid
           title
