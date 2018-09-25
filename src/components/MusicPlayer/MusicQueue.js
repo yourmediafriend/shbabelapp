@@ -6,7 +6,6 @@ import {get} from "lodash/fp";
 import styles from './musicPlayer.scss'
 import cx from 'classnames';
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import QueueItem from './MusicQueueItem';
 

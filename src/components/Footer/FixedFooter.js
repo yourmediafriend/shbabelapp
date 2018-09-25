@@ -11,7 +11,7 @@ import Icon from '../Icons';
 import {get} from "lodash/fp";
 import Animate from 'react-move/Animate';
 import { easeCubicInOut } from 'd3-ease';
-
+import Background from "../Background";
 
 const FooterCloseComp = ({clickEvent}) => {
   return (
@@ -103,5 +103,14 @@ export const mapDispatchToProps = dispatch =>
     },
     dispatch
   );
+
+
+Footer.props = {
+  xxx: PropTypes.bool
+};
+
+Footer.defaultProps = {
+  xxx: true
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

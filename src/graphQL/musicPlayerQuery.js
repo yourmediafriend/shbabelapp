@@ -4,7 +4,7 @@ const GET_TRACKS = gql`
 {
   nodeQuery(filter: {conditions: [{operator: EQUAL, field: "type", value: ["mixes"]}]}) {
     entities {
-      ... on Node {
+      ... on NodeMixes {
         nid
         title
         fieldTrack {
