@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Field, reduxForm} from 'redux-form';
 import { FormRow, RenderField } from '../formComponents'
 import { Button } from 'reactstrap';
 import cx from 'classnames';
 import styles from '../forms.scss'
+import {resetErrorMessage} from "../../../modules/Forms/SignUp";
 
 const validate = values => {
   const errors = {};
@@ -30,53 +31,75 @@ const validate = values => {
 
 export const reduxFormDetails = {
   form: 'SignUpForm',
+  destroyOnUnmount: false,
   validate,
   fields: [
-    'firstName',
-    'lastName',
     'name',
     'email',
-    'password',
-    'repeatpassword',
   ],
 }
 
-const SignUpForm = props => {
+class SignUpForm extends Component {
 
-  const { handleSubmit, submitting, isSending, hasErrored, message } = props;
 
-  console.log('SignUpForm', message);
+  constructor(props) {
+    super(props);
+    this.state = {
+      initValues: {name:'', email:'', },
+    };
+  }
 
-  return(
-    <div>
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-    {/*      <FormRow>
-            <Field labeltext={"First Name"} name={"firstName"} component={RenderField} type={"text"} isrequired={true}/>
-            <Field labeltext={"Last Name"} name={"lastName"} component={RenderField} type={"text"} isrequired={true}/>
-          </FormRow>*/}
-          <FormRow>
-            <Field labeltext={"Username"} name={"name"} component={RenderField} type={"text"} isrequired={false}/>
-          </FormRow>
-          <FormRow>
-            <Field labeltext={"Email"} name={"email"} component={RenderField} type={"text"} isrequired={true}/>
-          </FormRow>
-  {/*        <FormRow>
-            <Field labeltext={"Password"} name={"password"} component={RenderField} type={"password"} isrequired={true}/>
-          </FormRow>
-          <FormRow>
-            <Field labeltext={"Repeat Password"} name={"repeatpassword"} component={RenderField} type={"password"} isrequired={true}/>
-          </FormRow>*/}
-        </fieldset>
-        <div>
-          <Button type="submit" disabled={submitting || isSending}>Submit</Button>
-          {!hasErrored && !isSending ? null : <div className={cx(styles.errorMessage)}>
-            {message ? <div dangerouslySetInnerHTML={{ __html: message }} /> : 'There has been an error. Please try again later' }
-          </div> }
-        </div>
-      </form>
-    </div>
-  )
+  componentDidMount() {
+   // this.handleInitialize();
+  }
+
+  componentWillUnmount() {
+    this.reset();
+  };
+
+  reset() {
+    return this.props.resetErrorMessage();
+  }
+
+
+  handleInitialize() {
+    const initData = {
+      'name': this.state.initValues.name,
+      'email': this.state.initValues.email,
+    };
+    this.props.initialize(initData);
+  }
+
+  submitForm = (values) => {
+    const {attemptToSubmit} = this.props;
+    return attemptToSubmit(values);
+  };
+
+  render(){
+
+    const { handleSubmit, submitting, isSending, hasErrored, message, reset } = this.props;
+
+    return(
+      <div>
+        <form onSubmit={handleSubmit(this.submitForm.bind(this))}>
+          <fieldset>
+            <FormRow>
+              <Field labeltext={"Username"} name={"name"} component={RenderField} type={"text"} isrequired={false} />
+            </FormRow>
+            <FormRow>
+              <Field labeltext={"Email"} name={"email"} component={RenderField} type={"text"} isrequired={true}/>
+            </FormRow>
+          </fieldset>
+          <div>
+            <Button type="submit" disabled={submitting || isSending}>Submit</Button>
+            {!hasErrored && !isSending ? null : <div className={cx(styles.errorMessage)}>
+              {message ? <div dangerouslySetInnerHTML={{ __html: message }} /> : 'There has been an error. Please try again later' }
+            </div> }
+          </div>
+        </form>
+      </div>
+    )
+  }
 }
 
 // Decorate the form component

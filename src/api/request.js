@@ -16,7 +16,6 @@ import {
 
 import { requestMade, responseReceived, requestIsBad, requestFailed } from '../modules/ApiRequest';
 
-
 export default function *(url, { method, headers = {}, body = null }) {
 
   const init = {
@@ -48,15 +47,13 @@ export default function *(url, { method, headers = {}, body = null }) {
     yield put(requestIsBad(request, response));
     const json = yield call([response, response.json]);
     throw new TypeError(
-      getOr(
-        'Bad response returned from API',
-        'message',
-        json
-      ),
-      response
-    );
-  }
-
+    getOr(
+      'Bad response returned from API',
+      'message',
+      json
+    )
+  );
+}
   return response;
 }
 

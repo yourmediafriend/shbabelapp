@@ -9,12 +9,15 @@ import {
   call,
   put,
   select,
+  fork,
 } from 'redux-saga/effects';
 
 import {
   failureToSubmit,
   successToSubmit,
 } from '../';
+
+import {reset} from 'redux-form';
 
 import signUpFormData from '../selectors/signUpFormSelector';
 
@@ -32,32 +35,20 @@ export default function * () {
   }
 
   try {
-
     const url = yield call(constructUrl);
-    yield call(
-      sendPost,
-      url,
-      {
-        'Content-Type': 'application/json'
-      },
-      signUpData,
-    );
+    const response = yield call( sendPost,
+                                  url,
+                                  {
+                                    'Content-Type': 'application/json'
+                                  },
+                                  signUpData,
+                                );
 
-    return yield [
-      put(successToSubmit())
-    ];
-
+    yield put(successToSubmit(response));
+    yield put(reset('SignUpForm'));
+    //  Add push to new page. With Message
   } catch (e) {
-
-    // console.log(e instanceof TypeError); // true
-    // console.log(e.message);              // "null has no properties"
-    // console.log(e.name);                 // "TypeError"
-    // console.log(e.fileName);             // "Scratchpad/1"
-    // console.log(e.lineNumber);           // 2
-    // console.log(e.columnNumber);         // 2
-    // console.log(e.stack);                // "@Scratchpad/2:2:3\n"
-
-
-    return yield put(failureToSubmit(e));
+    yield put(reset('SignUpForm'));
+    yield put(failureToSubmit(e));
   }
 }

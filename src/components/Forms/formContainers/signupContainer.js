@@ -10,21 +10,26 @@ import {
   resetErrorMessage,
 } from '../../../modules/Forms/SignUp';
 
-const submit = (values, dispatch ) => {
-  return dispatch(attemptToSubmit(values));
+class SignupFormView extends Component {
+
+  render() {
+    return (<SignupForm attemptToSubmit={this.props.attemptToSubmit}
+                        resetErrorMessage={this.props.resetErrorMessage}
+                        hasErrored={this.props.hasErrored}
+                        isSending={this.props.isSending}
+                        message={this.props.message} />);
+  };
+
 }
 
-class SignupFormView extends Component {
-  componentWillUnmount(prevProps) {
-    this.props.resetErrorMessage();
-  }
-  render() {
-    return (<SignupForm onSubmit={submit} hasErrored={this.props.hasErrored} isSending={this.props.isSending}   message={this.props.message} />)
-  }
-}
 
 const mapStateToProps = (state) => {
+
+  // console.log(state);
+  // console.log('mapStateToProps', get('signUpFormModule.message', state));
+
   return {
+    values: get('form.SignUpForm.values', state),
     hasErrored: get('signUpFormModule.hasErrored', state),
     message: get('signUpFormModule.message', state),
     isSending: get('signUpFormModule.isSending', state),

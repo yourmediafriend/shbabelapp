@@ -9,7 +9,6 @@ class FormFieldInput extends React.Component {
   render() {
 
     const {input, placeholder, type,  error, touched, autocomplete, id } = this.props;
-
     switch (type) {
       case 'textarea':
         return (<Input invalid={!!touched && error} {...input}  id={id} placeholder={placeholder} type={type} />);
