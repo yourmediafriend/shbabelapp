@@ -9,10 +9,10 @@ import {
   put,
 } from 'redux-saga/effects';
 
-/*import {
+import {
   getToken,
   setToken,
-} from './token';*/
+} from './token';
 
 import { requestMade, responseReceived, requestIsBad, requestFailed } from '../modules/ApiRequest';
 
@@ -22,6 +22,7 @@ export default function *(url, { method, headers = {}, body = null }) {
     method,
     headers: new Headers({
       Accept: 'application/vnd.api+json',
+      Authorization: `Bearer ${yield call(getToken)}`,
       ...headers,
     }),
     body: body ? JSON.stringify(body) : undefined, // must match 'Content-Type' header
@@ -45,6 +46,9 @@ export default function *(url, { method, headers = {}, body = null }) {
     yield put(responseReceived(response));
   } else {
     yield put(requestIsBad(request, response));
+
+    debugger;
+
     const json = yield call([response, response.json]);
     throw new TypeError(
     getOr(

@@ -16,19 +16,18 @@ import {
   btoa,
 } from 'isomorphic-base64';
 
-// export function getUrl() {
-//   return getOr('no-base-url')('adminUrl')(__ENV__);
-// }
+export function getUrl() {
+  return getOr('no-base-url')('adminUrl')(__ENV__);
+}
 
 export function *getHeaders(username, password) {
   return {
-    'Authorization': `Basic ${btoa(`${username}:${password}`)}`,
-    'Content-Type': 'application/json',
+    'Authorization': `Basic ${btoa(`${username}:${password}`)}`
   };
 }
 
-export default function *(url, username, password) {
-  //const url = yield call(getUrl);
+export default function *(username, password) {
+  const url = yield call(getUrl);
   const headers = yield call(getHeaders, username, password);
   yield call(request, url, {
     headers,

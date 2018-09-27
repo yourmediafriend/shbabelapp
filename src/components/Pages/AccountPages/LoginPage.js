@@ -14,8 +14,8 @@ const LoginUpOtions = () => {
   return (
     <div>
       <LoginForm />
-      <p>Facebook</p>
-      <p>Google</p>
+{/*      <p>Facebook</p>
+      <p>Google</p>*/}
     </div>
   )
 

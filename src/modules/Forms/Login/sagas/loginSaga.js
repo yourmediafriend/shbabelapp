@@ -23,7 +23,7 @@ import authenticateWithApi from '../../../../api/authenticate';
 
 const baseUrl = get('adminUrl', __ENV__);
 
-export const constructUrl = () => `${baseUrl}user/login?_format=json`;
+export const constructUrl = () => `${baseUrl}`;
 
 const isFieldValid = (field) => isString(field);
 const isPayloadValid = ({ username, password } = {}) => (
@@ -34,12 +34,8 @@ const isPayloadValid = ({ username, password } = {}) => (
 export function *authenticate(url, username, password) {
   try {
 
-
    // const billboard = yield call(authenticateWithApi, url, username, password);
-
-    const billboard = yield call(authenticateWithApi, url, 'test',  '>8DF}4..d/MwF+');
-
-    debugger;
+    const billboard = yield call(authenticateWithApi, 'test',  'cider2901');
 
     const json = yield call([
       billboard,
@@ -58,8 +54,7 @@ export default function * (attempt) {
   // Authenticate.
   // get token ?
   // Update Cookie.
-  // const { username, password } = attempt.payload;
-  // const authentication = yield fork(authenticate, username, password);
+
 
   try {
 
