@@ -8,8 +8,6 @@ import {
 import {
   call,
   put,
-  select,
-  fork,
 } from 'redux-saga/effects';
 
 import {
@@ -19,19 +17,17 @@ import {
 
 import {reset} from 'redux-form';
 
-import signUpFormData from '../selectors/signUpFormSelector';
-
 const baseUrl = get('adminUrl', __ENV__);
 
 export const constructUrl = () => `${baseUrl}user/register?_format=json`;
 
-export default function * () {
+export default function * (attempt) {
 
-  const formData = yield select(signUpFormData);
+  const { name, email } = attempt.payload;
 
   let signUpData = {
-    "name": { "value": get('name', formData)},
-    "mail": { "value": get('email', formData)}
+    "name": { "value": name },
+    "mail": { "value": email }
   }
 
   try {
@@ -48,7 +44,6 @@ export default function * () {
     yield put(reset('SignUpForm'));
     //  Add push to new page. With Message
   } catch (e) {
-    yield put(reset('SignUpForm'));
     yield put(failureToSubmit(e));
   }
 }

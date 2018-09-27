@@ -55,7 +55,7 @@ export function attemptToSubmit(values, form) {
   return {
     type: ATTEMPT_TO_SIGNUP,
     payload: {
-      values,
+      ...values,
       form
     },
   };

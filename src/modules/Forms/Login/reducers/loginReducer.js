@@ -36,7 +36,7 @@ export function attemptToLogin(values) {
   return {
     type: ATTEMPT_TO_LOGIN,
     payload: {
-      values
+      ...values
     },
   };
 }

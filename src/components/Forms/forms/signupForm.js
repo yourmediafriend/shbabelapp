@@ -21,11 +21,11 @@ const validate = values => {
     errors.message = 'Required'
   }
 
-/*  if (!values.email) {
+  if (!values.email) {
     errors.email = 'Required'
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address'
-  }*/
+  }
   return errors
 };
 
@@ -80,24 +80,22 @@ class SignUpForm extends Component {
     const { handleSubmit, submitting, isSending, hasErrored, message, reset } = this.props;
 
     return(
-      <div>
-        <form onSubmit={handleSubmit(this.submitForm.bind(this))}>
-          <fieldset>
-            <FormRow>
-              <Field labeltext={"Username"} name={"name"} component={RenderField} type={"text"} isrequired={false} />
-            </FormRow>
-            <FormRow>
-              <Field labeltext={"Email"} name={"email"} component={RenderField} type={"text"} isrequired={true}/>
-            </FormRow>
-          </fieldset>
-          <div>
-            <Button type="submit" disabled={submitting || isSending}>Submit</Button>
-            {!hasErrored && !isSending ? null : <div className={cx(styles.errorMessage)}>
-              {message ? <div dangerouslySetInnerHTML={{ __html: message }} /> : 'There has been an error. Please try again later' }
-            </div> }
-          </div>
-        </form>
-      </div>
+      <form className={styles.signUpForm} onSubmit={handleSubmit(this.submitForm.bind(this))}>
+        <fieldset>
+          <FormRow>
+            <Field labeltext={"Username"} name={"name"} component={RenderField} type={"text"} isrequired={false} />
+          </FormRow>
+          <FormRow>
+            <Field labeltext={"Email"} name={"email"} component={RenderField} type={"text"} isrequired={true}/>
+          </FormRow>
+        </fieldset>
+        <div>
+          <Button type="submit" disabled={submitting || isSending}>Submit</Button>
+          {!hasErrored && !isSending ? null : <div className={cx(styles.errorMessage)}>
+            {message ? <div dangerouslySetInnerHTML={{ __html: message }} /> : 'There has been an error. Please try again later' }
+          </div> }
+        </div>
+      </form>
     )
   }
 }

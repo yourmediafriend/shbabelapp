@@ -1,6 +1,7 @@
 .contactForm,
 .searchForm,
-.loginForm {
+.loginForm,
+.signUpForm {
     :global(.form-control) {
         border-radius: 0;
         &:focus {
@@ -58,7 +59,8 @@
     }
 }
 
-.loginForm {
+.loginForm,
+.signUpForm{
     :global(label){
         display: block;
         .required {
