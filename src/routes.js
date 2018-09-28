@@ -61,6 +61,17 @@ const SwitchRoute = () => (
     <Route exact path='/account' component={checkAuthentication} />
 
 
+    <Route exact path='/password' render={(routeProps) => {
+      // do I set the initial App State here
+      connect(setUpPage({
+        stickyHeader: true,
+        fixedFooter: true,
+        revealFooter: true,
+      }));
+      return <OneColumnSidebar {...routeProps}
+                               currentpage='password'/>
+    }} />
+
     <Route exact path='/sign-up' render={(routeProps) => {
       // do I set the initial App State here
       connect(setUpPage({

@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import {Field, reduxForm} from 'redux-form';
 import { FormRow, RenderField } from '../formComponents'
 import { Button } from 'reactstrap';
-import cx from 'classnames';
 import styles from '../forms.scss'
+import cx from 'classnames'
 import {resetErrorMessage} from "../../../modules/Forms/SignUp";
 
 const validate = values => {
   const errors = {};
+
+  console.log('validate SignUpForm');
+
+  if (!values.name) {
+    errors.name = 'Required'
+  }
 
   if (!values.firstName) {
     errors.firstName = 'Required'
@@ -41,7 +47,6 @@ export const reduxFormDetails = {
 
 class SignUpForm extends Component {
 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -61,7 +66,6 @@ class SignUpForm extends Component {
     return this.props.resetErrorMessage();
   }
 
-
   handleInitialize() {
     const initData = {
       'name': this.state.initValues.name,
@@ -80,10 +84,10 @@ class SignUpForm extends Component {
     const { handleSubmit, submitting, isSending, hasErrored, message, reset } = this.props;
 
     return(
-      <form className={styles.signUpForm} onSubmit={handleSubmit(this.submitForm.bind(this))}>
+      <form className={cx(styles.userForm, styles.signUpForm)} onSubmit={handleSubmit(this.submitForm.bind(this))}>
         <fieldset>
           <FormRow>
-            <Field labeltext={"Username"} name={"name"} component={RenderField} type={"text"} isrequired={false} />
+            <Field labeltext={"Username"} name={"name"} component={RenderField} type={"text"} isrequired={true} />
           </FormRow>
           <FormRow>
             <Field labeltext={"Email"} name={"email"} component={RenderField} type={"text"} isrequired={true}/>

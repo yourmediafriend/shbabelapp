@@ -1,7 +1,16 @@
+$accent: #00BCD4;
+$primary: #212121;
+$secondary: #727272;
+
+$scoreRed: #ce2f23;
+$scoreYellow: #e6a41f;
+$scoreGreen: #1c8621;
+
+
+
 .contactForm,
 .searchForm,
-.loginForm,
-.signUpForm {
+.userForm {
     :global(.form-control) {
         border-radius: 0;
         &:focus {
@@ -59,31 +68,6 @@
     }
 }
 
-.loginForm,
-.signUpForm{
-    :global(label){
-        display: block;
-        .required {
-            color: #dc3939;
-        }
-    }
-    :global(.form-control){
-        border-color: transparent transparent $gray-400 $gray-400;
-        &:global(.is-invalid){
-            border-color: transparent transparent #dc3939 #dc3939;
-        }
-        &:hover {
-            background: #f7f7f7;
-            border-color: $gray-500;
-        }
-        &:focus {
-            background: #fff;
-            border-color: $gray-500;
-            outline: none;
-        }
-    }
-}
-
 .newsletterSignUpForm {
     label {
         font-size: $h5-font-size;
@@ -111,6 +95,34 @@
     }
 }
 
+.userForm{
+    :global(label){
+        display: block;
+        .required {
+            color: #dc3939;
+        }
+    }
+    :global(.form-control){
+        border-color: transparent transparent $gray-400 $gray-400;
+        &:global(.is-invalid){
+            border-color: transparent transparent #dc3939 #dc3939;
+        }
+        &:hover {
+            background: #f7f7f7;
+            border-color: $gray-500;
+        }
+        &:focus {
+            background: #fff;
+            border-color: $gray-500;
+            outline: none;
+        }
+    }
+}
+
+:global(.invalid-feedback) {
+    display: block;
+}
+
 .errorMessage {
     padding: 10px;
     background: #F44336;
@@ -120,11 +132,63 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
-
-
 .button {
     background: #d2d7e4;
     border: 0;
     padding: 10px 35px;
     border-radius: 5px;
+}
+
+.passwordWrap {
+    position: relative;
+}
+.passwordShowButton{
+    position: absolute;
+    display: inline-block;
+    top: 5px;
+    right: 10px;
+    opacity: 0.5;
+    svg{
+        width: 24px;
+    }
+    &:hover {
+        opacity: 0.8;
+    }
+
+}
+.passwordStrength {
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -1px;
+    left: 0;
+    background: transparent;
+    transition: all 300ms ease-in-out;
+
+    &[data-score="null"]{
+        width: 0;
+        background: red;
+    }
+
+    &[data-score="0"]{
+        width: 5%;
+        background: $scoreRed;
+    }
+    &[data-score="1"]{
+        width: 25%;
+        background: $scoreRed;
+    }
+    &[data-score="2"]{
+        width: 50%;
+        background: $scoreYellow;
+    }
+    &[data-score="3"]{
+        width: 75%;
+        background: $scoreGreen;
+    }
+    &[data-score="4"]{
+        width: 100%;
+        background: $scoreGreen;
+    }
+
 }

@@ -3,6 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 import { RenderField } from '../formComponents'
 import { Button, Form, Row, Col, FormText } from 'reactstrap';
 import styles from '../forms.scss';
+import cx from "classnames";
 
 const validate = values => {
   const errors = {};
@@ -31,7 +32,7 @@ const LoginForm = props => {
   const { handleSubmit, submitting, isSending, hasErrored } = props;
 
   return(
-    <Form className={styles.loginForm} onSubmit={handleSubmit}>
+    <Form className={cx(styles.userForm, styles.loginForm)} onSubmit={handleSubmit}>
       <fieldset>
         <Row>
           <Col>
