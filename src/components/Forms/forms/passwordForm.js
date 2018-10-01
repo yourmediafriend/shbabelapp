@@ -5,6 +5,7 @@ import { Button, Form, Row, Col, FormText } from 'reactstrap';
 import styles from '../forms.scss';
 import cx from 'classnames'
 
+
 const validate = values => {
   const errors = {};
 
@@ -14,7 +15,6 @@ const validate = values => {
   //   errors.passwordRepeat = 'Must Match'
   // }
 
-
   if (!values.passwordset) {
     errors.passwordset = 'Required'
   }
@@ -22,8 +22,7 @@ const validate = values => {
   if (!values.passwordsetcompare) {
     errors.passwordsetcompare = 'Required'
   }
-  console.log('passwordset', values.passwordset);
-  console.log('passwordsetcompare', values.passwordsetcompare);
+
   console.log(errors);
   return errors
 };
@@ -32,8 +31,8 @@ export const reduxFormDetails = {
   form: 'passwordSetForm',
   validate,
   fields: [
-    'passwordset',
-    'passwordsetcompare',
+    'password',
+    'passwordCheck',
   ],
 };
 
