@@ -28,9 +28,13 @@ const validate = values => {
 };
 
 export const reduxFormDetails = {
-  form: 'passwordSetForm',
+  form: 'accountForm',
   validate,
   fields: [
+    'firstname',
+    'lastname',
+    'email',
+    'passwordcurrent',
     'password',
     'passwordCheck',
   ],
@@ -49,27 +53,49 @@ class PasswordForm extends Component {
 
     return (
       <Form className={cx(styles.userForm, styles.passwordForm)} onSubmit={handleSubmit(this.submitForm.bind(this))}>
+
+        <h3>Personal Details</h3>
         <fieldset>
           <Row>
             <Col>
-              <PasswordSrength labeltext={"Password"} name={"passwordset"} strengthIndicator={true} isrequired={true}/>
+              <Field labeltext={"First Name"} name={"firstname"} component={RenderField} type={"text"} isrequired={true}/>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <PasswordSrength labeltext={"Last Name"} name={"lastname"} isrequired={true}/>
+            </Col>
+          </Row>
+        </fieldset>
 
-{/*              <Field labeltext={"Password"} name={"passwordset"} component={RenderField} type={"password"} showHide={true}
-                     strengthIndicator={true} isrequired={true}/>*/}
+
+        <fieldset>
+          <Row>
+            <Col>
+              <Field labeltext={"Email"} name={"email"} component={RenderField} type={"email"} isrequired={true}/>
+            </Col>
+          </Row>
+        </fieldset>
+
+        <h3>Password Update</h3>
+
+        <fieldset>
+          <Row>
+            <Col>
+              <PasswordSrength labeltext={"Current Password"} name={"passwordcurrent"} strengthIndicator={false} isrequired={true}/>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <PasswordSrength labeltext={"Password"} name={"passwordset"} strengthIndicator={true} isrequired={true}/>
             </Col>
           </Row>
           <Row>
             <Col>
               <PasswordSrength labeltext={"Repeat Password"} name={"passwordsetcompare"} isrequired={true}/>
-{/*              <Field labeltext={"Repeat Password"} name={"passwordsetcompare"} component={RenderField} type={"password"}
-                     showHide={true} strengthIndicator={false} isrequired={true}/>*/}
             </Col>
           </Row>
         </fieldset>
-        <div>
-          <Button type="submit" disabled={submitting || isSending}>Submit</Button>
-          {!hasErrored && !isSending ? null : <FormText>There has been an error. Please try again later</FormText>}
-        </div>
       </Form>
     )
   }

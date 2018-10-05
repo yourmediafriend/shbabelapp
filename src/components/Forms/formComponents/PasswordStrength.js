@@ -1,12 +1,40 @@
 import React, { Component } from 'react';
 import styles from '../forms.scss';
 import zxcvbn from 'zxcvbn';
+import {UID} from 'react-uid';
 import Icon from '../../Icons';
-import { Input, FormFeedback } from 'reactstrap';
+import {Field, reduxForm} from 'redux-form';
+import { Input, Label, FormGroup, FormFeedback } from 'reactstrap';
 import cx from "classnames";
 
 
-class PasswordStrengthReveal extends Component {
+const FormIsRequired = () => (
+  <span className={styles.required}>*</span>
+);
+
+const InputLabel = (labeltext, id, isrequired) => {
+
+  return (
+    <Label htmlFor={id}>
+      <span>{labeltext}</span>
+      {!isrequired ? '' : FormIsRequired()}
+    </Label>
+  )
+};
+
+const ErrorMessage = ({touched, error, warning}) => {
+
+  return (
+    <div>
+      {touched &&
+      ((error && <FormFeedback className={cx(styles.FormFeedback)}>{error}</FormFeedback>) ||
+        (warning && <FormFeedback className={cx(styles.FormFeedback)}>{warning}</FormFeedback>))}
+    </div>
+  )
+
+};
+
+class FormFieldInput extends React.Component {
 
   constructor(props){
     super(props);
@@ -27,6 +55,9 @@ class PasswordStrengthReveal extends Component {
   }
 
   passwordStrength(e){
+
+    console.log('passwordStrength', e.target.value);
+
     if(e.target.value === ''){
       this.setState({
         score: 'null'
@@ -40,18 +71,87 @@ class PasswordStrengthReveal extends Component {
     }
   }
 
+  render() {
+    const {input, placeholder, strengthIndicator, id , error, touched, warning, onChange} = this.props;
+
+    return (
+      <div>
+        <div className={cx(styles.passwordWrap)}>
+          <Input invalid={!!touched && error}
+                 id={id}
+                 type={this.state.type}
+                 placeholder={placeholder}
+                 autoComplete={'off'}
+                 onChange={event => {
+                   console.log("This is the new value of field myField: " + event.target.value);
+                   this.passwordStrength(event);
+                   input.onChange(event);
+                 }}
+          />
+          {strengthIndicator ? <span className={styles.passwordStrength} data-score={this.state.score} /> : null }
+          <span className={styles.passwordShowButton} onClick={this.showHide}>
+            <Icon icon={this.state.type === 'input' ? 'eye_closed' : 'eye_open'} />
+          </span>
+        </div>
+        <ErrorMessage touched={touched} error={error} warning={warning} />
+      </div>
+
+    );
+  }
+
+}
+
+const RenderField = ({
+                       labeltext,
+                       input,
+                       placeholder,
+                       type,
+                       id,
+                       isrequired,
+                       strengthIndicator,
+                       autoComplete,
+                       meta: { touched, error, warning }
+                     }) =>  (
+          <FormFieldInput
+            id={id}
+            placeholder={placeholder}
+            input={input}
+            type={type}
+            error={error}
+            touched={touched}
+            warning={warning}
+            autoComplete={autoComplete}
+            strengthIndicator={strengthIndicator}
+          />
+      )
+
+
+
+
+class PasswordStrengthReveal extends Component {
+
   render(){
 
-    const {placeholder, type, id, strengthIndicator, autocomplete, touched, error, warning} = this.props;
+    const {name, labeltext, isrequired, strengthIndicator, touched, error, warning} = this.props;
 
     return(
-      <div className={cx(styles.passwordWrap)}>
-        <Input invalid={!!touched && error} type={this.state.type} id={id} placeholder={placeholder} onChange={strengthIndicator ? this.passwordStrength : ''} autoComplete={!autocomplete ? 'off' : 'on'}/>
-        <span className={styles.passwordShowButton} onClick={this.showHide}>
-          <Icon icon={this.state.type === 'input' ? 'eye_closed' : 'eye_open'} />
-        </span>
-        {strengthIndicator ? <span className={styles.passwordStrength} data-score={this.state.score} /> : null }
-      </div>
+      <FormGroup>
+        <UID>
+          {id => {
+            let inputId ='input-'+id;
+            return(
+              <div>
+                {labeltext ? InputLabel(labeltext, inputId, isrequired) : ''}
+                <Field name={name}
+                       id={inputId}
+                       component={RenderField}
+                       strengthIndicator={strengthIndicator}
+                />
+              </div>
+            )
+          }}
+        </UID>
+      </FormGroup>
     )
   }
 }

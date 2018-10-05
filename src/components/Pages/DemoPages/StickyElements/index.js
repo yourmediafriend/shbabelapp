@@ -25,26 +25,37 @@ const imagesHero = {
   1300: hero_1900w,
 };
 
-let Sidebar = props => (
-  <div>
-    <PromoWidget imgSrc={hero_480w} className={styles.sidebarWidget}/>
-    <StickyPanel />
-  </div>
-)
+
+//return React.forwardRef(forwardRef);
+
+const Sidebar = props => {
+  return (
+    <div style={{height:'100%', background:'#ff00ea'}}>
+      <PromoWidget imgSrc={hero_480w} className={styles.sidebarWidget}/>
+      <StickyPanel {...props} />
+    </div>
+  )
+};
 
 class Page extends Component {
 
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+  }
+
   render() {
     return (
-      <MainLayer className={cx(styles.mainLayer)}>
+      <MainLayer ref={this.ref} className={cx(styles.mainLayer)}>
         <ContentLayer className={cx(styles.contentLayer)} >
           <HeroBanner image={imagesHero}  />
-          <TwoColumnLeft contentMain={<DummyText />}  contentColumnLeft={<Sidebar />} className={styles.containerMain}/>
+          <TwoColumnLeft  contentMain={<DummyText />}  contentColumnLeft={<Sidebar forwardedRef={this.ref}/>} className={styles.containerMain}/>
         </ContentLayer>
       </MainLayer>
     )
   }
 }
+
 
 export default Page;
 

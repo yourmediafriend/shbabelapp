@@ -22,7 +22,7 @@ export default function *(url, { method, headers = {}, body = null }) {
     method,
     headers: new Headers({
       Accept: 'application/vnd.api+json',
-      Authorization: `Bearer ${yield call(getToken)}`,
+     /* Authorization: `Bearer ${yield call(getToken)}`,*/
       ...headers,
     }),
     body: body ? JSON.stringify(body) : undefined, // must match 'Content-Type' header

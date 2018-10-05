@@ -35,6 +35,18 @@ const InputLabel = (labeltext, id, isrequired) => {
   )
 };
 
+const ErrorMessage = ({touched, error, warning}) => {
+
+  return (
+    <div>
+      {touched &&
+      ((error && <FormFeedback className={cx(styles.FormFeedback)}>{error}</FormFeedback>) ||
+        (warning && <FormFeedback className={cx(styles.FormFeedback)}>{warning}</FormFeedback>))}
+    </div>
+  )
+
+};
+
 const RenderField = ({
                      labeltext,
                      input,
@@ -49,7 +61,9 @@ const RenderField = ({
                       <UID>
                         {id => (
                           <div>
+
                             {labeltext ? InputLabel(labeltext, id,isrequired) : ''}
+
                             <FormFieldInput
                               id={`input-${id}`}
                               placeholder={placeholder}
@@ -62,10 +76,8 @@ const RenderField = ({
                               strengthIndicator={strengthIndicator}
                             />
 
+                            <ErrorMessage touched={touched} error={error} warning={warning} />
 
-                            {touched &&
-                            ((error && <FormFeedback className={cx(styles.FormFeedback)}>{error}</FormFeedback>) ||
-                              (warning && <FormFeedback className={cx(styles.FormFeedback)}>{warning}</FormFeedback>))}
                           </div>
                         )}
                       </UID>

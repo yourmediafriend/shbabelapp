@@ -8,6 +8,10 @@ import ScrollToTop from './components/ScrollTop';
 import { ApolloProvider } from "react-apollo";
 import client from "./graphQL/client";
 
+/*Test*/
+import RefTest from "./components/RefTest";
+
+
 const App = () => {
   return (
     <ApolloProvider client={client}>
@@ -22,6 +26,6 @@ const App = () => {
   );
 }
 
-//export default App;
+export default App;
 
-export default hot(module)(App)
+//export default hot(module)(App)

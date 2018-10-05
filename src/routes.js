@@ -13,12 +13,12 @@ import { setUpPage } from './modules/App';
 // Test Pages
 import Recompose from './pages/RecomposeTest'
 import Strap from './pages/ReactStrapTest'
-
+import RefTest from './components/RefTest'
 
 // this works but disrupts certain Componenets (Music player and Sidemenu) with a page refresh
 const userIsAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',
-  authenticatedSelector: () => { return false },
+  authenticatedSelector: () => { return true },
 })
 
 const MyAccount = () => {
@@ -59,7 +59,6 @@ const SwitchRoute = () => (
     {/* User Account */}
 
     <Route exact path='/account' component={checkAuthentication} />
-
 
     <Route exact path='/password' render={(routeProps) => {
       // do I set the initial App State here
@@ -335,7 +334,7 @@ const SwitchRoute = () => (
     <Route exact path='/test' render={() => <OneColumnSidebar currentpage='test' />} />
     <Route exact path='/rec' component={Recompose}/>
     <Route exact path='/strap' component={Strap}/>
-
+    <Route exact path='/reftest' component={RefTest}/>
   </Switch>
 );
 
