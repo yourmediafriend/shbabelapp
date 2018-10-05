@@ -4,13 +4,21 @@ import cx from 'classnames'
 import styles from './content.scss';
 import ContentLayer from "./ContentLayer";
 
-const MainLayer = React.forwardRef((props, ref)  => {
+/*const MainLayer = React.forwardRef((props, ref)  => {
   return (
     <div ref={ref} className={cx(styles.mainLayer, props.showFooterReveal? styles.footerReveal : '', props.className)}>
       {props.children}
     </div>
   )
-});
+});*/
+
+const MainLayer = props  => {
+  return (
+    <div ref={props.forwardedRef} className={cx(styles.mainLayer, props.showFooterReveal? styles.footerReveal : '', props.className)}>
+      {props.children}
+    </div>
+  )
+};
 
 MainLayer.propTypes = {
   showHeader: PropTypes.bool,

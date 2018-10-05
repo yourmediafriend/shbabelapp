@@ -10,16 +10,21 @@ function logProps(WrappedComponent) {
 
   class LogProps extends React.Component {
 
-  /*  componentDidMount() {
-      console.log('componentDidMount:', this.props.parentRef);
+   componentDidMount() {
+      console.log('componentDidMount:', this.props.forwardedRef.current);
     }
 
-    componentDidUpdate(prevProps) {
-      console.log('new props:', this.props.parentRef.current);
-    }
-*/
+
+    /*
+       componentDidUpdate(prevProps) {
+         console.log('new props:', this.props.parentRef.current);
+       }
+   */
 
     render() {
+
+      console.log('render:', this.props.forwardedRef.current);
+
      // console.log('Render:', this.props.forwardRef.current);
       return <WrappedComponent {...this.props} />;
     }
@@ -28,11 +33,21 @@ function logProps(WrappedComponent) {
   return LogProps;
 }
 
-const StickyPanel = React.forwardRef((props, ref)  => {
+// const StickyPanel = React.forwardRef((props, ref)  => {
+//   console.log('StickyPanel', props.forwardedRef);
+//   return (
+//     <div className={cx(styles.pinnedContent,'pinned')}  >
+//       <div id='pinned'>
+//         <MenuWidget className={styles.sidebarWidget} />
+//         <SocialWidget className={styles.sidebarWidget}/>
+//         <DummyWidget className={styles.sidebarWidget}/>
+//       </div>
+//     </div>
+//   )
+// });
 
-
-  console.log('StickyPanel', ref);
-
+const StickyPanel = props => {
+  console.log('StickyPanel', props.forwardedRef);
   return (
     <div className={cx(styles.pinnedContent,'pinned')}  >
       <div id='pinned'>
@@ -42,6 +57,6 @@ const StickyPanel = React.forwardRef((props, ref)  => {
       </div>
     </div>
   )
-});
+};
 
-export default StickyPanel;
+export default scrollMagicEnhanced(StickyPanel);
