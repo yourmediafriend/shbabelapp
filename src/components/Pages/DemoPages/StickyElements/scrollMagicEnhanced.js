@@ -65,6 +65,8 @@ function withSubscription(WrappedComponent, selectData) {
     componentDidUpdate(prevProps) {
 
 
+      this.recalculateDurations();
+
 /*      if (this.shouldEnable()) {
         console.log('oof');
         this.createScene();
@@ -82,7 +84,10 @@ function withSubscription(WrappedComponent, selectData) {
       let options = this.getOptions();
 
       let $el = ReactDOM.findDOMNode(this.myRef.current);
+      let $parent = document.getElementById("pinnedTrack");
 
+      console.log($parent);
+      console.log($parent.getBoundingClientRect());
 
       // I need to wait until ref is attached. So Scene is Updated with componet
 /*      let $parent = ReactDOM.findDOMNode(this.props.parentRef.current);
@@ -90,15 +95,15 @@ function withSubscription(WrappedComponent, selectData) {
 
       this.controller = new ScrollMagic.Controller({
         container: options.container,
-        loglevel: 2,
-        addIndicators: true
+     /*   loglevel: 2,
+        addIndicators: true*/
       });
 
       this.scenes.push(new ScrollMagic.Scene({
         triggerHook: 0,
         triggerElement: $el,
         offset: -85,
-        duration: 15000 // get height of main page  $parent.offsetHeight
+        duration: $parent.getBoundingClientRect().height // get height of main page  $parent.offsetHeight
       })
         .setPin("#pinned")
         .on("enter", function (event) {
@@ -127,13 +132,41 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     recalculateDurations() {
+
       if(this.sceneCreated && !this.shouldEnable()){
         return this.destroyScene();
       }else if(!this.sceneCreated && this.shouldEnable()){
         return this.createScene();
       }
 
+      let scene = this.scenes[0];
+
+
+      //let $scrollOffset =  document.offset().top
+      console.log(window.scrollY);
+
+
+      let $parent = document.getElementById("pinnedTrack");
+
+      console.log($parent.getBoundingClientRect());
+
+
+
+
+      let newDuration = $parent.getBoundingClientRect().height - Math.abs(window.scrollY - Math.abs($parent.getBoundingClientRect().top))   + 490     ;
+
+      console.log(newDuration);
+
+     // newDuration = $parent.getBoundingClientRect().height - 645 - 80
+
+
+
+
+      scene.duration( newDuration );
+
+      //distanceFromtopOfDocument - Offset - margin
       /*          let options = this.getOptions();
+
         let $holders = S(this.refs.scene).queryAll.sceneContentHolder;
             let $holder = $holders[0];
             let firstScene = this.scenes[0];

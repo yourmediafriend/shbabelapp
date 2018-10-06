@@ -47,9 +47,9 @@ function logProps(WrappedComponent) {
 // });
 
 const StickyPanel = props => {
-  console.log('StickyPanel', props.forwardedRef);
+/*  console.log('StickyPanel', props.forwardedRef);*/
   return (
-    <div className={cx(styles.pinnedContent,'pinned')}  >
+    <div id='pinnedTrack' className={cx(styles.pinnedTrax,'pinned')}  >
       <div id='pinned'>
         <MenuWidget className={styles.sidebarWidget} />
         <SocialWidget className={styles.sidebarWidget}/>

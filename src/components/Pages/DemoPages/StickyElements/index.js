@@ -3,7 +3,9 @@ import { TwoColumnLeft }  from '../../../Layout';
 import cx from "classnames";
 import MainLayer from '../../../Content/MainLayer'
 import ContentLayer from '../../../Content/ContentLayer'
-import styles from '../demoPages.scss';
+
+import styles from './stickyElements.scss';
+
 import DummyText from '../../../DummyText/DummyTextLong'
 import StickyPanel from './StickyPanel';
 import { PromoWidget } from '../../../Widgets';
@@ -38,9 +40,10 @@ class Sidebar extends Component {
 
     render() {
       return (
-        <div ref={this.ref} style={{height: '100%', background: '#ff00ea'}}>
+        <div ref={this.ref} className={styles.sidebarWrap}>
           <PromoWidget imgSrc={hero_480w} className={styles.sidebarWidget} />
           <StickyPanel  />
+          <PromoWidget imgSrc={hero_480w} className={cx(styles.sidebarWidget,styles.fixBottom)} />
         </div>
       );
     }
