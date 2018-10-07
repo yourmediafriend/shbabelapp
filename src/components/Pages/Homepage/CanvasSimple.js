@@ -22,7 +22,7 @@ let bg_12= "https://res.cloudinary.com/dghff7rpa/image/upload/v1537142824/backgr
 let bg_13= "https://res.cloudinary.com/dghff7rpa/image/upload/v1537145752/backgrounds/images/brutal-trash-polka.jpg";
 
 
-let bgImages_Brutalist= [bg_13, bg_10, bg_3];
+let bgImages_Brutalist= [bg_3, bg_10, bg_3];
 
 let textBanner = ['Power','Exploitation','Corruption','Despair', 'Fake News','Exploitation','Shaming','Trolls'];
 
@@ -74,7 +74,7 @@ class HomeCanvas extends Component {
     this.bg_C.height = this.app.screen.height;
     this.bg_C.x = this.app.screen.width / 2;
     this.bg_C.y = this.app.screen.height / 2;
-    this.bg_C.alpha = 0.2;
+    this.bg_C.alpha = 0.4;
 
 
     container.addChild(this.bg_B);
@@ -178,7 +178,7 @@ class HomeCanvas extends Component {
     let style = new PIXI.TextStyle({
       align: 'center',
       fontFamily: 'Helvetica, sans-serif',
-      fontSize: 250,
+      fontSize: 270,
       fontWeight: 700,
       fill: ['#ffffff'],
       letterSpacing: 0,
@@ -201,7 +201,7 @@ class HomeCanvas extends Component {
       fontFamily: 'Helvetica, sans-serif',
       fontSize: 180,
       fontWeight: 700,
-      fill: ['#ffffff'],
+      fill: ['#1c1c1c'],
       letterSpacing: 25,
       dropShadow: false,
       wordWrap: false,
@@ -220,7 +220,7 @@ class HomeCanvas extends Component {
       fontFamily: 'Helvetica, sans-serif',
       fontSize: 177,
       fontWeight: 700,
-      fill: ['#ffffff'],
+      fill: ['#080808'],
       letterSpacing: 25,
       dropShadow: false,
       wordWrap: false,

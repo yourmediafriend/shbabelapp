@@ -2,6 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-const target = document.querySelector('#root');
+const target = document.getElementById('root');
 
 ReactDOM.render(<App />, target)

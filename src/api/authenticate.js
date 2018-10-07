@@ -8,16 +8,22 @@ import sendGet from './get';
 import request from './request';
 
 import {
+  get,
   getOr,
 } from 'lodash/fp';
 
+import {
+  btoa,
+} from 'isomorphic-base64';
 
 export function getUrl() {
-  return getOr('no-base-url')('baseUrl')(__ENV__);
+  return getOr('no-base-url')('adminUrl')(__ENV__);
 }
 
 export function *getHeaders(username, password) {
-  return {};
+  return {
+    'Authorization': `Basic ${btoa(`${username}:${password}`)}`
+  };
 }
 
 export default function *(username, password) {

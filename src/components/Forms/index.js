@@ -4,12 +4,17 @@ import LoginForm from './formContainers/loginContainer';
 import SignupForm from './formContainers/signupContainer';
 import PasswordForgotForm from './formContainers/passwordForgotContainer';
 import NewsletterSignUp from './formContainers/newsletterSignUpContainer';
+import PasswordForm from './formContainers/passwordContainer';
+import AccountForm from './formContainers/AccountContainer';
+
 
 export {
   ContactForm,
   SearchForm,
   LoginForm,
   SignupForm,
+  PasswordForm,
+  AccountForm,
   PasswordForgotForm,
   NewsletterSignUp,
 }

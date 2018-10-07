@@ -3,7 +3,9 @@ import { TwoColumnLeft }  from '../../../Layout';
 import cx from "classnames";
 import MainLayer from '../../../Content/MainLayer'
 import ContentLayer from '../../../Content/ContentLayer'
-import styles from '../demoPages.scss';
+
+import styles from './stickyElements.scss';
+
 import DummyText from '../../../DummyText/DummyTextLong'
 import StickyPanel from './StickyPanel';
 import { PromoWidget } from '../../../Widgets';
@@ -25,26 +27,48 @@ const imagesHero = {
   1300: hero_1900w,
 };
 
-let Sidebar = props => (
-  <div>
-    <PromoWidget imgSrc={hero_480w} className={styles.sidebarWidget}/>
-    <StickyPanel />
-  </div>
-)
+
+//return React.forwardRef(forwardRef);
+
+
+class Sidebar extends Component {
+
+    constructor(props) {
+      super(props);
+      this.ref = React.createRef();
+    }
+
+    render() {
+      return (
+        <div ref={this.ref} className={styles.sidebarWrap}>
+          <PromoWidget imgSrc={hero_480w} className={styles.sidebarWidget} />
+          <StickyPanel  />
+          <PromoWidget imgSrc={hero_480w} className={cx(styles.sidebarWidget,styles.fixBottom)} />
+        </div>
+      );
+    }
+};
 
 class Page extends Component {
+
+  constructor(props) {
+    super(props);
+    //this.ref = React.createRef();
+    //forwardedRef={this.ref}
+  }
 
   render() {
     return (
       <MainLayer className={cx(styles.mainLayer)}>
         <ContentLayer className={cx(styles.contentLayer)} >
           <HeroBanner image={imagesHero}  />
-          <TwoColumnLeft contentMain={<DummyText />}  contentColumnLeft={<Sidebar />} className={styles.containerMain}/>
+          <TwoColumnLeft  contentMain={<DummyText />}  contentColumnLeft={<Sidebar />} className={styles.containerMain}/>
         </ContentLayer>
       </MainLayer>
     )
   }
 }
+
 
 export default Page;
 

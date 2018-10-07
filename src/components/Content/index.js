@@ -14,7 +14,7 @@ import Fullpage from '../Fullpage';
 // Pages
 import Homepage from '../Pages/Homepage';
 
-import { LoginPage, SignUpPage, AccountPage } from '../Pages/AccountPages';
+import { LoginPage, SignUpPage, AccountPage, PasswordPage } from '../Pages/AccountPages';
 
 
 import ContactPage from '../Pages/ContactPage';
@@ -46,6 +46,8 @@ const Content = ({currentpage, pageRef, match }) => {
       return <LoginPage />;
     case 'signup':
       return <SignUpPage />;
+    case 'password':
+      return <PasswordPage />;
     case 'svgs':
       return  <SvgAnimation />;
     case 'circle':

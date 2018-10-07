@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Field, reduxForm} from 'redux-form';
 import { FormRow, RenderField } from '../formComponents'
 import { Button } from 'reactstrap';
-import cx from 'classnames';
 import styles from '../forms.scss'
+import cx from 'classnames'
+import {resetErrorMessage} from "../../../modules/Forms/SignUp";
 
 const validate = values => {
   const errors = {};
+
+  console.log('validate SignUpForm');
+
+  if (!values.name) {
+    errors.name = 'Required'
+  }
 
   if (!values.firstName) {
     errors.firstName = 'Required'
@@ -20,53 +27,71 @@ const validate = values => {
     errors.message = 'Required'
   }
 
-/*  if (!values.email) {
+  if (!values.email) {
     errors.email = 'Required'
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address'
-  }*/
+  }
   return errors
 };
 
 export const reduxFormDetails = {
   form: 'SignUpForm',
+  destroyOnUnmount: false,
   validate,
   fields: [
-    'firstName',
-    'lastName',
     'name',
     'email',
-    'password',
-    'repeatpassword',
   ],
 }
 
-const SignUpForm = props => {
+class SignUpForm extends Component {
 
-  const { handleSubmit, submitting, isSending, hasErrored, message } = props;
+  constructor(props) {
+    super(props);
+    this.state = {
+      initValues: {name:'', email:'', },
+    };
+  }
 
-  console.log('SignUpForm', message);
+  componentDidMount() {
+   // this.handleInitialize();
+  }
 
-  return(
-    <div>
-      <form onSubmit={handleSubmit}>
+  componentWillUnmount() {
+    this.reset();
+  };
+
+  reset() {
+    return this.props.resetErrorMessage();
+  }
+
+  handleInitialize() {
+    const initData = {
+      'name': this.state.initValues.name,
+      'email': this.state.initValues.email,
+    };
+    this.props.initialize(initData);
+  }
+
+  submitForm = (values) => {
+    const {attemptToSubmit} = this.props;
+    return attemptToSubmit(values);
+  };
+
+  render(){
+
+    const { handleSubmit, submitting, isSending, hasErrored, message, reset } = this.props;
+
+    return(
+      <form className={cx(styles.userForm, styles.signUpForm)} onSubmit={handleSubmit(this.submitForm.bind(this))}>
         <fieldset>
-    {/*      <FormRow>
-            <Field labeltext={"First Name"} name={"firstName"} component={RenderField} type={"text"} isrequired={true}/>
-            <Field labeltext={"Last Name"} name={"lastName"} component={RenderField} type={"text"} isrequired={true}/>
-          </FormRow>*/}
           <FormRow>
-            <Field labeltext={"Username"} name={"name"} component={RenderField} type={"text"} isrequired={false}/>
+            <Field labeltext={"Username"} name={"name"} component={RenderField} type={"text"} isrequired={true} />
           </FormRow>
           <FormRow>
             <Field labeltext={"Email"} name={"email"} component={RenderField} type={"text"} isrequired={true}/>
           </FormRow>
-  {/*        <FormRow>
-            <Field labeltext={"Password"} name={"password"} component={RenderField} type={"password"} isrequired={true}/>
-          </FormRow>
-          <FormRow>
-            <Field labeltext={"Repeat Password"} name={"repeatpassword"} component={RenderField} type={"password"} isrequired={true}/>
-          </FormRow>*/}
         </fieldset>
         <div>
           <Button type="submit" disabled={submitting || isSending}>Submit</Button>
@@ -75,8 +100,8 @@ const SignUpForm = props => {
           </div> }
         </div>
       </form>
-    </div>
-  )
+    )
+  }
 }
 
 // Decorate the form component

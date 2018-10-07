@@ -2,8 +2,7 @@ const ATTEMPT_TO_SIGNUP = "signUpForm/ATTEMPT_TO_SIGNUP";
 const FAILURE_TO_SIGNUP = "signUpForm/FAILURE_TO_SIGNUP";
 const SUCCESS_TO_SIGNUP = "signUpForm/SUCCESS_TO_SIGNUP";
 const RESET_ERROR = "signUpForm/RESET_ERROR";
-
-
+//const RESET_FORM = "signUpForm/RESET_FORM";
 
 const initialState = {
   isLoading: false,
@@ -16,6 +15,9 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     // do reducer stuff
     case ATTEMPT_TO_SIGNUP:
+
+      console.log('ATTEMPT_TO_SIGNUP');
+
       return {
         ...state,
         isLoading: initialState.isLoading,
@@ -48,12 +50,13 @@ export default function reducer(state = initialState, action = {}) {
 
 // actions
 
-export function attemptToSubmit(values) {
+export function attemptToSubmit(values, form) {
   // console.log('attemptToSubmit', {values});
   return {
     type: ATTEMPT_TO_SIGNUP,
     payload: {
-      values
+      ...values,
+      form
     },
   };
 }
@@ -68,7 +71,7 @@ export function failureToSubmit(e) {
   };
 }
 
-export function successToSubmit() {
+export function successToSubmit(response) {
   return {
     type: SUCCESS_TO_SIGNUP
   };
@@ -79,3 +82,10 @@ export function resetErrorMessage() {
     type: RESET_ERROR
   };
 }
+
+// export function resetForm() {
+//   console.log('RESET_FORM');
+//   return {
+//     type: RESET_FORM
+//   };
+// }

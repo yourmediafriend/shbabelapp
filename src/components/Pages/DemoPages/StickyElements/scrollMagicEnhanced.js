@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import verge from 'verge';
 import ScrollMagic from 'scrollmagic-with-ssr';
 import { getOr } from 'lodash/fp';
+import S from 'camel-case-selector';
 import 'AnimationGsap';
 //import 'debug.addIndicators';
 
@@ -13,7 +14,7 @@ let globalOptions = {
 
 function withSubscription(WrappedComponent, selectData) {
 
-  return class extends React.Component {
+  class scrollMagicEnhanced extends React.Component {
 
     constructor() {
       super(...arguments);
@@ -35,7 +36,6 @@ function withSubscription(WrappedComponent, selectData) {
       let w = verge.viewportW();
       let disable = this.props.disable !== undefined ? this.props.disable : globalOptions.disable;
       let disableMobile = this.props.disableMobile !== undefined ? this.props.disableMobile : globalOptions.disableMobile;
-
       if(typeof disable === 'function'){
         return !disable();
       }else if(typeof disable === 'boolean' && disable){
@@ -62,32 +62,57 @@ function withSubscription(WrappedComponent, selectData) {
       window.addEventListener('resize', this.recalculateDurations);
     }
 
+    componentDidUpdate(prevProps) {
+
+
+      this.recalculateDurations();
+
+/*      if (this.shouldEnable()) {
+        console.log('oof');
+        this.createScene();
+      }
+
+      if (this.props !== prevProps.parentRef) {
+        // console.log('componentDidUpdate');§
+        // console.log('old props:', prevProps);
+        // console.log('new props:', this.props);
+      }*/
+    }
+
     createScene() {
 
       let options = this.getOptions();
 
       let $el = ReactDOM.findDOMNode(this.myRef.current);
+      let $parent = document.getElementById("pinnedTrack");
 
-/*      let $holder = S($el).queryAll.padding[0];*/
+      console.log($parent);
+      console.log($parent.getBoundingClientRect());
+
+      // I need to wait until ref is attached. So Scene is Updated with componet
+/*      let $parent = ReactDOM.findDOMNode(this.props.parentRef.current);
+      console.log($parent);*/
 
       this.controller = new ScrollMagic.Controller({
         container: options.container,
-/*        loglevel: 2,
+     /*   loglevel: 2,
         addIndicators: true*/
       });
 
       this.scenes.push(new ScrollMagic.Scene({
-        offset: -(54 + 30) +'px',
-        triggerElement: $el,
         triggerHook: 0,
+        triggerElement: $el,
+        offset: -85,
+        duration: $parent.getBoundingClientRect().height // get height of main page  $parent.offsetHeight
       })
-      .on("enter", function (event) {
-        this.myRef.current.toggleStickyPanel();
-      }.bind(this))
-      .on("leave", function (event) {
-        this.myRef.current.toggleStickyPanel();
-      }.bind(this))
-      .addTo(this.controller));
+        .setPin("#pinned")
+        .on("enter", function (event) {
+          //this.myRef.current.toggleStickyPanel();
+        }.bind(this))
+        .on("leave", function (event) {
+          // this.myRef.current.toggleStickyPanel();
+        }.bind(this))
+        .addTo(this.controller));
 
       this.sceneCreated = true;
 
@@ -107,21 +132,51 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     recalculateDurations() {
+
       if(this.sceneCreated && !this.shouldEnable()){
         return this.destroyScene();
       }else if(!this.sceneCreated && this.shouldEnable()){
         return this.createScene();
       }
 
-/*          let options = this.getOptions();
-  let $holders = S(this.refs.scene).queryAll.sceneContentHolder;
-      let $holder = $holders[0];
-      let firstScene = this.scenes[0];
+      let scene = this.scenes[0];
 
-      if(firstScene){
-        firstScene.duration($holder.clientHeight + options.offset + 'px');
-      }*/
+
+      //let $scrollOffset =  document.offset().top
+      console.log(window.scrollY);
+
+
+      let $parent = document.getElementById("pinnedTrack");
+
+      console.log($parent.getBoundingClientRect());
+
+
+
+
+      let newDuration = $parent.getBoundingClientRect().height - Math.abs(window.scrollY - Math.abs($parent.getBoundingClientRect().top))   + 490     ;
+
+      console.log(newDuration);
+
+     // newDuration = $parent.getBoundingClientRect().height - 645 - 80
+
+
+
+
+      scene.duration( newDuration );
+
+      //distanceFromtopOfDocument - Offset - margin
+      /*          let options = this.getOptions();
+
+        let $holders = S(this.refs.scene).queryAll.sceneContentHolder;
+            let $holder = $holders[0];
+            let firstScene = this.scenes[0];
+
+            if(firstScene){
+              firstScene.duration($holder.clientHeight + options.offset + 'px');
+            }*/
     }
+
+
 
     render() {
       const {extraProp, ...passThroughProps} = this.props;
@@ -132,6 +187,9 @@ function withSubscription(WrappedComponent, selectData) {
       />;
     }
   }
+
+  return scrollMagicEnhanced;
+
 
 }
 

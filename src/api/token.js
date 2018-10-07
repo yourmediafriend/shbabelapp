@@ -13,7 +13,6 @@ export function *getToken() {
   if (token === null) {
     return yield call(get, 'apiKey', __ENV__);
   }
-
   return token;
 }
 

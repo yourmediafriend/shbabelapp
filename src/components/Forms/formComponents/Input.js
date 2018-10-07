@@ -1,18 +1,20 @@
 import React from 'react';
 import {UID} from 'react-uid';
-import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import PasswordSrength from './PasswordStrength'
+import { FormGroup, Label, Input, FormFeedback,  } from 'reactstrap';
 import cx from 'classnames';
 import styles from '../forms.scss';
 
 class FormFieldInput extends React.Component {
 
   render() {
-
-    const {input, placeholder, type,  error, touched, autocomplete, id } = this.props;
+    const {input, placeholder, type, autocomplete, id , strengthIndicator, error, touched, warning} = this.props;
 
     switch (type) {
       case 'textarea':
         return (<Input invalid={!!touched && error} {...input}  id={id} placeholder={placeholder} type={type} />);
+      case 'password':
+        return (<PasswordSrength error={error} warning={warning} touched={touched} input={input} id={id} strengthIndicator={strengthIndicator} autocomplete={autocomplete} placeholder={placeholder} type={type}/>);
       default:
         return (<Input invalid={!!touched && error} {...input} id={id} placeholder={placeholder} type={type} autoComplete={!(autocomplete) ? 'off' : 'on'} />);
     }
@@ -33,19 +35,35 @@ const InputLabel = (labeltext, id, isrequired) => {
   )
 };
 
+const ErrorMessage = ({touched, error, warning}) => {
+
+  return (
+    <div>
+      {touched &&
+      ((error && <FormFeedback className={cx(styles.FormFeedback)}>{error}</FormFeedback>) ||
+        (warning && <FormFeedback className={cx(styles.FormFeedback)}>{warning}</FormFeedback>))}
+    </div>
+  )
+
+};
+
 const RenderField = ({
                      labeltext,
                      input,
                      placeholder,
                      type,
                      isrequired,
+                     strengthIndicator,
+                     autoComplete,
                      meta: { touched, error, warning }
                    }) => (
                     <FormGroup>
                       <UID>
                         {id => (
                           <div>
+
                             {labeltext ? InputLabel(labeltext, id,isrequired) : ''}
+
                             <FormFieldInput
                               id={`input-${id}`}
                               placeholder={placeholder}
@@ -54,10 +72,12 @@ const RenderField = ({
                               error={error}
                               touched={touched}
                               warning={warning}
+                              autoComplete={autoComplete}
+                              strengthIndicator={strengthIndicator}
                             />
-                            {touched &&
-                            ((error && <FormFeedback className={cx(styles.FormFeedback)}>{error}</FormFeedback>) ||
-                              (warning && <FormFeedback className={cx(styles.FormFeedback)}>{warning}</FormFeedback>))}
+
+                            <ErrorMessage touched={touched} error={error} warning={warning} />
+
                           </div>
                         )}
                       </UID>
