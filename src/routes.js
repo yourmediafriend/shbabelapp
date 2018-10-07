@@ -49,7 +49,7 @@ const SwitchRoute = () => (
       connect(setUpPage({
         stickyHeader: true,
         fixedFooter: true,
-        revealFooter: true,
+        revealFooter: false,
       }));
       return <OneColumnSidebar {...routeProps}
                                currentpage='home'/>
