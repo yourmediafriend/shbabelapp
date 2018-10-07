@@ -5,10 +5,11 @@
     background-image: url('https://res.cloudinary.com/dghff7rpa/image/upload/v1536611005/fullpage/carson/slide-2.jpg');
 }
 .section_3 {
-    background-image: url('https://res.cloudinary.com/dghff7rpa/image/upload/v1536611005/fullpage/carson/slide-3.jpg');
+    background-image: url('../../../media/fullpage-slides/dark/slide-3A.jpg');
 }
 .section_4 {
-    background-image: url('https://res.cloudinary.com/dghff7rpa/image/upload/v1536611005/fullpage/carson/slide-4.jpg');
+    background-image: url('../../../media/fullpage-slides/dark/slide-4.jpg');
+    //background-image: url('https://res.cloudinary.com/dghff7rpa/image/upload/v1536611005/fullpage/carson/slide-4.jpg');
 }
 
 .fullpageBg {
@@ -20,6 +21,11 @@
     background-position: center;
     background-color: #282c34;
 }
+
+
+
+
+
 .section {
     background-position: center;
     background-size: cover;
@@ -48,6 +54,14 @@
         pointer-events: none;
     }
 }
+
+
+
+
+
+
+
+
 .section_1 {
 
     color: #fff;
@@ -132,7 +146,7 @@
     }
 
     .layer {
-        &.lightening{
+        &.lightning{
             display: flex;
             .svgWrap {
                 flex: 1;
@@ -146,6 +160,12 @@
                 }
             }
         }
+        &.main {
+            .mainText {
+                font-family: "Stempel Garamond";
+                font-size: 11px;
+            }
+        }
     }
 }
 
@@ -155,7 +175,37 @@
     }
 
     .layer {
-        &.content{
+        &.gif {
+            z-index: 99;
+            img {
+                position: absolute;
+                &.jumping {
+                    bottom: 0;
+                    right: 50%;
+                    opacity: 0.8;
+                    width: 26%;
+                }
+                &.lightning {
+                    opacity: 0.6;
+                }
+                &.skull {
+                    top: -2%;
+                    right: 8%;
+                }
+                &.crown {
+                    top: -2%;
+                    right: 8%;
+                }
+                &.ballonDog {
+                    top: -2%;
+                    right: 8%;
+                }
+            }
+        }
+    }
+
+    .layer {
+        &.content {
 
         }
     }
@@ -179,21 +229,21 @@
             p {
                 margin: 0 0 1em 0;
             }
-            &.wrap_1{
+            &.wrap_1 {
                 color: #318fb2;
                 opacity: 0.7;
                 &.active {
 
                 }
             }
-            &.wrap_2{
+            &.wrap_2 {
                 color: #a60c0c;
                 opacity: 0.7;
                 &.active {
                     color: #eaeaea;
                 }
             }
-            &.wrap_3{
+            &.wrap_3 {
                 color: #54987d;
                 opacity: 0.7;
                 &.active {
@@ -207,7 +257,6 @@
             }
         }
     }
-
 
     .imageWrap {
         position: relative;
@@ -258,8 +307,80 @@
     .sindy_2 {
         transform: translateX(-100%);
     }
-
 }
+
+.section_3 {
+    .layer {
+        &.main {
+            z-index: 99;
+            .content {
+                position: absolute;
+                &.mainText {
+                    color: #ab9573;
+                    font-family: "Stempel Garamond";
+                    font-size: 18px;
+                    width: 45%;
+                    margin-left: 25%;
+                    line-height: 3em;
+                }
+                &.bars {
+                    height: 100%;
+                    width: 30%;
+                    margin-left: 27%;
+                }
+            }
+        }
+        &.text {
+            display: flex;
+            .content {
+                &.redText{
+                    color: #8a0909;
+                    font-family: helvetica;
+                    font-weight: bold;
+                    font-size: 36px;
+                    text-align: right;
+                    width: 30%;
+                }
+                &.whiteText{
+                    color: #9e4523;
+                    font-family: helvetica;
+                    font-weight: bold;
+                    font-size: 36px;
+                    text-align: left;
+                    width: 30%;
+                }
+            }
+        }
+        &.headings {
+            .content {
+                &.headA {
+                    h2{
+                        color: #fff4c1;
+                        font-family: helvetica;
+                        font-weight: bold;
+                        font-size: 86px;
+                        text-align: right;
+                        position: absolute;
+                        bottom: 0;
+                        width: 25%;
+                        line-height: 0.5em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .multiLayerHeading {
     font-family: "OpenSans-Bold";
