@@ -65,8 +65,10 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     createScene() {
-      let options = this.getOptions();
 
+
+/*
+      let options = this.getOptions();
       let $el = ReactDOM.findDOMNode(this.myRef.current);
       let $holders = S($el).queryAll.listGroupItem;
 
@@ -99,7 +101,6 @@ function withSubscription(WrappedComponent, selectData) {
 
       });
 
-      console.log(timeline);
 
 
       timeline.pause();
@@ -107,9 +108,9 @@ function withSubscription(WrappedComponent, selectData) {
       this.scenes.push(new ScrollMagic.Scene({
         triggerHook: 0,
         triggerElement: $el,
-        offset: 80,
+        offset: 0,
       })
-  /*     .setTween(timeline)*/
+  /!*     .setTween(timeline)*!/
         .on("enter", function (event) {
 
          timeline.play();
@@ -122,6 +123,7 @@ function withSubscription(WrappedComponent, selectData) {
         }.bind(this))
         .addTo(this.controller));
 
+*/
 
 
       this.sceneCreated = true;

@@ -28,7 +28,6 @@ class ArticleSideBar extends Component {
   }
 }
 
-
 class Article extends Component {
 
   render() {
