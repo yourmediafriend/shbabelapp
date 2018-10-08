@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {OneColumnCenter} from '../../../Layout';
-import Article from '../../../Article';
-import ArticleHero from '../../../Article/Hero';
 
 import Slider from "react-slick";
 
@@ -18,8 +16,8 @@ class Page extends Component {
     return (
       <MainLayer className={cx(styles.mainLayer)}>
         <ContentLayer className={cx(styles.contentLayer)} >
-          <FeatureList />
-          <Carousel />
+          <OneColumnCenter contentMain={<FeatureList />} />
+          <OneColumnCenter contentMain={<Carousel />} />
         </ContentLayer>
       </MainLayer>
     )

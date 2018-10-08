@@ -4,9 +4,9 @@ import verge from 'verge';
 import ScrollMagic from 'scrollmagic-with-ssr';
 import 'AnimationGsap';
 import 'debug.addIndicators';
-
-import { getOr, assign } from 'lodash/fp';
 import S from "camel-case-selector";
+import { TweenMax, TimelineMax, Linear, } from 'gsap';
+
 
 let globalOptions = {
   offset: 0,
@@ -25,7 +25,6 @@ function withSubscription(WrappedComponent, selectData) {
       this.tweens = [];
       this.controller = null;
       this.recalculateDurations = this.recalculateDurations.bind(this);
-
     }
 
     getOptions() {
@@ -67,34 +66,36 @@ function withSubscription(WrappedComponent, selectData) {
 
     createScene() {
       let options = this.getOptions();
+
       let $el = ReactDOM.findDOMNode(this.myRef.current);
+      let $holders = S($el).queryAll.listGroupItem;
+
       this.controller = new ScrollMagic.Controller({
         container: options.container,
-       // addIndicators: true
+        addIndicators: true
         // loglevel: 2,
       });
 
-      let i;
+      let timeline = new TimelineMax({ });
 
-      for (i = 0; i < 3; i++) {
+      timeline.add(TweenMax.to(S($holders).queryAll.text, 0.25, {opacity: 1, transform: 'translate3d(0, 0, 0)'}));
+      timeline.add(TweenMax.to(S($holders).queryAll.img, 0.25, {opacity: 1 }));
 
-        this.scenes.push(new ScrollMagic.Scene({
-          offset: window.innerHeight * i,
-          duration: window.innerHeight,
-        })
-          .on("enter", function (i, event) {
-            this.setState({activeSceneId:i});
-            console.log('enter - start this now', i);
-          }.bind(this, i))
-          .on("leave", function (i, even) {
-        /*    this.setState({title:'title'});
-            console.log('leave - stop it now', i);*/
-          }.bind(this, i))
-          .addTo(this.controller));
+      this.scenes.push(new ScrollMagic.Scene({
+        triggerHook: 0,
+        triggerElement: $el,
+        offset: 0,
+      })
+        .setTween(timeline)
+        .on("enter", function (event) {
+          //this.myRef.current.toggleStickyPanel();
+        }.bind(this))
+        .on("leave", function (event) {
+          // this.myRef.current.toggleStickyPanel();
+        }.bind(this))
+        .addTo(this.controller));
 
-      }
 
-      console.log('B ',this.props);
 
       this.sceneCreated = true;
 
@@ -113,7 +114,7 @@ function withSubscription(WrappedComponent, selectData) {
       this.destroyScene();
       window.removeEventListener('resize', this.recalculateDurations);
     }
-x
+
     recalculateDurations() {
 
       if(this.sceneCreated && !this.shouldEnable()){
@@ -130,15 +131,6 @@ x
         scene.offset( window.innerHeight * index );
         scene.duration( window.innerHeight );
       });
-
-      // if(firstScene){
-      //   firstScene.duration($firstHolder.clientHeight + options.offset + 'px');
-      //   firstScene.setTween(this.firstSceneExit($firstHolder, options));
-      // }
-      //
-      // otherScenes.forEach((scene, index) => {
-      //   scene.duration($otherHolders[holderIndex].clientHeight + options.offset + 'px');
-      // });
 
     }
 

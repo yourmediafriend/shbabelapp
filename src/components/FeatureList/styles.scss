@@ -1,10 +1,42 @@
 .listGroup {
-     flex-direction: row;
-     flex-wrap: wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 66.6666%;
+    margin: 0 auto;
  }
 .listGroupItem {
     flex-basis: 50%;
+ /*   opacity: 0;*/
+
+
+    img {
+        float: left;
+        width: 50px;
+        height: auto;
+        opacity: 0;
+    }
+    .text {
+        display: block;
+        padding-left: 80px;
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+    }
+
+
     &:nth-child(odd){
         text-align: right;
+        img {
+            float: right;
+            width: 50px;
+            height: auto;
+        }
+        .text {
+            display: block;
+            padding-left: 0;
+            padding-right: 80px;
+
+            transform: translate3d(-100%, 0, 0);
+
+        }
     }
 }
