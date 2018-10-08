@@ -5,7 +5,7 @@ import ScrollMagic from 'scrollmagic-with-ssr';
 import 'AnimationGsap';
 import 'debug.addIndicators';
 import S from "camel-case-selector";
-import { TweenMax, TimelineMax, Linear, } from 'gsap';
+import { TweenMax, TimelineMax, Power1, Power2, Power4, } from 'gsap';
 
 
 let globalOptions = {
@@ -76,22 +76,49 @@ function withSubscription(WrappedComponent, selectData) {
         // loglevel: 2,
       });
 
-      let timeline = new TimelineMax({ });
 
-      timeline.add(TweenMax.to(S($holders).queryAll.text, 0.25, {opacity: 1, transform: 'translate3d(0, 0, 0)'}));
-      timeline.add(TweenMax.to(S($holders).queryAll.img, 0.25, {opacity: 1 }));
+
+      let timeline = new TimelineMax({  });
+      let tweenDuration = 0.25;
+      let tweenDurationDelay = 0;
+      let tweenDurationDelayTxt = 0;
+
+      let delay = 0;
+
+
+      $holders.map((el, index) => {
+
+        delay = el.dataset.delay;
+        //tweenDurationDelay =  (tweenDuration * index) - (delay /100);
+        tweenDurationDelay = delay /50;
+
+        timeline.add(TweenMax.to(el.queryAll.img, tweenDuration, {opacity: 1, transform: 'translate3d(0, 0, 0)', ease: Power1.easeOut}), tweenDurationDelay );
+        timeline.add(TweenMax.to(el.queryAll.text, tweenDuration, {opacity: 1, transform: 'translate3d(0, 0, 0)', ease: Power1.easeOut}), `-=${tweenDuration}`);
+
+        return el;
+
+      });
+
+      console.log(timeline);
+
+
+      timeline.pause();
 
       this.scenes.push(new ScrollMagic.Scene({
         triggerHook: 0,
         triggerElement: $el,
-        offset: 0,
+        offset: 80,
       })
-        .setTween(timeline)
+  /*     .setTween(timeline)*/
         .on("enter", function (event) {
-          //this.myRef.current.toggleStickyPanel();
+
+         timeline.play();
+
         }.bind(this))
         .on("leave", function (event) {
-          // this.myRef.current.toggleStickyPanel();
+          timeline.reverse()
+
+
         }.bind(this))
         .addTo(this.controller));
 

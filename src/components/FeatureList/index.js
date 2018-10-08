@@ -12,7 +12,7 @@ const FeatureListItem = props => {
         <img src="http://www.pixijs.com/wp/wp-content/uploads/feature-multiplatform.png"
              alt="Multi-platform Support graphic"  className={cx(styles.img,'img')} />
         <div className={cx(styles.text,'text')}>
-          <h6 className="bold">{Math.round(props.delay * 100) / 100}Multi-platform Support</h6>
+          <h6 className="bold">Multi-platform Support</h6>
           <p className="big-text">Interactive, visually compelling content on desktop, mobile and beyond, all
             reached with a single codebase to deliver transferable experiences.</p>
         </div>
@@ -25,7 +25,7 @@ const FeatureListItem = props => {
 const FeatureList = props => {
 
   const data = [1,2,3,4,5,6,7,8,9,10,11,12,13];
-  const delay = 0.1;
+  const delay = 1;
 
   return (
     <ListGroup id='FeatureList' className={styles.listGroup}  >
