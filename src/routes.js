@@ -154,7 +154,7 @@ const SwitchRoute = () => (
       return <OneColumnSidebar currentpage='mixedDemo' />
     }} />
 
-    <Route exact path='/layouts/carousel' render={() => {
+    <Route exact path='/carousel' render={() => {
       // do I set the initial App State here
       connect(setUpPage({
         stickyHeader: true,

@@ -1,0 +1,10 @@
+.listGroup {
+     flex-direction: row;
+     flex-wrap: wrap;
+ }
+.listGroupItem {
+    flex-basis: 50%;
+    &:nth-child(odd){
+        text-align: right;
+    }
+}
