@@ -154,6 +154,16 @@ const SwitchRoute = () => (
       return <OneColumnSidebar currentpage='mixedDemo' />
     }} />
 
+    <Route exact path='/layouts/carousel' render={() => {
+      // do I set the initial App State here
+      connect(setUpPage({
+        stickyHeader: true,
+        fixedFooter: true,
+        revealFooter: true,
+      }));
+      return <OneColumnSidebar currentpage='carousel' />
+    }} />
+
     <Route exact path='/drupal-articles' render={() => {
       // do I set the initial App State here
       connect(setUpPage({
