@@ -3,7 +3,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {get} from "lodash/fp";
 
-import AccountForm from '../forms/AccountForm';
+import AccountForm from '../forms/accountForm';
 
 const accountFormView = props => {
   return (<AccountForm onSubmit={''} />)

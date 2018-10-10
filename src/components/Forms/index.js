@@ -9,7 +9,7 @@ import AccountForm from './formContainers/accountContainer';
 import WeatherForm from './formContainers/weatherContainer';
 
 export {
-  ContactForm,
+  ContactForm,git rm
   SearchForm,
   LoginForm,
   SignupForm,

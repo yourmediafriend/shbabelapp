@@ -19,8 +19,6 @@ export const __ENV__ = {
   googleMapsApiKey: 'AIzaSyDUYafiJNoxSEKjf-tiqV3118Kdm2myjnQ',
   openweatherUrl: 'https://api.openweathermap.org/data/2.5',
   openweatherApiKey: 'f20537c0e3f90aab0d59367de85aa6e7',
-
-/*  openweatherApiKey: '98c355d73f22c6eb33c4bc0bd22031fe',*/
 };
 
 
