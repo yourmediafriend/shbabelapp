@@ -7,6 +7,9 @@ import SVGInline from "react-svg-inline"
 import Precipitation from './media/precipitation.svg'
 import Wind from './media/wind.svg'
 
+import { WeatherForm } from '../Forms'
+
+
 class WeatherPanel extends Component {
 
   temperatureConversion = (tempInKelvins) => {
@@ -27,8 +30,12 @@ class WeatherPanel extends Component {
       return (
         <div className={cx(styles.weatherPanel)}>
           <div className={cx(styles.inner)}>
-
             <div className={cx(styles.header)}>
+
+
+              <WeatherForm />
+
+
               <div className={cx(styles.date)}>
                 Today
               </div>
@@ -38,7 +45,7 @@ class WeatherPanel extends Component {
             </div>
             <div className={cx(styles.summary)}>
               <div className={cx(styles.weatherIcon)}>
-             {/*   {this.props.weatherData.weather[0].icon}*/}
+            {/*  {this.props.weatherData.weather[0].icon}*/}
                 <WeatherIcon iconId={this.props.weatherData.weather[0].icon} iconStyle={'full'}/>
               </div>
               <div className={cx(styles.temperature)}>

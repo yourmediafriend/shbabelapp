@@ -410,10 +410,15 @@ const mapStateToProps = (state) => {
     weatherData: get('retrieveOpenWeather.data', state),
     hasErrored: get('retrieveOpenWeather.hasErrored', state),
     isLoading: get('retrieveOpenWeather.isLoading', state),
+
+
+
     upDateCords: {
       latitude: get('googleMapsModule.lat', state),
       longitude: get('googleMapsModule.lng', state)
     }
+
+
   };
 };
 

@@ -1,6 +1,7 @@
 const ATTEMPT_TO_FETCH_DATA = "fetchOpenWeatherData/ATTEMPT_TO_FETCH_DATA";
 const FAILURE_TO_FETCH_DATA = "fetchOpenWeatherData/FAILURE_TO_FETCH_DATA";
 const SUCCESS_TO_FETCH_DATA = "fetchOpenWeatherData/SUCCESS_TO_FETCH_DATA";
+const UPDATE_DATA = "fetchOpenWeatherData/UPDATE_DATA";
 
 const initialState = {
   isLoading: false,
@@ -31,12 +32,28 @@ export default function reducer(state = initialState, action = {}) {
         isLoading: false,
         data: action.data,
       };
-
+    case UPDATE_DATA:
+      return {
+        ...state,
+        isLoading: false,
+        data: action.data,
+      };
     default: return state;
   }
 }
 
 // actions
+
+export function updateOpenWeather(lat, lng) {
+  return {
+    type: UPDATE_DATA,
+    payload: {
+      lat,
+      lng
+    }
+  };
+}
+
 export function attemptToRetrieveOpenWeather(lat, lng) {
   return {
     type: ATTEMPT_TO_FETCH_DATA,

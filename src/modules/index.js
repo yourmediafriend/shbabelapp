@@ -14,7 +14,7 @@ import offCanvasMenu from './OffCanvasMenu';
 import postContactForm from './Forms/ContactForm';
 import loginFormModule from './Forms/Login';
 import signUpFormModule from './Forms/SignUp';
-
+import weatherFormModule from './Forms/Weather';
 
 import appModule from "./App";
 import footerModule from './Footer';
@@ -27,6 +27,7 @@ export default combineReducers({
   router: routerReducer,
   form: formReducer,
   postContactForm,
+  weatherFormModule,
   loginFormModule,
   signUpFormModule,
   offCanvasMenu,
