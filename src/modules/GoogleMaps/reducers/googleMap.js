@@ -3,8 +3,13 @@ const ATTEMPT_TO_FETCH_DATA = "googlemap/ATTEMPT_TO_FETCH_DATA";
 const FAILURE_TO_FETCH_DATA = "googlemap/FAILURE_TO_FETCH_DATA";
 const SUCCESS_TO_FETCH_DATA = "googlemap/SUCCESS_TO_FETCH_DATA";
 
-
-export const initialState = { };
+export const initialState = {
+  data:[],
+  x:0,
+  y:0,
+  lng:0,
+  lat:0,
+};
 
 // Reducer
 export default function reducer(state=initialState, action = {}) {
@@ -36,6 +41,8 @@ export default function reducer(state=initialState, action = {}) {
         ...state,
         isLoading: false,
         data: action.data,
+        lng: action.data.results[0].geometry.location.lng,
+        lat: action.data.results[0].geometry.location.lat,
       };
 
     default: return state;

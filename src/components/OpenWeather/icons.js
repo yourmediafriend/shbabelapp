@@ -117,7 +117,7 @@ export default {
   '50d': {
 
   },
-  '50n': {
+  '50n': { // Mist Night
 
   }
 }

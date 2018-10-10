@@ -9,10 +9,17 @@ import {
   failureToRetrieveData,
   successToRetrieveData
 } from '../';
+import {__ENV__} from "../../../utils/constants";
+
+import { attemptToRetrieveOpenWeather } from '../../OpenWeather'
+
+let apiKey = __ENV__.googleMapsApiKey;
 
 
-export const constructUrl = ({ lat, lng }) => {
-  return 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=true';
+export const constructUrl = ({ address, lat, lng }) => {
+  let baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json?key=' + apiKey + '&';
+  return address ? baseUrl + 'address=' + address : baseUrl + 'latlng='+lat+','+lng+'&sensor=true' ;
+
 }
 
 export default function * ( { payload }) {
@@ -26,10 +33,12 @@ export default function * ( { payload }) {
       url
     );
 
-    const data = yield call(() => response.json());
+    const  data = yield call(() => response.json());
 
     return yield [
-      put(successToRetrieveData(data))
+      put(successToRetrieveData(data)),
+      put(attemptToRetrieveOpenWeather(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng))
+
     ];
 
   } catch (e) {

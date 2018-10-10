@@ -32,6 +32,7 @@ import TwoColumnLeftDemo from '../Pages/DemoPages/TwoColumnLeft';
 import ThreeColumnDemo from '../Pages/DemoPages/ThreeColumn';
 import MixedDemo from '../Pages/DemoPages/Mixed';
 import DrupalArticles from '../Pages/DemoPages/DrupalArticles';
+import CarouselDemo from '../Pages/DemoPages/Carousel';
 
 import StickyElements from '../Pages/DemoPages/StickyElements';
 
@@ -94,6 +95,12 @@ const Content = ({currentpage, pageRef, match }) => {
       return <MixedDemo />;
     case 'drupalArticles':
       return <DrupalArticles />;
+    case 'carousel':
+      return <CarouselDemo />;
+
+
+
+
     default:
       return null;
   }

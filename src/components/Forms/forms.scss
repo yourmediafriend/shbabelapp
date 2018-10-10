@@ -95,6 +95,44 @@ $scoreGreen: #1c8621;
     }
 }
 
+.weatherForm {
+    label {
+        font-size: $h5-font-size;
+    }
+    input {
+        flex: 1;
+        border-right: 0;
+        border-radius: $input-border-radius 0 0 $input-border-radius ;
+        &::placeholder{
+            font-size: 0.9em;
+        }
+    }
+    button {
+        border-radius: 0 $input-border-radius $input-border-radius 0;
+        padding: 0 0.75rem;
+        .icon {
+            width: 24px;
+            display: inline-block;
+            svg {
+                fill: #ffffff;
+            }
+        }
+
+    }
+
+    @include media-breakpoint-down(md) {
+        .formRow{
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        label {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+
+
 .userForm{
     :global(label){
         display: block;
