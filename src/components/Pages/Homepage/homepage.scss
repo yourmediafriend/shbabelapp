@@ -1,3 +1,6 @@
+.mainLayer {
+    background: black;
+}
 .contentLayer {
     position: relative;
     z-index: 1;
@@ -6,13 +9,17 @@
     background: transparent;
 }
 .fixedBackgroundLayer{
-    position: fixed;
     z-index: 0;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: red;
+    position: fixed;
+    display: block;
+    &.hide {
+        display: none;
+    }
+
 }
 .content {
     pointer-events: none;

@@ -20,7 +20,9 @@ function withSubscription(WrappedComponent, selectData) {
     constructor() {
       super(...arguments);
       this.myRef = React.createRef();
-      this.state = {activeSceneId:0};
+      this.state = {
+        activeSceneId:0,
+        heroActive:false};
       this.scenes = [];
       this.tweens = [];
       this.controller = null;
@@ -70,14 +72,30 @@ function withSubscription(WrappedComponent, selectData) {
       let $el = ReactDOM.findDOMNode(this.myRef.current);
       this.controller = new ScrollMagic.Controller({
         container: options.container,
-       // addIndicators: true
+        addIndicators: true,
         // loglevel: 2,
       });
 
-      let i;
+      this.addSectionScene();
 
-      for (i = 0; i < 3; i++) {
+      this.sceneCreated = true;
 
+    }
+
+    componentDidUpdate() {
+      let $hero = document.getElementById("home-hero");
+      console.log($hero.getBoundingClientRect().height);
+    }
+
+    addSectionScene() {
+
+      let $hero = document.getElementById("home-hero");
+      let sectionCnt = $hero.querySelectorAll('.section').length;
+
+      //console.log('section', $hero.querySelectorAll('.section'));
+
+      // add Sections
+      for (let i = 0; i < (sectionCnt-1); i++) {
         this.scenes.push(new ScrollMagic.Scene({
           offset: window.innerHeight * i,
           duration: window.innerHeight,
@@ -87,18 +105,34 @@ function withSubscription(WrappedComponent, selectData) {
             console.log('enter - start this now', i);
           }.bind(this, i))
           .on("leave", function (i, even) {
-        /*    this.setState({title:'title'});
-            console.log('leave - stop it now', i);*/
+            /*    this.setState({title:'title'});
+                console.log('leave - stop it now', i);*/
           }.bind(this, i))
           .addTo(this.controller));
-
       }
 
-      console.log('B ',this.props);
+      console.log($hero.getBoundingClientRect().height);
 
-      this.sceneCreated = true;
+      this.scenes.push(new ScrollMagic.Scene({
+        triggerHook: 0,
+        trigger: 0,
+    /*    triggerElement: $hero,*/
+        offset: 0,
+        duration: 2392 +  window.innerHeight  // $hero.getBoundingClientRect().height // get height of main page  $parent.offsetHeight
+      })
+        .on("enter", function (event) {
+          console.log('enter');
+          this.setState({heroActive:true});
+        }.bind(this))
+        .on("leave", function (event) {
+          console.log('leave');
+          this.setState({heroActive:false});
+        }.bind(this))
+        .addTo(this.controller));
 
     }
+
+
 
 
     destroyScene() {
@@ -146,6 +180,7 @@ x
       const { extraProp } = this.props;
       return <WrappedComponent
         ref={this.myRef}
+        heroActive={this.state.heroActive}
         activeSceneId={this.state.activeSceneId}
       />;
     }

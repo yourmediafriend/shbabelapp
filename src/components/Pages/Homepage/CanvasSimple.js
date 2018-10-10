@@ -29,7 +29,6 @@ let textBanner = ['Power','Exploitation','Corruption','Despair', 'Fake News','Ex
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
 
-
 class HomeCanvas extends Component {
 
   constructor() {
@@ -261,24 +260,38 @@ class HomeCanvas extends Component {
       y: this.app.screen.height/2
     };
 
-    let distCenter = this.getDistanceFromAB(mouseposition, stageCenter);
-    let distMax = this.getDistanceFromAB({x:0,y:0} , stageCenter);
+    // Circular
+    // let distCenter = this.getDistanceFromAB(mouseposition, stageCenter);
+    // let distMax = this.getDistanceFromAB({x:0,y:0} , stageCenter);
+    // let distPerc = distCenter / distMax;
+
+    //  Horizontal
+    let distCenter=  Math.abs(stageCenter.x - mouseposition.x);
+    let distMax = stageCenter.x;
     let distPerc = distCenter / distMax;
 
-/*
-    let distCorner = this.getDistanceFromAB({x:0,y:0} , {x:200,y:200});
-    let cornerPerc = distCorner / distMax;
-    let borderPercX = 200/this.app.screen.width/2;
-    let borderPercY = 200/this.app.screen.height/2;
-*/
+  /*
+    console.log('stageCenter', stageCenter.x);
+    console.log('mouseposition',mouseposition.x);
+    console.log('Center distance',  Math.abs(stageCenter.x - mouseposition.x)   );*/
+ /*
+        let distCorner = this.getDistanceFromAB({x:0,y:0} , {x:200,y:200});
+        let cornerPerc = distCorner / distMax;
+        let borderPercX = 200/this.app.screen.width/2;
+        let borderPercY = 200/this.app.screen.height/2;
+    */
 
     let x = 0.1 * distPerc;
 
     this.bg_A.scale.set(1-x);
     this.bg_B.scale.set(1+x);
 
-
   }
+
+  getDistanceFromCenterX(pointA, pointB) {
+    return Math.sqrt(Math.pow(pointA.x - pointB.x,2) + Math.pow(pointA.y - pointB.y,2));
+  }
+
 
   getDistanceFromAB(pointA, pointB) {
     return Math.sqrt(Math.pow(pointA.x - pointB.x,2) + Math.pow(pointA.y - pointB.y,2));
