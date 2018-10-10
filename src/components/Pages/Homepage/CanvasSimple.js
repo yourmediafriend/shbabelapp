@@ -269,11 +269,6 @@ class HomeCanvas extends Component {
     let distCenter=  Math.abs(stageCenter.x - mouseposition.x);
     let distMax = stageCenter.x;
     let distPerc = distCenter / distMax;
-
-  /*
-    console.log('stageCenter', stageCenter.x);
-    console.log('mouseposition',mouseposition.x);
-    console.log('Center distance',  Math.abs(stageCenter.x - mouseposition.x)   );*/
  /*
         let distCorner = this.getDistanceFromAB({x:0,y:0} , {x:200,y:200});
         let cornerPerc = distCorner / distMax;

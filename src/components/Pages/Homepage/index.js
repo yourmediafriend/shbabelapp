@@ -12,16 +12,11 @@ import CanvasEnhanced from './CanvasSimple';
 import FeatureList from '../../FeatureList';
 
 
-const UpdateTileCount = (count) => {
-  console.log(count);
-}
-
-
-const HomeHero = (props) => {
+let HomeHero = (props) => {
   return (
 
     <div id={'home-hero'} className={cx(styles.content)}>
-      <section  className={cx(styles.section, styles.hero, 'section')}>
+      <section  className={cx(styles.section, 'section')}>
         <div className={cx(styles.mainText)}>
           <div className={cx(styles.inner)}>
             Section 1
@@ -53,6 +48,9 @@ const HomeHero = (props) => {
   );
 }
 
+HomeHero = ScrollMagicEnhanced(HomeHero);
+
+
 
 let FixedBackground = (props) => {
   return (
@@ -69,7 +67,7 @@ class Page extends Component {
   render() {
     return (
       <MainLayer className={cx(styles.mainLayer)}>
-        <FixedBackground activeSceneId={this.props.activeSceneId}  heroActive={this.props.heroActive}  />
+ {/*       <FixedBackground activeSceneId={this.props.activeSceneId}  heroActive={this.props.heroActive}  />*/}
         <ContentLayer className={cx(styles.contentLayer)} >
           <HomeHero title={this.props.title}/>
           <OneColumnCenter contentMain={<FeatureList />} />
@@ -80,4 +78,6 @@ class Page extends Component {
   }
 }
 
-export default ScrollMagicEnhanced(Page);
+
+export default (Page);
+//export default ScrollMagicEnhanced(Page);
