@@ -14,7 +14,6 @@ import FeatureList from '../../FeatureList';
 
 let HomeHero = (props) => {
   return (
-
     <div id={'home-hero'} className={cx(styles.content)}>
       <section  className={cx(styles.section, 'section')}>
         <div className={cx(styles.mainText)}>
@@ -50,8 +49,6 @@ let HomeHero = (props) => {
 
 HomeHero = ScrollMagicEnhanced(HomeHero);
 
-
-
 let FixedBackground = (props) => {
   return (
     <div className={cx(styles.fixedBackgroundLayer, props.heroActive ? '' : styles.hide)} >
@@ -64,12 +61,33 @@ let FixedBackground = (props) => {
 };
 
 class Page extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeSceneId: 0,
+      setHeroActive: true,
+    };
+  }
+
+  setActiveSceneId(activeSceneId) {
+    this.setState({
+      activeSceneId: activeSceneId
+    })
+  }
+
+  setHeroActive(setHeroActive) {
+    this.setState({
+      setHeroActive: setHeroActive
+    })
+  }
+
   render() {
     return (
       <MainLayer className={cx(styles.mainLayer)}>
- {/*       <FixedBackground activeSceneId={this.props.activeSceneId}  heroActive={this.props.heroActive}  />*/}
+        <FixedBackground activeSceneId={this.state.activeSceneId}  heroActive={this.state.setHeroActive}  />
         <ContentLayer className={cx(styles.contentLayer)} >
-          <HomeHero title={this.props.title}/>
+          <HomeHero setActiveSceneId={this.setActiveSceneId.bind(this)} setHeroActive={this.setHeroActive.bind(this)} title={this.props.title}/>
           <OneColumnCenter contentMain={<FeatureList />} />
           <OneColumnCenter contentMain={<Dummytext />} />
         </ContentLayer>
@@ -77,7 +95,6 @@ class Page extends Component {
     )
   }
 }
-
 
 export default (Page);
 //export default ScrollMagicEnhanced(Page);

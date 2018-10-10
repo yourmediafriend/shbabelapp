@@ -65,10 +65,10 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     componentDidUpdate() {
-      console.log('componentDidUpdate');
+/*      console.log('componentDidUpdate');
       if (this.shouldEnable()) {
         this.createScene();
-      }
+      }*/
     }
       
     createScene() {
@@ -82,7 +82,7 @@ function withSubscription(WrappedComponent, selectData) {
       if ($holders) {
         this.controller = new ScrollMagic.Controller({
           container: options.container,
-          // addIndicators: true,
+           addIndicators: true,
           // loglevel: 2,
         });
 
@@ -107,7 +107,7 @@ function withSubscription(WrappedComponent, selectData) {
         timeline.pause();
 
         this.scenes.push(new ScrollMagic.Scene({
-          triggerHook: 0,
+          triggerHook: 0.5,
           triggerElement: $el,
           offset: 0,
         })
