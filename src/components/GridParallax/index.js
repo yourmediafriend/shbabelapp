@@ -46,15 +46,25 @@ class GridViewItem extends Component {
               <div className={cx('parallax-image')} style={this.backgroundImageStyle()} />
               <div className={cx(styles.imageOverlay, 'parallax-overlay')}>
                 <div className={cx(styles.titleWrapper)}>
-                  <h4 className={cx(styles.title, styles.subTitle )}>
-                    <span className={cx(styles.span)}>SubTitle</span>
+                  <h4 className={cx(styles.title, styles.mainTitle )}>
+                    <span className={cx(styles.span)}>{this.props.title}</span>
                   </h4>
-                  <h4 className={cx(styles.title)}>
-                    <span className={cx(styles.span)}>This is the main Title</span>
+                  <h4 className={cx(styles.title, styles.subTitle)}>
+                    <span className={cx(styles.span)}>{this.props.fieldSubTitle}</span>
                   </h4>
                 </div>
               </div>
             </div>
+
+            <div className={cx(styles.body)}>
+              {this.props.body.summary}
+            </div>
+
+
+
+
+
+
           </div>
         </ListGroupItem>
     )

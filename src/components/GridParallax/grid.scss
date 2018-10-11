@@ -1,18 +1,31 @@
+
+.grid {
+    :global(.list-group-item) {
+        border: 0;
+        margin-bottom: 0;
+        background: transparent;
+    }
+}
+
+
+
 .grid {
     display: flex;
-    flex-wrap :wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin: -12px -12px 30px;
 }
 .item {
     width: 100%;
-    padding: 12px;
+    padding: 30px;
     @include media-breakpoint-up(sm) {
         width: 50%;
     }
     @include media-breakpoint-up(md) {
-        width: 33.3333%;
+        flex-basis: 33.3333333%;
     }
 }
+
 .inner {
     background: #fff;
     height: 300px;
@@ -61,4 +74,11 @@
 .subTitle {
     color: #ccc;
     text-transform: none;
+}
+
+.body {
+    padding: 10px;
+    height: 135px;
+    overflow: hidden;
+    font-size: 0.9em;
 }
