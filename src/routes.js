@@ -15,6 +15,12 @@ import Recompose from './pages/RecomposeTest'
 import Strap from './pages/ReactStrapTest'
 import RefTest from './components/RefTest'
 
+import EmptyPage from './components/empty'
+
+
+
+
+
 // this works but disrupts certain Componenets (Music player and Sidemenu) with a page refresh
 const userIsAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',
@@ -341,7 +347,13 @@ const SwitchRoute = () => (
     {/*/Test Pages/*/}
     <Route exact path='/sticky-header' render={() => <OneColumnSidebar currentpage='stickyHeader' />} />
     <Route exact path='/grid-fixed' render={() => <OneColumnSidebar currentpage='grid-fixed' />} />
-    <Route exact path='/test' render={() => <OneColumnSidebar currentpage='test' />} />
+
+
+
+    <Route exact path='/test' render={() => <EmptyPage />} />
+
+
+
     <Route exact path='/rec' component={Recompose}/>
     <Route exact path='/strap' component={Strap}/>
     <Route exact path='/reftest' component={RefTest}/>

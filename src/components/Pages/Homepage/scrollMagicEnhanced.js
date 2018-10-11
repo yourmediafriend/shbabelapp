@@ -61,11 +61,31 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     componentDidMount() {
+
+      let $hero = document.getElementById("home-hero");
+      console.log('Home-hero height',$hero.getBoundingClientRect().height);
+
       if (this.shouldEnable()) {
         this.createScene();
       }
       window.addEventListener('resize', this.recalculateDurations);
     }
+
+
+    componentDidUpdate() {
+      let $hero = document.getElementById("home-hero");
+      console.log('componentDidUpdate Home-hero height',$hero.getBoundingClientRect().height);
+    }
+
+
+/*
+    componentDidUpdate() {
+      console.log('componentDidUpdate');
+      if (this.shouldEnable()) {
+        this.updateScene();
+      }
+    }
+*/
 
     createScene() {
       let options = this.getOptions();
@@ -82,11 +102,6 @@ function withSubscription(WrappedComponent, selectData) {
 
     }
 
-    componentDidUpdate() {
-      let $hero = document.getElementById("home-hero");
-      console.log($hero.getBoundingClientRect().height);
-    }
-
     addSectionScene() {
 
       let $hero = document.getElementById("home-hero");
@@ -101,9 +116,8 @@ function withSubscription(WrappedComponent, selectData) {
           duration: window.innerHeight,
         })
           .on("enter", function (i, event) {
-          //  this.setState({activeSceneId:i});
-            this.props.setActiveSceneId(i)
-          /*  console.log('enter - start this now', i);*/
+            this.setState({activeSceneId:i});
+            console.log('enter - start this now', i);
           }.bind(this, i))
           .on("leave", function (i, even) {
             /*    this.setState({title:'title'});
@@ -112,7 +126,7 @@ function withSubscription(WrappedComponent, selectData) {
           .addTo(this.controller));
       }
 
-      //console.log($hero.getBoundingClientRect().height);
+      console.log($hero.getBoundingClientRect().height);
 
       this.scenes.push(new ScrollMagic.Scene({
         triggerHook: 0,
@@ -123,17 +137,22 @@ function withSubscription(WrappedComponent, selectData) {
       })
         .on("enter", function (event) {
           console.log('enter');
-          this.props.setHeroActive(true)
+          this.setState({heroActive:true});
         }.bind(this))
         .on("leave", function (event) {
           console.log('leave');
-          this.props.setHeroActive(false)
+          this.setState({heroActive:false});
         }.bind(this))
         .addTo(this.controller));
 
     }
 
+    updateScene() {
 
+
+debugger;
+
+    }
 
 
     destroyScene() {
