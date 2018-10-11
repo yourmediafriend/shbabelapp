@@ -19,7 +19,6 @@
     &.hide {
        // display: none;
     }
-
 }
 .content {
     pointer-events: none;
@@ -37,9 +36,6 @@
         display: block;
         height: 6000px;
     }
-
-
-
 }
 .mainText {
     display: table;
@@ -60,3 +56,10 @@
         vertical-align: middle;
     }
 }
+
+.carouselContainer {
+    background: #ffffff;
+    padding: 30px;
+}
+
+

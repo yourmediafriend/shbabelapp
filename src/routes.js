@@ -305,7 +305,9 @@ const SwitchRoute = () => (
                                pageRef={'wobble'} />
     }} />
 
-    <Route exact path='/grid-parallax' render={(routeProps) => {
+    {/*/Grids/*/}
+
+    <Route exact path='/grids/parallax' render={(routeProps) => {
       // do I set the initial App State here
       connect(setUpPage({
         stickyHeader: true,
@@ -314,6 +316,17 @@ const SwitchRoute = () => (
       }));
       return <OneColumnSidebar {...routeProps}
                                currentpage='grid-parallax'/>
+    }} />
+
+    <Route exact path='/grids/fullpage' render={(routeProps) => {
+      // do I set the initial App State here
+      connect(setUpPage({
+        stickyHeader: true,
+        fixedFooter: true,
+        revealFooter: true,
+      }));
+      return <OneColumnSidebar {...routeProps}
+                               currentpage='grid-fullpage'/>
     }} />
 
     {/*/Site Pages/*/}

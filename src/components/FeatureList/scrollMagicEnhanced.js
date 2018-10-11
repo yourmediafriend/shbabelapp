@@ -91,7 +91,7 @@ function withSubscription(WrappedComponent, selectData) {
       if ($holders) {
         this.controller = new ScrollMagic.Controller({
           container: options.container,
-          addIndicators: true,
+          // addIndicators: true,
           // loglevel: 2,
         });
 

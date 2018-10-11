@@ -10,7 +10,7 @@ import { OneColumnCenter }  from '../../Layout';
 import Dummytext from '../../DummyText/DummyTextLong';
 import CanvasEnhanced from './CanvasSimple';
 import FeatureList from '../../FeatureList';
-
+import Carousel from '../../Carousel';
 
 let HomeHero = (props) => {
   return (
@@ -70,6 +70,10 @@ class Page extends Component {
         <FixedBackground activeSceneId={this.props.activeSceneId}  heroActive={this.props.heroActive}  />
         <ContentLayer className={cx(styles.contentLayer)} >
           <HomeHero title={this.props.title}/>
+
+          <div className={cx(styles.carouselContainer)}>
+            <OneColumnCenter contentMain={<Carousel />}/>
+          </div>
 
           <div style={{background:'#fff', color:'#000'}} >
             <OneColumnCenter contentMain={<FeatureList />}/>
