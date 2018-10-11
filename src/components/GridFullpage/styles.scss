@@ -12,6 +12,7 @@
         position: relative;
         overflow: hidden;
         display: block;
+        margin-bottom: 0;
 
         .imageOverlay {
             position: absolute;
@@ -23,10 +24,6 @@
             opacity: 0;
             background-color: rgba(0, 0, 0, 0);
             transition:background 0.5s 0.5s, opacity 0.5s 0.5s
-            //background-color: rgba(0, 0, 0, 0.5);
-            //opacity: 1;
-
-
         }
 
         .content {

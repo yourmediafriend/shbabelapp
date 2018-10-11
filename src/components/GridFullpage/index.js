@@ -18,7 +18,7 @@ class GridViewItem extends Component {
 
   backgroundImageStyle = props => {
     return {
-      height: '400px',
+      height: '350px',
       width:'100%',
       position:'relative',
       backgroundImage: `url(${props.image})`,
