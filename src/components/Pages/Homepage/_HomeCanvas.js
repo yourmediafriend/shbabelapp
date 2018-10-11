@@ -113,7 +113,6 @@ class Wallpaper extends Component {
 
   render() {
     return (
-
       <TilingSprite
         ref={this.myRef}
         texture={PIXI.Texture.fromImage(bgImagesWallpaper[this.props.activeSceneId])}
@@ -121,7 +120,7 @@ class Wallpaper extends Component {
         height={window.innerHeight}
         tilePosition={{ x: 10, y: 10 }}
         tileScale={{ x: 0.2, y: 0.2 }}
-       blendMode={PIXI.BLEND_MODES.HARD_LIGHT}
+        blendMode={PIXI.BLEND_MODES.HARD_LIGHT}
         alpha={0.7}
       />
 
@@ -390,7 +389,7 @@ class CanvasTest extends Component {
   }
 }
 
-class HomeCanvas extends Component {
+class _HomeCanvas extends Component {
   render() {
     return (
       <div>
@@ -400,4 +399,4 @@ class HomeCanvas extends Component {
   }
 }
 
-export default HomeCanvas;
+export default _HomeCanvas;

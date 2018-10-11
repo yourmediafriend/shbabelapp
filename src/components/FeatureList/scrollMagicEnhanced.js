@@ -57,7 +57,14 @@ function withSubscription(WrappedComponent, selectData) {
       return true;
     }
 
-    componentDidMount() {
+      componentDidMount() {
+
+      // get the height of List
+        let $el = document.getElementById("FeatureList");
+        console.log('componentDidMount', $el.getBoundingClientRect() );
+
+        //let sectionCnt = $hero.querySelectorAll('.section').length;
+
       if (this.shouldEnable()) {
         this.createScene();
       }
@@ -65,24 +72,26 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     componentDidUpdate() {
-      console.log('componentDidUpdate');
+/*      console.log('componentDidUpdate');
       if (this.shouldEnable()) {
         this.createScene();
-      }
+      }*/
     }
       
     createScene() {
 
       let options = this.getOptions();
 
-      console.log(this.myRef.current);
+     // console.log(this.myRef.current);
             
       let $el = ReactDOM.findDOMNode(this.myRef.current);
       let $holders = S($el).queryAll.listGroupItem;
+
+
       if ($holders) {
         this.controller = new ScrollMagic.Controller({
           container: options.container,
-          addIndicators: true
+          // addIndicators: true,
           // loglevel: 2,
         });
 
@@ -94,7 +103,6 @@ function withSubscription(WrappedComponent, selectData) {
         let delay = 0;
 
         $holders.map((el, index) => {
-
           delay = el.dataset.delay;
           //tweenDurationDelay =  (tweenDuration * index) - (delay /100);
           tweenDurationDelay = delay /50;
@@ -107,19 +115,15 @@ function withSubscription(WrappedComponent, selectData) {
         timeline.pause();
 
         this.scenes.push(new ScrollMagic.Scene({
-          triggerHook: 0,
+          triggerHook: 0.5,
           triggerElement: $el,
-          offset: 0,
+          offset: -250,
         })
           .on("enter", function (event) {
-
            timeline.play();
-
           }.bind(this))
           .on("leave", function (event) {
             timeline.reverse()
-
-
           }.bind(this))
           .addTo(this.controller));
 

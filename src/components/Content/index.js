@@ -19,11 +19,18 @@ import { LoginPage, SignUpPage, AccountPage, PasswordPage } from '../Pages/Accou
 
 import ContactPage from '../Pages/ContactPage';
 import WeatherPage from '../Pages/WeatherPage';
-import GridPage from '../Pages/GridPage';
+
 import News from '../News';
 import NewsArticle from '../News/Article';
 
 import TestPage from '../Pages/TestPage';
+
+
+// Grid Pages
+import GridParallax from '../Pages/Grids/GridParallax';
+import GridFullpage from '../Pages/Grids/GridFullpage';
+
+
 
 // Demo Pages
 import OneColumnCenterDemo from '../Pages/DemoPages/OneColumnCenter';
@@ -72,7 +79,9 @@ const Content = ({currentpage, pageRef, match }) => {
     case 'fullpage':
       return <Fullpage pageRef={pageRef}/>;
     case 'grid-parallax':
-      return <GridPage />;
+      return <GridParallax />;
+    case 'grid-fullpage':
+      return <GridFullpage />;
     case 'news':
       return <News />;
     case 'news/article':

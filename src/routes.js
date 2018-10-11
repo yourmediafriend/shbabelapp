@@ -15,6 +15,12 @@ import Recompose from './pages/RecomposeTest'
 import Strap from './pages/ReactStrapTest'
 import RefTest from './components/RefTest'
 
+import EmptyPage from './components/empty'
+
+
+
+
+
 // this works but disrupts certain Componenets (Music player and Sidemenu) with a page refresh
 const userIsAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',
@@ -299,7 +305,9 @@ const SwitchRoute = () => (
                                pageRef={'wobble'} />
     }} />
 
-    <Route exact path='/grid-parallax' render={(routeProps) => {
+    {/*/Grids/*/}
+
+    <Route exact path='/grids/parallax' render={(routeProps) => {
       // do I set the initial App State here
       connect(setUpPage({
         stickyHeader: true,
@@ -308,6 +316,17 @@ const SwitchRoute = () => (
       }));
       return <OneColumnSidebar {...routeProps}
                                currentpage='grid-parallax'/>
+    }} />
+
+    <Route exact path='/grids/fullpage' render={(routeProps) => {
+      // do I set the initial App State here
+      connect(setUpPage({
+        stickyHeader: true,
+        fixedFooter: true,
+        revealFooter: true,
+      }));
+      return <OneColumnSidebar {...routeProps}
+                               currentpage='grid-fullpage'/>
     }} />
 
     {/*/Site Pages/*/}
@@ -341,7 +360,13 @@ const SwitchRoute = () => (
     {/*/Test Pages/*/}
     <Route exact path='/sticky-header' render={() => <OneColumnSidebar currentpage='stickyHeader' />} />
     <Route exact path='/grid-fixed' render={() => <OneColumnSidebar currentpage='grid-fixed' />} />
-    <Route exact path='/test' render={() => <OneColumnSidebar currentpage='test' />} />
+
+
+
+    <Route exact path='/test' render={() => <EmptyPage />} />
+
+
+
     <Route exact path='/rec' component={Recompose}/>
     <Route exact path='/strap' component={Strap}/>
     <Route exact path='/reftest' component={RefTest}/>

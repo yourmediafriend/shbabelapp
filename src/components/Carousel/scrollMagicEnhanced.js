@@ -62,8 +62,8 @@ function withSubscription(WrappedComponent, selectData) {
 
     componentDidMount() {
 
-      let $hero = document.getElementById("home-hero");
-      console.log('Home-hero height',$hero.getBoundingClientRect().height);
+      // let $hero = document.getElementById("home-hero");
+      // console.log('Home-hero height',$hero.getBoundingClientRect().height);
 
       if (this.shouldEnable()) {
         this.createScene();
@@ -71,89 +71,50 @@ function withSubscription(WrappedComponent, selectData) {
       window.addEventListener('resize', this.recalculateDurations);
     }
 
-
     componentDidUpdate() {
-      let $hero = document.getElementById("home-hero");
-      console.log('componentDidUpdate Home-hero height',$hero.getBoundingClientRect().height);
+      // let $hero = document.getElementById("home-hero");
+      // console.log('componentDidUpdate Home-hero height',$hero.getBoundingClientRect().height);
     }
 
-
-/*
-    componentDidUpdate() {
-      console.log('componentDidUpdate');
-      if (this.shouldEnable()) {
-        this.updateScene();
-      }
-    }
-*/
 
     createScene() {
       let options = this.getOptions();
-      let $el = ReactDOM.findDOMNode(this.myRef.current);
       this.controller = new ScrollMagic.Controller({
         container: options.container,
         // addIndicators: true,
         // loglevel: 2,
       });
 
-      this.addSectionScene();
-
+      this.addSectionScene()
       this.sceneCreated = true;
 
     }
 
     addSectionScene() {
-
-      let $hero = document.getElementById("home-hero");
-      let sectionCnt = $hero.querySelectorAll('.section').length;
-
-      //console.log('section', $hero.querySelectorAll('.section'));
-
-      // add Sections
-      for (let i = 0; i < (sectionCnt-1); i++) {
-        this.scenes.push(new ScrollMagic.Scene({
-          offset: window.innerHeight * i,
-          duration: window.innerHeight,
-        })
-          .on("enter", function (i, event) {
-            this.setState({activeSceneId:i});
-            console.log('enter - start this now', i);
-          }.bind(this, i))
-          .on("leave", function (i, even) {
-            /*    this.setState({title:'title'});
-                console.log('leave - stop it now', i);*/
-          }.bind(this, i))
-          .addTo(this.controller));
-      }
-
-      console.log($hero.getBoundingClientRect().height);
+      let $el = ReactDOM.findDOMNode(this.myRef.current);
 
       this.scenes.push(new ScrollMagic.Scene({
-        triggerHook: 0,
-        trigger: 0,
-    /*    triggerElement: $hero,*/
-        offset: 0,
-        duration: 2392 +  window.innerHeight  // $hero.getBoundingClientRect().height // get height of main page  $parent.offsetHeight
+        triggerHook: 1,
+        triggerElement: $el,
+        offset: 0
       })
         .on("enter", function (event) {
-          console.log('enter');
-          this.setState({heroActive:true});
+          console.log('enter showCarousel');
+          this.setState({showCarousel:true});
         }.bind(this))
         .on("leave", function (event) {
-          console.log('leave');
-          this.setState({heroActive:false});
+          this.setState({showCarousel:false});
         }.bind(this))
         .addTo(this.controller));
+
+
+
 
     }
 
     updateScene() {
 
-
-debugger;
-
     }
-
 
     destroyScene() {
       if(this.controller) this.controller.destroy(true);
@@ -167,7 +128,7 @@ debugger;
       this.destroyScene();
       window.removeEventListener('resize', this.recalculateDurations);
     }
-x
+
     recalculateDurations() {
 
       if(this.sceneCreated && !this.shouldEnable()){
@@ -200,8 +161,7 @@ x
       const { extraProp } = this.props;
       return <WrappedComponent
         ref={this.myRef}
-        heroActive={this.state.heroActive}
-        activeSceneId={this.state.activeSceneId}
+        showCarousel={this.state.showCarousel}
       />;
     }
   }

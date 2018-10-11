@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import PageTitle from '../../PageTitle';
-import Banner from '../../Banner';
+import PageTitle from '../../../PageTitle';
+import Banner from '../../../Banner';
 
-import MainLayer from '../../Content/MainLayer'
-import ContentLayer from '../../Content/ContentLayer'
+import MainLayer from '../../../Content/MainLayer'
+import ContentLayer from '../../../Content/ContentLayer'
 
-import { OneColumnCenter }  from '../../Layout';
-import GridParallax from '../../GridParallax'
+import { OneColumnCenter }  from '../../../Layout';
+import GridParallax from '../../../GridParallax'
 import styles from './gridpages.scss'
 import cx from 'classnames';
 

@@ -8,45 +8,39 @@ import ContentLayer from '../../Content/ContentLayer';
 import Background from '../../Background';
 import { OneColumnCenter }  from '../../Layout';
 import Dummytext from '../../DummyText/DummyTextLong';
-import HomeCanvas from './HomeCanvas';
 import CanvasEnhanced from './CanvasSimple';
+import FeatureList from '../../FeatureList';
+import Carousel from '../../Carousel';
 
-const UpdateTileCount = (count) => {
-
-  console.log(count);
-
-}
-
-
-const HomeContent = (props) => {
+let HomeHero = (props) => {
   return (
-    <div className={cx(styles.content)}>
-      <section className={cx(styles.section)}>
+
+    <div id={'home-hero'} className={cx(styles.content,styles.hero)}>
+      <section  className={cx(styles.section, 'section')}>
         <div className={cx(styles.mainText)}>
           <div className={cx(styles.inner)}>
-            <h1>{props.title}</h1>
-            Creative vision, technologies and digital experience
+            Section 1
           </div>
         </div>
       </section>
-      <section className={cx(styles.section)}>
+      <section className={cx(styles.section, 'section')}>
         <div className={cx(styles.mainText)}>
           <div className={cx(styles.inner)}>
-            section 2
+            Section 2
           </div>
         </div>
       </section>
-      <section className={cx(styles.section)}>
+      <section className={cx(styles.section, 'section')}>
         <div className={cx(styles.mainText)}>
           <div className={cx(styles.inner)}>
-            section 3
+            Section 3
           </div>
         </div>
       </section>
-      <section className={cx(styles.section)}>
+      <section className={cx(styles.section, 'section')}>
         <div className={cx(styles.mainText)}>
           <div className={cx(styles.inner)}>
-            section 4
+            Section 4
           </div>
         </div>
       </section>
@@ -54,10 +48,11 @@ const HomeContent = (props) => {
   );
 }
 
+HomeHero = ScrollMagicEnhanced(HomeHero);
 
 let FixedBackground = (props) => {
   return (
-    <div className={cx(styles.fixedBackgroundLayer)} >
+    <div className={cx(styles.fixedBackgroundLayer, props.heroActive ? '' : styles.hide)} >
       <CanvasEnhanced activeSceneId={props.activeSceneId}/>
       <div style={{position:'absolute',top:'100px',left:'100px'}}>
         {props.activeSceneId}
@@ -67,16 +62,30 @@ let FixedBackground = (props) => {
 };
 
 class Page extends Component {
+
+
   render() {
     return (
       <MainLayer className={cx(styles.mainLayer)}>
-        <FixedBackground activeSceneId={this.props.activeSceneId} />
+        <FixedBackground activeSceneId={this.props.activeSceneId}  heroActive={this.props.heroActive}  />
         <ContentLayer className={cx(styles.contentLayer)} >
-          <HomeContent title={this.props.title}/>
+          <HomeHero title={this.props.title}/>
+
+          <div className={cx(styles.carouselContainer)}>
+            <OneColumnCenter contentMain={<Carousel />}/>
+          </div>
+
+          <div style={{background:'#fff', color:'#000'}} >
+            <OneColumnCenter contentMain={<FeatureList />}/>
+          </div>
+
+          <OneColumnCenter contentMain={<Dummytext />} />
         </ContentLayer>
       </MainLayer>
     )
   }
 }
 
+
+//export default (Page);
 export default ScrollMagicEnhanced(Page);
