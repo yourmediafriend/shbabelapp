@@ -11,44 +11,7 @@ import Dummytext from '../../DummyText/DummyTextLong';
 import CanvasEnhanced from './CanvasSimple';
 import FeatureList from '../../FeatureList';
 import Carousel from '../../Carousel';
-
-let HomeHero = (props) => {
-  return (
-
-    <div id={'home-hero'} className={cx(styles.content,styles.hero)}>
-      <section  className={cx(styles.section, 'section')}>
-        <div className={cx(styles.mainText)}>
-          <div className={cx(styles.inner)}>
-            Section 1
-          </div>
-        </div>
-      </section>
-      <section className={cx(styles.section, 'section')}>
-        <div className={cx(styles.mainText)}>
-          <div className={cx(styles.inner)}>
-            Section 2
-          </div>
-        </div>
-      </section>
-      <section className={cx(styles.section, 'section')}>
-        <div className={cx(styles.mainText)}>
-          <div className={cx(styles.inner)}>
-            Section 3
-          </div>
-        </div>
-      </section>
-      <section className={cx(styles.section, 'section')}>
-        <div className={cx(styles.mainText)}>
-          <div className={cx(styles.inner)}>
-            Section 4
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-}
-
-HomeHero = ScrollMagicEnhanced(HomeHero);
+import HomepageHero from './HomepageHero';
 
 let FixedBackground = (props) => {
   return (
@@ -61,31 +24,43 @@ let FixedBackground = (props) => {
   )
 };
 
+
 class Page extends Component {
 
+  state= {
+    activeSceneId: 0,
+    sceneBackgroundText: []
+  }
+
+  setScene(id, textArray) {
+    this.setState({
+      activeSceneId :id,
+      textArray,
+    })
+  }
 
   render() {
+
+    console.log(this.state.textArray);
+
     return (
       <MainLayer className={cx(styles.mainLayer)}>
-        <FixedBackground activeSceneId={this.props.activeSceneId}  heroActive={this.props.heroActive}  />
-        <ContentLayer className={cx(styles.contentLayer)} >
-          <HomeHero title={this.props.title}/>
+        <FixedBackground activeSceneId={this.state.activeSceneId} bgTextArray={this.state.textArray}  />
 
+    {/*    <FixedBackground activeSceneId={this.state.activeSceneId}  heroActive={this.props.heroActive}  />*/}
+        <ContentLayer className={cx(styles.contentLayer)} >
+          <HomepageHero setActiveSceneId={this.setScene.bind(this)}   />
           <div className={cx(styles.carouselContainer)}>
             <OneColumnCenter contentMain={<Carousel />}/>
           </div>
-
           <div style={{background:'#fff', color:'#000'}} >
             <OneColumnCenter contentMain={<FeatureList />}/>
           </div>
-
           <OneColumnCenter contentMain={<Dummytext />} />
         </ContentLayer>
       </MainLayer>
-    )
+    );
   }
 }
 
-
-//export default (Page);
-export default ScrollMagicEnhanced(Page);
+export default Page;

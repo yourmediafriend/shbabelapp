@@ -13,6 +13,12 @@ let globalOptions = {
   container: 'body',
 };
 
+const splitBackgroundText = (list) => {
+  let listArray = list.split(',');
+  listArray = listArray.map(function(e,i){return e.trim()})
+  return listArray;
+}
+
 function withSubscription(WrappedComponent, selectData) {
 
   return class extends React.Component {
@@ -62,8 +68,8 @@ function withSubscription(WrappedComponent, selectData) {
 
     componentDidMount() {
 
-      let $hero = document.getElementById("home-hero");
-      console.log('Home-hero height',$hero.getBoundingClientRect().height);
+      // let $hero = document.getElementById("home-hero");
+      // console.log('Home-hero height',$hero.getBoundingClientRect().height);
 
       if (this.shouldEnable()) {
         this.createScene();
@@ -73,8 +79,8 @@ function withSubscription(WrappedComponent, selectData) {
 
 
     componentDidUpdate() {
-      let $hero = document.getElementById("home-hero");
-      console.log('componentDidUpdate Home-hero height',$hero.getBoundingClientRect().height);
+      // let $hero = document.getElementById("home-hero");
+      // console.log('componentDidUpdate Home-hero height',$hero.getBoundingClientRect().height);
     }
 
 
@@ -106,7 +112,6 @@ function withSubscription(WrappedComponent, selectData) {
 
       let $hero = document.getElementById("home-hero");
       let sectionCnt = $hero.querySelectorAll('.section').length;
-
       //console.log('section', $hero.querySelectorAll('.section'));
 
       // add Sections
@@ -116,8 +121,13 @@ function withSubscription(WrappedComponent, selectData) {
           duration: window.innerHeight,
         })
           .on("enter", function (i, event) {
-            this.setState({activeSceneId:i});
-            console.log('enter - start this now', i);
+
+            let bgText = splitBackgroundText(this.props.data.nodeQuery.entities[i].fieldBackgroundText);
+            this.props.setActiveSceneId(i, bgText);
+
+          //  console.log(this.props);
+            //console.log('enter - start this now', i);
+
           }.bind(this, i))
           .on("leave", function (i, even) {
             /*    this.setState({title:'title'});
@@ -136,11 +146,11 @@ function withSubscription(WrappedComponent, selectData) {
         duration: 2392 +  window.innerHeight  // $hero.getBoundingClientRect().height // get height of main page  $parent.offsetHeight
       })
         .on("enter", function (event) {
-          console.log('enter');
+         // console.log('enter');
           this.setState({heroActive:true});
         }.bind(this))
         .on("leave", function (event) {
-          console.log('leave');
+         // console.log('leave');
           this.setState({heroActive:false});
         }.bind(this))
         .addTo(this.controller));
@@ -197,11 +207,11 @@ x
     }
 
     render() {
-      const { extraProp } = this.props;
       return <WrappedComponent
         ref={this.myRef}
         heroActive={this.state.heroActive}
         activeSceneId={this.state.activeSceneId}
+        {...this.props}
       />;
     }
   }
