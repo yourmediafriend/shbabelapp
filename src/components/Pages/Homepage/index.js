@@ -14,9 +14,10 @@ import Carousel from '../../Carousel';
 import HomepageHero from './HomepageHero';
 
 let FixedBackground = (props) => {
+
   return (
     <div className={cx(styles.fixedBackgroundLayer, props.heroActive ? '' : styles.hide)} >
-      <CanvasEnhanced activeSceneId={props.activeSceneId}/>
+      <CanvasEnhanced activeSceneId={props.activeSceneId}  bgTextArray={props.bgTextArray} />
       <div style={{position:'absolute',top:'100px',left:'100px'}}>
         {props.activeSceneId}
       </div>
