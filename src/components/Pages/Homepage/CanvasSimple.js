@@ -107,14 +107,14 @@ class HomeCanvas extends Component {
 
   componentDidUpdate() {
     if (this.text_A){
-      this.text_A.text = this.props.bgTextArray[this.props.activeSceneId].toUpperCase();
+      this.text_A.text = this.props.bgTextArray[0].toUpperCase();
       this.text_A.style.letterSpacing = 25;
     }
     if (this.text_B){
-      this.text_B.text = this.props.bgTextArray[this.props.activeSceneId].toUpperCase();
+      this.text_B.text = this.props.bgTextArray[0].toUpperCase();
     }
     if (this.text_C){
-      this.text_C.text = this.props.bgTextArray[this.props.activeSceneId].toUpperCase();
+      this.text_C.text = this.props.bgTextArray[0].toUpperCase();
     }
     if (this.bg_A){
       this.bg_A.texture = PIXI.Texture.fromImage(bgImages_Brutalist[this.props.activeSceneId]);

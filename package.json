@@ -64,6 +64,7 @@
     "react-fns": "^1.4.0",
     "react-geolocated": "^2.4.0",
     "react-hamburgers": "^1.0.0",
+    "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.3.5",
     "react-hover-observer": "^2.1.0",
     "react-move": "^2.8.0",

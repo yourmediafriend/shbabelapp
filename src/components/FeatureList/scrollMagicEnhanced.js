@@ -164,10 +164,10 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     render() {
-      const { extraProp } = this.props;
       return <WrappedComponent
         ref={this.myRef}
         activeSceneId={this.state.activeSceneId}
+        {...this.props}
       />;
     }
   }
