@@ -29,7 +29,7 @@ import TestPage from '../Pages/TestPage';
 // Grid Pages
 import GridParallax from '../Pages/Grids/GridParallax';
 import GridFullpage from '../Pages/Grids/GridFullpage';
-
+import GridWobblepage from '../Pages/Grids/GridWobblepage';
 
 
 // Demo Pages
@@ -79,9 +79,11 @@ const Content = ({currentpage, pageRef, match }) => {
     case 'fullpage':
       return <Fullpage pageRef={pageRef}/>;
     case 'grid-parallax':
-      return <GridParallax />;
+      return <GridParallax pageRef={pageRef}/>;;
     case 'grid-fullpage':
       return <GridFullpage />;
+    case 'grid-wobble':
+      return <GridWobblepage />;
     case 'news':
       return <News />;
     case 'news/article':
@@ -106,10 +108,6 @@ const Content = ({currentpage, pageRef, match }) => {
       return <DrupalArticles />;
     case 'carousel':
       return <CarouselDemo />;
-
-
-
-
     default:
       return null;
   }

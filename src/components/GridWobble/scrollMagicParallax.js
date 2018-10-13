@@ -57,14 +57,7 @@ function withSubscription(WrappedComponent, selectData) {
       return true;
     }
 
-      componentDidMount() {
-
-      // get the height of List
-        let $el = document.getElementById("FeatureList");
-        console.log('componentDidMount', $el.getBoundingClientRect() );
-
-        //let sectionCnt = $hero.querySelectorAll('.section').length;
-
+    componentDidMount() {
       if (this.shouldEnable()) {
         this.createScene();
       }
@@ -72,31 +65,35 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     componentDidUpdate() {
-/*      console.log('componentDidUpdate');
-      if (this.shouldEnable()) {
-        this.createScene();
-      }*/
+      /*      console.log('componentDidUpdate');
+            if (this.shouldEnable()) {
+              this.updateScene();
+            }*/
     }
-      
+
     createScene() {
 
-      let options = this.getOptions();
+      if (this.shouldEnable()) {
+        this.transformOnViewScene();
+        this.sceneCreated = true;
+      }
 
-     // console.log(this.myRef.current);
-            
+    }
+
+    transformOnViewScene(){
+
+      let options = this.getOptions();
       let $el = ReactDOM.findDOMNode(this.myRef.current);
       let $holders = S($el).queryAll.listGroupItem;
-
-
       if ($holders) {
         this.controller = new ScrollMagic.Controller({
           container: options.container,
-          // addIndicators: true,
+           // addIndicators: true,
           // loglevel: 2,
         });
 
-        let timeline = new TimelineMax({  });
-        let tweenDuration = 0.25;
+        let timeline = new TimelineMax({});
+        let tweenDuration = 0;
         let tweenDurationDelay = 0;
         let tweenDurationDelayTxt = 0;
 
@@ -105,9 +102,12 @@ function withSubscription(WrappedComponent, selectData) {
         $holders.map((el, index) => {
           delay = el.dataset.delay;
           //tweenDurationDelay =  (tweenDuration * index) - (delay /100);
-          tweenDurationDelay = delay /50;
-          timeline.add(TweenMax.to(el.queryAll.img, tweenDuration, {opacity: 1, transform: 'translate3d(0, 0, 0)', ease: Power1.easeOut}), tweenDurationDelay );
-          timeline.add(TweenMax.to(el.queryAll.text, tweenDuration, {opacity: 1, transform: 'translate3d(0, 0, 0)', ease: Power1.easeOut}), `-=${tweenDuration}`);
+          tweenDurationDelay = delay / 50;
+          timeline.add(TweenMax.to(el, tweenDuration, {
+            opacity: 1,
+            transform: 'translate3d(0, 0, 0)',
+            ease: Power1.easeOut
+          }), `-=${tweenDuration}`);
           return el;
 
         });
@@ -117,20 +117,20 @@ function withSubscription(WrappedComponent, selectData) {
         this.scenes.push(new ScrollMagic.Scene({
           triggerHook: 0.5,
           triggerElement: $el,
-          offset: -250,
+          offset: 500,
         })
           .on("enter", function (event) {
-           timeline.play();
+            console.log('enter');
+            timeline.play();
           }.bind(this))
           .on("leave", function (event) {
             timeline.reverse()
           }.bind(this))
           .addTo(this.controller));
-
-        this.sceneCreated = true;
       }
     }
-    
+
+
     destroyScene() {
       if(this.controller) this.controller.destroy(true);
       this.controller = null;
@@ -168,18 +168,9 @@ function withSubscription(WrappedComponent, selectData) {
       return <WrappedComponent
         ref={this.myRef}
         {...passThroughProps}
-        activeSceneId={this.state.activeSceneId}
       />;
     }
 
-
-      // render() {
-    //   const { extraProp } = this.props;
-    //   return <WrappedComponent
-    //     ref={this.myRef}
-    //     activeSceneId={this.state.activeSceneId}
-    //   />;
-    // }
   }
 }
 

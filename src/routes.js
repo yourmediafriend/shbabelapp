@@ -329,6 +329,19 @@ const SwitchRoute = () => (
                                currentpage='grid-fullpage'/>
     }} />
 
+    <Route exact path='/grids/wobble' render={(routeProps) => {
+      // do I set the initial App State here
+      connect(setUpPage({
+        stickyHeader: true,
+        fixedFooter: true,
+        revealFooter: true,
+      }));
+      return <OneColumnSidebar {...routeProps}
+                               currentpage='grid-wobble'
+                               pageRef={'wobble'} />
+    }} />
+
+
     {/*/Site Pages/*/}
 
     <Route exact path='/contact' render={(routeProps) => {
