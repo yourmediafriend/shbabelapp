@@ -71,34 +71,11 @@ class GridViewItem extends Component {
   }
 }
 
-// class GridView extends Component {
-//
-//
-//   items = (props) => {
-//     let imageArray =[placeholderA, placeholderB, placeholderC, placeholderD, placeholderE, placeholderF];
-//     let numrows = 21;
-//     let rows = [];
-//     for (let i = 0; i < numrows; i++) {
-//       rows.push(<GridViewItem image={imageArray[i % 6]}  key={i} />);
-//     }
-//     return rows;
-//   }
-//
-//   render() {
-//     return (
-//       <div className={cx(styles.grid,'parallax')}>
-//         {this.items()}
-//       </div>
-//     )
-//   }
-// }
-
-
 class GridView extends Component {
 
   render() {
     return (
-      <Query query={gridPlaceholderQuery} variables={{ limit:20 }} >
+      <Query query={gridPlaceholderQuery} variables={{ limit:this.props.itemsMax ? this.props.itemsMax : '18'}} >
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return `Error: ${error.message}`;

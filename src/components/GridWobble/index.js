@@ -89,7 +89,7 @@ class GridViewQuery extends Component {
 
   render() {
     return (
-      <Query query={gridPlaceholderQuery} variables={{ limit:20 }} >
+      <Query query={gridPlaceholderQuery} variables={{ limit:this.props.itemsMax ? this.props.itemsMax : '18' }} >
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return `Error: ${error.message}`;

@@ -12,7 +12,6 @@
     .content {
         color: #000;
         background: #fff;
-        padding-top: 70px;
     }
 }
 .fixedBackgroundLayer{
@@ -28,11 +27,16 @@
     }
 }
 
+.gridContainer {
+    background: #ececec;
+    padding: 70px 0;
+    margin: 70px 0;
+}
 .carouselContainer {
-    margin: 0px 30px;
+    margin: 0;
 }
 .featureListContainer {
-    margin: 70px 30px;
+    margin: 70px 0;
     color: #040505;
 }
 
