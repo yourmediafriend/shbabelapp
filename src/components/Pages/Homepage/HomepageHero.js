@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './homepage.scss'
+import styles from './homepageHero.scss'
 import ScrollMagicEnhanced from "./scrollMagicEnhanced";
 import cx from "classnames";
 

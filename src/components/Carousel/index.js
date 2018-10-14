@@ -28,7 +28,7 @@ class Carousel extends Component {
     };
 
     return (
-      <div className={cx(styles.container, this.props.showCarousel ? styles.show : '')}  >
+      <div className={cx(styles.container, this.props.showCarousel ? styles.show : '' )} style={this.props.style}  >
         <Slider {...settings }>
           <div className={cx(styles.slide,styles.once)}>
             <div className={cx(styles.inner)}>

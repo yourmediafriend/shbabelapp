@@ -15,7 +15,7 @@ const FeatureListItem = props => {
         <img src="http://www.pixijs.com/wp/wp-content/uploads/feature-multiplatform.png"
              alt="Multi-platform Support graphic"  className={cx(styles.img,'img')} />
         <div className={cx(styles.text,'text')}>
-          <h6 className="bold"><span>{content.title}</span></h6>
+          <h4 className="bold"><span>{content.title}</span></h4>
           {content.fieldBody ? <p>{content.fieldBody}</p> : ''}
         </div>
       </div>

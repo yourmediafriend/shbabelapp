@@ -50,14 +50,18 @@ class Page extends Component {
 
     {/*    <FixedBackground activeSceneId={this.state.activeSceneId}  heroActive={this.props.heroActive}  />*/}
         <ContentLayer className={cx(styles.contentLayer)} >
-          <HomepageHero setActiveSceneId={this.setScene.bind(this)}   />
-          <div className={cx(styles.carouselContainer)}>
-            <OneColumnCenter contentMain={<Carousel />}/>
+          <HomepageHero setActiveSceneId={this.setScene.bind(this)} />
+
+          <div className={cx(styles.content)}>
+            <div className={cx(styles.carouselContainer)}>
+              <OneColumnCenter contentMain={<Carousel />} />
+            </div>
+            <div className={cx(styles.featureListContainer)}>
+              <OneColumnCenter contentMain={<FeatureList />} />
+            </div>
+            <OneColumnCenter contentMain={<Dummytext />} />
           </div>
-          <div style={{background:'#fff', color:'#000'}} >
-            <OneColumnCenter contentMain={<FeatureList />}/>
-          </div>
-          <OneColumnCenter contentMain={<Dummytext />} />
+
         </ContentLayer>
       </MainLayer>
     );
