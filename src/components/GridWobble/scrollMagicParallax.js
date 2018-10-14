@@ -124,7 +124,7 @@ function withSubscription(WrappedComponent, selectData) {
             timeline.play();
           }.bind(this))
           .on("leave", function (event) {
-            timeline.reverse()
+            //timeline.reverse()
           }.bind(this))
           .addTo(this.controller));
       }

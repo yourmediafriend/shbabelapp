@@ -40,7 +40,7 @@ class GridViewContent extends Component {
 
   render() {
     return (
-      <Tilt options={{scale: 2, max: 25}} style={{}}>
+      <Tilt options={{scale: 2, max: 25}} style={{transformStyle: 'preserve-3d'}}>
         <div className={cx(styles.inner)}>
           <div className={cx(styles.imageWrapper)}>
             <div className={cx()} style={this.backgroundImageStyle()}/>

@@ -37,24 +37,30 @@
 .imageWrapper {
     background: #ccc;
     overflow: hidden;
-    height: 150px;
+    height: 100%;
     transform: translateZ(0);
     backface-visibility: hidden;
     display: block;
     position: relative;
 }
 .imageOverlay {
-    width:calc(100% + 10px);
-    height:calc(100% + 10px);
+    width:100%;
+    height:100%;
     background-color:rgba(0, 0, 0, 0.29);
     position:absolute;
-    top: -5px;
-    left: -5px;
+    top: 0px;
+    left: 0px;
     padding:10px;
+    display: inline-flex;
+    align-items: center;
+
 }
 .titleWrapper {
-    position: absolute;
-    bottom: 5px;
+    transform: translateZ(20px);
+    text-align: center;
+    margin: auto;
+    background-color:white;
+    box-shadow: 0 0 50px 0 rgba(51, 51, 51, 0.3);
 }
 .title {
     font-size: 0.8em;
@@ -62,10 +68,12 @@
     text-transform: uppercase;
     color: #fff;
     margin-bottom: 0.2rem;
+    word-break: break-all;
     .span {
-        background-color:rgba(0, 0, 0, 0.8);
+
         display: inline-block;
         padding: 3px;
+        word-break: break-all;
     }
 }
 .subTitle {
