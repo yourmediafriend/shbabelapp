@@ -12,6 +12,7 @@ import CanvasEnhanced from './CanvasSimple';
 import FeatureList from '../../FeatureList';
 import Carousel from '../../Carousel';
 import HomepageHero from './HomepageHero';
+import GridParallax from '../../GridParallax'
 
 let FixedBackground = (props) => {
 
@@ -53,6 +54,7 @@ class Page extends Component {
           <HomepageHero setActiveSceneId={this.setScene.bind(this)} />
 
           <div className={cx(styles.content)}>
+            <OneColumnCenter  contentMain={<GridParallax />} className={cx(styles.section, styles.contentMain)}/>
             <div className={cx(styles.carouselContainer)}>
               <OneColumnCenter contentMain={<Carousel />} />
             </div>
