@@ -5,6 +5,8 @@ import { Query } from "react-apollo";
 import gridPlaceholderQuery from '../../graphQL/gridPlaceholderQuery';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import scrollMagicParallax from './scrollMagicParallax';
+import ReactHoverObserver from '../ReactHoverObserver';
+import Tilt from 'react-vanilla-tilt'
 
 import placeholderA from './media/placeholder-5000x500-1.jpg'
 import placeholderB from './media/placeholder-5000x500-2.jpg'
@@ -15,8 +17,8 @@ import placeholderF from './media/placeholder-5000x500-6.jpg'
 
 const placeholderImages = [placeholderA, placeholderB, placeholderC, placeholderD, placeholderE, placeholderF];
 
-class GridViewItem extends Component {
 
+class GridViewContent extends Component {
 
   getPlaceholderImage () {
     return placeholderImages[this.props.id % placeholderImages.length]
@@ -38,13 +40,13 @@ class GridViewItem extends Component {
 
   render() {
     return (
-      <ListGroupItem className={cx(styles.item, styles.aniLfr,)} data-delay="0.3" data-speed="0.35" data-animation="long-from-right">
+      <Tilt options={{scale: 2, max: 25}} style={{}}>
         <div className={cx(styles.inner)}>
           <div className={cx(styles.imageWrapper)}>
-            <div className={cx()} style={this.backgroundImageStyle()} />
+            <div className={cx()} style={this.backgroundImageStyle()}/>
             <div className={cx(styles.imageOverlay)}>
               <div className={cx(styles.titleWrapper)}>
-                <h4 className={cx(styles.title, styles.mainTitle )}>
+                <h4 className={cx(styles.title, styles.mainTitle)}>
                   <span className={cx(styles.span)}>{this.props.title}</span>
                 </h4>
                 <h4 className={cx(styles.title, styles.subTitle)}>
@@ -54,10 +56,22 @@ class GridViewItem extends Component {
             </div>
           </div>
         </div>
+      </Tilt>
+    )
+  }
+}
+
+class GridViewItem extends Component {
+
+  render() {
+    return(
+      <ListGroupItem className={cx(styles.item, styles.aniLfr,)} data-delay="0.3" data-speed="0.35" data-animation="long-from-right">
+        <GridViewContent {...this.props}/>
       </ListGroupItem>
     )
   }
 }
+
 
 let GridView = props => {
   return (

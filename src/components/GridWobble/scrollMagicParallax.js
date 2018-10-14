@@ -115,12 +115,12 @@ function withSubscription(WrappedComponent, selectData) {
         timeline.pause();
 
         this.scenes.push(new ScrollMagic.Scene({
-          triggerHook: 0.5,
+          triggerHook: 1,
           triggerElement: $el,
-          offset: 500,
+          offset: 0,
         })
           .on("enter", function (event) {
-            console.log('enter');
+           // console.log('enter');
             timeline.play();
           }.bind(this))
           .on("leave", function (event) {

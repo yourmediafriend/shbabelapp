@@ -30,18 +30,9 @@
     transform: translateX(80px);
     opacity: 0;
 }
-
-
 .inner {
     background: #fff;
     height: 300px;
-
-    &:hover {
-        @include media-breakpoint-up(md) {
-            transform: translateZ(0) scale(1.05);
-            box-shadow: 0 5px 8px 0px rgba(29, 29, 29, 0.3);
-        }
-    }
 }
 .imageWrapper {
     background: #ccc;
