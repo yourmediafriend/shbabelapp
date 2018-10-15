@@ -51,22 +51,25 @@ class Page extends Component {
     return (
       <MainLayer className={cx(styles.mainLayer)}   >
 
-        <HeroBackground breakpoint={this.props.breakpoint} activeSceneId={this.state.activeSceneId} bgTextArray={this.state.textArray}  />
+     {/*   <HeroBackground breakpoint={this.props.breakpoint} activeSceneId={this.state.activeSceneId} bgTextArray={this.state.textArray}  />*/}
 
         <ContentLayer className={cx(styles.contentLayer)} >
-          <HomepageHero setActiveSceneId={this.setScene.bind(this)} />
+
+{/*          <HomepageHero setActiveSceneId={this.setScene.bind(this)} />*/}
 
           <div className={cx(styles.content)}>
             <div className={cx(styles.gridContainer)}>
               <OneColumnCenter  contentMain={<GridWobble itemsMax={6}/>} />
             </div>
-            <div className={cx(styles.carouselContainer)}>
+         {/*   <div className={cx(styles.carouselContainer)}>
               <OneColumnCenter contentMain={<Carousel />} />
-            </div>
+            </div>*/}
             <div className={cx(styles.featureListContainer)}>
               <OneColumnCenter contentMain={<FeatureList />} />
             </div>
-            <OneColumnCenter contentMain={<Dummytext />} />
+
+   {/*         <OneColumnCenter contentMain={<Dummytext />} />*/}
+
           </div>
 
         </ContentLayer>
