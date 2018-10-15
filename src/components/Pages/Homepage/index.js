@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 import cx from 'classnames';
 import styles from './homepage.scss'
 import ScrollMagicEnhanced from './scrollMagicEnhanced';
@@ -14,20 +16,21 @@ import Carousel from '../../Carousel';
 import HomepageHero from './HomepageHero';
 import GridParallax from '../../GridParallax'
 import GridWobble from '../../GridWobble'
+import {get} from "lodash/fp";
 
-
-let FixedBackground = (props) => {
-
+let HeroBackground = (props) => {
   return (
     <div className={cx(styles.fixedBackgroundLayer, props.heroActive ? '' : styles.hide)} >
-      <CanvasEnhanced activeSceneId={props.activeSceneId}  bgTextArray={props.bgTextArray} />
-      <div style={{position:'absolute',top:'100px',left:'100px'}}>
-        {props.activeSceneId}
-      </div>
+      {props.breakpoint ==='large' ? <CanvasEnhanced activeSceneId={props.activeSceneId}  bgTextArray={props.bgTextArray} /> : ''}
+
+      {/*<div style={{position:'absolute',top:'300px',left:'300px', background:'#fff', color:'black'}}>*/}
+        {/*{props.breakpoint}*/}
+        {/*{props.activeSceneId}*/}
+      {/*</div>*/}
+
     </div>
   )
 };
-
 
 class Page extends Component {
 
@@ -45,13 +48,11 @@ class Page extends Component {
 
   render() {
 
-    console.log(this.state.textArray);
-
     return (
       <MainLayer className={cx(styles.mainLayer)}   >
-        <FixedBackground activeSceneId={this.state.activeSceneId} bgTextArray={this.state.textArray}  />
 
-    {/*    <FixedBackground activeSceneId={this.state.activeSceneId}  heroActive={this.props.heroActive}  />*/}
+        <HeroBackground breakpoint={this.props.breakpoint} activeSceneId={this.state.activeSceneId} bgTextArray={this.state.textArray}  />
+
         <ContentLayer className={cx(styles.contentLayer)} >
           <HomepageHero setActiveSceneId={this.setScene.bind(this)} />
 
@@ -74,4 +75,17 @@ class Page extends Component {
   }
 }
 
-export default Page;
+
+const mapStateToProps = state => {
+  return {
+    breakpoint: get('appModule.breakpoint', state),
+  };
+}
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {},
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Page);

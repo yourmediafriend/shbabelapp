@@ -58,8 +58,6 @@ class App extends Component {
     this.onResize();
   };
 
-
-
   onResize = () => {
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
       // Desktop
