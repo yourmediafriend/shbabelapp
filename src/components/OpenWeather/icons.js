@@ -74,7 +74,7 @@ export default {
   '08n': {
 
   },
-  '09d': {// Rain
+  '09d': {// Rain / Drizzel
     icon: Rain,
     iconSimple:RainSimple,
   },
@@ -114,7 +114,7 @@ export default {
   '20n': {
 
   },
-  '50d': {
+  '50d': { // Fog Day
 
   },
   '50n': { // Mist / Haze Night

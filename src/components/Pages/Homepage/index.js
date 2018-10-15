@@ -48,7 +48,7 @@ class Page extends Component {
     console.log(this.state.textArray);
 
     return (
-      <MainLayer className={cx(styles.mainLayer)}>
+      <MainLayer className={cx(styles.mainLayer)}   >
         <FixedBackground activeSceneId={this.state.activeSceneId} bgTextArray={this.state.textArray}  />
 
     {/*    <FixedBackground activeSceneId={this.state.activeSceneId}  heroActive={this.props.heroActive}  />*/}
