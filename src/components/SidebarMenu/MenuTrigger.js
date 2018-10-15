@@ -64,8 +64,6 @@ class MusicControler extends Component {
       </Animate>
     );
   }
-
-
 }
 
 const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, breakpoint, footerFixedOpen, musicPlayerPosition}) => {
@@ -76,10 +74,7 @@ const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, breakpoint, footerFi
         <BurgerIcon menuIsOpen={menuIsOpen}/>
       </span>
       {breakpoint === 'small' ?  <IconNav className={'iconNavSide'} /> : null}
-
 {/*      <MusicControler footerIsOpen={footerIsOpen} />*/}
-
-
       {/*    can't make it appear and activate animation*/}
 
       <MusicControler footerFixedOpen={footerFixedOpen} />

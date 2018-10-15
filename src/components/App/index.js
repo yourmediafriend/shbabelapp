@@ -10,6 +10,7 @@ import { easeExpOut } from 'd3-ease';
 import { setCurrentBreakPoint } from '../../modules/App';
 import { Player as MusicPlayer } from  '../MusicPlayer';
 import { get } from 'lodash/fp';
+import { footerClose } from "../../modules/Footer";
 
 // Elements
 import MainContent from '../Content';
@@ -68,6 +69,7 @@ class App extends Component {
       // Tablet
       this.setState({sidebarStyle:'push'});
       this.props.setCurrentBreakPoint('medium');
+      this.props.footerClose();
     }
     else {
       // Mobile
@@ -250,6 +252,7 @@ export const mapDispatchToProps = dispatch =>
       offCanvasMenuStateChange,
       offCanvasMenuToggleAnimation,
       setCurrentBreakPoint,
+      footerClose,
     },
     dispatch
   );
