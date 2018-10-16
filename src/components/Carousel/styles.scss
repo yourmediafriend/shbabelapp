@@ -1,6 +1,5 @@
 .slide {
     padding: 0px 10px;
-
     .inner {
         text-align: center;
         opacity: 0;
@@ -9,10 +8,9 @@
     }
 
     .imageWrap {
-        width: 120px;
-        height: 120px;
         transform: translateY(0%);
         transition: 0.5s transform cubic-bezier(0.455, 0.03, 0.515, 0.955);
+        text-align: center;
     }
 
     img {

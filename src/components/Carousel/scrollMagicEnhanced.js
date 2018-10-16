@@ -158,9 +158,10 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     render() {
-      const { extraProp } = this.props;
+      const {extraProp, ...passThroughProps} = this.props;
       return <WrappedComponent
         ref={this.myRef}
+        {...passThroughProps}
         showCarousel={this.state.showCarousel}
       />;
     }
