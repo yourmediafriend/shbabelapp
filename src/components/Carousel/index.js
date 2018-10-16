@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Slider from "react-slick";
 import styles from './styles.scss'
 import cx from "classnames";
 import ScrollMagicEnhanced from './scrollMagicEnhanced'
+import {get} from "lodash/fp";
+import {connect} from "react-redux";
+import {footerClose} from "../../modules/Footer";
+import {bindActionCreators} from "redux";
 
 class Carousel extends Component {
 
@@ -13,13 +18,33 @@ class Carousel extends Component {
     }
   }*/
 
+  slideShowConfig(breakpoint) {
+
+    switch(breakpoint) {
+      case 'x-small':
+        return 1;
+      case 'small':
+        return 2;
+      case 'medium':
+        return 4;
+      case 'large':
+        return 6;
+      default:
+        return 1;
+    }
+  }
+
+
+
   render() {
+
+    const props = this.props;
 
     let settings = {
       dots: false,
       arrows: false,
       infinite: true,
-      slidesToShow: 6,
+      slidesToShow: this.slideShowConfig(props.breakpoint),
       slidesToScroll: 1,
       autoplay: true,
       speed: 200,
@@ -37,6 +62,7 @@ class Carousel extends Component {
               </div>
             </div>
           </div>
+
           <div className={cx(styles.slide,styles.once)}>
             <div className={cx(styles.inner)}>
               <div className={cx(styles.imageWrap)}>
@@ -162,8 +188,30 @@ class Carousel extends Component {
   }
 }
 
-export default ScrollMagicEnhanced(Carousel);
 
+
+export const mapStateToProps = (state) => {
+  return {
+    breakpoint: get('appModule.breakpoint', state),
+  }
+};
+
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {},
+    dispatch
+  );
+
+
+Carousel.props = {
+  breakpoint: PropTypes.string
+};
+
+Carousel.defaultProps = {
+  breakpoint: 'small'
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScrollMagicEnhanced(Carousel));
 
 
 

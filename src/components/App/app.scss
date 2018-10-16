@@ -64,12 +64,16 @@
 
 .menuFlexWrap {
     display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex-wrap: wrap;
     .menuFlex{
         width: 54px;
         transform: translate(0);
     }
     .mainFlex {
         flex: 1;
+        max-width: calc(100% - 54px);
     }
 }
 

@@ -71,12 +71,7 @@ class Page extends Component {
       <MainLayer className={cx(styles.mainLayer)}>
         <ContentLayer className={cx(styles.contentLayer)} >
 
-          <OneColumnCenter contentMain={<DummyText />} />
-
-
           <OneColumnCenter contentMain={<Carousel />} />
-
-{/*          <OneColumnCenter contentMain={<FeatureList />} />*/}
 
         </ContentLayer>
       </MainLayer>
