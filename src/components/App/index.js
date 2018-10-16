@@ -11,6 +11,7 @@ import { setCurrentBreakPoint } from '../../modules/App';
 import { Player as MusicPlayer } from  '../MusicPlayer';
 import { get } from 'lodash/fp';
 import { footerClose } from "../../modules/Footer";
+import { setIconNavPosition } from "../../modules/App";
 
 // Elements
 import MainContent from '../Content';
@@ -64,17 +65,19 @@ class App extends Component {
       // Desktop
       this.setState({sidebarStyle:'squash'});
       this.props.setCurrentBreakPoint('large');
+      this.props.setIconNavPosition('top');
     }
     else if (window.matchMedia(mediaMatch.breakpointSmall).matches) {
       // Tablet
       this.setState({sidebarStyle:'push'});
       this.props.setCurrentBreakPoint('medium');
       this.props.footerClose();
+      this.props.setIconNavPosition('side');
     }
     else {
       // Mobile
-      this.setState({sidebarStyle:'overlay'});
-      this.props.setCurrentBreakPoint('small');
+      // this.setState({sidebarStyle:'overlay'});
+      // this.props.setCurrentBreakPoint('small');
     }
   };
 
@@ -163,11 +166,11 @@ class App extends Component {
           return (
             <div className={styles.outer}>
 
-                <div className={styles.sidebarMenuWrap} style={{...this.myStyles(state).menu}}>
-                  <SidebarMenu showMenu={ !(!this.props.isMenuOpen && !this.props.isMenuAnimating)  }/>
-                </div>
+              <div className={styles.sidebarMenuWrap} style={{...this.myStyles(state).menu}}>
+                <SidebarMenu showMenu={ !(!this.props.isMenuOpen && !this.props.isMenuAnimating)  }/>
+              </div>
 
-                <MenuTrigger/>
+              <MenuTrigger/>
 
               <div className={styles.mainContainer}>
 
@@ -253,6 +256,7 @@ export const mapDispatchToProps = dispatch =>
       offCanvasMenuToggleAnimation,
       setCurrentBreakPoint,
       footerClose,
+      setIconNavPosition,
     },
     dispatch
   );

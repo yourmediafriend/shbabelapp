@@ -66,14 +66,24 @@ class MusicControler extends Component {
   }
 }
 
-const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, breakpoint, footerFixedOpen, musicPlayerPosition}) => {
+const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, iconNavPosition, footerFixedOpen, musicPlayerPosition}) => {
   return (
     <div className={styles.menuTriggerWrap} >
       <div onClick={offCanvasMenuStateChange} className={styles.menuTrigger}/>
       <span className={styles.iconWrap}>
         <BurgerIcon menuIsOpen={menuIsOpen}/>
       </span>
-      {breakpoint === 'small' ?  <IconNav className={'iconNavSide'} /> : null}
+
+      {iconNavPosition === 'side' ?
+        <IconNav  className={'iconNavSide'}
+                  menuItems={{
+                      home: true,
+                      search: true,
+                      account: false,
+                      contact: true,
+                      cart: false
+                    }}/> : ''}
+
 {/*      <MusicControler footerIsOpen={footerIsOpen} />*/}
       {/*    can't make it appear and activate animation*/}
 
@@ -88,13 +98,13 @@ MenuTrigger.props = {
   offCanvasMenuStateChange: PropTypes.func,
   menuIsOpen: PropTypes.bool,
   showMusicControls: PropTypes.bool,
-  breakpoint: PropTypes.string,
+  iconNavPosition: PropTypes.string,
 }
 
 const mapStateToProps = state => {
   return ({
     menuIsOpen:get('offCanvasMenu.offCanvasMenuOpen', state),
-    breakpoint: get('appModule.breakpoint', state),
+    iconNavPosition: get('appModule.iconNavPosition', state),
     musicPlayerPosition: get('musicPlayerModule.position', state),
     footerFixedOpen: get('footerModule.footerFixedOpen', state),
   });

@@ -9,6 +9,7 @@ import { AccountDropdownMenu } from '../User'
 
 import { Nav, NavItem } from 'reactstrap';
 import styles from './iconNavStyles.scss';
+import baner from "../Banner";
 
 const AppContext = React.createContext();
 
@@ -72,46 +73,77 @@ let MenuItem = (props) => {
   )
 }
 
+const IconNavHome = (props) => {
+  return (
+    <NavItem className={styles.home} >
+      <MenuItem>
+        <MenuLink icon="home"  href={"/"}/>
+      </MenuItem>
+    </NavItem>
+  );
+}
+const IconNavSearch = (props) => {
+  return (
+    <NavItem className={styles.search} >
+      <MenuItem>
+        <MenuLink icon='search' clickEvent={props.searchModalToggle.bind(this)}/>
+      </MenuItem>
+    </NavItem>
+  );
+}
+const IconNavAccount = (props) => {
+  return (
+    <NavItem className={styles.account}>
+      <MenuItem hoverOffDelay={250} >
+        <MenuLink icon="account" clickEvent={props.modalToggle.bind(this, 'account', 0)} />
+        <Dropdown>
+          <AccountDropdownMenu />
+        </Dropdown>
+      </MenuItem>
+    </NavItem>
+  );
+}
+const IconNavContact = (props) => {
+  return (
+    <NavItem className={styles.contact}>
+      <MenuItem>
+        <MenuLink icon="contact" href={"/contact"} />
+      </MenuItem>
+    </NavItem>
+  );
+}
+
+const IconNavCart = (props) => {
+  return (
+    <NavItem>
+      <MenuItem>
+        <MenuLink icon="cart" />
+      </MenuItem>
+    </NavItem>
+  );
+}
+
+const IconNavLocation = (props) => {
+  return (
+    <NavItem>
+      <MenuItem>
+        <MenuLink icon="location" clickEvent={props.modalOpen.bind(this, 'location')} />
+      </MenuItem>
+    </NavItem>
+  );
+}
+
+
+
 const IconNav = (props) => {
 
   return (
     <Nav className={cx(styles.navList, styles[props.className])}>
-      <NavItem>
-        <MenuItem>
-         <MenuLink icon="home"  href={"/"}/>
-        </MenuItem>
-      </NavItem>
-      <NavItem >
-        <MenuItem>
-          <MenuLink icon='search' clickEvent={props.searchModalToggle.bind(this)}/>
-        </MenuItem>
-      </NavItem>
-      <NavItem className={styles.account}>
-        <MenuItem hoverOffDelay={250} >
-          <MenuLink icon="account" clickEvent={props.modalToggle.bind(this, 'account', 0)} />
-
-
-          <Dropdown>
-            <AccountDropdownMenu />
-          </Dropdown>
-
-        </MenuItem>
-      </NavItem>
-      <NavItem>
-        <MenuItem>
-          <MenuLink icon="contact" href={"/contact"} />
-        </MenuItem>
-      </NavItem>
-      <NavItem>
-        <MenuItem>
-          <MenuLink icon="cart" />
-        </MenuItem>
-      </NavItem>
-      <NavItem>
-        <MenuItem>
-          <MenuLink icon="location" clickEvent={props.modalOpen.bind(this, 'location')} />
-        </MenuItem>
-      </NavItem>
+      {props.menuItems.home ? <IconNavHome {...props} /> : ''}
+      {props.menuItems.search ? <IconNavSearch {...props} /> : ''}
+      {props.menuItems.account ? <IconNavAccount {...props} /> : ''}
+      {props.menuItems.contact ? <IconNavContact {...props} /> : ''}
+      {props.menuItems.cart ? <IconNavCart {...props} /> : ''}
     </Nav>
   )
 }
@@ -120,6 +152,18 @@ IconNav.props = {
   searchModalToggle: PropTypes.func,
   accountModalOpen: PropTypes.func,
   modalToggle: PropTypes.func,
+  menuItems: PropTypes.object,
 }
+
+IconNav.defaultProps = {
+  menuItems: {
+    home: true,
+    search: true,
+    account: true,
+    contact: true,
+    cart: true,
+  },
+};
+
 
 export default IconNav;
