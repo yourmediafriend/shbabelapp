@@ -8,7 +8,6 @@ import sendGet from './get';
 import request from './request';
 
 import {
-  get,
   getOr,
 } from 'lodash/fp';
 

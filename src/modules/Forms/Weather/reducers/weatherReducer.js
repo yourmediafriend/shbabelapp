@@ -32,7 +32,7 @@ export default function reducer(state = initialState, action = {}) {
 
 export function attemptToSubmit(values) {
 
-  console.log('attemptToSubmit', {values});
+  //console.log('attemptToSubmit', {values});
 
   return {
     type: ATTEMPT_TO_SUBMIT,

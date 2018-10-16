@@ -26,6 +26,9 @@ export default function reducer(state=initialState, action = {}) {
 
     case CLOSE_FOOTER:
       // need to get the state of the menu
+
+      console.log('CLOSE_FOOTER');
+
       return {
         ...state,
         footerFixedOpen: false,

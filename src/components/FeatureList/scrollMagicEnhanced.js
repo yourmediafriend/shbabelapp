@@ -61,8 +61,7 @@ function withSubscription(WrappedComponent, selectData) {
 
       // get the height of List
         let $el = document.getElementById("FeatureList");
-        console.log('componentDidMount', $el.getBoundingClientRect() );
-
+        //console.log('componentDidMount', $el.getBoundingClientRect() );
         //let sectionCnt = $hero.querySelectorAll('.section').length;
 
       if (this.shouldEnable()) {

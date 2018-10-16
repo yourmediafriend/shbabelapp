@@ -31,14 +31,16 @@
 .gridContainer {
     background: #ececec;
     padding: 70px 0;
-    margin: 70px 0;
+    overflow: hidden;
 }
 .carouselContainer {
-    margin: 0;
+    padding: 70px 0;
+    overflow: hidden;
 }
 .featureListContainer {
-    margin: 70px 0;
+    padding: 70px 0;
     color: #040505;
+    overflow: hidden;
 }
 
 

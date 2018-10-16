@@ -38,9 +38,9 @@ class Footer extends Component {
 
         <Animate
           start={() => ({
-            showFooter: true,
+            showFooter: props.footerFixedOpen,
             footer:{
-              translateY: 0
+              translateY: [props.footerFixedOpen ? 0: 100 ]
             }
           })}
 
@@ -79,6 +79,9 @@ class Footer extends Component {
 }
 
 export const mapStateToProps = (state) => {
+
+  //console.log(get('footerModule.footerFixedOpen', state));
+
   return {
     footerFixedOpen: get('footerModule.footerFixedOpen', state),
     breakpoint: get('appModule.breakpoint', state),

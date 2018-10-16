@@ -28,17 +28,19 @@ class MusicControler extends Component {
 
     let props = this.props;
 
+    console.log('MenuTrigger', !(props.footerFixedOpen));
+
     return (
       <Animate
         start={() => ({
-          showPlayer:false,
+          showPlayer: !(props.footerFixedOpen),
           musicPlayer:{
-            translateY: 100
+            translateY: [!(props.footerFixedOpen) ? 0 : 100]
           }
         })}
         update={() => ({
           musicPlayer:{
-            translateY: [!props.footerFixedOpen ? 0 : 100]
+            translateY: [!(props.footerFixedOpen) ? 0 : 100]
           },
           timing: { duration: 250, ease: easeCubicInOut },
           events: {
@@ -52,6 +54,9 @@ class MusicControler extends Component {
         })}
       >
         {(state) => {
+
+          console.log('state.showPlayer', state.showPlayer);
+
           return state.showPlayer ?
             (
               <div className={cx(styles.sidebarControls)}>

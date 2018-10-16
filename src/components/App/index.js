@@ -43,7 +43,7 @@ const StickyContainer = (props) => {
 };
 
 const initialState = {
-  triggerWidth: 50,
+  triggerWidth: 54,
   menuWidth: 280,
   sidebarStyle: 'overlay',
 };
@@ -66,49 +66,38 @@ class App extends Component {
     let iconNavItemsSide = {};
 
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
-      // Desktop
+      console.log('large');
       this.setState({sidebarStyle:'squash'});
       this.props.setCurrentBreakPoint('large');
-
-      iconNavItemsTop = {
-        home: true,
-        search: true,
-        account: true,
-        contact: true,
-        cart: true,
-      }
-
+      iconNavItemsTop = {home: true, search: true, account: true, contact: true, cart: true,}
       this.props.setIconNavConfig({side:{}, top: iconNavItemsTop });
-
     }
-    else if (window.matchMedia(mediaMatch.breakpointSmall).matches) {
-      // Tablet
+    else if (window.matchMedia(mediaMatch.breakpointMedium).matches) {
+      console.log('medium');
       this.setState({sidebarStyle:'push'});
       this.props.setCurrentBreakPoint('medium');
       this.props.footerClose();
-
-      iconNavItemsTop = {
-        home: false,
-        search: false,
-        account: true,
-        contact: false,
-        cart: true,
-      }
-
-      iconNavItemsSide = {
-        home: true,
-        search: true,
-        account: false,
-        contact: true,
-        cart: false,
-      }
-
+      iconNavItemsTop = {home: false, search: false, account: true, contact: false, cart: true,}
+      iconNavItemsSide = {home: true,search: true,account: false,contact: true, cart: false,}
+      this.props.setIconNavConfig({side:iconNavItemsSide, top: iconNavItemsTop });
+    }
+    else if (window.matchMedia(mediaMatch.breakpointSmall).matches) {
+      console.log('small');
+      this.setState({sidebarStyle:'overlay'});
+      this.props.setCurrentBreakPoint('small');
+      this.props.footerClose();
+      iconNavItemsTop = {home: false, search: false, account: true, contact: false, cart: true,}
+      iconNavItemsSide = {home: true,search: true,account: false,contact: true, cart: false,}
       this.props.setIconNavConfig({side:iconNavItemsSide, top: iconNavItemsTop });
     }
     else {
-      // Mobile
-      // this.setState({sidebarStyle:'overlay'});
-      // this.props.setCurrentBreakPoint('small');
+      console.log('x-small');
+      this.setState({sidebarStyle:'overlay'});
+      this.props.setCurrentBreakPoint('x-small');
+      this.props.footerClose();
+      iconNavItemsTop = {home: false, search: false, account: true, contact: false, cart: true,}
+      iconNavItemsSide = {home: true,search: true,account: false,contact: true, cart: false,}
+      this.props.setIconNavConfig({side:iconNavItemsSide, top: iconNavItemsTop });
     }
   };
 
@@ -116,12 +105,12 @@ class App extends Component {
     switch (this.state.sidebarStyle) {
       case 'squash':
         return {
-          transformX: [props.isMenuOpen ? sidebarWidth + 2 : this.state.triggerWidth + 2],
-          marginRight: [props.isMenuOpen ? sidebarWidth + 1 : this.state.triggerWidth + 1],
+          transformX: [props.isMenuOpen ? sidebarWidth : this.state.triggerWidth],
+          marginRight: [props.isMenuOpen ? sidebarWidth : this.state.triggerWidth],
         };
       case 'push':
         return {
-          transformX: [props.isMenuOpen ? sidebarWidth + 2 : this.state.triggerWidth + 2],
+          transformX: [props.isMenuOpen ? sidebarWidth : this.state.triggerWidth],
           marginRight: this.state.triggerWidth,
         };
       default:
@@ -161,7 +150,7 @@ class App extends Component {
       <Animate
         start={() => ({
           menu: {
-            transformX: (this.state.triggerWidth - this.state.menuWidth) + 4,
+            transformX: (this.state.triggerWidth - this.state.menuWidth),
           },
           containerInner: this.sidebarAction(props, sidebarWidth),
           containerFixed: {
@@ -170,11 +159,11 @@ class App extends Component {
         })}
         update={() => ({
           menu: {
-            transformX: [props.isMenuOpen ? this.state.triggerWidth + 3 : (this.state.triggerWidth - this.state.menuWidth) + 4 ],
+            transformX: [props.isMenuOpen ? this.state.triggerWidth: (this.state.triggerWidth - this.state.menuWidth)],
           },
           containerInner: this.sidebarAction(props, sidebarWidth),
           containerFixed: {
-            left: [props.isMenuOpen ? sidebarWidth + 2 : this.state.triggerWidth + 4],
+            left: [props.isMenuOpen ? sidebarWidth : this.state.triggerWidth],
           },
           timing: {duration: 500, ease: easeExpOut},
           events: {
