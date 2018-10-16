@@ -48,6 +48,31 @@ const initialState = {
   sidebarStyle: 'overlay',
 };
 
+
+const isTouchScreen = () =>{
+  return ('ontouchstart' in window);
+}
+
+
+const touchScreenClass = () =>{
+
+  let root = document.getElementsByTagName( 'html' )[0];
+
+  if (isTouchScreen())
+  {
+    root.classList.remove('no-touch');
+    root.classList.add('touch');
+  }
+  else
+  {
+    root.classList.remove('touch');
+    root.classList.add('no-touch');
+  }
+
+
+
+};
+
 class App extends Component {
 
   constructor(props) {
@@ -64,6 +89,11 @@ class App extends Component {
 
     let iconNavItemsTop = {};
     let iconNavItemsSide = {};
+
+
+    touchScreenClass();
+
+
 
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
       console.log('large');
