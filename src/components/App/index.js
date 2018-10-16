@@ -43,7 +43,7 @@ const StickyContainer = (props) => {
 };
 
 const initialState = {
-  triggerWidth: 50,
+  triggerWidth: 54,
   menuWidth: 280,
   sidebarStyle: 'overlay',
 };
@@ -101,12 +101,12 @@ class App extends Component {
     switch (this.state.sidebarStyle) {
       case 'squash':
         return {
-          transformX: [props.isMenuOpen ? sidebarWidth + 2 : this.state.triggerWidth + 2],
-          marginRight: [props.isMenuOpen ? sidebarWidth + 1 : this.state.triggerWidth + 1],
+          transformX: [props.isMenuOpen ? sidebarWidth : this.state.triggerWidth],
+          marginRight: [props.isMenuOpen ? sidebarWidth : this.state.triggerWidth],
         };
       case 'push':
         return {
-          transformX: [props.isMenuOpen ? sidebarWidth + 2 : this.state.triggerWidth + 2],
+          transformX: [props.isMenuOpen ? sidebarWidth : this.state.triggerWidth],
           marginRight: this.state.triggerWidth,
         };
       default:
@@ -146,7 +146,7 @@ class App extends Component {
       <Animate
         start={() => ({
           menu: {
-            transformX: (this.state.triggerWidth - this.state.menuWidth) + 4,
+            transformX: (this.state.triggerWidth - this.state.menuWidth),
           },
           containerInner: this.sidebarAction(props, sidebarWidth),
           containerFixed: {
@@ -155,11 +155,11 @@ class App extends Component {
         })}
         update={() => ({
           menu: {
-            transformX: [props.isMenuOpen ? this.state.triggerWidth + 3 : (this.state.triggerWidth - this.state.menuWidth) + 4 ],
+            transformX: [props.isMenuOpen ? this.state.triggerWidth: (this.state.triggerWidth - this.state.menuWidth)],
           },
           containerInner: this.sidebarAction(props, sidebarWidth),
           containerFixed: {
-            left: [props.isMenuOpen ? sidebarWidth + 2 : this.state.triggerWidth + 4],
+            left: [props.isMenuOpen ? sidebarWidth : this.state.triggerWidth],
           },
           timing: {duration: 500, ease: easeExpOut},
           events: {
