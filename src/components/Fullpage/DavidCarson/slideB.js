@@ -11,7 +11,6 @@ import styles from './davidCarson.scss';
 import {hoverSindy} from "../../../modules/Fullpage";
 import {get} from "lodash/fp";
 
-
 import sindy_1 from '../../../media/fullpage-slides/dark/sindy-1.jpg';
 import sindy_2 from '../../../media/fullpage-slides/dark/sindy-2.jpg';
 import sindy_3 from '../../../media/fullpage-slides/dark/sindy-3.jpg';
@@ -120,6 +119,32 @@ const Slide = (props) => {
 };
 
 
+const SlideWrap = ({activeTextRef, breakpoint, hoverSindy}) => {
+
+  const getactiveTextRef = () => {
+
+    console.log(breakpoint);
+
+    switch(breakpoint) {
+      case 'x-small':
+        return 1;
+      case 'small':
+        return 2;
+      case 'medium':
+        return 3;
+      case 'large':
+        return activeTextRef;
+      default:
+        return activeTextRef;
+    }
+  };
+
+  return (
+    <Slide activeTextRef={getactiveTextRef()} hoverSindy={hoverSindy} />
+  );
+
+}
+
 Slide.propTypes = {
   hoverValue: PropTypes.bool,
 };
@@ -131,6 +156,7 @@ Slide.defaultProps = {
 export const mapStateToProps = (state) => {
   return {
     activeTextRef: get('fullpageModule.activeTextLayer', state),
+    breakpoint: get('appModule.breakpoint', state),
   }
 };
 
@@ -142,6 +168,6 @@ export const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Slide);
+export default connect(mapStateToProps, mapDispatchToProps)(SlideWrap);
 
 

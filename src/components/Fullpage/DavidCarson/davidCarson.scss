@@ -1,4 +1,5 @@
 .section_1 {
+/*    background: #0c5460;*/
     background-image: url('https://res.cloudinary.com/dghff7rpa/image/upload/v1536611005/fullpage/carson/slide-1.jpg');
 }
 .section_2 {
@@ -11,7 +12,9 @@
     background-image: url('../../../media/fullpage-slides/dark/slide-4.jpg');
     //background-image: url('https://res.cloudinary.com/dghff7rpa/image/upload/v1536611005/fullpage/carson/slide-4.jpg');
 }
-
+:global(.fp-scroller) {
+    min-height: 100%;
+}
 .fullpageBg {
     position: absolute;
     z-index: 1;
@@ -21,10 +24,6 @@
     background-position: center;
     background-color: #282c34;
 }
-
-
-
-
 
 .section {
     background-position: center;
@@ -54,13 +53,6 @@
         pointer-events: none;
     }
 }
-
-
-
-
-
-
-
 
 .section_1 {
 
@@ -144,7 +136,6 @@
             bottom: 0;
         }
     }
-
     .layer {
         &.lightning{
             display: flex;
@@ -173,7 +164,6 @@
     .layer {
         display: flex;
     }
-
     .layer {
         &.gif {
             z-index: 99;
@@ -181,24 +171,51 @@
                 position: absolute;
                 &.jumping {
                     bottom: 0;
-                    right: 50%;
+                    right: 5%;
                     opacity: 0.8;
-                    width: 26%;
+                    width: 80%;
+
+                    @include media-breakpoint-up(lg) {
+                        bottom: 0;
+                        right: 50%;
+                        opacity: 0.8;
+                        width: 26%;
+                    }
+
+
                 }
                 &.lightning {
                     opacity: 0.6;
                 }
                 &.skull {
-                    top: -2%;
-                    right: 8%;
+                    top: 5%;
+                    right: 1%;
+                    width: 93%;
+                    @include media-breakpoint-up(lg) {
+                        top: -2%;
+                        right: 8%;
+                        width: auto;
+                    }
                 }
                 &.crown {
-                    top: -2%;
-                    right: 8%;
+                    top: 5%;
+                    right: 1%;
+                    width: 93%;
+                    @include media-breakpoint-up(lg) {
+                        top: -2%;
+                        right: 8%;
+                        width: auto;
+                    }
                 }
                 &.ballonDog {
-                    top: -2%;
-                    right: 8%;
+                    top: 2%;
+                    right: 1%;
+                    width: 93%;
+                    @include media-breakpoint-up(lg) {
+                        top: -2%;
+                        right: 8%;
+                        width: auto;
+                    }
                 }
             }
         }
@@ -370,17 +387,6 @@
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 .multiLayerHeading {
     font-family: "OpenSans-Bold";

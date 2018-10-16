@@ -21,6 +21,31 @@ import sindy_3 from '../../../media/fullpage-slides/dark/sindy-3.jpg';
 
 import Lightening from '../../Svgs/lightening'
 
+
+const LighteningComp = (props) => {
+  return (
+    <div className={cx(styles.layer, styles.lightning)}>
+      <Lightening className={styles.svgWrap}/>
+    </div>
+  )
+}
+
+
+const getactiveTextRef = (breakpoint) => {
+  switch(breakpoint) {
+    case 'x-small':
+      return ;
+    case 'small':
+      return ;
+    case 'medium':
+      return;
+    case 'large':
+      return <LighteningComp />;
+    default:
+      return;
+  }
+};
+
 const Slide = (props) => {
   return (
     <div className={cx(styles.inner)}>
@@ -35,9 +60,7 @@ const Slide = (props) => {
         <SVGInline svg={SideShape} className={cx(styles.shape, styles.sideShape )} />
       </div>
 
-      <div className={cx(styles.layer, styles.lightning)}>
-        <Lightening className={styles.svgWrap}  />
-      </div>
+      {getactiveTextRef(props.breakpoint)}
 
       <div className={cx(styles.layer, styles.main)}>
 
@@ -74,6 +97,7 @@ Slide.defaultProps = {
 export const mapStateToProps = (state) => {
   return {
     activeTextRef: get('fullpageModule.activeTextLayer', state),
+    breakpoint: get('appModule.breakpoint', state),
   }
 };
 
