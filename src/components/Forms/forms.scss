@@ -122,8 +122,8 @@ $scoreGreen: #1c8621;
 
     @include media-breakpoint-down(md) {
         .formRow{
-            max-width: 80%;
-            margin: 0 auto;
+      /*      max-width: 80%;
+            margin: 0 auto;*/
         }
         label {
             margin-bottom: 20px;

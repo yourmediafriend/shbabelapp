@@ -391,8 +391,8 @@ class WeatherApp extends Component {
   render () {
     return (
       <div ref={(element) => this.weatherMap = element} className={cx(styles.weatherMap)} style={{height: this.state.mapHeight}}>
-        <GoogleMap latitude={this.state.lat} longitude={this.state.lng} options={mapOptions()} />
         <WeatherPanel weatherData={this.props.weatherData} />
+        <GoogleMap latitude={this.state.lat} longitude={this.state.lng} options={mapOptions()} />
       </div>
     )
   }
@@ -410,9 +410,6 @@ const mapStateToProps = (state) => {
     weatherData: get('retrieveOpenWeather.data', state),
     hasErrored: get('retrieveOpenWeather.hasErrored', state),
     isLoading: get('retrieveOpenWeather.isLoading', state),
-
-
-
     upDateCords: {
       latitude: get('googleMapsModule.lat', state),
       longitude: get('googleMapsModule.lng', state)

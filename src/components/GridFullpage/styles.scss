@@ -30,9 +30,7 @@
             width: 100%;
             height: 100%;
             display: flex;
-            opacity: 0;
             background-color: rgba(0, 0, 0, 0);
-            transition:background 0.5s 0.5s, opacity 0.5s 0.5s
         }
 
         .content {
@@ -42,9 +40,6 @@
             width: 100%;
             perspective: 300px;
             padding-left: 30px;
-            opacity: 0;
-            transition: opacity 0.2s 0.2s;
-
 
             .title {
                 &.mainTitle {
@@ -52,24 +47,37 @@
                     font-size: 4em;
                     line-height: 1em;
                     text-transform: uppercase;
-                    opacity: 0;
-                    transform: translateZ(-50px);
-                    transition: opacity 0.2s 0.2s, transform 0.2s 0.2s;
                 }
 
                 &.subTitle {
                     font-weight: 700;
                     font-size: 1.1em;
                     color: #e3e3e3;
-                    opacity: 0;
-                    transform: translateZ(-50px);
-                    transition: opacity 0.2s 0.2s, transform 0.2s 0.2s;
                 }
             }
         }
 
+        @include media-breakpoint-up(lg) {
+            .imageOverlay {
+                opacity: 0;
+                transition:background 0.5s 0.5s, opacity 0.5s 0.5s
+            }
+            .content {
+                opacity: 0;
+                transition: opacity 0.2s 0.2s;
+                .title {
+                    &.mainTitle {
+                        opacity: 0;
+                        transform: translateZ(-50px);
+                        transition: opacity 0.2s 0.2s, transform 0.2s 0.2s;
+                    }
 
-
+                    &.subTitle {
+                        transition: opacity 0.2s 0.2s, transform 0.2s 0.2s;
+                    }
+                }
+            }
+        }
 
         &:hover {
             z-index: auto;
@@ -92,10 +100,5 @@
                 }
             }
         }
-
-
-
-
     }
 }
-
