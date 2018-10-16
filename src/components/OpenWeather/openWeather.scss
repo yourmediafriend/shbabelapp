@@ -6,18 +6,14 @@
     height: 640px;
     width: 100%;
     position: relative;
+    @include media-breakpoint-up(md) {
+        height: 100vh;
+    }
 }
 .weatherPanel {
-    position: absolute;
-    top: 30px;
-    bottom: 30px;
-    left: 30px;
-    width: 300px;
-    background: rgba(40, 40, 40, 0.9);
-    z-index: 99;
+
     color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 2px 2px 7px 0px #3e3e3ec7;
+    background: rgba(40, 40, 40, 0.9);
     .inner {
         padding: 15px;
     }
@@ -28,6 +24,7 @@
         display: flex;
         flex-direction: row;
         margin-bottom: 30px;
+        max-width: 280px;
         .weatherIcon,
         .temperature {
             box-sizing: content-box;
@@ -43,6 +40,21 @@
         .cell {
             width: 33.333%;
             text-align: center;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        position: absolute;
+        top: 100px;
+        bottom: 30px;
+        left: 30px;
+        width: 300px;
+        z-index: 99;
+        border-radius: 5px;
+        box-shadow: 2px 2px 7px 0px #3e3e3ec7;
+        .inner {
+            overflow: hidden;
+            height: 100%;
         }
     }
 }

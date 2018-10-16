@@ -31,11 +31,7 @@ class WeatherPanel extends Component {
         <div className={cx(styles.weatherPanel)}>
           <div className={cx(styles.inner)}>
             <div className={cx(styles.header)}>
-
-
               <WeatherForm />
-
-
               <div className={cx(styles.date)}>
                 Today
               </div>

@@ -1,3 +1,6 @@
 .contentLayer {
     padding-bottom: 0px;
+    @include media-breakpoint-up(md) {
+        margin-top: -80px;
+    }
 }
