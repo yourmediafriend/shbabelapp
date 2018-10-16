@@ -1,7 +1,7 @@
 import appModule, {
   setCurrentBreakPoint,
   setUpPage,
-  setIconNavPosition,
+  setIconNavConfig,
 } from './reducers/app';
 
 // Export Reducers
@@ -11,5 +11,5 @@ export default appModule;
 export {
   setUpPage,
   setCurrentBreakPoint,
-  setIconNavPosition,
+  setIconNavConfig,
 };

@@ -26,7 +26,7 @@ class Header extends Component {
   };
 
   render() {
-    const { iconNavPosition } = this.props;
+    const { iconNavConfig } = this.props;
 
     let baseHeight = parseInt(stylesJs.header.base.height, 10);
     let compactHeight = parseInt(stylesJs.header.compact.height, 10);
@@ -68,19 +68,11 @@ class Header extends Component {
           return (
             <div className={cx(state.styles.stickyHeader, state.styles.base, state.styles.isSticky)} style={{...compStyles(state).header}}>
               <MegaMenu />
-
-              <IconNav  className={'iconNavSide'}
-                        menuItems={{
-                          home: true,
-                          search: true,
-                          account: true,
-                          contact: true,
-                          cart: true
-                        }} />
-
-
-              {iconNavPosition === 'top' ?
-             null   : null}
+              {Object.keys(iconNavConfig.top).length ?
+                <IconNav   className={'iconNavTop'}
+                           menuItems={{
+                             ...iconNavConfig.top
+                           }} /> : ''}
             </div>
           );
         }}
@@ -90,12 +82,12 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  iconNavPosition: PropTypes.string,
+  iconNavConfig: PropTypes.object,
 };
 
 export const mapStateToProps = (state) => {
   return {
-    iconNavPosition: get('appModule.iconNavPosition', state),
+    iconNavConfig: get('appModule.iconNavConfig', state),
   }
 };
 

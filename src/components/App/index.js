@@ -11,7 +11,7 @@ import { setCurrentBreakPoint } from '../../modules/App';
 import { Player as MusicPlayer } from  '../MusicPlayer';
 import { get } from 'lodash/fp';
 import { footerClose } from "../../modules/Footer";
-import { setIconNavPosition } from "../../modules/App";
+import { setIconNavConfig } from "../../modules/App";
 
 // Elements
 import MainContent from '../Content';
@@ -61,18 +61,49 @@ class App extends Component {
   };
 
   onResize = () => {
+
+    let iconNavItemsTop = {};
+    let iconNavItemsSide = {};
+
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
       // Desktop
       this.setState({sidebarStyle:'squash'});
       this.props.setCurrentBreakPoint('large');
-      this.props.setIconNavPosition('top');
+
+      iconNavItemsTop = {
+        home: true,
+        search: true,
+        account: true,
+        contact: true,
+        cart: true,
+      }
+
+      this.props.setIconNavConfig({side:{}, top: iconNavItemsTop });
+
     }
     else if (window.matchMedia(mediaMatch.breakpointSmall).matches) {
       // Tablet
       this.setState({sidebarStyle:'push'});
       this.props.setCurrentBreakPoint('medium');
       this.props.footerClose();
-      this.props.setIconNavPosition('side');
+
+      iconNavItemsTop = {
+        home: false,
+        search: false,
+        account: true,
+        contact: false,
+        cart: true,
+      }
+
+      iconNavItemsSide = {
+        home: true,
+        search: true,
+        account: false,
+        contact: true,
+        cart: false,
+      }
+
+      this.props.setIconNavConfig({side:iconNavItemsSide, top: iconNavItemsTop });
     }
     else {
       // Mobile
@@ -256,7 +287,7 @@ export const mapDispatchToProps = dispatch =>
       offCanvasMenuToggleAnimation,
       setCurrentBreakPoint,
       footerClose,
-      setIconNavPosition,
+      setIconNavConfig,
     },
     dispatch
   );

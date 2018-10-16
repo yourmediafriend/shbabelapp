@@ -66,7 +66,7 @@ class MusicControler extends Component {
   }
 }
 
-const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, iconNavPosition, footerFixedOpen, musicPlayerPosition}) => {
+const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, iconNavConfig, footerFixedOpen, musicPlayerPosition}) => {
   return (
     <div className={styles.menuTriggerWrap} >
       <div onClick={offCanvasMenuStateChange} className={styles.menuTrigger}/>
@@ -74,18 +74,14 @@ const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, iconNavPosition, foo
         <BurgerIcon menuIsOpen={menuIsOpen}/>
       </span>
 
-      {iconNavPosition === 'side' ?
-        <IconNav  className={'iconNavSide'}
-                  menuItems={{
-                      home: true,
-                      search: true,
-                      account: false,
-                      contact: true,
-                      cart: false
-                    }}/> : ''}
+      {Object.keys(iconNavConfig.side).length ?
+        <IconNav   className={'iconNavSide'}
+                   menuItems={{
+                     ...iconNavConfig.side
+                   }} /> : ''}
 
-{/*      <MusicControler footerIsOpen={footerIsOpen} />*/}
-      {/*    can't make it appear and activate animation*/}
+{/*<MusicControler footerIsOpen={footerIsOpen} />*/}
+{/*can't make it appear and activate animation*/}
 
       <MusicControler footerFixedOpen={footerFixedOpen} />
 
@@ -98,13 +94,13 @@ MenuTrigger.props = {
   offCanvasMenuStateChange: PropTypes.func,
   menuIsOpen: PropTypes.bool,
   showMusicControls: PropTypes.bool,
-  iconNavPosition: PropTypes.string,
+  iconNavConfig: PropTypes.object,
 }
 
 const mapStateToProps = state => {
   return ({
     menuIsOpen:get('offCanvasMenu.offCanvasMenuOpen', state),
-    iconNavPosition: get('appModule.iconNavPosition', state),
+    iconNavConfig: get('appModule.iconNavConfig', state),
     musicPlayerPosition: get('musicPlayerModule.position', state),
     footerFixedOpen: get('footerModule.footerFixedOpen', state),
   });
