@@ -66,12 +66,14 @@ class App extends Component {
     let iconNavItemsSide = {};
 
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
+      console.log('large');
       this.setState({sidebarStyle:'squash'});
       this.props.setCurrentBreakPoint('large');
       iconNavItemsTop = {home: true, search: true, account: true, contact: true, cart: true,}
       this.props.setIconNavConfig({side:{}, top: iconNavItemsTop });
     }
     else if (window.matchMedia(mediaMatch.breakpointMedium).matches) {
+      console.log('medium');
       this.setState({sidebarStyle:'push'});
       this.props.setCurrentBreakPoint('medium');
       this.props.footerClose();
@@ -80,6 +82,7 @@ class App extends Component {
       this.props.setIconNavConfig({side:iconNavItemsSide, top: iconNavItemsTop });
     }
     else if (window.matchMedia(mediaMatch.breakpointSmall).matches) {
+      console.log('small');
       this.setState({sidebarStyle:'overlay'});
       this.props.setCurrentBreakPoint('small');
       this.props.footerClose();
@@ -88,6 +91,7 @@ class App extends Component {
       this.props.setIconNavConfig({side:iconNavItemsSide, top: iconNavItemsTop });
     }
     else {
+      console.log('x-small');
       this.setState({sidebarStyle:'overlay'});
       this.props.setCurrentBreakPoint('x-small');
       this.props.footerClose();

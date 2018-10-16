@@ -11,7 +11,7 @@ function logProps(WrappedComponent) {
   class LogProps extends React.Component {
 
    componentDidMount() {
-      console.log('componentDidMount:', this.props.forwardedRef.current);
+     // console.log('componentDidMount:', this.props.forwardedRef.current);
     }
 
 
@@ -23,7 +23,7 @@ function logProps(WrappedComponent) {
 
     render() {
 
-      console.log('render:', this.props.forwardedRef.current);
+     // console.log('render:', this.props.forwardedRef.current);
 
      // console.log('Render:', this.props.forwardRef.current);
       return <WrappedComponent {...this.props} />;

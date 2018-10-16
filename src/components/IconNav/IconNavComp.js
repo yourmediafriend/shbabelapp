@@ -9,7 +9,6 @@ import { AccountDropdownMenu } from '../User'
 
 import { Nav, NavItem } from 'reactstrap';
 import styles from './iconNavStyles.scss';
-import baner from "../Banner";
 
 const AppContext = React.createContext();
 
@@ -123,17 +122,15 @@ const IconNavCart = (props) => {
   );
 }
 
-const IconNavLocation = (props) => {
-  return (
-    <NavItem>
-      <MenuItem>
-        <MenuLink icon="location" clickEvent={props.modalOpen.bind(this, 'location')} />
-      </MenuItem>
-    </NavItem>
-  );
-}
-
-
+// const IconNavLocation = (props) => {
+//   return (
+//     <NavItem>
+//       <MenuItem>
+//         <MenuLink icon="location" clickEvent={props.modalOpen.bind(this, 'location')} />
+//       </MenuItem>
+//     </NavItem>
+//   );
+// }
 
 const IconNav = (props) => {
 
