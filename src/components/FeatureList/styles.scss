@@ -6,7 +6,10 @@
     margin: 0;*/
  }
 .listGroupItem {
-    flex-basis: 50%;
+    flex-basis: 100%;
+    @include media-breakpoint-up(md) {
+        flex-basis: 50%;
+    }
     border: 0;
     margin: 0;
     background: transparent;
@@ -23,22 +26,23 @@
         padding-left: 80px;
         opacity: 0;
         transform: translateX(150px);
-
     }
 
     &:nth-child(odd){
-        text-align: right;
-        img {
-            float: right;
-            width: 50px;
-            height: auto;
-            transform: translateX(-50px);
-        }
-        .text {
-            display: block;
-            padding-left: 0;
-            padding-right: 80px;
-            transform: translateX(-150px);
+        @include media-breakpoint-up(md) {
+            text-align: right;
+            img {
+                float: right;
+                width: 50px;
+                height: auto;
+                transform: translateX(-50px);
+            }
+            .text {
+                display: block;
+                padding-left: 0;
+                padding-right: 80px;
+                transform: translateX(-150px);
+            }
         }
     }
 }

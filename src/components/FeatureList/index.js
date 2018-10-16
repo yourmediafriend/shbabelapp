@@ -26,7 +26,7 @@ const FeatureListItem = props => {
 let FeatureListGroup = props => {
 
   const delay = 1;
-  console.log('FeatureListGroup', props);
+  // console.log('FeatureListGroup', props);
   return (
     <ListGroup id='FeatureList' className={styles.listGroup}  >
       {props.data.nodeQuery.entities.map((item, index) => <FeatureListItem key={index} content={item} delay={index * delay} />)}
@@ -44,7 +44,7 @@ const FeatureListQuery = props => {
         if (loading) return <p>Loading...</p>;
         if (error) return `Error: ${error.message}`;
         if (data.nodeQuery.entities.length) {
-          console.log('FeatureListQuery', data);
+          // console.log('FeatureListQuery', data);
           return (
             <FeatureListGroup data={data} />
           )

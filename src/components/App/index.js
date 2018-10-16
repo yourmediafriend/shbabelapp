@@ -66,49 +66,34 @@ class App extends Component {
     let iconNavItemsSide = {};
 
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
-      // Desktop
       this.setState({sidebarStyle:'squash'});
       this.props.setCurrentBreakPoint('large');
-
-      iconNavItemsTop = {
-        home: true,
-        search: true,
-        account: true,
-        contact: true,
-        cart: true,
-      }
-
+      iconNavItemsTop = {home: true, search: true, account: true, contact: true, cart: true,}
       this.props.setIconNavConfig({side:{}, top: iconNavItemsTop });
-
     }
-    else if (window.matchMedia(mediaMatch.breakpointSmall).matches) {
-      // Tablet
+    else if (window.matchMedia(mediaMatch.breakpointMedium).matches) {
       this.setState({sidebarStyle:'push'});
       this.props.setCurrentBreakPoint('medium');
       this.props.footerClose();
-
-      iconNavItemsTop = {
-        home: false,
-        search: false,
-        account: true,
-        contact: false,
-        cart: true,
-      }
-
-      iconNavItemsSide = {
-        home: true,
-        search: true,
-        account: false,
-        contact: true,
-        cart: false,
-      }
-
+      iconNavItemsTop = {home: false, search: false, account: true, contact: false, cart: true,}
+      iconNavItemsSide = {home: true,search: true,account: false,contact: true, cart: false,}
+      this.props.setIconNavConfig({side:iconNavItemsSide, top: iconNavItemsTop });
+    }
+    else if (window.matchMedia(mediaMatch.breakpointSmall).matches) {
+      this.setState({sidebarStyle:'overlay'});
+      this.props.setCurrentBreakPoint('small');
+      this.props.footerClose();
+      iconNavItemsTop = {home: false, search: false, account: true, contact: false, cart: true,}
+      iconNavItemsSide = {home: true,search: true,account: false,contact: true, cart: false,}
       this.props.setIconNavConfig({side:iconNavItemsSide, top: iconNavItemsTop });
     }
     else {
-      // Mobile
-      // this.setState({sidebarStyle:'overlay'});
-      // this.props.setCurrentBreakPoint('small');
+      this.setState({sidebarStyle:'overlay'});
+      this.props.setCurrentBreakPoint('x-small');
+      this.props.footerClose();
+      iconNavItemsTop = {home: false, search: false, account: true, contact: false, cart: true,}
+      iconNavItemsSide = {home: true,search: true,account: false,contact: true, cart: false,}
+      this.props.setIconNavConfig({side:iconNavItemsSide, top: iconNavItemsTop });
     }
   };
 
