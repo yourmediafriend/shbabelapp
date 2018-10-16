@@ -22,10 +22,6 @@
     background-color: #282c34;
 }
 
-
-
-
-
 .section {
     background-position: center;
     background-size: cover;
@@ -54,13 +50,6 @@
         pointer-events: none;
     }
 }
-
-
-
-
-
-
-
 
 .section_1 {
 
@@ -144,7 +133,6 @@
             bottom: 0;
         }
     }
-
     .layer {
         &.lightning{
             display: flex;
@@ -173,32 +161,56 @@
     .layer {
         display: flex;
     }
-
     .layer {
         &.gif {
             z-index: 99;
             img {
                 position: absolute;
+
+
                 &.jumping {
+
                     bottom: 0;
-                    right: 50%;
+                    right: 5%;
                     opacity: 0.8;
-                    width: 26%;
+                    width: 80%;
+                    @include media-breakpoint-up(md) {
+                        bottom: 0;
+                        right: 50%;
+                        opacity: 0.8;
+                        width: 26%;
+                    }
                 }
                 &.lightning {
                     opacity: 0.6;
                 }
                 &.skull {
-                    top: -2%;
-                    right: 8%;
+                    top: 2%;
+                    right: 1%;
+                    width: 93%;
+                    @include media-breakpoint-up(md) {
+                        top: -2%;
+                        right: 8%;
+                        width: auto;
+                    }
                 }
                 &.crown {
-                    top: -2%;
-                    right: 8%;
+                    top: 2%;
+                    right: 1%;
+                    width: 93%;
+                    @include media-breakpoint-up(md) {
+                        top: -2%;
+                        right: 8%;
+                    }
                 }
                 &.ballonDog {
-                    top: -2%;
-                    right: 8%;
+                    top: 2%;
+                    right: 1%;
+                    width: 93%;
+                    @include media-breakpoint-up(md) {
+                        top: -2%;
+                        right: 8%;
+                    }
                 }
             }
         }
@@ -370,17 +382,6 @@
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 .multiLayerHeading {
     font-family: "OpenSans-Bold";
