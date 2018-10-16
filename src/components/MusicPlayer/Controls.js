@@ -140,11 +140,8 @@ class TimelineSlider extends Component {
 
 
 class VolumeControl extends Component {
-
   render() {
-
     const { hoverDelay, hoverOffDelay, volume, muted, toggleMuted, setVolume } = this.props;
-
     return (
       <div className={cx(styles.section, styles.volume)}>
         <ReactHoverObserver
@@ -187,35 +184,27 @@ class Controls extends Component {
             {track.fieldTrack.uri && playing ? <span className={cx(styles.icon, styles.pause)}><Icon icon={'pause'} /></span> : <span className={cx(styles.icon, styles.play)}><Icon icon={'play'} /></span>}
           </button>
         </div>
-
         <div className={cx(styles.section, styles.controls, styles.loop)}>
           <button className={cx(styles.button)} onClick={toggleLoop}>
-              <span className={cx(styles.icon)}>
-                <Icon icon={'loop'} />
-              </span>
+            <span className={cx(styles.icon)}>
+              <Icon icon={'loop'} />
+            </span>
           </button>
         </div>
-
         <div className={cx(styles.section, styles.timeline)}>
           <div className={cx(styles.cover)}>
             {track.fieldCover ? <Image cloudName="dghff7rpa" publicId={`mix/${track.fieldCover}`} width="40" crop="scale" /> : ''}
           </div>
-
           <div className={cx(styles.timelineWrap)}>
-
             <div className={styles.timelineDetails}>
               <div className={cx(styles.elapsed)}>
                 <Duration seconds={duration * progress.played} />
               </div>
-
               {track.fieldTrack.uri ? <TrackDetails title={track.title }  fieldArtist={track.fieldArtist }/> : ''}
-
               <div className={cx(styles.duration)}>
                 <div onClick={toggleShowRemaining}>{!(showRemaining) ?  <Duration seconds={duration} /> : <span>- <Duration seconds={duration * (1 - progress.played)} /></span>}</div>
               </div>
             </div>
-
-
             <div className={styles.barWrap}>
               <TimelineSlider  progress={progress} setSeekTo={this.props.setSeekTo} />
             </div>

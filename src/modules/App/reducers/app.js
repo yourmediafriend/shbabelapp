@@ -1,9 +1,8 @@
 const PAGE_SETUP = "appModule/PAGE_SETUP";
-
-
 const FIXED_FOOTER = "appModule/FIXED_FOOTER";
 const REVEAL_FOOTER = "appModule/REVEAL_FOOTER";
 const STICKY_HEADER = "appModule/STICKY_HEADER";
+const ICON_NAV_CONFIG = "appModule/ICON_NAV_POSITON";
 
 const SET_CURRENT_BREAKPOINT = "appModule/SET_CURRENT_BREAKPOINT";
 
@@ -11,6 +10,10 @@ export const initialState = {
   fixedFooter: true,
   revealFooter: true,
   stickyHeader: true,
+  iconNavConfig: {
+    side: {},
+    top: {}
+  }
 };
 
 // Reducer
@@ -41,6 +44,13 @@ export default function reducer(state=initialState, action = {}) {
         ...state,
         stickyHeaderHeight: true,
       }
+
+    case ICON_NAV_CONFIG:
+      return {
+        ...state,
+        iconNavConfig: action.payload.iconNavConfig,
+      }
+
 
     case SET_CURRENT_BREAKPOINT:
       return {
@@ -79,6 +89,15 @@ export function setRevealFooter() {
 export function setStickyHeader() {
   return {
     type: STICKY_HEADER,
+  };
+}
+
+export function setIconNavConfig(iconNavConfig) {
+  return {
+    type: ICON_NAV_CONFIG,
+    payload: {
+      iconNavConfig
+    }
   };
 }
 

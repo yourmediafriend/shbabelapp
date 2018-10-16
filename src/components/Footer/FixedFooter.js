@@ -38,7 +38,7 @@ class Footer extends Component {
 
         <Animate
           start={() => ({
-            showFooter:true,
+            showFooter: true,
             footer:{
               translateY: 0
             }
@@ -61,18 +61,6 @@ class Footer extends Component {
           })}
         >
           {(state) => {
-
-
-            // return (
-            //   <div ref={(element) => this.footerElement = element}
-            //        className={cx(styles.footer, styles.fixed )}
-            //        style={{...this.myStyles(state)}} >
-            //     <FooterMusicPlayer />
-            //     <FooterCloseComp  clickEvent={this.props.footerClose}/>
-            //   </div>
-            // )
-
-
             return state.showFooter ?
               (
                 <div ref={(element) => this.footerElement = element}
@@ -93,6 +81,7 @@ class Footer extends Component {
 export const mapStateToProps = (state) => {
   return {
     footerFixedOpen: get('footerModule.footerFixedOpen', state),
+    breakpoint: get('appModule.breakpoint', state),
   }
 };
 
@@ -106,11 +95,11 @@ export const mapDispatchToProps = dispatch =>
 
 
 Footer.props = {
-  xxx: PropTypes.bool
+  breakpoint: PropTypes.string
 };
 
 Footer.defaultProps = {
-  xxx: true
+  breakpoint: 'small'
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

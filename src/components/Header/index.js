@@ -26,7 +26,7 @@ class Header extends Component {
   };
 
   render() {
-    const { breakpoint } = this.props;
+    const { iconNavConfig } = this.props;
 
     let baseHeight = parseInt(stylesJs.header.base.height, 10);
     let compactHeight = parseInt(stylesJs.header.compact.height, 10);
@@ -68,7 +68,11 @@ class Header extends Component {
           return (
             <div className={cx(state.styles.stickyHeader, state.styles.base, state.styles.isSticky)} style={{...compStyles(state).header}}>
               <MegaMenu />
-              {breakpoint === 'large' || breakpoint === 'medium' ? <IconNav /> : null}
+              {Object.keys(iconNavConfig.top).length ?
+                <IconNav   className={'iconNavTop'}
+                           menuItems={{
+                             ...iconNavConfig.top
+                           }} /> : ''}
             </div>
           );
         }}
@@ -78,12 +82,12 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  breakpoint: PropTypes.string,
+  iconNavConfig: PropTypes.object,
 };
 
 export const mapStateToProps = (state) => {
   return {
-    breakpoint: get('appModule.breakpoint', state),
+    iconNavConfig: get('appModule.iconNavConfig', state),
   }
 };
 

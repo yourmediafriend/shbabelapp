@@ -10,6 +10,8 @@ import { easeExpOut } from 'd3-ease';
 import { setCurrentBreakPoint } from '../../modules/App';
 import { Player as MusicPlayer } from  '../MusicPlayer';
 import { get } from 'lodash/fp';
+import { footerClose } from "../../modules/Footer";
+import { setIconNavConfig } from "../../modules/App";
 
 // Elements
 import MainContent from '../Content';
@@ -59,20 +61,54 @@ class App extends Component {
   };
 
   onResize = () => {
+
+    let iconNavItemsTop = {};
+    let iconNavItemsSide = {};
+
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
       // Desktop
       this.setState({sidebarStyle:'squash'});
       this.props.setCurrentBreakPoint('large');
+
+      iconNavItemsTop = {
+        home: true,
+        search: true,
+        account: true,
+        contact: true,
+        cart: true,
+      }
+
+      this.props.setIconNavConfig({side:{}, top: iconNavItemsTop });
+
     }
     else if (window.matchMedia(mediaMatch.breakpointSmall).matches) {
       // Tablet
       this.setState({sidebarStyle:'push'});
       this.props.setCurrentBreakPoint('medium');
+      this.props.footerClose();
+
+      iconNavItemsTop = {
+        home: false,
+        search: false,
+        account: true,
+        contact: false,
+        cart: true,
+      }
+
+      iconNavItemsSide = {
+        home: true,
+        search: true,
+        account: false,
+        contact: true,
+        cart: false,
+      }
+
+      this.props.setIconNavConfig({side:iconNavItemsSide, top: iconNavItemsTop });
     }
     else {
       // Mobile
-      this.setState({sidebarStyle:'overlay'});
-      this.props.setCurrentBreakPoint('small');
+      // this.setState({sidebarStyle:'overlay'});
+      // this.props.setCurrentBreakPoint('small');
     }
   };
 
@@ -161,11 +197,11 @@ class App extends Component {
           return (
             <div className={styles.outer}>
 
-                <div className={styles.sidebarMenuWrap} style={{...this.myStyles(state).menu}}>
-                  <SidebarMenu showMenu={ !(!this.props.isMenuOpen && !this.props.isMenuAnimating)  }/>
-                </div>
+              <div className={styles.sidebarMenuWrap} style={{...this.myStyles(state).menu}}>
+                <SidebarMenu showMenu={ !(!this.props.isMenuOpen && !this.props.isMenuAnimating)  }/>
+              </div>
 
-                <MenuTrigger/>
+              <MenuTrigger/>
 
               <div className={styles.mainContainer}>
 
@@ -250,6 +286,8 @@ export const mapDispatchToProps = dispatch =>
       offCanvasMenuStateChange,
       offCanvasMenuToggleAnimation,
       setCurrentBreakPoint,
+      footerClose,
+      setIconNavConfig,
     },
     dispatch
   );
