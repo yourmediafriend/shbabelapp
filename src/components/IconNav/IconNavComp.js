@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 import ReactHoverObserver from '../ReactHoverObserver';
 import { Link } from 'react-router-dom';
 import Icon from '../Icons';
@@ -9,6 +11,8 @@ import { AccountDropdownMenu } from '../User'
 
 import { Nav, NavItem } from 'reactstrap';
 import styles from './iconNavStyles.scss';
+import {get} from "lodash/fp";
+
 
 const AppContext = React.createContext();
 
@@ -91,13 +95,18 @@ const IconNavSearch = (props) => {
   );
 }
 const IconNavAccount = (props) => {
+
+  const showDropdown = () => {
+    return (props.breakpoint === 'large' )
+  };
+
   return (
     <NavItem className={styles.account}>
       <MenuItem hoverOffDelay={250} >
         <MenuLink icon="account" clickEvent={props.modalToggle.bind(this, 'account', 0)} />
-        <Dropdown>
-          <AccountDropdownMenu />
-        </Dropdown>
+        {showDropdown() ?   <Dropdown>
+                              <AccountDropdownMenu />
+                            </Dropdown> : null}
       </MenuItem>
     </NavItem>
   );
@@ -162,5 +171,17 @@ IconNav.defaultProps = {
   },
 };
 
+export const mapStateToProps = (state) => {
+  return {
+    breakpoint: get('appModule.breakpoint', state)
+  }
+};
 
-export default IconNav;
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {},
+    dispatch
+  );
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(IconNav);
