@@ -8,12 +8,12 @@ import scrollMagicParallax from './scrollMagicParallax';
 import ReactHoverObserver from '../ReactHoverObserver';
 import Tilt from 'react-vanilla-tilt'
 
-import placeholderA from './media/placeholder-5000x500-1.jpg'
-import placeholderB from './media/placeholder-5000x500-2.jpg'
-import placeholderC from './media/placeholder-5000x500-3.jpg'
-import placeholderD from './media/placeholder-5000x500-4.jpg'
-import placeholderE from './media/placeholder-5000x500-5.jpg'
-import placeholderF from './media/placeholder-5000x500-6.jpg'
+import placeholderA from '../../media/placeholders/placeholder-5000x500-1.jpg'
+import placeholderB from '../../media/placeholders/placeholder-5000x500-2.jpg'
+import placeholderC from '../../media/placeholders/placeholder-5000x500-3.jpg'
+import placeholderD from '../../media/placeholders/placeholder-5000x500-4.jpg'
+import placeholderE from '../../media/placeholders/placeholder-5000x500-5.jpg'
+import placeholderF from '../../media/placeholders/placeholder-5000x500-6.jpg'
 
 const placeholderImages = [placeholderA, placeholderB, placeholderC, placeholderD, placeholderE, placeholderF];
 
