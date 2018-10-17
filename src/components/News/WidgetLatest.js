@@ -35,7 +35,6 @@ const Image = ({id, image}) => {
 
 
 class NewsItem extends Component {
-
   render() {
     return (
       <ListGroupItem className={styles.item}>

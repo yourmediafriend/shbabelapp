@@ -101,6 +101,8 @@ class NewsArticleLayout extends Component {
   }
 }
 
+export { ArticleSideBar };
+
 export default NewsArticleLayout;
 
 
