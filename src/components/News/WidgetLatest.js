@@ -6,17 +6,27 @@ import { Link } from 'react-router-dom';
 import UtcSecondsToDate from './utcSecondsToDate';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import newsArticlesIndexQuery from "../../graphQL/newsArticlesIndexQuery";
-
 import { Category } from './ArticleElements';
 
+import placeholderA from '../../media/placeholders/placeholder-5000x500-1.jpg'
+import placeholderB from '../../media/placeholders/placeholder-5000x500-2.jpg'
+import placeholderC from '../../media/placeholders/placeholder-5000x500-3.jpg'
+import placeholderD from '../../media/placeholders/placeholder-5000x500-4.jpg'
+import placeholderE from '../../media/placeholders/placeholder-5000x500-5.jpg'
+import placeholderF from '../../media/placeholders/placeholder-5000x500-6.jpg'
+const placeholderImages = [placeholderA, placeholderB, placeholderC, placeholderD, placeholderE, placeholderF];
 
-const Image = ({image}) => {
 
+const getPlaceholderImage = (id) => {
+  return placeholderImages[id % placeholderImages.length]
+};
+
+
+const Image = ({id, image}) => {
   if (image) {
-
     return (
       <div className={styles.image}>
-        <img src={'http://res.cloudinary.com/dghff7rpa/image/upload/c_fit,w_380/v1536331737/2018-09/me.jpg'} alt={image.alt} />
+        <img src={getPlaceholderImage(id)} alt={image.alt} />
       </div>
     );
   }
@@ -30,7 +40,7 @@ class NewsItem extends Component {
     return (
       <ListGroupItem className={styles.item}>
         <article>
-          <Link  to={`/news${this.props.url}`}><Image image={this.props.image} /></Link>
+          <Link  to={`/news${this.props.url}`}><Image image={this.props.image} id={this.props.id} /></Link>
           <div className={styles.summaryHeader}>
             <Category category={this.props.category} />
             <h2 className={styles.title}><Link to={`/news${this.props.url}`} className={styles.articleLink} >{this.props.title}</Link></h2>
@@ -61,6 +71,7 @@ class NewsLatestWidget extends Component {
               <ListGroup className={styles.articlesWidget}>
                 {data.nodeQuery.entities.map(article =>
                   <NewsItem key={article.nid}
+                            id={article.nid}
                             title={article.title}
                             url={article.entityUrl.path}
                             author={article.entityOwner}

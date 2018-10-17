@@ -14,6 +14,16 @@ import ContentLayer from '../Content/ContentLayer'
 import { Category, Image } from './ArticleElements';
 import cx from "classnames";
 
+import placeholderA from '../../media/placeholders/placeholder-5000x500-1.jpg'
+import placeholderB from '../../media/placeholders/placeholder-5000x500-2.jpg'
+import placeholderC from '../../media/placeholders/placeholder-5000x500-3.jpg'
+import placeholderD from '../../media/placeholders/placeholder-5000x500-4.jpg'
+import placeholderE from '../../media/placeholders/placeholder-5000x500-5.jpg'
+import placeholderF from '../../media/placeholders/placeholder-5000x500-6.jpg'
+
+const placeholderImages = [placeholderA, placeholderB, placeholderC, placeholderD, placeholderE, placeholderF];
+
+
 class NewsItem extends Component {
 
   constructor(props) {
@@ -22,11 +32,15 @@ class NewsItem extends Component {
                     redirect: false,
                  };
   }
-
   handleOnClick = () => {
     // some action...
     // then redirect
     this.setState({redirect: true});
+  }
+
+
+  getPlaceholderImage () {
+    return placeholderImages[this.props.id % placeholderImages.length]
   }
 
   render() {
@@ -39,7 +53,9 @@ class NewsItem extends Component {
       <ListGroupItem className={styles.item}>
           <article onClick={this.handleOnClick}>
             <div className={styles.thumbnail}>
-              <Image image={this.props.image} />
+              <div className={styles.image}>
+                <img src={this.getPlaceholderImage()} alt={''} />
+              </div>
             </div>
             <div className={styles.summaryHeader}>
               <Category category={this.props.category} />
@@ -73,6 +89,7 @@ class NewsArticlesIndex extends Component {
               <ListGroup className={styles.articlesIndex}>
                 {data.nodeQuery.entities.map(article =>
                   <NewsItem key={article.nid}
+                            id={article.nid}
                             title={article.title}
                             url={article.entityUrl.path}
                             author={article.entityOwner}
