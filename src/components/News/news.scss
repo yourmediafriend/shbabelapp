@@ -12,8 +12,14 @@
         margin-top: 20px;
         padding: 0px 20px;
         border: 0;
-        flex-basis: 50%;
+        flex-basis: 100%;
 
+        @include media-breakpoint-up(md) {
+            flex-basis: 50%;
+        }
+        @include media-breakpoint-up(lg) {
+            flex-basis: 33.33333%;
+        }
     }
     article {
         background: #2b2b2b;
