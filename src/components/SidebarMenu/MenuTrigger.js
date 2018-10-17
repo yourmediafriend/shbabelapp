@@ -28,7 +28,7 @@ class MusicControler extends Component {
 
     let props = this.props;
 
-    console.log('MenuTrigger', !(props.footerFixedOpen));
+    //console.log('MenuTrigger', !(props.footerFixedOpen));
 
     return (
       <Animate
@@ -55,7 +55,7 @@ class MusicControler extends Component {
       >
         {(state) => {
 
-          console.log('state.showPlayer', state.showPlayer);
+          // console.log('state.showPlayer', state.showPlayer);
 
           return state.showPlayer ?
             (

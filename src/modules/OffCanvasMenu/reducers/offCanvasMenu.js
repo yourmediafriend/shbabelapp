@@ -57,7 +57,7 @@ export function offCanvasMenuStateChange() {
 }
 
 export function offCanvasMenuClose() {
-  //console.log('offCanvasMenuClose');
+  console.log('offCanvasMenuClose');
   return {
     type: MENU_CLOSE,
   };
