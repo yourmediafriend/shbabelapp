@@ -22,7 +22,7 @@ let bg_12= "https://res.cloudinary.com/dghff7rpa/image/upload/v1537142824/backgr
 let bg_13= "https://res.cloudinary.com/dghff7rpa/image/upload/v1537145752/backgrounds/images/brutal-trash-polka.jpg";
 
 
-let bgImages_Brutalist= [bg_3, bg_10, bg_3];
+let bgImages_Brutalist= [bg_5, bg_2, bg_8];
 
 let textBanner = ['Power','Exploitation','Corruption','Despair', 'Fake News','Exploitation','Shaming','Trolls'];
 
