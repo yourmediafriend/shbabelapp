@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router';
 import {VelocityComponent} from 'velocity-react';
 import { NavLink } from 'reactstrap';
-import { NavLink as RRNavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Icon from '../Icons';
 import styles from './nestedMenu.scss';
 import cx from 'classnames';
-
+import {get} from "lodash/fp";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {offCanvasMenuClose} from "../../modules/OffCanvasMenu";
 
 const Loading = ({style}) => {
     return <div style={style}>loading...</div>;
@@ -46,6 +50,18 @@ Header.propTypes = {
 
 class Container extends React.Component {
 
+    state = {
+      redirect: false,
+    }
+
+    componentDidUpdate () {
+      if (this.state.redirect) {
+        this.setState({
+          redirect: false
+        })
+      }
+     }
+
     NavLinkStyles() {
       let linkStyle;
       const { node, currentUrl, isActiveBranch} = this.props;
@@ -55,15 +71,24 @@ class Container extends React.Component {
       return linkStyle;
     }
 
+    handleOnClick() {
+      this.props.offCanvasMenuClose();
+      this.setState({ redirect: true });
+    }
+
     render() {
       const {style, decorators, terminal, onClick, node, level } = this.props;
+
+      if (this.state.redirect === true) {
+        return <Redirect  push to={`${node.url.path}`} />
+      }
 
       return (
         <div>
           {terminal  ?
-            <NavLink to={node.url.path} activeClassName="active" tag={RRNavLink} className={this.NavLinkStyles()}   >
-              <decorators.Header node={node} level={level} style={style.header}/>
-            </NavLink>
+              <NavLink href={'#'} onClick={this.handleOnClick.bind(this)} className={this.NavLinkStyles()}   >
+                <decorators.Header node={node} level={level} style={style.header}/>
+              </NavLink>
             :
             <div onClick={ onClick } className={cx('nav-link', this.NavLinkStyles())} >
               <decorators.Header node={node} level={level} style={style.header}/>
@@ -106,9 +131,21 @@ Container.propTypes = {
     node: PropTypes.object.isRequired
 };
 
+const mapStateToProps = state => {
+  return ({});
+}
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      offCanvasMenuClose,
+    },
+    dispatch
+  );
+
 export default {
     Loading,
     Toggle,
     Header,
-    Container
+    Container: (connect(mapStateToProps, mapDispatchToProps)(Container))
 };
