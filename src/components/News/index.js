@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Query } from "react-apollo";
 import styles from './news.scss';
 import { Link, Redirect } from 'react-router-dom';
-import { TwoColumnRight }  from '../Layout';
+import { OneColumnCenter }  from '../Layout';
 import newsArticlesIndexQuery from '../../graphQL/newsArticlesIndexQuery';
 import UtcSecondsToDate from './utcSecondsToDate';
 import PageTitle from '../PageTitle'
@@ -114,7 +114,7 @@ class NewsIndexLayout extends Component {
       <MainLayer className={cx(styles.mainLayer)}>
         <ContentLayer className={cx(styles.contentLayer)} >
           <PageTitle title={'News Index'} layout={'center'} style={{}} />
-          <TwoColumnRight contentMain={<NewsArticlesIndex />}  contentColumnLeft={null} />
+          <OneColumnCenter contentMain={<NewsArticlesIndex />}  />
         </ContentLayer>
       </MainLayer>
     )
