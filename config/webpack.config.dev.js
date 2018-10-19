@@ -258,27 +258,89 @@ module.exports = {
                     resources: require(path.join(process.cwd(), "src/styles/utils.js"))
 
                   },
-                },
+                }
               ]
             })
           },
-          // "svg" react-svg-loader
-          {
+
+
+         {
             test: /\.svg$/,
-            use: {
-              loader: 'url-loader',
-              loader: 'svg-inline-loader',
-              loader: 'file-loader',
-              options: {},
+            use: ['@svgr/webpack', 'url-loader', 'file-loader'],
+          },
+          {
+            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+            issuer: {
+              test: /\.jsx?$/
             },
+            use: ['file-loader', '@svgr/webpack', 'url-loader']
+          },
+          {
+            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'url-loader'
+          },
+
+
+          // },          {
+          //   test: /\.svg$/,
+          //   use: [
+          //     {
+          //       loader: '@svgr/webpack',
+          //       options: {
+          //         native: true,
+          //       },
+          //     },
+          //   ],
+          // },
+          // "svg" react-svg-loader
+
+    /*      {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: '@svgr/webpack',
+                options: {
+                  native: true,
+                },
+              },
+              {
+                loader: 'url-loader',
+                options: {},
+              },
+              {
+                loader: 'file-loader',
+                options: {},
+              }
+            ]
+          },*/
+
+
+            //      loader: 'svg-react-loader',
+/*
+            exclude: /node_modules/,
+            use: {
+              loader: 'svg-react-loader',
+              options: {
+                tag: 'symbol',
+                attrs: {
+                  title: 'example',
+                },
+                name: 'MyIcon',
+              },
+            },
+            */
+
+
+            // loader: 'file-loader',
+//      loader: 'svg-url-loader',
+
 
             // loader: 'url-loader',
             // loader: 'svg-url-loader',
-            // loader: 'file-loader',
             // loader: 'svg-inline-loader',
 
 
-          },
+
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
           // In production, they would get copied to the `build` folder.

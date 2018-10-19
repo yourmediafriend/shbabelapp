@@ -4,6 +4,8 @@ import cx from 'classnames';
 import { flow, get } from 'lodash/fp';
 import styles from './openWeather.scss';
 
+import CloudsSimpleUrl, { ReactComponent as CloudsSimple } from './media/icons/simple/clouds.svg';
+
 import WeatherIconJson from './icons.js';
 
 const WeatherIconSvg = (iconRef, iconStyle) => {
@@ -21,10 +23,23 @@ const WeatherIcon = ({iconId, iconStyle}) => {
 
   let svg = WeatherIconSvg(iconId,iconStyle);
 
-  if (svg) {
+  console.log(CloudsSimple);
+
+
+ if (svg) {
     return (
       <div>
-        <SVGInline svg={svg} className={cx(styles.icon, styles.sun )} />
+
+
+   {/*
+        <CloudsSimple />*/}
+
+
+
+    {/*    <SVGInline svg={svg} className={cx(styles.icon, styles.sun )} />*/}
+
+{/*
+       */}
       </div>
     )
   }
