@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 
 import MainLayer from '../../../Content/MainLayer'
 import ContentLayer from '../../../Content/ContentLayer'
-
 import { OneColumnCenter }  from '../../../Layout';
-import GridWobble from '../../../GridWobble'
+import Grid from '../../../Grid'
 import styles from './gridpages.scss'
 import cx from 'classnames';
 
@@ -14,7 +13,7 @@ class GridPage extends Component {
     return (
       <MainLayer className={cx(styles.mainLayer)}>
         <ContentLayer className={cx(styles.contentLayer)}>
-         <OneColumnCenter contentMain={<GridWobble />} />
+         <OneColumnCenter contentMain={<Grid className={'panelOver'}/>} />
         </ContentLayer>
       </MainLayer>
     )

@@ -18,9 +18,6 @@ import RefTest from './components/RefTest'
 import EmptyPage from './components/empty'
 
 
-
-
-
 // this works but disrupts certain Componenets (Music player and Sidemenu) with a page refresh
 const userIsAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',
@@ -341,6 +338,17 @@ const SwitchRoute = () => (
                                pageRef={'wobble'} />
     }} />
 
+    <Route exact path='/grids/hover' render={(routeProps) => {
+      // do I set the initial App State here
+      connect(setUpPage({
+        stickyHeader: true,
+        fixedFooter: true,
+        revealFooter: true,
+      }));
+      return <OneColumnSidebar {...routeProps}
+                               currentpage='grid-hover'
+                               pageRef={'hover'} />
+    }} />
 
     {/*/Site Pages/*/}
 
