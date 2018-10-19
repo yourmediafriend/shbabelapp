@@ -25,12 +25,11 @@ import NewsArticle from '../News/Article';
 
 import TestPage from '../Pages/TestPage';
 
-
 // Grid Pages
 import GridParallax from '../Pages/Grids/GridParallax';
 import GridFullpage from '../Pages/Grids/GridFullpage';
 import GridWobblepage from '../Pages/Grids/GridWobblepage';
-
+import GridHoverPage from '../Pages/Grids/GridHoverPage';
 
 // Demo Pages
 import OneColumnCenterDemo from '../Pages/DemoPages/OneColumnCenter';
@@ -79,11 +78,13 @@ const Content = ({currentpage, pageRef, match }) => {
     case 'fullpage':
       return <Fullpage pageRef={pageRef}/>;
     case 'grid-parallax':
-      return <GridParallax pageRef={pageRef}/>;;
+      return <GridParallax pageRef={pageRef}/>;
     case 'grid-fullpage':
       return <GridFullpage />;
     case 'grid-wobble':
       return <GridWobblepage />;
+    case 'grid-hover':
+      return <GridHoverPage />;
     case 'news':
       return <News />;
     case 'news/article':

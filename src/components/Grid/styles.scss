@@ -1,0 +1,120 @@
+.grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    @include media-breakpoint-up(sm) {
+        margin: 10px -20px;
+    }
+    @include media-breakpoint-up(sm) {
+        margin: 10px -20px;
+    }
+    @include media-breakpoint-up(md) {
+        margin: 10px -20px;
+    }
+
+    .item {
+        width: 100%;
+
+        @include media-breakpoint-up(sm) {
+            width: 50%;
+        }
+        @include media-breakpoint-up(md) {
+            flex-basis: 33.3333333%;
+            padding: 20px;
+        }
+
+        .inner {
+            position: relative;
+            &:hover {
+                z-index: auto;
+                .imageOverlay {
+                    background-color: rgba(0, 0, 0, 0.5);
+                    opacity: 1;
+                    transition: background 0.5s, opacity 0.5s;
+                }
+                .content {
+                    opacity: 1;
+                    .title {
+                        opacity: 1;
+                        transform: translateZ(0px);
+                        &.mainTitle {
+                            transition: opacity 0.2s 0.2s, transform 0.2s 0.2s;
+                        }
+                        &.subTitle {
+                            transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .imageOverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        background-color: rgba(0, 0, 0, 0);
+        overflow: hidden;
+    }
+
+
+    .content {
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        width: 100%;
+        perspective: 300px;
+        padding-left: 30px;
+
+        .title {
+            &.mainTitle {
+                font-weight: 700;
+                font-size: 4em;
+                line-height: 1em;
+                text-transform: uppercase;
+            }
+
+            &.subTitle {
+                font-weight: 700;
+                font-size: 1.1em;
+                color: #e3e3e3;
+            }
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        .imageOverlay {
+            opacity: 0;
+            transition:background 0.5s 0.5s, opacity 0.5s 0.5s
+        }
+        .content {
+            opacity: 0;
+            transition: opacity 0.2s 0.2s;
+            .title {
+                &.mainTitle {
+                    opacity: 0;
+                    transform: translateZ(-50px);
+                    transition: opacity 0.2s 0.2s, transform 0.2s 0.2s;
+                }
+
+                &.subTitle {
+                    transition: opacity 0.2s 0.2s, transform 0.2s 0.2s;
+                }
+            }
+        }
+    }
+
+
+
+    :global(.list-group-item){
+        border: 0;
+        background: transparent;
+        position: relative;
+        overflow: hidden;
+        display: block;
+    }
+}
