@@ -27,7 +27,7 @@ let Sections = ({data}) => {
   //console.log(splitBackgroundText(props.fieldBackgroundText));
   return (
     <div id={'home-hero'}>
-      <div className={cx(styles.content,styles.hero)}>
+      <div className={cx(styles.content, styles.hero)}>
         {data.nodeQuery.entities.map((node, index) =>
           <SectionSlide {...node} key={index} id={index} />
         )}
