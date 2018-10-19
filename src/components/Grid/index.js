@@ -38,13 +38,10 @@ class GridViewItem extends Component {
     return (
       <ListGroupItem className={cx(styles.item)}>
         <div className={cx(styles.inner)}>
-
           <div className={cx(styles.imageWrapper)}>
             <div style={this.backgroundImageStyle()} />
           </div>
-
           <div className={cx(styles.imageOverlay)} />
-
           <div className={cx(styles.contentLayer)} >
             <div className={cx(styles.content)}>
               <div className={cx(styles.titleWrapper)}>
@@ -56,7 +53,6 @@ class GridViewItem extends Component {
                 </h4>
               </div>
             </div>
-
           </div>
         </div>
       </ListGroupItem>
@@ -65,7 +61,6 @@ class GridViewItem extends Component {
 }
 
 let GridView = (props) => {
-  //console.log(splitBackgroundText(props.fieldBackgroundText));
   return (
     <ListGroup className={cx(styles.grid, props.className)}>
       {props.data.nodeQuery.entities.map((node, index) =>

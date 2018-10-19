@@ -26,11 +26,11 @@ class GridViewContent extends Component {
 
   backgroundImageStyle() {
     return {
-      height: '400px',
-      width:'calc(100% + 10px)',
+      height: '250px',
+      width:'100%',
       position:'relative',
-      top:'-5px',
-      left: '-5px',
+      top:'0',
+      left: '0',
       backgroundImage: `url(${this.getPlaceholderImage()})`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -40,13 +40,16 @@ class GridViewContent extends Component {
 
   render() {
     return (
-      <Tilt options={{scale: 2, max: 25}} style={{transformStyle: 'preserve-3d'}}>
+      <Tilt options={{scale: 1, max: 40}} style={{transformStyle: 'preserve-3d'}}>
         <div className={cx(styles.inner)}>
           <div className={cx(styles.imageWrapper)}>
-            <div className={cx()} style={this.backgroundImageStyle()}/>
-            <div className={cx(styles.imageOverlay)}>
+            <div style={this.backgroundImageStyle()} />
+          </div>
+          <div className={cx(styles.imageOverlay)} />
+          <div className={cx(styles.contentLayer)} >
+            <div className={cx(styles.content)}>
               <div className={cx(styles.titleWrapper)}>
-                <h4 className={cx(styles.title, styles.mainTitle)}>
+                <h4 className={cx(styles.title, styles.mainTitle )}>
                   <span className={cx(styles.span)}>{this.props.title}</span>
                 </h4>
                 <h4 className={cx(styles.title, styles.subTitle)}>
@@ -75,7 +78,7 @@ class GridViewItem extends Component {
 
 let GridView = props => {
   return (
-    <ListGroup className={cx(styles.grid)}>
+    <ListGroup className={cx(styles.grid, 'grid-wobble')}>
       {props.data.nodeQuery.entities.map((node, index) =>
         <GridViewItem {...node} key={index} id={index}/>
       )}
