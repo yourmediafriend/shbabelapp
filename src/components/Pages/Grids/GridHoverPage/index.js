@@ -13,7 +13,7 @@ class GridPage extends Component {
     return (
       <MainLayer className={cx(styles.mainLayer)}>
         <ContentLayer className={cx(styles.contentLayer)}>
-         <OneColumnCenter contentMain={<Grid className={'grid-hover'}/>} />
+         <OneColumnCenter contentMain={<Grid className={'panelOver'}/>} />
         </ContentLayer>
       </MainLayer>
     )

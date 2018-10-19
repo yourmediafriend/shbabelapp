@@ -38,20 +38,25 @@ class GridViewItem extends Component {
     return (
       <ListGroupItem className={cx(styles.item)}>
         <div className={cx(styles.inner)}>
+
           <div className={cx(styles.imageWrapper)}>
             <div style={this.backgroundImageStyle()} />
-            <div className={cx(styles.imageOverlay)}>
-              <div className={cx(styles.content)}>
-                <div className={cx(styles.titleWrapper)}>
-                  <h4 className={cx(styles.title, styles.mainTitle )}>
-                    <span className={cx(styles.span)}>{this.props.title}</span>
-                  </h4>
-                  <h4 className={cx(styles.title, styles.subTitle)}>
-                    <span className={cx(styles.span)}>{this.props.fieldSubTitle}</span>
-                  </h4>
-                </div>
+          </div>
+
+          <div className={cx(styles.imageOverlay)} />
+
+          <div className={cx(styles.contentLayer)} >
+            <div className={cx(styles.content)}>
+              <div className={cx(styles.titleWrapper)}>
+                <h4 className={cx(styles.title, styles.mainTitle )}>
+                  <span className={cx(styles.span)}>{this.props.title}</span>
+                </h4>
+                <h4 className={cx(styles.title, styles.subTitle)}>
+                  <span className={cx(styles.span)}>{this.props.fieldSubTitle}</span>
+                </h4>
               </div>
             </div>
+
           </div>
         </div>
       </ListGroupItem>

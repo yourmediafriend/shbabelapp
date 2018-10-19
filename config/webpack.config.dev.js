@@ -242,6 +242,10 @@ module.exports = {
                   },
                 },
                 {
+                  loader: 'resolve-url-loader',
+                  options: {},
+                },
+                {
                   loader: require.resolve('sass-loader'),
                   options: {
                     sourceMap: true
@@ -261,7 +265,19 @@ module.exports = {
           // "svg" react-svg-loader
           {
             test: /\.svg$/,
-            loader: 'svg-inline-loader',
+            use: {
+              loader: 'url-loader',
+              loader: 'svg-inline-loader',
+              loader: 'file-loader',
+              options: {},
+            },
+
+            // loader: 'url-loader',
+            // loader: 'svg-url-loader',
+            // loader: 'file-loader',
+            // loader: 'svg-inline-loader',
+
+
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
