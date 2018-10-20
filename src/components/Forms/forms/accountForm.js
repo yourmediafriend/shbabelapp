@@ -52,50 +52,49 @@ class AccountForm extends Component {
     const {handleSubmit, submitting, isSending, hasErrored } = this.props;
 
     return (
-      <Form className={cx(styles.userForm, styles.passwordForm)} onSubmit={handleSubmit(this.submitForm.bind(this))}>
-
-        <h3>Personal Details</h3>
-        <fieldset>
-          <Row>
-            <Col>
-              <Field labeltext={"First Name"} name={"firstname"} component={RenderField} type={"text"} isrequired={true}/>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <PasswordSrength labeltext={"Last Name"} name={"lastname"} isrequired={true}/>
-            </Col>
-          </Row>
-        </fieldset>
-
-
-        <fieldset>
-          <Row>
-            <Col>
-              <Field labeltext={"Email"} name={"email"} component={RenderField} type={"email"} isrequired={true}/>
-            </Col>
-          </Row>
-        </fieldset>
-
-        <h3>Password Update</h3>
-
-        <fieldset>
-          <Row>
-            <Col>
-              <PasswordSrength labeltext={"Current Password"} name={"passwordcurrent"} strengthIndicator={false} isrequired={true}/>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <PasswordSrength labeltext={"Password"} name={"passwordset"} strengthIndicator={true} isrequired={true}/>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <PasswordSrength labeltext={"Repeat Password"} name={"passwordsetcompare"} isrequired={true}/>
-            </Col>
-          </Row>
-        </fieldset>
+      <Form className={cx(styles.userForm, styles.accountForm)} onSubmit={handleSubmit(this.submitForm.bind(this))}>
+        <div className={styles.formSection}>
+          <h3 className={styles.formSectionTitle}>Personal Details</h3>
+          <fieldset>
+            <Row>
+              <Col>
+                <Field labeltext={"First Name"} name={"firstname"} component={RenderField} type={"text"} isrequired={true}/>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Field labeltext={"Last Name"} name={"lastname"} component={RenderField} type={"text"} isrequired={true}/>
+              </Col>
+            </Row>
+          </fieldset>
+          <fieldset>
+            <Row>
+              <Col>
+                <Field labeltext={"Email"} name={"email"} component={RenderField} type={"email"} isrequired={true}/>
+              </Col>
+            </Row>
+          </fieldset>
+        </div>
+        <div className={styles.formSection}>
+        <h3 className={styles.formSectionTitle}>Password Update</h3>
+          <fieldset>
+            <Row>
+              <Col>
+                <PasswordSrength labeltext={"Current Password"} name={"passwordcurrent"} strengthIndicator={false} isrequired={true}/>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <PasswordSrength labeltext={"Password"} name={"passwordset"} strengthIndicator={true} isrequired={true}/>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <PasswordSrength labeltext={"Repeat Password"} name={"passwordsetcompare"} isrequired={true}/>
+              </Col>
+            </Row>
+          </fieldset>
+        </div>
       </Form>
     )
   }
