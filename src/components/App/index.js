@@ -12,6 +12,7 @@ import { Player as MusicPlayer } from  '../MusicPlayer';
 import { get } from 'lodash/fp';
 import { footerClose } from "../../modules/Footer";
 import { setIconNavConfig } from "../../modules/App";
+import Helmet from "./Helmet";
 
 // Elements
 import MainContent from '../Content';
@@ -90,10 +91,7 @@ class App extends Component {
     let iconNavItemsTop = {};
     let iconNavItemsSide = {};
 
-
     touchScreenClass();
-
-
 
     if (window.matchMedia(mediaMatch.breakpointLarge).matches) {
       console.log('large');
@@ -214,7 +212,9 @@ class App extends Component {
          // console.log('HideMenu', (!this.props.isMenuOpen && !this.props.isMenuAnimating));
 
           return (
-            <div className={styles.outer}>
+            <div className={cx(styles.outer,'application')}>
+
+              <Helmet {...this.props} />
 
               <div className={styles.sidebarMenuWrap} style={{...this.myStyles(state).menu}}>
                 <SidebarMenu showMenu={ !(!this.props.isMenuOpen && !this.props.isMenuAnimating)  }/>

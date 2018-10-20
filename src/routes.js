@@ -4,11 +4,9 @@ import store from './store';
 
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
 
-
 // Common Page Layouts
 import OneColumnSidebar from './components/App';
 import { setUpPage } from './modules/App';
-
 
 // Test Pages
 import Recompose from './pages/RecomposeTest'
@@ -16,7 +14,6 @@ import Strap from './pages/ReactStrapTest'
 import RefTest from './components/RefTest'
 
 import EmptyPage from './components/empty'
-
 
 // this works but disrupts certain Componenets (Music player and Sidemenu) with a page refresh
 const userIsAuthenticated = connectedRouterRedirect({
@@ -55,6 +52,7 @@ const SwitchRoute = () => (
         revealFooter: false,
       }));
       return <OneColumnSidebar {...routeProps}
+                               pageTitle='Homepage'
                                currentpage='home'/>
     }} />
 
@@ -187,6 +185,7 @@ const SwitchRoute = () => (
         revealFooter: true,
       }));
       return <OneColumnSidebar {...routeProps}
+                               pageTitle='News'
                                currentpage='news'/>
     }} />
 
@@ -211,6 +210,7 @@ const SwitchRoute = () => (
         revealFooter: false,
       }));
       return <OneColumnSidebar {...routeProps}
+                               pageTitle='SVGs'
                                currentpage='square' />
     }} />
 
@@ -222,6 +222,7 @@ const SwitchRoute = () => (
         revealFooter: false,
       }));
       return <OneColumnSidebar {...routeProps}
+                               pageTitle='SVGs'
                                currentpage='circle' />
     }} />
 
@@ -233,6 +234,7 @@ const SwitchRoute = () => (
         revealFooter: false,
       }));
       return <OneColumnSidebar {...routeProps}
+                               pageTitle='SVGs'
                                currentpage='triangle' />
     }} />
 

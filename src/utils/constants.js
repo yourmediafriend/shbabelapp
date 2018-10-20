@@ -1,4 +1,6 @@
 export const __ENV__ = {
+  siteName: 'shBabel',
+  siteUrl: 'https://shbabel.com/',
   baseUrl: 'http://5adb77bfb80f490014fb87cd.mockapi.io/api/v1/',
   adminUrl: 'https://admin.shbabel.com/',
   apiKey: 'MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA5mGv0YQ+ijgrUWri282M\n' +

@@ -266,20 +266,8 @@ module.exports = {
 
          {
             test: /\.svg$/,
-            use: ['@svgr/webpack', 'url-loader', 'file-loader'],
+            use: ['svg-inline-loader'],
           },
-          {
-            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-            issuer: {
-              test: /\.jsx?$/
-            },
-            use: ['file-loader', '@svgr/webpack', 'url-loader']
-          },
-          {
-            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url-loader'
-          },
-
 
           // },          {
           //   test: /\.svg$/,
