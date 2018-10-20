@@ -5,9 +5,6 @@ import {
   get,
 } from 'lodash/fp'
 
-import applTouchIcon57x57 from './media/apple-touch-icon-57x57.png'
-
-
 const siteUrl = get('siteUrl', __ENV__);
 const siteName = get('siteName', __ENV__);
 
