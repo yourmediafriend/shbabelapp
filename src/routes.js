@@ -185,6 +185,7 @@ const SwitchRoute = () => (
         revealFooter: true,
       }));
       return <OneColumnSidebar {...routeProps}
+                               pageTitle='News'
                                currentpage='news'/>
     }} />
 
@@ -209,6 +210,7 @@ const SwitchRoute = () => (
         revealFooter: false,
       }));
       return <OneColumnSidebar {...routeProps}
+                               pageTitle='SVGs'
                                currentpage='square' />
     }} />
 
@@ -220,6 +222,7 @@ const SwitchRoute = () => (
         revealFooter: false,
       }));
       return <OneColumnSidebar {...routeProps}
+                               pageTitle='SVGs'
                                currentpage='circle' />
     }} />
 
@@ -231,6 +234,7 @@ const SwitchRoute = () => (
         revealFooter: false,
       }));
       return <OneColumnSidebar {...routeProps}
+                               pageTitle='SVGs'
                                currentpage='triangle' />
     }} />
 
