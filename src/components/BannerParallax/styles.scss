@@ -4,12 +4,54 @@
     height: 300px;
     overflow: hidden;
 }
+
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(4, 5, 5, 0.45);
+}
+.contentLayer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    .content {
+        color: #fff;
+        margin: 0 auto;
+        h2 {
+            font-size: 3em;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 .parallaxContentHolder {
     position: relative;
     perspective: 1000px;
     display: block;
     z-index: -1;
 }
+
+
 .parallaxContent {
     transform: translateZ(0);
     backface-visibility: hidden;

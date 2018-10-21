@@ -4,8 +4,6 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {get} from "lodash/fp";
 
-
-
 import { Power2 } from 'gsap';
 import ParallaxContent from './ParallaxContent';
 import ScrollMagicEnhanced from './scrollMagicEnhanced';
@@ -36,9 +34,17 @@ class BannerParallax extends Component {
   render(){
     return (
       <div className={cx(styles.parallaxContainer)} >
-        <div className={cx(styles.parallaxContainer,'parallax-layer')} >
+
+        <div className={cx(styles.parallaxLayer,'parallax-layer')} >
           <HeroBanner image={imagesHero}  />
         </div>
+        <div className={cx(styles.overlay)} />
+        <div className={cx(styles.contentLayer)} >
+          <div className={cx(styles.content)} >
+            <h2>kjdfgkjh kdhkdsfhkdf</h2>
+          </div>
+        </div>
+
       </div>
     )
   }
