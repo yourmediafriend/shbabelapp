@@ -17,14 +17,13 @@ let bg_8 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgr
 let bg_9 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_9.gif";
 let bg_10 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_10.gif";
 let bg_11= "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_11.gif";
-
 let bg_12= "https://res.cloudinary.com/dghff7rpa/image/upload/v1537142824/backgrounds/images/brutalist.jpg";
 let bg_13= "https://res.cloudinary.com/dghff7rpa/image/upload/v1537145752/backgrounds/images/brutal-trash-polka.jpg";
-
-
 let bgImages_Brutalist= [bg_5, bg_2, bg_8];
 
-let textBanner = ['Power','Exploitation','Corruption','Despair', 'Fake News','Exploitation','Shaming','Trolls'];
+
+let textBanner = [];
+// textBanner = ['Power','Exploitation','Corruption','Despair', 'Fake News','Exploitation','Shaming','Trolls'];
 
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
@@ -94,7 +93,7 @@ class HomeCanvas extends Component {
     container.addChild(this.bg_Container);
     container.addChild(this.bg_A);
 
-    this.addText()
+    this.addText();
 
     this.stopTicker();
     this.ticker.add(this.textAnimation)
@@ -186,7 +185,9 @@ class HomeCanvas extends Component {
 
     let container = new PIXI.Container();
 
-    this.text_A = new PIXI.Text(textBanner[this.props.activeSceneId].toUpperCase(), style);
+    console.log(this.props.activeSceneId);
+
+    this.text_A = new PIXI.Text('', style);
     this.text_A.anchor.set(0.5);
     this.text_A.x = this.app.screen.width/2;
     this.text_A.y = this.app.screen.height/2;
@@ -204,7 +205,7 @@ class HomeCanvas extends Component {
       padding: 50,
     });
 
-    this.text_B = new PIXI.Text(textBanner[this.props.activeSceneId].toUpperCase(), style);
+    this.text_B = new PIXI.Text('', style);
     this.text_B.anchor.set(0.5);
     this.text_B.x = this.app.screen.width/2;
     this.text_B.y = this.app.screen.height/2;
@@ -223,7 +224,7 @@ class HomeCanvas extends Component {
       padding: 50,
     });
 
-    this.text_C = new PIXI.Text(textBanner[this.props.activeSceneId].toUpperCase(), style);
+    this.text_C = new PIXI.Text('', style);
     this.text_C.anchor.set(0.5);
     this.text_C.x = this.app.screen.width/2;
     this.text_C.y = this.app.screen.height/2;

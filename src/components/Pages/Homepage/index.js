@@ -2,24 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import {get} from "lodash/fp";
+
 import cx from 'classnames';
 import styles from './homepage.scss'
 
 import MainLayer from '../../Content/MainLayer';
 import ContentLayer from '../../Content/ContentLayer';
 import { OneColumnCenter }  from '../../Layout';
-
 import FeatureList from '../../FeatureList';
 import Carousel from '../../Carousel';
-
-
 import HomepageHero from '../../HeroBannerHomepage';
 import HeroBackground from '../../HeroBannerHomepage/HeroBackground';
-
-
 import GridWobble from '../../GridWobble';
 import BannerParallax from '../../BannerParallax';
-import {get} from "lodash/fp";
 
 
 class Page extends Component {
