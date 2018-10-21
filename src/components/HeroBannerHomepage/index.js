@@ -5,8 +5,7 @@ import ScrollMagicEnhanced from "./scrollMagicEnhanced";
 import cx from "classnames";
 
 import { Query } from "react-apollo";
-import hompageSlidesQuery from '../../../graphQL/hompageSlidesQuery';
-import gridPlaceholderQuery from "../../../graphQL/gridPlaceholderQuery";
+import hompageSlidesQuery from '../../graphQL/hompageSlidesQuery';
 
 const SectionSlide = (props) => {
 
@@ -52,7 +51,7 @@ class HomepageHero extends Component {
           }
         }}
       </Query>
-  );
+    );
   }
 }
 
