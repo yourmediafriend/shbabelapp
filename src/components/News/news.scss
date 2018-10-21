@@ -98,6 +98,20 @@
 
 :global(.widget) {
     &:global(.newsLatest) {
+
+        @include media-breakpoint-up(sm) {
+            @include media-breakpoint-down(md) {
+                :global(.list-group) {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                :global(.list-group-item) {
+                    flex-basis: 50%;
+                }
+            }
+        }
+
         article {
             margin: 0 -10px;
             display: flex;

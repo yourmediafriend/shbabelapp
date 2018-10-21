@@ -68,7 +68,7 @@ class NewsLatestWidget extends Component {
           if (error) return `Error: ${error.message}`;
           if (data.nodeQuery.entities.length) {
             return (
-              <ListGroup className={styles.articlesWidget}>
+              <ListGroup className={cx(styles.articlesWidget)}>
                 {data.nodeQuery.entities.map(article =>
                   <NewsItem key={article.nid}
                             id={article.nid}
