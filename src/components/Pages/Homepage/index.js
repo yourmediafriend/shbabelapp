@@ -5,10 +5,6 @@ import {bindActionCreators} from "redux";
 import cx from 'classnames';
 import styles from './homepage.scss'
 
-
-import ScrollMagicEnhanced from './scrollMagicEnhanced';
-import Background from '../../Background';
-
 import MainLayer from '../../Content/MainLayer';
 import ContentLayer from '../../Content/ContentLayer';
 import { OneColumnCenter }  from '../../Layout';
@@ -16,7 +12,7 @@ import CanvasEnhanced from './CanvasSimple';
 import FeatureList from '../../FeatureList';
 import Carousel from '../../Carousel';
 import HomepageHero from './HomepageHero';
-import GridParallax from '../../GridParallax';
+import GridWobble from '../../GridWobble';
 import BannerParallax from '../../BannerParallax';
 import {get} from "lodash/fp";
 
@@ -71,9 +67,9 @@ class Page extends Component {
               <BannerParallax />
             </div>
 
- {/*           <div className={cx(styles.gridContainer)}>
-              <OneColumnCenter  contentMain={<GridParallax itemsMax={6}/>} />
-            </div>*/}
+           <div className={cx(styles.gridContainer)}>
+              <OneColumnCenter  contentMain={<GridWobble itemsMax={6}/>} />
+            </div>
 
             <div className={cx(styles.featureListContainer)}>
               <OneColumnCenter contentMain={<FeatureList />} />
