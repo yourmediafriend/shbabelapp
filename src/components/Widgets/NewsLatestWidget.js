@@ -5,18 +5,16 @@ import { NavLink, ListGroup, ListGroupItem } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
+import Widget from './Widget';
 import Latest from '../News/WidgetLatest';
 
-class Widget extends Component {
+
+class WidgetLatest extends Component {
   render() {
     return (
-      <div className={cx(styles.widget, styles.newsLatestWidget, this.props.className)}>
-        <div className={styles.inner}>
-            <Latest />
-        </div>
-      </div>
+      <Widget className={cx(styles.widgetNewsLatest, 'newsLatest')}  header={<h4>Latest News</h4>} body={<Latest />}/>
     )
   }
 }
 
-export default Widget;
+export default WidgetLatest;

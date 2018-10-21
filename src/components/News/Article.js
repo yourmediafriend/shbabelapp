@@ -22,7 +22,7 @@ class ArticleSideBar extends Component {
   render() {
     return (
       <div>
-        <Widget className={styles.widgetNewsLatest}  header={<h4 className={widgetStyles.title}>Latest News</h4>} body={<Latest />}/>
+        <Widget className={cx(styles.widgetNewsLatest, 'newsLatest')}  header={<h4 className={widgetStyles.title}>Latest News</h4>} body={<Latest />}/>
       </div>
     );
   }

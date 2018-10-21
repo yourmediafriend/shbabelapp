@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Query } from "react-apollo";
 import styles from './news.scss';
+import cx from 'classnames';
 import { Link } from 'react-router-dom';
 import UtcSecondsToDate from './utcSecondsToDate';
 import { ListGroup, ListGroupItem } from 'reactstrap';
@@ -25,7 +26,7 @@ const getPlaceholderImage = (id) => {
 const Image = ({id, image}) => {
   if (image) {
     return (
-      <div className={styles.image}>
+      <div className={cx(styles.imageContainer,'imageContainer')}>
         <img src={getPlaceholderImage(id)} alt={image.alt} />
       </div>
     );
@@ -39,7 +40,7 @@ class NewsItem extends Component {
     return (
       <ListGroupItem className={styles.item}>
         <article>
-          <Link  to={`/news${this.props.url}`}><Image image={this.props.image} id={this.props.id} /></Link>
+          <Link  to={`/news${this.props.url}`} className={cx(styles.imageLink, 'imageLink')}><Image image={this.props.image} id={this.props.id} /></Link>
           <div className={styles.summaryHeader}>
             <Category category={this.props.category} />
             <h2 className={styles.title}><Link to={`/news${this.props.url}`} className={styles.articleLink} >{this.props.title}</Link></h2>
