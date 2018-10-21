@@ -1,4 +1,11 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {get} from "lodash/fp";
+
+
+
 import { Power2 } from 'gsap';
 import ParallaxContent from './ParallaxContent';
 import ScrollMagicEnhanced from './scrollMagicEnhanced';
@@ -14,6 +21,7 @@ import hero_980w from '../../media/hero6/hero_980w.jpg';
 import hero_1320w from '../../media/hero6/hero_1320w.jpg';
 import hero_1900w from '../../media/hero6/hero_1900w.jpg';
 
+
 const imagesHero = {
   0: hero_480w,
   480: hero_660w,
@@ -23,38 +31,42 @@ const imagesHero = {
   1300: hero_1900w,
 };
 
-class ParallaxTestComponent extends Component {
+class BannerParallax extends Component {
 
   render(){
-
-    const parallaxProps = {
-      offset: 0,
-      ease: Power2.easeNone,
-      power: 0.1,
-      container: 'body'
-    };
-
-    const parallaxPropsB = {
-      offset: 100,
-      ease: Power2.easeNone,
-      power: 0.1,
-      container: 'body'
-    };
-
     return (
-      <div className={cx(styles.scrollableContainer ,'scrollable-container')} >
-        <ScrollMagicEnhanced {...parallaxProps}>
-          <ParallaxContent>
-            <HeroBanner image={imagesHero}  />
-          </ParallaxContent>
-        </ScrollMagicEnhanced>
+      <div className={cx(styles.parallaxContainer)} >
+        <div className={cx(styles.parallaxContainer,'parallax-layer')} >
+          <HeroBanner image={imagesHero}  />
+        </div>
       </div>
     )
   }
 }
 
-ParallaxTestComponent.propTypes = {
 
-}
+export const mapStateToProps = (state) => {
+  return {
+    breakpoint: get('appModule.breakpoint', state),
+  }
+};
 
-export default ParallaxTestComponent
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {},
+    dispatch
+  );
+
+
+BannerParallax.props = {
+  breakpoint: PropTypes.string
+};
+
+BannerParallax.defaultProps = {
+  breakpoint: 'small'
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScrollMagicEnhanced(BannerParallax));
+
+
+

@@ -1,3 +1,9 @@
+.parallaxContainer {
+    position: relative;
+    z-index: 1;
+    height: 300px;
+    overflow: hidden;
+}
 .parallaxContentHolder {
     position: relative;
     perspective: 1000px;
@@ -10,7 +16,3 @@
     display: block;
 }
 
-.scrollableContainer {
-    position: relative;
-    z-index: 1,
-}
