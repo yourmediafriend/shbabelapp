@@ -4,18 +4,20 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import cx from 'classnames';
 import styles from './homepage.scss'
+
+
 import ScrollMagicEnhanced from './scrollMagicEnhanced';
+import Background from '../../Background';
+
 import MainLayer from '../../Content/MainLayer';
 import ContentLayer from '../../Content/ContentLayer';
-import Background from '../../Background';
 import { OneColumnCenter }  from '../../Layout';
-import Dummytext from '../../DummyText/DummyTextLong';
 import CanvasEnhanced from './CanvasSimple';
 import FeatureList from '../../FeatureList';
 import Carousel from '../../Carousel';
 import HomepageHero from './HomepageHero';
-import GridParallax from '../../GridParallax'
-import GridWobble from '../../GridWobble'
+import GridParallax from '../../GridParallax';
+import BannerParallax from '../../BannerParallax';
 import {get} from "lodash/fp";
 
 let HeroBackground = (props) => {
@@ -58,12 +60,21 @@ class Page extends Component {
           </div>
 
           <div className={cx(styles.content)}>
+
+
             <div className={cx(styles.carouselContainer)}>
               <OneColumnCenter contentMain={<Carousel />} />
             </div>
-            <div className={cx(styles.gridContainer)}>
-              <OneColumnCenter  contentMain={<GridWobble itemsMax={6}/>} />
+
+
+            <div className={cx(styles.bannerParallaxContainer)}>
+              <BannerParallax />
             </div>
+
+ {/*           <div className={cx(styles.gridContainer)}>
+              <OneColumnCenter  contentMain={<GridParallax itemsMax={6}/>} />
+            </div>*/}
+
             <div className={cx(styles.featureListContainer)}>
               <OneColumnCenter contentMain={<FeatureList />} />
             </div>
