@@ -52,7 +52,7 @@ const SwitchRoute = () => (
         revealFooter: false,
       }));
       return <OneColumnSidebar {...routeProps}
-                               pageTitle='Homepage'
+                               pageTitle='Difficult Decisions In A Difficult World'
                                currentpage='home'/>
     }} />
 
