@@ -41,12 +41,12 @@ let textBanner = [];
 
 let BGcolor = [
   hexToPixiColor('#474747'),
-  hexToPixiColor('#b0b0b5'),
+  hexToPixiColor('#69696d'),
 ];
 
 let textColors = [
   '#ffffff',
-  '#b0b0b5',
+  '#69696d',
   '#252726',
 ];
 
