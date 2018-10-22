@@ -27,16 +27,29 @@ const hexToPixiColor = (hex) => '0x'+ hex.replace('#','');
 let textBanner = [];
 // textBanner = ['Power','Exploitation','Corruption','Despair', 'Fake News','Exploitation','Shaming','Trolls'];
 
+// let BGcolor = [
+//   hexToPixiColor('#5e9436'),
+//   hexToPixiColor('#ace278'),
+// ];
+//
+// let textColors = [
+//   '#ffffff',
+//   '#ace278',
+//   '#282d12',
+// ];
+//
+
 let BGcolor = [
-  hexToPixiColor('#5e9436'),
-  hexToPixiColor('#ace278'),
+  hexToPixiColor('#474747'),
+  hexToPixiColor('#b0b0b5'),
 ];
 
 let textColors = [
   '#ffffff',
-  '#ace278',
-  '#282d12',
+  '#b0b0b5',
+  '#252726',
 ];
+
 
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
@@ -151,6 +164,11 @@ class HomeCanvas extends Component {
     container.addChild(this.bg_Container);
     container.addChild(this.bg_A);
 
+
+    this.myShape =  new PIXI.Graphics();
+    this.drawRectangleFrame(this.myShape);
+    container.addChild(this.myShape);
+
     this.addText();
 
     this.app.stage.interactive = true;
@@ -237,7 +255,6 @@ class HomeCanvas extends Component {
     this.ticker.add(this.textAnimation.bind(this));
     this.startTicker();
 
-
   }
 
   drawGraphics(shape) {
@@ -249,6 +266,18 @@ class HomeCanvas extends Component {
     shape.lineTo(this.app.screen.width-border,0+border);
     shape.lineTo(this.app.screen.width-border,this.app.screen.height-border);
     shape.lineTo(0+border,this.app.screen.height-border);
+    shape.endFill();
+  }
+
+  drawRectangleFrame(shape) {
+    let border = 200;
+    shape.clear();
+    shape.lineStyle(2, BGcolor[1], 1);
+    shape.moveTo(0+border,0+border);
+    shape.lineTo(this.app.screen.width-border,0+border);
+    shape.lineTo(this.app.screen.width-border,this.app.screen.height-border);
+    shape.lineTo(0+border,this.app.screen.height-border);
+    shape.lineTo(0+border,0+border);
     shape.endFill();
   }
 
