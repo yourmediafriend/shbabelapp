@@ -53,150 +53,39 @@ class HomeCanvas extends Component {
   }
 
 
-
-  addLayer() {
-
-    let container = new PIXI.Container();
-
-    let bg_A = PIXI.Sprite.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
-    let text_A = new PIXI.Text('', style);
-
-    bg_A.anchor.set(0.5);
-    bg_A.width = this.app.screen.width;
-    bg_A.height = this.app.screen.height;
-    bg_A.x = this.app.screen.width / 2;
-    bg_A.y = this.app.screen.height / 2;
-    bg_A.alpha = 0.5;
-
-    let style = new PIXI.TextStyle({
-      align: 'center',
-      fontFamily: 'Helvetica, sans-serif',
-      fontSize: 270,
-      fontWeight: 700,
-      fill: textColors[0],
-      letterSpacing: 0,
-      dropShadow: false,
-      wordWrap: false,
-      wordWrapWidth: window.innerWidth + 200,
-      padding: 50,
-      cacheAsBitmap: true
-    });
-
-    text_A.anchor.set(0.5);
-    text_A.x = this.app.screen.width/2;
-    text_A.y = this.app.screen.height/2;
-
-    if (this.props.bgTextArray && this.props.bgTextArray.length){
-      text_A.text = this.props.bgTextArray[0].toUpperCase();
-      text_A.style.letterSpacing = 25;
-    }
-
-    container.addChild(bg_A);
-    container.addChild(text_A);
-
-    return container;
-
-  }
-
   componentDidMount() {
-
-    const width = this.mount.clientWidth;
-    const height = this.mount.clientHeight;
 
     this.app = new PIXI.Application(window.innerWidth, window.innerHeight, { antialias: true, backgroundColor: BGcolor[0] });
     this.mount.appendChild(this.app.view);
-    this.ticker = new PIXI.ticker.Ticker();
-
-    this.app.stage.addChild(this.addLayer());
-
-
-
-    // this.app.stage.addChild(this.addLayer());
-
-
-
-
-    // container = new PIXI.Container();
-    //
-    // this.bg_A = PIXI.Sprite.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
-    // this.bg_B = PIXI.Sprite.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
-    // this.bg_C = PIXI.Sprite.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
-    //
-    // this.bg_A.anchor.set(0.5);
-    // this.bg_A.width = this.app.screen.width;
-    // this.bg_A.height = this.app.screen.height;
-    // this.bg_A.x = this.app.screen.width / 2;
-    // this.bg_A.y = this.app.screen.height / 2;
-    // this.bg_A.alpha = 0.5;
-    //
-    // this.bg_B.anchor.set(0.5);
-    // this.bg_B.width = this.app.screen.width;
-    // this.bg_B.height = this.app.screen.height;
-    // this.bg_B.x = this.app.screen.width / 2;
-    // this.bg_B.y = this.app.screen.height / 2;
-    //
-    // this.bg_C.anchor.set(0.5);
-    // this.bg_C.width = this.app.screen.width;
-    // this.bg_C.height = this.app.screen.height;
-    // this.bg_C.x = this.app.screen.width / 2;
-    // this.bg_C.y = this.app.screen.height / 2;
-    // this.bg_C.alpha = 0.4;
-    //
-    //
-    // container.addChild(this.bg_B);
-    // this.app.stage.addChild(container);
-    //
-    // container = new PIXI.Container();
-    // this.app.stage.addChild(container);
-    //
-    // this.myMask = new PIXI.Graphics();
-    // this.drawGraphics(this.myMask);
-    //
-    // container.addChild(this.myMask);
-    // container.mask = this.myMask
-    //
-    // this.bg_Container = new PIXI.Graphics();
-    // this.drawGraphics(this.bg_Container);
-    //
-    // container.addChild(this.bg_Container);
-    // container.addChild(this.bg_A);
-    //
-    // this.addText();
-    //
-    // this.stopTicker();
-    // this.ticker.add(this.textAnimation)
-    // this.startTicker();
-    //
-    // this.app.stage.interactive = true;
-    // this.app.stage.mousemove = this.stageMouseMove.bind(this);
+    this.addLayer(this.props.activeSceneId)
 
   }
 
   componentDidUpdate() {
-    // if (this.text_A){
-    //   this.text_A.text = this.props.bgTextArray[0].toUpperCase();
-    //   this.text_A.style.letterSpacing = 25;
-    // }
-    // if (this.text_B){
-    //   this.text_B.text = this.props.bgTextArray[0].toUpperCase();
-    // }
-    // if (this.text_C){
-    //   this.text_C.text = this.props.bgTextArray[0].toUpperCase();
-    // }
-    // if (this.bg_A){
-    //   this.bg_A.texture = PIXI.Texture.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
-    // }
-    // if (this.bg_B){
-    //   this.bg_B.texture = PIXI.Texture.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
-    // }
-    // if (this.bg_C){
-    //   this.bg_C.texture = PIXI.Texture.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
-    // }
+    if (this.text_A){
+      this.text_A.text = this.props.bgTextArray[0].toUpperCase();
+      this.text_A.style.letterSpacing = 25;
+    }
+    if (this.text_B){
+      this.text_B.text = this.props.bgTextArray[0].toUpperCase();
+    }
+    if (this.text_C){
+      this.text_C.text = this.props.bgTextArray[0].toUpperCase();
+    }
+    if (this.bg_A){
+      this.bg_A.texture = PIXI.Texture.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
+    }
+    if (this.bg_B){
+      this.bg_B.texture = PIXI.Texture.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
+    }
+    if (this.bg_C){
+      this.bg_C.texture = PIXI.Texture.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
+    }
   }
 
   componentWillUnmount() {
-    this.stopTicker();
-  //  this.mount.removeChild(this.app.domElement);
+   this.stopTicker();
+   this.mount.removeChild(this.app.domElement);
   }
 
 
@@ -214,27 +103,65 @@ class HomeCanvas extends Component {
   };
 
 
-  drawGraphics(shape) {
-    let border = 200;
-    shape.lineStyle(0);
-    shape.clear();
-    shape.beginFill(BGcolor[1],1);
-    shape.moveTo(0+border,0+border);
-    shape.lineTo(this.app.screen.width-border,0+border);
-    shape.lineTo(this.app.screen.width-border,this.app.screen.height-border);
-    shape.lineTo(0+border,this.app.screen.height-border);
-    shape.endFill();
+
+  addLayer(activeSceneId) {
+
+    let container = new PIXI.Container();
+
+    this.bg_A = PIXI.Sprite.fromImage(bgImages_Brutalist[activeSceneId]);
+    this.bg_B = PIXI.Sprite.fromImage(bgImages_Brutalist[activeSceneId]);
+    this.bg_C = PIXI.Sprite.fromImage(bgImages_Brutalist[activeSceneId]);
+
+    this.bg_A.anchor.set(0.5);
+    this.bg_A.width = this.app.screen.width;
+    this.bg_A.height = this.app.screen.height;
+    this.bg_A.x = this.app.screen.width / 2;
+    this.bg_A.y = this.app.screen.height / 2;
+    this.bg_A.alpha = 0.5;
+
+    this.bg_B.anchor.set(0.5);
+    this.bg_B.width = this.app.screen.width;
+    this.bg_B.height = this.app.screen.height;
+    this.bg_B.x = this.app.screen.width / 2;
+    this.bg_B.y = this.app.screen.height / 2;
+
+    this.bg_C.anchor.set(0.5);
+    this.bg_C.width = this.app.screen.width;
+    this.bg_C.height = this.app.screen.height;
+    this.bg_C.x = this.app.screen.width / 2;
+    this.bg_C.y = this.app.screen.height / 2;
+    this.bg_C.alpha = 0.4;
+
+    container.addChild(this.bg_B);
+    this.app.stage.addChild(container);
+
+    container = new PIXI.Container();
+    this.app.stage.addChild(container);
+
+    this.myMask = new PIXI.Graphics();
+
+    this.drawGraphics(this.myMask);
+
+    container.addChild(this.myMask);
+    container.mask = this.myMask
+
+    this.bg_Container = new PIXI.Graphics();
+    this.drawGraphics(this.bg_Container);
+
+    container.addChild(this.bg_Container);
+    container.addChild(this.bg_A);
+
+    this.addText();
+
+    this.app.stage.interactive = true;
+    this.app.stage.mousemove = this.stageMouseMove.bind(this);
+
   }
 
-  startTicker() {
-    this.ticker.start();
-  }
-
-  stopTicker() {
-    this.ticker.stop();
-  }
 
   addText() {
+
+    let container = new PIXI.Container();
 
     let style = new PIXI.TextStyle({
       align: 'center',
@@ -249,10 +176,6 @@ class HomeCanvas extends Component {
       padding: 50,
       cacheAsBitmap: true
     });
-
-    let container = new PIXI.Container();
-
-    console.log(this.props.activeSceneId);
 
     this.text_A = new PIXI.Text('', style);
     this.text_A.anchor.set(0.5);
@@ -300,20 +223,89 @@ class HomeCanvas extends Component {
 
     container.addChild(this.bg_C);
     container.addChild(this.text_C);
-
     container.addChild(this.text_A);
     container.mask = this.text_A
 
-    this.app.stage.addChild(this.text_B);
     this.app.stage.addChild(container);
 
+    this.ticker = new PIXI.ticker.Ticker();
+
+    this.tickerCount = 0;
+
+    this.stopTicker();
+    this.ticker.add(this.switchText.bind(this));
+    this.ticker.add(this.textAnimation.bind(this));
+    this.startTicker();
+
+
+  }
+
+  drawGraphics(shape) {
+    let border = 200;
+    shape.lineStyle(0);
+    shape.clear();
+    shape.beginFill(BGcolor[1],1);
+    shape.moveTo(0+border,0+border);
+    shape.lineTo(this.app.screen.width-border,0+border);
+    shape.lineTo(this.app.screen.width-border,this.app.screen.height-border);
+    shape.lineTo(0+border,this.app.screen.height-border);
+    shape.endFill();
   }
 
   textAnimation = (deltaTime) => {
     // do something every frame
-    this.text_A.style.letterSpacing += 0.5;
+    this.text_A.style.letterSpacing += 0.25;
   }
 
+  switchText = (deltaTime) => {
+
+    if (!this.ticker.timeFlag ){this.ticker.timeFlag = 0}
+
+    if (this.ticker.lastTime - this.ticker.timeFlag > 2000 ) {
+      this.ticker.timeFlag = this.ticker.lastTime;
+
+      if (this.tickerCount%10 === 3) {
+        this.tickerCount = 0;
+      }
+
+      if (this.props.bgTextArray && this.props.bgTextArray.length) {
+        if (this.text_A){
+          this.text_A.text = this.props.bgTextArray[this.tickerCount%10].toUpperCase();
+           this.text_A.style.letterSpacing = 25;
+        }
+        if (this.text_B){
+          this.text_B.text = this.props.bgTextArray[this.tickerCount%10].toUpperCase();
+        }
+        if (this.text_C){
+          this.text_C.text = this.props.bgTextArray[this.tickerCount%10].toUpperCase();
+        }
+      }
+
+      this.tickerCount ++;
+
+    }
+
+    //
+    //
+    // console.log(this.ticker);
+    // console.log(this.ticker.elapsedMS);
+    // console.log(deltaTime);
+
+    /*  if (deltaTime%5 === 0) {
+
+      }*/
+
+
+
+  }
+
+  startTicker() {
+    this.ticker.start();
+  }
+
+  stopTicker() {
+    this.ticker.stop();
+  }
 
   stageMouseMove(event){
     let mouseposition = event.data.global;
@@ -347,6 +339,7 @@ class HomeCanvas extends Component {
 
   }
 
+
   getDistanceFromCenterX(pointA, pointB) {
     return Math.sqrt(Math.pow(pointA.x - pointB.x,2) + Math.pow(pointA.y - pointB.y,2));
   }
@@ -360,7 +353,6 @@ class HomeCanvas extends Component {
   render() {
     return (
       <div
-        activeSceneId={this.props.activeSceneId}
         style={{ width: '100%', height: '100%' }}
         ref={(mount) => { this.mount = mount }}
       />
