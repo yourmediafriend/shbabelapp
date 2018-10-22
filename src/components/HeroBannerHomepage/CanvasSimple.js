@@ -106,8 +106,26 @@ class HomeCanvas extends Component {
     if (this.app){
       const parent = this.app.view.parentNode;
       this.app.renderer.resize(parent.clientWidth, parent.clientHeight);
+
+      this.bg_A.width = this.app.screen.width;
+      this.bg_A.height = this.app.screen.height;
+      this.bg_A.x = this.app.screen.width / 2;
+      this.bg_A.y = this.app.screen.height / 2;
+
+      this.bg_B.width = this.app.screen.width;
+      this.bg_B.height = this.app.screen.height;
+      this.bg_B.x = this.app.screen.width / 2;
+      this.bg_B.y = this.app.screen.height / 2;
+
+      this.bg_C.width = this.app.screen.width;
+      this.bg_C.height = this.app.screen.height;
+      this.bg_C.x = this.app.screen.width / 2;
+      this.bg_C.y = this.app.screen.height / 2;
+
       this.drawGraphics(this.myMask);
       this.drawGraphics(this.bg_Container);
+      this.drawBorder(this.border);
+
       this.text_A.x = this.app.screen.width/2;
       this.text_A.y = this.app.screen.height/2;
       this.text_B.x = this.app.screen.width/2;
@@ -164,10 +182,10 @@ class HomeCanvas extends Component {
     container.addChild(this.bg_Container);
     container.addChild(this.bg_A);
 
+    this.border = new PIXI.Graphics();
+    this.drawBorder(this.border);
 
-    this.myShape =  new PIXI.Graphics();
-    this.drawRectangleFrame(this.myShape);
-    container.addChild(this.myShape);
+    container.addChild(this.border);
 
     this.addText();
 
@@ -175,6 +193,7 @@ class HomeCanvas extends Component {
     this.app.stage.mousemove = this.stageMouseMove.bind(this);
 
   }
+
 
 
   addText() {
@@ -266,20 +285,20 @@ class HomeCanvas extends Component {
     shape.lineTo(this.app.screen.width-border,0+border);
     shape.lineTo(this.app.screen.width-border,this.app.screen.height-border);
     shape.lineTo(0+border,this.app.screen.height-border);
-    shape.endFill();
-  }
-
-  drawRectangleFrame(shape) {
-    let border = 200;
-    shape.clear();
-    shape.lineStyle(2, BGcolor[1], 1);
-    shape.moveTo(0+border,0+border);
-    shape.lineTo(this.app.screen.width-border,0+border);
-    shape.lineTo(this.app.screen.width-border,this.app.screen.height-border);
-    shape.lineTo(0+border,this.app.screen.height-border);
     shape.lineTo(0+border,0+border);
     shape.endFill();
   }
+
+  drawBorder(shape) {
+    this.drawGraphics(shape);
+    console.log(shape.currentPath);
+    shape.currentPath.fill = false;
+    shape.currentPath.lineColor = BGcolor[1];
+    shape.currentPath.lineWidth = 2;
+    shape.currentPath.lineAlpha = 0.5;
+    return shape;
+  }
+
 
   textAnimation = (deltaTime) => {
     // do something every frame
