@@ -2,33 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import {get} from "lodash/fp";
+
 import cx from 'classnames';
 import styles from './homepage.scss'
 
 import MainLayer from '../../Content/MainLayer';
 import ContentLayer from '../../Content/ContentLayer';
 import { OneColumnCenter }  from '../../Layout';
-import CanvasEnhanced from './CanvasSimple';
 import FeatureList from '../../FeatureList';
 import Carousel from '../../Carousel';
-import HomepageHero from './HomepageHero';
+import HomepageHero from '../../HeroBannerHomepage';
+import HeroBackground from '../../HeroBannerHomepage/HeroBackground';
 import GridWobble from '../../GridWobble';
 import BannerParallax from '../../BannerParallax';
-import {get} from "lodash/fp";
 
-let HeroBackground = (props) => {
-  return (
-    <div className={cx(styles.fixedBackgroundLayer, props.heroActive ? '' : styles.hide)} >
-      {props.breakpoint ==='large' ? <CanvasEnhanced activeSceneId={props.activeSceneId}  bgTextArray={props.bgTextArray} /> : ''}
-
-      {/*<div style={{position:'absolute',top:'300px',left:'300px', background:'#fff', color:'black'}}>*/}
-        {/*{props.breakpoint}*/}
-        {/*{props.activeSceneId}*/}
-      {/*</div>*/}
-
-    </div>
-  )
-};
 
 class Page extends Component {
 
@@ -47,12 +35,15 @@ class Page extends Component {
   render() {
 
     return (
+
       <MainLayer className={cx(styles.mainLayer)}   >
+
         <HeroBackground breakpoint={this.props.breakpoint} activeSceneId={this.state.activeSceneId} bgTextArray={this.state.textArray}  />
+
         <ContentLayer className={cx(styles.contentLayer)} >
 
           <div className={cx(styles.heroContainer)}>
-          <HomepageHero setActiveSceneId={this.setScene.bind(this)} />
+             <HomepageHero setActiveSceneId={this.setScene.bind(this)} />
           </div>
 
           <div className={cx(styles.content)}>

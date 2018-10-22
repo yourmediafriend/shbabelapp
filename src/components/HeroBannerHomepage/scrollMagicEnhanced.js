@@ -117,8 +117,9 @@ function withSubscription(WrappedComponent, selectData) {
       // add Sections
       for (let i = 0; i < (sectionCnt-1); i++) {
         this.scenes.push(new ScrollMagic.Scene({
-          offset: window.innerHeight * i,
+          offset: window.innerHeight * i - (window.innerHeight/2),
           duration: window.innerHeight,
+          triggerHook: 1,
         })
           .on("enter", function (i, event) {
 

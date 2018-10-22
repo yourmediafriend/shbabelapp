@@ -17,14 +17,39 @@ let bg_8 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgr
 let bg_9 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_9.gif";
 let bg_10 = "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_10.gif";
 let bg_11= "https://res.cloudinary.com/dghff7rpa/image/upload/v1536939226/backgrounds/images/brutalist_11.gif";
-
 let bg_12= "https://res.cloudinary.com/dghff7rpa/image/upload/v1537142824/backgrounds/images/brutalist.jpg";
 let bg_13= "https://res.cloudinary.com/dghff7rpa/image/upload/v1537145752/backgrounds/images/brutal-trash-polka.jpg";
-
-
 let bgImages_Brutalist= [bg_5, bg_2, bg_8];
 
-let textBanner = ['Power','Exploitation','Corruption','Despair', 'Fake News','Exploitation','Shaming','Trolls'];
+
+const hexToPixiColor = (hex) => '0x'+ hex.replace('#','');
+
+let textBanner = [];
+// textBanner = ['Power','Exploitation','Corruption','Despair', 'Fake News','Exploitation','Shaming','Trolls'];
+
+// let BGcolor = [
+//   hexToPixiColor('#5e9436'),
+//   hexToPixiColor('#ace278'),
+// ];
+//
+// let textColors = [
+//   '#ffffff',
+//   '#ace278',
+//   '#282d12',
+// ];
+//
+
+let BGcolor = [
+  hexToPixiColor('#474747'),
+  hexToPixiColor('#b0b0b5'),
+];
+
+let textColors = [
+  '#ffffff',
+  '#b0b0b5',
+  '#252726',
+];
+
 
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
@@ -40,68 +65,12 @@ class HomeCanvas extends Component {
     this.onResize();
   }
 
+
   componentDidMount() {
-    let container;
-    const width = this.mount.clientWidth;
-    const height = this.mount.clientHeight;
 
-    this.app = new PIXI.Application(window.innerWidth, window.innerHeight, { antialias: true, backgroundColor: '0x191A1E' });
+    this.app = new PIXI.Application(window.innerWidth, window.innerHeight, { antialias: true, backgroundColor: BGcolor[0] });
     this.mount.appendChild(this.app.view);
-    this.ticker = new PIXI.ticker.Ticker();
-
-    container = new PIXI.Container();
-    
-    this.bg_A = PIXI.Sprite.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
-    this.bg_B = PIXI.Sprite.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
-    this.bg_C = PIXI.Sprite.fromImage(bgImages_Brutalist[this.props.activeSceneId]);
-
-    this.bg_A.anchor.set(0.5);
-    this.bg_A.width = this.app.screen.width;
-    this.bg_A.height = this.app.screen.height;
-    this.bg_A.x = this.app.screen.width / 2;
-    this.bg_A.y = this.app.screen.height / 2;
-    this.bg_A.alpha = 0.5;
-
-    this.bg_B.anchor.set(0.5);
-    this.bg_B.width = this.app.screen.width;
-    this.bg_B.height = this.app.screen.height;
-    this.bg_B.x = this.app.screen.width / 2;
-    this.bg_B.y = this.app.screen.height / 2;
-
-    this.bg_C.anchor.set(0.5);
-    this.bg_C.width = this.app.screen.width;
-    this.bg_C.height = this.app.screen.height;
-    this.bg_C.x = this.app.screen.width / 2;
-    this.bg_C.y = this.app.screen.height / 2;
-    this.bg_C.alpha = 0.4;
-
-
-    container.addChild(this.bg_B);
-    this.app.stage.addChild(container);
-
-    container = new PIXI.Container();
-    this.app.stage.addChild(container);
-
-    this.myMask = new PIXI.Graphics();
-    this.drawGraphics(this.myMask);
-
-    container.addChild(this.myMask);
-    container.mask = this.myMask
-
-    this.bg_Container = new PIXI.Graphics();
-    this.drawGraphics(this.bg_Container);
-
-    container.addChild(this.bg_Container);
-    container.addChild(this.bg_A);
-
-    this.addText()
-
-    this.stopTicker();
-    this.ticker.add(this.textAnimation)
-    this.startTicker();
-
-    this.app.stage.interactive = true;
-    this.app.stage.mousemove = this.stageMouseMove.bind(this);
+    this.addLayer(this.props.activeSceneId)
 
   }
 
@@ -128,54 +97,115 @@ class HomeCanvas extends Component {
   }
 
   componentWillUnmount() {
-    this.stopTicker();
-  //  this.mount.removeChild(this.app.domElement);
+   this.stopTicker();
+   this.mount.removeChild(this.app.domElement);
   }
 
 
   onResize = () => {
-
     if (this.app){
       const parent = this.app.view.parentNode;
       this.app.renderer.resize(parent.clientWidth, parent.clientHeight);
+
+      this.bg_A.width = this.app.screen.width;
+      this.bg_A.height = this.app.screen.height;
+      this.bg_A.x = this.app.screen.width / 2;
+      this.bg_A.y = this.app.screen.height / 2;
+
+      this.bg_B.width = this.app.screen.width;
+      this.bg_B.height = this.app.screen.height;
+      this.bg_B.x = this.app.screen.width / 2;
+      this.bg_B.y = this.app.screen.height / 2;
+
+      this.bg_C.width = this.app.screen.width;
+      this.bg_C.height = this.app.screen.height;
+      this.bg_C.x = this.app.screen.width / 2;
+      this.bg_C.y = this.app.screen.height / 2;
+
       this.drawGraphics(this.myMask);
       this.drawGraphics(this.bg_Container);
+      this.drawBorder(this.border);
+
       this.text_A.x = this.app.screen.width/2;
       this.text_A.y = this.app.screen.height/2;
       this.text_B.x = this.app.screen.width/2;
       this.text_B.y = this.app.screen.height/2;
     }
-
   };
 
-  drawGraphics(shape) {
-    let border = 200;
-    shape.lineStyle(0);
-    shape.clear();
-    shape.beginFill(0x3D3D3D,1);
-    shape.moveTo(0+border,0+border);
-    shape.lineTo(this.app.screen.width-border,0+border);
-    shape.lineTo(this.app.screen.width-border,this.app.screen.height-border);
-    shape.lineTo(0+border,this.app.screen.height-border);
-    shape.endFill();
+
+
+  addLayer(activeSceneId) {
+
+    let container = new PIXI.Container();
+
+    this.bg_A = PIXI.Sprite.fromImage(bgImages_Brutalist[activeSceneId]);
+    this.bg_B = PIXI.Sprite.fromImage(bgImages_Brutalist[activeSceneId]);
+    this.bg_C = PIXI.Sprite.fromImage(bgImages_Brutalist[activeSceneId]);
+
+    this.bg_A.anchor.set(0.5);
+    this.bg_A.width = this.app.screen.width;
+    this.bg_A.height = this.app.screen.height;
+    this.bg_A.x = this.app.screen.width / 2;
+    this.bg_A.y = this.app.screen.height / 2;
+    this.bg_A.alpha = 0.5;
+
+    this.bg_B.anchor.set(0.5);
+    this.bg_B.width = this.app.screen.width;
+    this.bg_B.height = this.app.screen.height;
+    this.bg_B.x = this.app.screen.width / 2;
+    this.bg_B.y = this.app.screen.height / 2;
+
+    this.bg_C.anchor.set(0.5);
+    this.bg_C.width = this.app.screen.width;
+    this.bg_C.height = this.app.screen.height;
+    this.bg_C.x = this.app.screen.width / 2;
+    this.bg_C.y = this.app.screen.height / 2;
+    this.bg_C.alpha = 0.4;
+
+    container.addChild(this.bg_B);
+    this.app.stage.addChild(container);
+
+    container = new PIXI.Container();
+    this.app.stage.addChild(container);
+
+    this.myMask = new PIXI.Graphics();
+
+    this.drawGraphics(this.myMask);
+
+    container.addChild(this.myMask);
+    container.mask = this.myMask
+
+    this.bg_Container = new PIXI.Graphics();
+    this.drawGraphics(this.bg_Container);
+
+    container.addChild(this.bg_Container);
+    container.addChild(this.bg_A);
+
+    this.border = new PIXI.Graphics();
+    this.drawBorder(this.border);
+
+    container.addChild(this.border);
+
+    this.addText();
+
+    this.app.stage.interactive = true;
+    this.app.stage.mousemove = this.stageMouseMove.bind(this);
+
   }
 
-  startTicker() {
-    this.ticker.start();
-  }
 
-  stopTicker() {
-    this.ticker.stop();
-  }
 
   addText() {
+
+    let container = new PIXI.Container();
 
     let style = new PIXI.TextStyle({
       align: 'center',
       fontFamily: 'Helvetica, sans-serif',
       fontSize: 270,
       fontWeight: 700,
-      fill: ['#ffffff'],
+      fill: textColors[0],
       letterSpacing: 0,
       dropShadow: false,
       wordWrap: false,
@@ -184,9 +214,7 @@ class HomeCanvas extends Component {
       cacheAsBitmap: true
     });
 
-    let container = new PIXI.Container();
-
-    this.text_A = new PIXI.Text(textBanner[this.props.activeSceneId].toUpperCase(), style);
+    this.text_A = new PIXI.Text('', style);
     this.text_A.anchor.set(0.5);
     this.text_A.x = this.app.screen.width/2;
     this.text_A.y = this.app.screen.height/2;
@@ -196,7 +224,7 @@ class HomeCanvas extends Component {
       fontFamily: 'Helvetica, sans-serif',
       fontSize: 180,
       fontWeight: 700,
-      fill: ['#1c1c1c'],
+      fill: textColors[1],
       letterSpacing: 25,
       dropShadow: false,
       wordWrap: false,
@@ -204,7 +232,7 @@ class HomeCanvas extends Component {
       padding: 50,
     });
 
-    this.text_B = new PIXI.Text(textBanner[this.props.activeSceneId].toUpperCase(), style);
+    this.text_B = new PIXI.Text('', style);
     this.text_B.anchor.set(0.5);
     this.text_B.x = this.app.screen.width/2;
     this.text_B.y = this.app.screen.height/2;
@@ -215,7 +243,7 @@ class HomeCanvas extends Component {
       fontFamily: 'Helvetica, sans-serif',
       fontSize: 177,
       fontWeight: 700,
-      fill: ['#080808'],
+      fill: textColors[2],
       letterSpacing: 25,
       dropShadow: false,
       wordWrap: false,
@@ -223,7 +251,7 @@ class HomeCanvas extends Component {
       padding: 50,
     });
 
-    this.text_C = new PIXI.Text(textBanner[this.props.activeSceneId].toUpperCase(), style);
+    this.text_C = new PIXI.Text('', style);
     this.text_C.anchor.set(0.5);
     this.text_C.x = this.app.screen.width/2;
     this.text_C.y = this.app.screen.height/2;
@@ -232,20 +260,100 @@ class HomeCanvas extends Component {
 
     container.addChild(this.bg_C);
     container.addChild(this.text_C);
-
     container.addChild(this.text_A);
     container.mask = this.text_A
 
-    this.app.stage.addChild(this.text_B);
     this.app.stage.addChild(container);
 
+    this.ticker = new PIXI.ticker.Ticker();
+
+    this.tickerCount = 0;
+
+    this.stopTicker();
+    this.ticker.add(this.switchText.bind(this));
+    this.ticker.add(this.textAnimation.bind(this));
+    this.startTicker();
+
   }
+
+  drawGraphics(shape) {
+    let border = 200;
+    shape.lineStyle(0);
+    shape.clear();
+    shape.beginFill(BGcolor[1],1);
+    shape.moveTo(0+border,0+border);
+    shape.lineTo(this.app.screen.width-border,0+border);
+    shape.lineTo(this.app.screen.width-border,this.app.screen.height-border);
+    shape.lineTo(0+border,this.app.screen.height-border);
+    shape.lineTo(0+border,0+border);
+    shape.endFill();
+  }
+
+  drawBorder(shape) {
+    this.drawGraphics(shape);
+    console.log(shape.currentPath);
+    shape.currentPath.fill = false;
+    shape.currentPath.lineColor = BGcolor[1];
+    shape.currentPath.lineWidth = 2;
+    shape.currentPath.lineAlpha = 0.5;
+    return shape;
+  }
+
 
   textAnimation = (deltaTime) => {
     // do something every frame
-    this.text_A.style.letterSpacing += 0.5;
+    this.text_A.style.letterSpacing += 0.25;
   }
 
+  switchText = (deltaTime) => {
+
+    if (!this.ticker.timeFlag ){this.ticker.timeFlag = 0}
+
+    if (this.ticker.lastTime - this.ticker.timeFlag > 2000 ) {
+      this.ticker.timeFlag = this.ticker.lastTime;
+
+      if (this.tickerCount%10 === 3) {
+        this.tickerCount = 0;
+      }
+
+      if (this.props.bgTextArray && this.props.bgTextArray.length) {
+        if (this.text_A){
+          this.text_A.text = this.props.bgTextArray[this.tickerCount%10].toUpperCase();
+           this.text_A.style.letterSpacing = 25;
+        }
+        if (this.text_B){
+          this.text_B.text = this.props.bgTextArray[this.tickerCount%10].toUpperCase();
+        }
+        if (this.text_C){
+          this.text_C.text = this.props.bgTextArray[this.tickerCount%10].toUpperCase();
+        }
+      }
+
+      this.tickerCount ++;
+
+    }
+
+    //
+    //
+    // console.log(this.ticker);
+    // console.log(this.ticker.elapsedMS);
+    // console.log(deltaTime);
+
+    /*  if (deltaTime%5 === 0) {
+
+      }*/
+
+
+
+  }
+
+  startTicker() {
+    this.ticker.start();
+  }
+
+  stopTicker() {
+    this.ticker.stop();
+  }
 
   stageMouseMove(event){
     let mouseposition = event.data.global;
@@ -279,6 +387,7 @@ class HomeCanvas extends Component {
 
   }
 
+
   getDistanceFromCenterX(pointA, pointB) {
     return Math.sqrt(Math.pow(pointA.x - pointB.x,2) + Math.pow(pointA.y - pointB.y,2));
   }
@@ -292,7 +401,6 @@ class HomeCanvas extends Component {
   render() {
     return (
       <div
-        activeSceneId={this.props.activeSceneId}
         style={{ width: '100%', height: '100%' }}
         ref={(mount) => { this.mount = mount }}
       />
