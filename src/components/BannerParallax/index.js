@@ -19,29 +19,31 @@ import hero_980w from '../../media/hero6/hero_980w.jpg';
 import hero_1320w from '../../media/hero6/hero_1320w.jpg';
 import hero_1900w from '../../media/hero6/hero_1900w.jpg';
 
+let heroCity_2600w  = 'https://res.cloudinary.com/dghff7rpa/image/upload/v1540247748/hero/heroCity_2600w.jpg';
 
 const imagesHero = {
-  0: hero_480w,
-  480: hero_660w,
-  660: hero_960w,
-  740: hero_980w,
-  1140: hero_1320w,
-  1300: hero_1900w,
+  0: heroCity_2600w,
+  480: heroCity_2600w,
+  660: heroCity_2600w,
+  740: heroCity_2600w,
+  1140: heroCity_2600w,
+  1300: heroCity_2600w,
 };
 
 class BannerParallax extends Component {
 
   render(){
     return (
-      <div className={cx(styles.parallaxContainer)} >
-
+      <div className={cx(styles.parallaxContainer)} style={{height:'500px'}} >
         <div className={cx(styles.parallaxLayer,'parallax-layer')} >
+
+     {/*     */}
           <HeroBanner image={imagesHero}  />
         </div>
         <div className={cx(styles.overlay)} />
         <div className={cx(styles.contentLayer)} >
           <div className={cx(styles.content)} >
-            <h2>kjdfgkjh kdhkdsfhkdf</h2>
+            <h2>Difficult Decisions</h2>
           </div>
         </div>
 

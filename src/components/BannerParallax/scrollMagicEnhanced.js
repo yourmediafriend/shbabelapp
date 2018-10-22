@@ -98,12 +98,14 @@ function withSubscription(WrappedComponent, selectData) {
 
       let firstTween = this.parallaxTween($layer, options);
 
+      //        duration: $el.clientHeight + options.offset + 'px'
+
       this.tweens.push(firstTween);
       this.scenes.push(new ScrollMagic.Scene({
         offset: -options.offset + 'px',
-        triggerHook: 1,
+        triggerHook: 0.5,
         triggerElement: $el,
-        duration: $el.clientHeight + options.offset + 'px'
+        duration: 500 + options.offset + 'px'
       })
       .setTween(firstTween)
       .addTo(this.controller));
@@ -111,7 +113,7 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     parallaxTween($layer, options){
-      return TweenMax.fromTo($layer, 1.0, {y: '-50%'}, {y: '0%', z: '-0.01px', force3D: true})
+      return TweenMax.fromTo($layer, 1.0, {y: '-250px', ease: Linear.easeNone}, {y: '0', z: '-0.01px', force3D: true} )
     }
 
     updateScene() {

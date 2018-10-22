@@ -1,7 +1,6 @@
 .parallaxContainer {
     position: relative;
     z-index: 1;
-    height: 300px;
     overflow: hidden;
 }
 .overlay {
@@ -24,7 +23,8 @@
         color: #fff;
         margin: 0 auto;
         h2 {
-            font-size: 3em;
+            font-size: 5em;
+            text-transform: uppercase;
         }
     }
 }
