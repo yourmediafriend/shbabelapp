@@ -98,7 +98,7 @@ class HomeCanvas extends Component {
 
   componentWillUnmount() {
    this.stopTicker();
-   this.mount.removeChild(this.app.domElement);
+//   this.mount.removeChild(this.app.domElement);
   }
 
 
