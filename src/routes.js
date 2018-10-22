@@ -354,6 +354,20 @@ const SwitchRoute = () => (
 
     {/*/Site Pages/*/}
 
+    <Route exact path='/mixes' render={(routeProps) => {
+      // do I set the initial App State here
+      connect(setUpPage({
+        stickyHeader: true,
+        fixedFooter: true,
+        revealFooter: true,
+      }));
+      return <OneColumnSidebar {...routeProps}
+                               pageTitle='Mixes'
+                               currentpage='mixes-index'/>
+    }} />
+
+    {/*/Site Pages/*/}
+
     <Route exact path='/contact' render={(routeProps) => {
       // do I set the initial App State here
       connect(setUpPage({
