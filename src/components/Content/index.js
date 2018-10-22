@@ -19,6 +19,9 @@ import { LoginPage, SignUpPage, AccountPage, PasswordPage } from '../Pages/Accou
 
 import ContactPage from '../Pages/ContactPage';
 import WeatherPage from '../Pages/WeatherPage';
+import MixesIndexPage from '../Pages/Mixes';
+
+
 
 import News from '../News';
 import NewsArticle from '../News/Article';
@@ -85,6 +88,8 @@ const Content = ({currentpage, pageRef, match }) => {
       return <GridWobblepage />;
     case 'grid-hover':
       return <GridHoverPage />;
+    case 'mixes-index':
+      return <MixesIndexPage />;
     case 'news':
       return <News />;
     case 'news/article':
