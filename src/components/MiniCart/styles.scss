@@ -1,0 +1,125 @@
+.miniCartWrap {
+    display: flex;
+    flex-direction: column;
+    max-height: 50vh;
+    padding-top: 10px
+}
+.scrollable {
+    flex: 1;
+    overflow: scroll;
+}
+.fixToBottom {
+    margin-bottom: auto;
+}
+
+.miniCart {
+    border: 0;
+    font-size: 1em;
+}
+.item {
+    background: transparent;
+    border: 0;
+    padding-bottom: 0;
+    .inner {
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #585858;
+    }
+    &:last-child {
+        .inner {
+            border: 0;
+        }
+    }
+    .thumbnailWrap {
+
+        width: 100px;
+        flex-shrink: 0;
+        flex-grow: 0;
+
+        .thumbnail {
+            position: relative;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 0.7em;
+            padding: 5px;
+        }
+        &:hover {
+            .overlay {
+                opacity: 1;
+            }
+        }
+    }
+    .detailsWrap {
+        flex: 1;
+        padding: 0 0.75rem;
+        a:hover {
+            text-decoration: none;
+        }
+        .title {
+            font-size: 1.1em;
+            margin-bottom: 0;
+            text-align: left;
+            color: #ffffff;
+        }
+        .username,
+        .count{
+            font-size: 0.9em;
+            color: #ababab;
+        }
+    }
+    .pricewrap {
+        padding: 0 0 0 0.75rem;
+        text-align: right;
+        font-size: 0.9em;
+    }
+}
+.totalsWrap,
+.actionsWrap {
+    padding: 0.75rem 1.25rem;
+}
+
+.totalsWrap {
+    .inner {
+        border-top: 1px solid #585858;
+    }
+    .item {
+        display: flex;
+        flex-direction: row;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #585858;
+        .pricewrap {
+            margin-left: auto;
+        }
+        &.grand {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #ffffff;
+            border-bottom: 2px solid #ffffff;
+        }
+    }
+}
+.actionsWrap {
+    padding: 1rem 0.75rem 2rem;
+    .inner {
+        margin: 0;
+        display: flex;
+        :global(.btn) {
+            flex-basis: 50%;
+            margin: 0px 10px;
+        }
+    }
+}
