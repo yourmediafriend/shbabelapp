@@ -76,3 +76,17 @@
         }
     }
 }
+
+
+.dropdown {
+    max-height: 50vh;
+    overflow: scroll;
+    &:global(.minCartDropdown){
+        overflow: hidden;
+        right: 0;
+        left: auto;
+        margin-right: 0;
+        width: 400px;
+        text-align: left;
+    }
+}

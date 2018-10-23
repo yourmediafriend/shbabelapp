@@ -8,10 +8,13 @@ import Icon from '../Icons';
 import cx from 'classnames';
 
 import { AccountDropdownMenu } from '../User'
+import { Dropdown as MiniCartDropdown } from '../MiniCart';
 
 import { Nav, NavItem } from 'reactstrap';
 import styles from './iconNavStyles.scss';
 import {get} from "lodash/fp";
+
+
 
 
 const AppContext = React.createContext();
@@ -47,7 +50,7 @@ let Dropdown = props => {
     <AppContext.Consumer>
       {(context) => {
         return (
-          <div className={cx(styles.dropdown, context.isHovering ? styles.show : '' )}>
+          <div className={cx(styles.dropdown, props.className, context.isHovering ? styles.show : '' )} style={{...props.style}}>
             {props.children}
           </div>
         )
@@ -122,24 +125,29 @@ const IconNavContact = (props) => {
 }
 
 const IconNavCart = (props) => {
+
+  const showDropdown = () => {
+    return (props.breakpoint === 'large' )
+  };
+
+  const CartDropDown = () => {
+    //style={{display:'block'}}
+    return (
+      <Dropdown className={cx('minCartDropdown')} >
+        <MiniCartDropdown />
+      </Dropdown>
+    )
+  };
+
   return (
-    <NavItem>
-      <MenuItem>
+    <NavItem className={styles.miniCart}>
+      <MenuItem hoverOffDelay={250} >
         <MenuLink icon="cart" />
+        {showDropdown() ? <CartDropDown /> : null}
       </MenuItem>
     </NavItem>
   );
 }
-
-// const IconNavLocation = (props) => {
-//   return (
-//     <NavItem>
-//       <MenuItem>
-//         <MenuLink icon="location" clickEvent={props.modalOpen.bind(this, 'location')} />
-//       </MenuItem>
-//     </NavItem>
-//   );
-// }
 
 const IconNav = (props) => {
 
