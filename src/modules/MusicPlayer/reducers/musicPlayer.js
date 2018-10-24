@@ -110,8 +110,6 @@ export default function reducer(state=initialState, action = {}) {
         ...state,
         seekTo: action.payload.seekTo
       }
-
-
     case SET_DURATION:
       return {
         ...state,

@@ -191,7 +191,7 @@ class Controls extends Component {
 
   render () {
 
-    const { playPause, toggleLoop, toggleShowRemaining, toggleMuted, setMuted, setVolume, toggleQueuePopUp, track, playing, volume, muted, progress, duration, showRemaining } = this.props;
+    const { playPause, toggleLoop, loop, toggleShowRemaining, toggleMuted, setMuted, setVolume, toggleQueuePopUp, track, playing, volume, muted, progress, duration, showRemaining } = this.props;
 
     return (
       <div className={cx(styles.controls, this.props.className, styles[this.props.class] )}>
@@ -202,7 +202,7 @@ class Controls extends Component {
           </button>
         </div>
         <div className={cx(styles.section, styles.controls, styles.loop)}>
-          <button className={cx(styles.button)} onClick={toggleLoop}>
+          <button className={cx(styles.button, this.props.loop ? styles.active : '')} onClick={toggleLoop}>
             <span className={cx(styles.icon)}>
               <Icon icon={'loop'} />
             </span>
@@ -251,6 +251,7 @@ export const mapStateToProps = (state) => {
     playing: get('musicPlayerModule.playing', state),
     volume: get('musicPlayerModule.volume', state),
     muted: get('musicPlayerModule.muted', state),
+    loop:   get('musicPlayerModule.loop', state),
     duration: get('musicPlayerModule.duration', state),
     progress: get('musicPlayerModule.progress', state),
     showRemaining: get('musicPlayerModule.showRemaining', state),

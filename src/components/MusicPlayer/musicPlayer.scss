@@ -168,6 +168,16 @@
     }
 }
 
+.loop {
+    .button {
+        &.active {
+            svg {
+                fill: #ff00ea;
+            }
+        }
+    }
+}
+
 .volume{
     margin-left: auto;
     position: relative;
