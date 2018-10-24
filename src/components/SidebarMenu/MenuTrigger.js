@@ -13,7 +13,15 @@ import {
 import BurgerIcon from '../BurgerIcon';
 import styles from './sideMenu.scss';
 import cx from 'classnames';
+import { footerOpen } from "../../modules/Footer";
 
+const FooterToggleComp = ({clickEvent}) => {
+  return (
+    <div className={styles.footerExpand} onClick={clickEvent}>
+      <span className={styles.footerOpenIcon} />
+    </div>
+  )
+}
 
 class MusicControler extends Component {
 
@@ -62,6 +70,7 @@ class MusicControler extends Component {
               <div className={cx(styles.sidebarControls)}>
                 <div style={{...this.myStyles(state)}}>
                   <Controls class={'sidebar'} />
+                  <FooterToggleComp clickEvent={props.footerOpen} />
                 </div>
               </div>
             ) : null;
@@ -71,7 +80,7 @@ class MusicControler extends Component {
   }
 }
 
-const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, iconNavConfig, footerFixedOpen, musicPlayerPosition}) => {
+const MenuTrigger = ({offCanvasMenuStateChange, footerOpen, menuIsOpen, iconNavConfig, footerFixedOpen, musicPlayerPosition}) => {
   return (
     <div className={styles.menuTriggerWrap} >
       <div onClick={offCanvasMenuStateChange} className={styles.menuTrigger}/>
@@ -85,10 +94,13 @@ const MenuTrigger = ({offCanvasMenuStateChange, menuIsOpen, iconNavConfig, foote
                      ...iconNavConfig.side
                    }} /> : ''}
 
+
+
 {/*<MusicControler footerIsOpen={footerIsOpen} />*/}
 {/*can't make it appear and activate animation*/}
 
-      <MusicControler footerFixedOpen={footerFixedOpen} />
+      <MusicControler footerFixedOpen={footerFixedOpen} footerOpen={footerOpen}/>
+
 
 {/*{musicPlayerPosition === 'sidebar' ?  <MusicControler footerIsOpen={footerIsOpen} />  : null}*/}
     </div>
@@ -115,6 +127,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       offCanvasMenuStateChange,
+      footerOpen,
     },
     dispatch
   );

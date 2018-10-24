@@ -46,3 +46,12 @@ $menu-bg:  #2b2b2b !default;
     margin: 0;
 
 }
+.footerExpand {
+    padding: 15px 0;
+    .footerOpenIcon{
+        width: 20px;
+        border-bottom: 3px solid #fff;
+        display: block;
+        margin: 0px auto;
+    }
+}
