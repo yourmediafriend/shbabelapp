@@ -34,11 +34,14 @@ class Footer extends Component {
 
     let props = this.props;
 
-    console.log(props.footerFixedOpen);
+    console.log('AAA', props);
 
     return (
 
         <Animate
+
+          footerFixedOpen={this.props.footerFixedOpen}
+
           start={() => ({
             showFooter: props.footerFixedOpen,
             footer:{
@@ -53,18 +56,17 @@ class Footer extends Component {
             timing: { duration: 250, ease: easeCubicInOut },
             events: {
               start() {
-              //  this.setState({showFooter:true})
+                this.setState({showFooter:true})
               },
               end() {
-                // hide the element
-               // this.setState({showFooter:false})
+                if (!this.props.footerFixedOpen){
+                  this.setState({showFooter:false});
+                }
               },
             },
           })}
         >
           {(state) => {
-
-            console.log('render()', state.showFooter);
 
             return state.showFooter ?
               (
