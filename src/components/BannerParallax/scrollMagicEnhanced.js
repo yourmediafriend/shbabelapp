@@ -11,7 +11,7 @@ import {Linear, TweenMax} from "gsap";
 
 let globalOptions = {
   offset: 0,
-  power: 0.3,
+  bannerheight: 500,
   container: 'body',
 };
 
@@ -35,7 +35,8 @@ function withSubscription(WrappedComponent, selectData) {
     getOptions() {
       let container = this.props.container || globalOptions.container;
       let offset = this.props.offset || globalOptions.offset;
-      return {offset, container};
+      let bannerheight = this.props.bannerheight || globalOptions.bannerheight;
+      return {offset, container, bannerheight};
     }
 
     shouldEnable(){
@@ -81,9 +82,10 @@ function withSubscription(WrappedComponent, selectData) {
 
     createScene() {
       let options = this.getOptions();
+
       this.controller = new ScrollMagic.Controller({
         container: options.container,
-        //addIndicators: true,
+        // addIndicators: true,
         // loglevel: 2,
       });
 
@@ -103,9 +105,9 @@ function withSubscription(WrappedComponent, selectData) {
       this.tweens.push(firstTween);
       this.scenes.push(new ScrollMagic.Scene({
         offset: -options.offset + 'px',
-        triggerHook: 0.5,
+        triggerHook: 1,
         triggerElement: $el,
-        duration: 500 + options.offset + 'px'
+        duration: window.innerHeight + options.bannerheight,
       })
       .setTween(firstTween)
       .addTo(this.controller));
@@ -113,7 +115,10 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     parallaxTween($layer, options){
-      return TweenMax.fromTo($layer, 1.0, {y: '-250px', ease: Linear.easeNone}, {y: '0', z: '-0.01px', force3D: true} )
+
+      console.log('parallaxTween', -options.bannerheight);
+
+      return TweenMax.fromTo($layer, 1.0, {y: '-500px', ease: Linear.easeNone}, {y: '0', z: '-0.01px', force3D: true} )
     }
 
     updateScene() {
