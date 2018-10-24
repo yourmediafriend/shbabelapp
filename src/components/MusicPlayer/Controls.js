@@ -17,6 +17,7 @@ import {
   toggleLoop,
   setVolume,
   toggleMuted,
+  setMuted,
   toggleShowRemaining,
   setPlaybackRate,
   setPlayheadPositon,
@@ -55,7 +56,16 @@ class VolumeSlider extends Component {
     };
   }
 
+  setMute = () => {
+    this.setState({
+      value: 0
+    });
+  }
+
   onChange = value => {
+    if (this.props.muted) {
+      this.props.setMuted(false)
+    }
     this.setState({
       value: value
     });
@@ -63,11 +73,12 @@ class VolumeSlider extends Component {
   }
 
   render() {
+
     return (
       <Slider
         className={cx(styles.slider)}
         orientation="vertical"
-        value={this.state.value}
+        value={this.props.muted ? 0 : this.state.value}
         min={this.state.min}
         max={this.state.max}
         tooltip={false}
@@ -141,7 +152,7 @@ class TimelineSlider extends Component {
 
 class VolumeControl extends Component {
   render() {
-    const { hoverDelay, hoverOffDelay, volume, muted, toggleMuted, setVolume } = this.props;
+    const { hoverDelay, hoverOffDelay, volume, muted, toggleMuted, setMuted, setVolume } = this.props;
     return (
       <div className={cx(styles.section, styles.volume)}>
         <ReactHoverObserver
@@ -152,14 +163,20 @@ class VolumeControl extends Component {
           {({ isHovering }) => {
             return(
               <div>
+
                 <button className={cx(styles.button)} onClick={toggleMuted}>
-                  {muted ? <span className={cx(styles.icon, styles.mute)}><Icon icon={'mute'} /></span> : <span className={cx(styles.icon, styles.volume)}><Icon icon={'volume'} /></span>}
+                  {muted ? <span className={cx(styles.icon, styles.mute)}><Icon icon={'mute'} /></span> :
+                    <span className={cx(styles.icon, styles.volume)}>
+                      {volume > 0.5 ? <Icon icon={'volume_max'} /> : volume !== 0 ? <Icon  icon={'volume'} /> : <Icon  icon={'mute'} />}
+                    </span>
+                  }
                 </button>
 
                 <div className={cx(styles.barWrap, styles.setVolume, isHovering ? styles.show : styles.hide )}>
                   <div className={cx(styles.inner)}>
-                    <VolumeSlider volume={volume} setVolume={setVolume} />
+                    <VolumeSlider volume={muted ? 0 : volume}  muted={muted} setMuted={setMuted} setVolume={setVolume} />
                   </div>
+
                 </div>
               </div>
             )
@@ -174,7 +191,7 @@ class Controls extends Component {
 
   render () {
 
-    const { playPause, toggleLoop, toggleShowRemaining, toggleMuted, setVolume, toggleQueuePopUp, track, playing, volume, muted, progress, duration, showRemaining } = this.props;
+    const { playPause, toggleLoop, toggleShowRemaining, toggleMuted, setMuted, setVolume, toggleQueuePopUp, track, playing, volume, muted, progress, duration, showRemaining } = this.props;
 
     return (
       <div className={cx(styles.controls, this.props.className, styles[this.props.class] )}>
@@ -211,7 +228,7 @@ class Controls extends Component {
           </div>
         </div>
 
-        <VolumeControl hoverDelay={0} hoverOffDelay={800} muted={muted} volume={volume} toggleMuted={toggleMuted} setVolume={setVolume}/>
+        <VolumeControl hoverDelay={0} hoverOffDelay={800} muted={muted} volume={volume} toggleMuted={toggleMuted} setMuted={setMuted} setVolume={setVolume}/>
 
         <MusicQueuePopUp />
         {/* https://storage.googleapis.com/media-session/elephants-dream/the-wires.mp3*/}
@@ -248,6 +265,7 @@ const mapDispatchToProps = dispatch =>
       toggleLoop,
       setVolume,
       toggleMuted,
+      setMuted,
       toggleShowRemaining,
       setPlaybackRate,
       setPlayheadPositon,

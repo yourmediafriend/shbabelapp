@@ -7,6 +7,7 @@ const STOP = "musicPlayer/STOP";
 const TOGGLE_LOOP = "musicPlayer/TOGGLE_LOOP";
 const SET_VOLUME = "musicPlayer/SET_VOLUME";
 const TOGGLE_MUTE = "musicPlayer/TOGGLE_MUTE";
+const SET_MUTE = "musicPlayer/SET_MUTE";
 const SHOW_REMAINING = "musicPlayer/SHOW_REMAINING";
 const SET_PLAYBACK_RATE = "musicPlayer/SET_PLAYBACK_RATE";
 const PLAY = "musicPlayer/PLAY";
@@ -74,6 +75,11 @@ export default function reducer(state=initialState, action = {}) {
       return {
         ...state,
         muted: !state.muted,
+      }
+    case SET_MUTE:
+      return {
+        ...state,
+        muted: action.payload.muted,
       }
     case SHOW_REMAINING:
       return {
@@ -189,6 +195,17 @@ export const toggleMuted = () => {
     type: TOGGLE_MUTE,
   };
 }
+
+export const setMuted = (muted) => {
+  return {
+    type: SET_MUTE,
+    payload: {
+      muted,
+    }
+  };
+}
+
+
 
 export const toggleShowRemaining = () => {
   return {
