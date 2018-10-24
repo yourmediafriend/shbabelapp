@@ -34,6 +34,8 @@ class Footer extends Component {
 
     let props = this.props;
 
+    console.log(props.footerFixedOpen);
+
     return (
 
         <Animate
@@ -51,16 +53,19 @@ class Footer extends Component {
             timing: { duration: 250, ease: easeCubicInOut },
             events: {
               start() {
-                this.setState({showFooter:true})
+              //  this.setState({showFooter:true})
               },
               end() {
                 // hide the element
-                this.setState({showFooter:false})
+               // this.setState({showFooter:false})
               },
             },
           })}
         >
           {(state) => {
+
+            console.log('render()', state.showFooter);
+
             return state.showFooter ?
               (
                 <div ref={(element) => this.footerElement = element}
@@ -79,9 +84,6 @@ class Footer extends Component {
 }
 
 export const mapStateToProps = (state) => {
-
-  //console.log(get('footerModule.footerFixedOpen', state));
-
   return {
     footerFixedOpen: get('footerModule.footerFixedOpen', state),
     breakpoint: get('appModule.breakpoint', state),

@@ -19,7 +19,7 @@ import hero_980w from '../../media/hero6/hero_980w.jpg';
 import hero_1320w from '../../media/hero6/hero_1320w.jpg';
 import hero_1900w from '../../media/hero6/hero_1900w.jpg';
 
-let heroCity_2600w  = 'https://res.cloudinary.com/dghff7rpa/image/upload/v1540247748/hero/heroCity_2600w.jpg';
+let heroCity_2600w  = 'https://res.cloudinary.com/dghff7rpa/image/upload/v1540335528/hero/heroCity_2600w_bg.jpg';
 
 const imagesHero = {
   0: heroCity_2600w,
