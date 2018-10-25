@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './news.scss';
 
-
 const parseURL = (url) => {
   var parser = document.createElement('a'),
     searchObject = {},
@@ -27,8 +26,6 @@ const parseURL = (url) => {
   };
 }
 
-
-
 const Category = ({category}) => {
 
   if (category) {
@@ -39,7 +36,11 @@ const Category = ({category}) => {
     );
   }
   return null;
-}
+};
+
+Category.propTypes = {
+  category: PropTypes.object,
+};
 
 const Image = ({image}) => {
   let urlArray = parseURL(image.url);
@@ -58,8 +59,11 @@ const Image = ({image}) => {
     );
   }
   return null;
-}
+};
 
+Image.propTypes = {
+  image: PropTypes.object,
+};
 
 export {
   Image,

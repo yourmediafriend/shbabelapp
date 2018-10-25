@@ -29,15 +29,14 @@ class NewsItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-                    redirect: false,
-                 };
+        redirect: false,
+    };
   }
   handleOnClick = () => {
     // some action...
     // then redirect
     this.setState({redirect: true});
   }
-
 
   getPlaceholderImage () {
     return placeholderImages[this.props.id % placeholderImages.length]
@@ -75,6 +74,13 @@ class NewsItem extends Component {
   }
 }
 
+NewsItem.propTypes = {
+  title: PropTypes.string,
+  url: PropTypes.string,
+  author: PropTypes.object,
+  created: PropTypes.string,
+  category: PropTypes.string,
+};
 
 class NewsArticlesIndex extends Component {
 

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Query } from "react-apollo";
-
 import { Link } from 'react-router-dom';
 import { TwoColumnLeft }  from '../Layout';
-
 import newsArticleQuery from '../../graphQL/newsArticleQuery';
 import UtcSecondsToDate from './utcSecondsToDate';
 import Breadcrumbs from '../Breadcrumbs'
@@ -15,8 +13,7 @@ import MainLayer from '../Content/MainLayer'
 import ContentLayer from '../Content/ContentLayer'
 import Widget from '../Widgets';
 import widgetStyles from '../Widgets/widget.scss';
-import { Category } from './ArticleElements';
-
+import {Category, Image} from './ArticleElements';
 
 class ArticleSideBar extends Component {
   render() {
@@ -29,7 +26,6 @@ class ArticleSideBar extends Component {
 }
 
 class Article extends Component {
-
   render() {
     return (
       <article className={cx(styles.article,'article')}>
@@ -54,8 +50,16 @@ class Article extends Component {
   }
 }
 
-class NewsArticle extends Component {
+Article.propTypes = {
+  title: PropTypes.string,
+  url: PropTypes.string,
+  author: PropTypes.object,
+  created: PropTypes.string,
+  category: PropTypes.string,
+  body: PropTypes.string,
+};
 
+class NewsArticle extends Component {
   render() {
     return (
       <Query query={newsArticleQuery} variables={{path: `/${this.props.match.params.type}/${this.props.match.params.article}`}} >
@@ -86,7 +90,9 @@ class NewsArticle extends Component {
   }
 }
 
-
+NewsArticle.propTypes = {
+  match: PropTypes.string,
+};
 
 class NewsArticleLayout extends Component {
   render() {
@@ -100,6 +106,10 @@ class NewsArticleLayout extends Component {
     )
   }
 }
+
+NewsArticleLayout.propTypes = {
+  match: PropTypes.object,
+};
 
 export { ArticleSideBar };
 

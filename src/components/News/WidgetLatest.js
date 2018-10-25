@@ -15,13 +15,13 @@ import placeholderC from '../../media/placeholders/placeholder-5000x500-3.jpg'
 import placeholderD from '../../media/placeholders/placeholder-5000x500-4.jpg'
 import placeholderE from '../../media/placeholders/placeholder-5000x500-5.jpg'
 import placeholderF from '../../media/placeholders/placeholder-5000x500-6.jpg'
-const placeholderImages = [placeholderA, placeholderB, placeholderC, placeholderD, placeholderE, placeholderF];
+import noop from "../../utils/noop";
 
+const placeholderImages = [placeholderA, placeholderB, placeholderC, placeholderD, placeholderE, placeholderF];
 
 const getPlaceholderImage = (id) => {
   return placeholderImages[id % placeholderImages.length]
 };
-
 
 const Image = ({id, image}) => {
   if (image) {
@@ -33,7 +33,6 @@ const Image = ({id, image}) => {
   }
   return null;
 }
-
 
 class NewsItem extends Component {
   render() {
@@ -58,6 +57,14 @@ class NewsItem extends Component {
     );
   }
 }
+
+NewsItem.propTypes = {
+  title: PropTypes.string,
+  url: PropTypes.string,
+  author: PropTypes.object,
+  created: PropTypes.string,
+  category: PropTypes.string,
+};
 
 class NewsLatestWidget extends Component {
   render() {
