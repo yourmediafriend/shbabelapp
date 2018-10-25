@@ -11,7 +11,7 @@ import scrollMagicEnhanced from './scrollMagicEnhanced';
 import {get} from "lodash/fp";
 
 import { OneColumnCenter }  from '../Layout';
-import Dummytext from '../DummyText/DummyTextLong';
+import Dummytext from '../Placeholders/DummyText/DummyTextLong';
 
 class SvgPatternMagicScroll extends Component {
 

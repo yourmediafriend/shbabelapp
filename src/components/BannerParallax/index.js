@@ -11,7 +11,7 @@ import cx from 'classnames'
 import styles from './styles.scss';
 
 import HeroBanner from '../HeroBanner';
-import DummyText from '../DummyText';
+import DummyText from '../Placeholders/DummyText';
 import hero_480w from '../../media/hero6/hero_480w.jpg';
 import hero_660w from '../../media/hero6/hero_660w.jpg';
 import hero_960w from '../../media/hero6/hero_960w.jpg';

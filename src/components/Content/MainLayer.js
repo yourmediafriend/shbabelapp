@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames'
 import styles from './content.scss';
-import ContentLayer from "./ContentLayer";
 
 /*const MainLayer = React.forwardRef((props, ref)  => {
   return (
@@ -14,7 +13,7 @@ import ContentLayer from "./ContentLayer";
 
 const MainLayer = props  => {
   return (
-    <div ref={props.forwardedRef} className={cx(styles.mainLayer, props.showFooterReveal? styles.footerReveal : '', props.className)}>
+    <div ref={props.forwardedRef} className={cx(styles.mainLayer, props.showFooterReveal ? styles.footerReveal : '', props.className)}>
       {props.children}
     </div>
   )
@@ -31,6 +30,5 @@ MainLayer.defaultProps = {
   showFooterReveal: true,
   showFooterFixed: true
 };
-
 
 export default MainLayer;

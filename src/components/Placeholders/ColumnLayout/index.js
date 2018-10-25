@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import DummyText from '../DummyText/DummyTextLong'
+import DummyText from '../Placeholders/DummyText/DummyTextLong'
 import styles from './columnLayoutStyles';
 import HeroBanner from '../HeroBanner';
 import StickyPanel from './StickyPanel';
-
 
 class ColumnLayout extends Component {
   render() {

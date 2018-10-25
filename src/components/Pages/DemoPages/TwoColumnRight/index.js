@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { TwoColumnRight }  from '../../../Layout';
 import { MenuWidget} from '../../../Widgets';
 import PageTitle from '../../../PageTitle'
-import Dummytext from '../../../DummyText/DummyTextLong';
+import Dummytext from '../../../Placeholders/DummyText/DummyTextLong';
 import cx from "classnames";
 import MainLayer from '../../../Content/MainLayer'
 import ContentLayer from '../../../Content/ContentLayer'

@@ -6,7 +6,7 @@ import ContentLayer from '../../../Content/ContentLayer'
 
 import styles from './stickyElements.scss';
 
-import DummyText from '../../../DummyText/DummyTextLong'
+import DummyText from '../../../Placeholders/DummyText/DummyTextLong'
 import StickyPanel from './StickyPanel';
 import { PromoWidget } from '../../../Widgets';
 

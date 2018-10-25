@@ -6,20 +6,11 @@ import cx from "classnames";
 import ScrollMagicEnhanced from './scrollMagicEnhanced'
 import {get} from "lodash/fp";
 import {connect} from "react-redux";
-import {footerClose} from "../../modules/Footer";
 import {bindActionCreators} from "redux";
 
 class Carousel extends Component {
 
-/*  constructor(){
-    super();
-    this.state={
-      showCarousel: false
-    }
-  }*/
-
   slideShowConfig(breakpoint) {
-
     switch(breakpoint) {
       case 'x-small':
         return 1;
@@ -33,8 +24,6 @@ class Carousel extends Component {
         return 1;
     }
   }
-
-
 
   render() {
 
@@ -188,8 +177,6 @@ class Carousel extends Component {
   }
 }
 
-
-
 export const mapStateToProps = (state) => {
   return {
     breakpoint: get('appModule.breakpoint', state),
@@ -202,9 +189,10 @@ export const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-
 Carousel.props = {
-  breakpoint: PropTypes.string
+  breakpoint: PropTypes.string,
+  showCarousel: PropTypes.bool,
+  style: PropTypes.object,
 };
 
 Carousel.defaultProps = {
@@ -212,7 +200,3 @@ Carousel.defaultProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScrollMagicEnhanced(Carousel));
-
-
-
-

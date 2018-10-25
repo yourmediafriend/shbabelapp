@@ -22,7 +22,7 @@ Breadcrumbs.propType ={
 
 Breadcrumbs.defaultProps ={
   className: PropTypes.string,
-  url: 'news'
+  url: 'news',
   title: 'News',
 }
 

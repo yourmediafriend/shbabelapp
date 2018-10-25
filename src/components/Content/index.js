@@ -1,6 +1,5 @@
 import React from 'react';
-import styles from './content.scss';
-import cx from 'classnames'
+import PropTypes from 'prop-types';
 
 // Content
 import SvgAnimation from '../SvgAnimations';
@@ -117,6 +116,12 @@ const Content = ({currentpage, pageRef, match }) => {
     default:
       return null;
   }
-}
+};
+
+Content.propTypes = {
+  match: PropTypes.object,
+  currentpage: PropTypes.string,
+  pageRef: PropTypes.string,
+};
 
 export default Content;

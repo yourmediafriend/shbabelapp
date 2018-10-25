@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { OneColumnCenter }  from '../../../Layout';
 import PageTitle from '../../../PageTitle'
-import Dummytext from '../../../DummyText/DummyTextShort';
+import Dummytext from '../../../Placeholders/DummyText/DummyTextShort';
 import BannerParallax from '../../../BannerParallax';
 
 import cx from "classnames";

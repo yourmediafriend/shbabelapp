@@ -4,7 +4,7 @@ import { ThreeColumn }  from '../../../Layout';
 import { PromoWidget, MenuWidget, NewsLatestWidget} from '../../../Widgets';
 
 import PageTitle from '../../../PageTitle'
-import Dummytext from '../../../DummyText/DummyTextLong';
+import Dummytext from '../../../Placeholders/DummyText/DummyTextLong';
 import cx from "classnames";
 import MainLayer from '../../../Content/MainLayer'
 import ContentLayer from '../../../Content/ContentLayer'
