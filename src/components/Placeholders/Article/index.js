@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import styles from './article.scss';
-import Picture from '../Picture';
-import tigerSrc from '../../media/tiger.jpg';
-import dunesSrc from '../../media/dunes.jpg';
-import rainforestSrc from '../../media/rainforest.jpg';
-import fractalSrc from '../../media/fractal.jpg';
+import Picture from '../../Picture';
+import tigerSrc from '../../../media/tiger.jpg';
+import dunesSrc from '../../../media/dunes.jpg';
+import rainforestSrc from '../../../media/rainforest.jpg';
+import fractalSrc from '../../../media/fractal.jpg';
 
 const imagesTiger = {
   700: tigerSrc

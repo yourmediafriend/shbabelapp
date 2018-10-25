@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { OneColumnCenter }  from '../../../Layout';
-import Article from '../../../Article';
-import ArticleHero from '../../../Article/Hero';
+import Article from '../../../Placeholders/Article';
+import ArticleHero from '../../../Placeholders/Article/Hero';
 import styles from './mixed.scss'
 import cx from "classnames";
 import MainLayer from '../../../Content/MainLayer'

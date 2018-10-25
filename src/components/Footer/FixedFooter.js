@@ -34,21 +34,16 @@ class Footer extends Component {
 
     let props = this.props;
 
-    console.log('AAA', props);
-
     return (
 
         <Animate
-
           footerFixedOpen={this.props.footerFixedOpen}
-
           start={() => ({
             showFooter: props.footerFixedOpen,
             footer:{
               translateY: [props.footerFixedOpen ? 0: 100 ]
             }
           })}
-
           update={() => ({
             footer:{
               translateY: [props.footerFixedOpen ? 0: 100 ]

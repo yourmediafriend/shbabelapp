@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {Helmet} from "react-helmet";
 import { __ENV__ } from '../../utils/constants';
 import {
@@ -12,7 +13,6 @@ const getTitle = (siteName, pageTitle ) => {
   return pageTitle ? siteName +' - '+ pageTitle : siteName ;
 }
 
-
 const HeaderManager = (props) => {
   return (
     <Helmet>
@@ -21,6 +21,10 @@ const HeaderManager = (props) => {
       <link rel="canonical" href={siteUrl} />
     </Helmet>
   )
+};
+
+HeaderManager.propTypes = {
+  pageTitle: PropTypes.string,
 };
 
 export default HeaderManager;

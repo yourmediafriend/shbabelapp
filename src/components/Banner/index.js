@@ -29,9 +29,5 @@ baner.propTypes = {
   image: PropTypes.object
 };
 
-baner.defaultProps = {
-
-};
-
 export default baner;
 

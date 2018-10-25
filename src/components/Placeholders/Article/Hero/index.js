@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import styles from '../article.scss';
 
-import HeroBanner from '../../HeroBanner';
+import HeroBanner from '../../../HeroBanner';
 let hero_480w  = 'https://res.cloudinary.com/dghff7rpa/image/upload/c_scale,w_660/v1536370812/hero/hero_2600w.jpg';
 let hero_660w  = 'https://res.cloudinary.com/dghff7rpa/image/upload/c_scale,w_960/v1536370812/hero/hero_2600w.jpg';
 let hero_960w  = 'https://res.cloudinary.com/dghff7rpa/image/upload/c_scale,w_980/v1536370812/hero/hero_2600w.jpg';
@@ -26,7 +28,7 @@ let HeroContent = props => (
       </h1>
     </div>
   </div>
-)
+);
 
 class ArticleHero extends Component {
   render() {
@@ -35,7 +37,3 @@ class ArticleHero extends Component {
 }
 
 export default ArticleHero;
-
-
-
-

@@ -55,11 +55,9 @@ const initialState = {
   sidebarStyle: 'overlay',
 };
 
-
 const isTouchScreen = () =>{
   return ('ontouchstart' in window);
-}
-
+};
 
 const touchScreenClass = () =>{
 
@@ -75,9 +73,6 @@ const touchScreenClass = () =>{
     root.classList.remove('touch');
     root.classList.add('no-touch');
   }
-
-
-
 };
 
 class App extends Component {
