@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../forms.scss';
 
 export const Button = ({ submitting, isSending }) => (
@@ -6,5 +7,11 @@ export const Button = ({ submitting, isSending }) => (
     Submit
   </button>
 )
+
+Button.propTypes = {
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+};
+
 
 export default Button;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {get} from "lodash/fp";
@@ -10,7 +11,7 @@ import {
   resetErrorMessage,
 } from '../../../modules/Forms/SignUp';
 
-class SignupFormView extends Component {
+class FormView extends Component {
 
   render() {
     return (<SignupForm attemptToSubmit={this.props.attemptToSubmit}
@@ -21,6 +22,14 @@ class SignupFormView extends Component {
   };
 
 }
+
+FormView.propTypes = {
+  attemptToSubmit: PropTypes.func,
+  resetErrorMessage: PropTypes.func,
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+  hasErrored: PropTypes.bool,
+};
 
 
 const mapStateToProps = (state) => {
@@ -45,5 +54,5 @@ export const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupFormView);
+export default connect(mapStateToProps, mapDispatchToProps)(FormView);
 

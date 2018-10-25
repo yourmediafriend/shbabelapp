@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Form, Field, reduxForm} from 'redux-form';
 import { RenderField } from '../formComponents'
 import { Row, Col  } from 'reactstrap';
@@ -25,6 +26,10 @@ const FormComp = props => {
       </Form>
   )
 }
+
+FormComp.propTypes = {
+  handleSubmit: PropTypes.func,
+};
 
 export default reduxForm(
   reduxFormDetails

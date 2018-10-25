@@ -1,19 +1,14 @@
 import React from 'react';
-import ReactFullpage from '@fullpage/react-fullpage';
-import 'fullpage.js/vendors/scrolloverflow';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import SVGInline from "react-svg-inline"
 import cx from 'classnames';
-import ReactHoverObserver from '../../ReactHoverObserver';
 import styles from './davidCarson.scss';
 import {hoverSindy} from "../../../modules/Fullpage";
 import {get} from "lodash/fp";
-
 import barsSvg from '../../../media/fullpage-slides/dark/bars.svg';
 import caveGif from '../../../media/fullpage-slides/dark/cave.gif';
-
 
 const Slide = (props) => {
   return (

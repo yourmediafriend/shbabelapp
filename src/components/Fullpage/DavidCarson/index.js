@@ -9,7 +9,6 @@ import styles from './davidCarson.scss';
 import {hoverSindy} from "../../../modules/Fullpage";
 import {get} from "lodash/fp";
 
-
 import SlideA from './slideA';
 import SlideB from './slideB';
 import SlideC from './slideC';

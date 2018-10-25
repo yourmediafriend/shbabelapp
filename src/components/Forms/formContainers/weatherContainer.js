@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {get} from "lodash/fp";
@@ -10,15 +11,11 @@ import {
 } from '../../../modules/Forms/Weather';
 
 const submit = (values, dispatch ) => {
-
-  console.log('submit');
   return
-
 //  return dispatch(attemptToSubmit(values));
 }
 
-class weatherLocationFormView extends Component {
-
+class FormView extends Component {
   render() {
     return (<WeatherForm   attemptToSubmit={this.props.attemptToSubmit}
                           resetErrorMessage={this.props.resetErrorMessage}
@@ -26,8 +23,15 @@ class weatherLocationFormView extends Component {
                           isSending={this.props.isSending}
                           message={this.props.message} />);
   };
-
 }
+
+FormView.propTypes = {
+  attemptToSubmit: PropTypes.func,
+  resetErrorMessage: PropTypes.func,
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+  hasErrored: PropTypes.bool,
+};
 
 const mapStateToProps = (state) => {
 
@@ -50,5 +54,5 @@ export const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(weatherLocationFormView);
+export default connect(mapStateToProps, mapDispatchToProps)(FormView);
 

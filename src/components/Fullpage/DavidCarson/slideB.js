@@ -1,22 +1,16 @@
 import React from 'react';
-import ReactFullpage from '@fullpage/react-fullpage';
-import 'fullpage.js/vendors/scrolloverflow';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import SVGInline from "react-svg-inline"
 import cx from 'classnames';
 import ReactHoverObserver from '../../ReactHoverObserver';
 import styles from './davidCarson.scss';
 import {hoverSindy} from "../../../modules/Fullpage";
 import {get} from "lodash/fp";
-
 import sindy_1 from '../../../media/fullpage-slides/dark/sindy-1.jpg';
 import sindy_2 from '../../../media/fullpage-slides/dark/sindy-2.jpg';
 import sindy_3 from '../../../media/fullpage-slides/dark/sindy-3.jpg';
-
 import jumpGif from '../../../media/fullpage-slides/dark/jumping.gif';
-
 import dangerSkullGif from '../../../media/fullpage-slides/dark/dangerSkullA.gif';
 import crownGif from '../../../media/fullpage-slides/dark/crownA.gif';
 import balloonDogGif from '../../../media/fullpage-slides/dark/balloonDog.gif';

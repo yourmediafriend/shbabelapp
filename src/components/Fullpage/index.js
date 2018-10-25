@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-
-
 import DavidCarson from './DavidCarson';
 import Fluro from './Fluro';
 import Trees from './Trees';

@@ -37,9 +37,6 @@ class HeaderSpacer extends Component {
         })}
 
         update={() => ({
-        /*  HeaderSpacer:{
-            height: [props.XXX ? stickyHeaderHeight  : stickyHeaderHeight ]
-          },*/
           timing: { duration: 250, ease: easeCubicInOut },
           events: {
             start() {

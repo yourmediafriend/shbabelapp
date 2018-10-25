@@ -97,7 +97,8 @@ export const mapDispatchToProps = dispatch =>
 
 
 Footer.props = {
-  breakpoint: PropTypes.string
+  breakpoint: PropTypes.string,
+  footerFixedOpen: PropTypes.bool
 };
 
 Footer.defaultProps = {

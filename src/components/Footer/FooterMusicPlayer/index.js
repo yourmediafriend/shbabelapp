@@ -1,5 +1,4 @@
 import React from 'react'
-
 import OneColumnCenter from '../../Layout/1ColumnCenter';
 import { Controls } from '../../MusicPlayer';
 

@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import { FormRow, RenderField } from '../formComponents'
 import { Button } from 'reactstrap';
 import styles from '../forms.scss'
 import cx from 'classnames'
-import {resetErrorMessage} from "../../../modules/Forms/SignUp";
 
 const validate = values => {
   const errors = {};
-
-  console.log('validate SignUpForm');
 
   if (!values.name) {
     errors.name = 'Required'
@@ -45,7 +43,7 @@ export const reduxFormDetails = {
   ],
 }
 
-class SignUpForm extends Component {
+class FormComp extends Component {
 
   constructor(props) {
     super(props);
@@ -81,7 +79,7 @@ class SignUpForm extends Component {
 
   render(){
 
-    const { handleSubmit, submitting, isSending, hasErrored, message, reset } = this.props;
+    const { handleSubmit, submitting, isSending, hasErrored, message } = this.props;
 
     return(
       <form className={cx(styles.userForm, styles.signUpForm)} onSubmit={handleSubmit(this.submitForm.bind(this))}>
@@ -104,8 +102,16 @@ class SignUpForm extends Component {
   }
 }
 
+FormComp.propTypes = {
+  attemptToSubmit: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+  hasErrored: PropTypes.bool,
+};
+
 // Decorate the form component
 export default reduxForm(
   reduxFormDetails
-)(SignUpForm);
+)(FormComp);
 

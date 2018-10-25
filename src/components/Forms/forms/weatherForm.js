@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Field, reduxForm } from 'redux-form';
 import { FormRow, FormFieldInput } from '../formComponents'
 import { Button } from 'reactstrap';
@@ -13,7 +14,7 @@ export const reduxFormDetails = {
   fields: [
     'address',
   ],
-}
+};
 
 const RenderFieldSingle = ({
                              labeltext,
@@ -49,6 +50,15 @@ const RenderFieldSingle = ({
     )}
   </UID>);
 
+RenderFieldSingle.propTypes = {
+  labeltext: PropTypes.string,
+  input: PropTypes.string,
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  submitting: PropTypes.bool,
+  meta: PropTypes.object,
+};
+
 const FormComp = ({
                     attemptToSubmit,
                     handleSubmit,
@@ -72,7 +82,15 @@ const FormComp = ({
       </Form>
     </div>
   )
-}
+};
+
+FormComp.propTypes = {
+  attemptToSubmit: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+  hasErrored: PropTypes.bool,
+};
 
 // Decorate the form component
 export default reduxForm(

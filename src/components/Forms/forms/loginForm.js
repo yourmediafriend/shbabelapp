@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import { RenderField } from '../formComponents'
 import { Button, Form, Row, Col, FormText } from 'reactstrap';
@@ -27,7 +28,7 @@ export const reduxFormDetails = {
   ],
 };
 
-const LoginForm = props => {
+const FormComp = props => {
 
   const { handleSubmit, submitting, isSending, hasErrored } = props;
 
@@ -53,8 +54,15 @@ const LoginForm = props => {
   )
 };
 
+FormComp.propTypes = {
+  handleSubmit: PropTypes.func,
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+  hasErrored: PropTypes.bool,
+};
+
 // Decorate the form component
 export default reduxForm(
   reduxFormDetails
-)(LoginForm);
+)(FormComp);
 

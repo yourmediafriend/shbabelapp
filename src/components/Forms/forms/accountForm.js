@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import { RenderField, PasswordSrength } from '../formComponents'
 import { Button, Form, Row, Col, FormText } from 'reactstrap';
@@ -40,7 +41,7 @@ export const reduxFormDetails = {
   ],
 };
 
-class AccountForm extends Component {
+class FormComp extends Component {
 
   submitForm = (values) => {
     console.log('submitForm', values);
@@ -100,7 +101,14 @@ class AccountForm extends Component {
   }
 };
 
+FormComp.propTypes = {
+  handleSubmit: PropTypes.func,
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+  hasErrored: PropTypes.bool,
+};
+
 // Decorate the form component
 export default reduxForm(
   reduxFormDetails
-)(AccountForm);
+)(FormComp);

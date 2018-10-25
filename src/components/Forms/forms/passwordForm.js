@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import { RenderField, PasswordSrength } from '../formComponents'
 import { Button, Form, Row, Col, FormText } from 'reactstrap';
 import styles from '../forms.scss';
 import cx from 'classnames'
 
-
 const validate = values => {
   const errors = {};
-
-  console.log('validate PasswordForm');
 
   // if ((values.passwordRepeat && values.password) && values.passwordRepeat !== values.password ) {
   //   errors.passwordRepeat = 'Must Match'
@@ -36,10 +34,9 @@ export const reduxFormDetails = {
   ],
 };
 
-class PasswordForm extends Component {
+class FormComp extends Component {
 
   submitForm = (values) => {
-    console.log('submitForm', values);
     return values;
   };
 
@@ -53,16 +50,11 @@ class PasswordForm extends Component {
           <Row>
             <Col>
               <PasswordSrength labeltext={"Password"} name={"passwordset"} strengthIndicator={true} isrequired={true}/>
-
-{/*              <Field labeltext={"Password"} name={"passwordset"} component={RenderField} type={"password"} showHide={true}
-                     strengthIndicator={true} isrequired={true}/>*/}
             </Col>
           </Row>
           <Row>
             <Col>
               <PasswordSrength labeltext={"Repeat Password"} name={"passwordsetcompare"} isrequired={true}/>
-{/*              <Field labeltext={"Repeat Password"} name={"passwordsetcompare"} component={RenderField} type={"password"}
-                     showHide={true} strengthIndicator={false} isrequired={true}/>*/}
             </Col>
           </Row>
         </fieldset>
@@ -73,10 +65,17 @@ class PasswordForm extends Component {
       </Form>
     )
   }
+}
+
+FormComp.propTypes = {
+  handleSubmit: PropTypes.func,
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+  hasErrored: PropTypes.bool,
 };
 
 // Decorate the form component
 export default reduxForm(
   reduxFormDetails
-)(PasswordForm);
+)(FormComp);
 

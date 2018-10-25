@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {get} from "lodash/fp";
@@ -14,9 +15,16 @@ const submit = (values, dispatch ) => {
   return dispatch(attemptToSubmit(values));
 }
 
-const ContactFormView = props => {
+const FormView = props => {
   return (<ContactForm onSubmit={submit} hasErrored={props.hasErrored} isSending={props.isSending}/>)
 }
+
+FormView.propTypes = {
+  attemptToSubmit: PropTypes.func,
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+  hasErrored: PropTypes.bool,
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -34,5 +42,5 @@ export const mapDispatchToProps = dispatch =>
   );
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactFormView);
+export default connect(mapStateToProps, mapDispatchToProps)(FormView);
 

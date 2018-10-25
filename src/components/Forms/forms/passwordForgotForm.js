@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
 import { FormRow, RenderField } from '../formComponents'
 import { Button } from 'reactstrap';
@@ -20,7 +21,7 @@ export const reduxFormDetails = {
   ],
 };
 
-const passwordForgotForm = props => {
+const FormComp = props => {
 
   const { handleSubmit, submitting, isSending, hasErrored } = props;
 
@@ -41,8 +42,15 @@ const passwordForgotForm = props => {
   )
 };
 
+FormComp.propTypes = {
+  handleSubmit: PropTypes.func,
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+  hasErrored: PropTypes.bool,
+};
+
 // Decorate the form component
 export default reduxForm(
   reduxFormDetails
-)(passwordForgotForm);
+)(FormComp);
 

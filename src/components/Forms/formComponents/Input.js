@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {UID} from 'react-uid';
 import PasswordSrength from './PasswordStrength'
 import { FormGroup, Label, Input, FormFeedback,  } from 'reactstrap';
@@ -47,6 +48,12 @@ const ErrorMessage = ({touched, error, warning}) => {
 
 };
 
+ErrorMessage.propTypes = {
+  touched: PropTypes.bool,
+  error: PropTypes.string,
+  warning: PropTypes.string,
+};
+
 const RenderField = ({
                      labeltext,
                      input,
@@ -84,7 +91,17 @@ const RenderField = ({
                     </FormGroup>
                   )
 
-
+RenderField.propTypes = {
+  labeltext: PropTypes.string,
+  input: PropTypes.string,
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  id: PropTypes.string,
+  isrequired: PropTypes.bool,
+  strengthIndicator: PropTypes.bool,
+  autoComplete: PropTypes.bool,
+  meta: PropTypes.object,
+};
 
 const FormRow = (props) => {
   return (
@@ -93,5 +110,10 @@ const FormRow = (props) => {
     </div>
   );
 }
+
+FormRow.propTypes = {
+  children: PropTypes.object,
+};
+
 
 export { FormRow, RenderField, FormFieldInput };

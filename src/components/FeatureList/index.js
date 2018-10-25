@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.scss';
 import ScrollMagicEnhanced from './scrollMagicEnhanced';
 import { Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
@@ -8,9 +9,9 @@ import featureListQuery from '../../graphQL/featureListQuery';
 
 const FeatureListItem = props => {
 
-  const { content } = props;
+  const { content, delay } = props;
   return (
-    <ListGroupItem className={cx(styles.listGroupItem)} data-delay={Math.round(props.delay * 100) / 100}>
+    <ListGroupItem className={cx(styles.listGroupItem)} data-delay={Math.round(delay * 100) / 100}>
       <div>
         <img src="http://www.pixijs.com/wp/wp-content/uploads/feature-multiplatform.png"
              alt="Multi-platform Support graphic"  className={cx(styles.img,'img')} />
@@ -23,15 +24,24 @@ const FeatureListItem = props => {
   );
 }
 
+FeatureListItem.propTypes = {
+  delay: PropTypes.number,
+  content: PropTypes.string,
+}
+
 let FeatureListGroup = props => {
 
   const delay = 1;
-  // console.log('FeatureListGroup', props);
+
   return (
     <ListGroup id='FeatureList' className={styles.listGroup}  >
       {props.data.nodeQuery.entities.map((item, index) => <FeatureListItem key={index} content={item} delay={index * delay} />)}
     </ListGroup>
   );
+}
+
+FeatureListGroup.propTypes = {
+  data: PropTypes.object,
 }
 
 FeatureListGroup = ScrollMagicEnhanced(FeatureListGroup);
@@ -53,7 +63,6 @@ const FeatureListQuery = props => {
       }}
     </Query>
   )
-
 }
 
 export default FeatureListQuery;

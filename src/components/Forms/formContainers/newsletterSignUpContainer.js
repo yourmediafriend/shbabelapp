@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
@@ -16,6 +17,13 @@ const submit = (values, dispatch ) => {
 const FormView = props => {
   return (<NewsletterSignup onSubmit={submit} hasErrored={props.hasErrored} isSending={props.isSending}/>)
 }
+
+FormView.propTypes = {
+  attemptToSubmit: PropTypes.func,
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+  hasErrored: PropTypes.bool,
+};
 
 const mapStateToProps = (state) => {
   return {};

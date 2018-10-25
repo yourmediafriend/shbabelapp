@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from '../forms.scss';
 import zxcvbn from 'zxcvbn';
-import {UID} from 'react-uid';
+import { UID } from 'react-uid';
 import Icon from '../../Icons';
-import {Field, reduxForm} from 'redux-form';
+import { Field } from 'redux-form';
 import { Input, Label, FormGroup, FormFeedback } from 'reactstrap';
 import cx from "classnames";
 
@@ -98,8 +99,18 @@ class FormFieldInput extends React.Component {
 
     );
   }
-
 }
+
+FormFieldInput.propTypes = {
+  input: PropTypes.string,
+  placeholder: PropTypes.string,
+  strengthIndicator: PropTypes.bool,
+  id: PropTypes.string,
+  touched: PropTypes.bool,
+  error: PropTypes.string,
+  warning: PropTypes.string,
+  onChange: PropTypes.func,
+};
 
 const RenderField = ({
                        labeltext,
@@ -125,8 +136,17 @@ const RenderField = ({
           />
       )
 
-
-
+RenderField.propTypes = {
+  labeltext: PropTypes.string,
+  input: PropTypes.string,
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  id: PropTypes.string,
+  isrequired: PropTypes.bool,
+  strengthIndicator: PropTypes.bool,
+  autoComplete: PropTypes.bool,
+  meta: PropTypes.object,
+};
 
 class PasswordStrengthReveal extends Component {
 
@@ -155,5 +175,19 @@ class PasswordStrengthReveal extends Component {
     )
   }
 }
+
+PasswordStrengthReveal.propTypes = {
+  attemptToSubmit: PropTypes.func,
+  isSending: PropTypes.bool,
+  submitting: PropTypes.bool,
+  hasErrored: PropTypes.bool,
+  name: PropTypes.string,
+  labeltext: PropTypes.string,
+  isrequired: PropTypes.string,
+  strengthIndicator: PropTypes.bool,
+  touched: PropTypes.bool,
+  error: PropTypes.string,
+  warning: PropTypes.string,
+};
 
 export default PasswordStrengthReveal;
