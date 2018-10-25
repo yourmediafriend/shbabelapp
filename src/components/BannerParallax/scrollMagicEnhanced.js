@@ -4,8 +4,6 @@ import verge from 'verge';
 import ScrollMagic from 'scrollmagic-with-ssr';
 import 'AnimationGsap';
 import 'debug.addIndicators';
-
-import { getOr, assign } from 'lodash/fp';
 import S from "camel-case-selector";
 import {Linear, TweenMax} from "gsap";
 

@@ -6,7 +6,7 @@ import Animate from 'react-move/Animate';
 import { easeCubicInOut } from 'd3-ease';
 import cx from 'classnames'
 import styles from './content.scss';
-import {get, max} from "lodash/fp";
+import {get} from "lodash/fp";
 
 import FooterSpacer from "../Footer/FooterSpacer";
 
@@ -25,9 +25,6 @@ class HeaderSpacer extends Component {
   };
 
   render() {
-
-    let props = this.props;
-
     return (
       <Animate
         start={() => ({

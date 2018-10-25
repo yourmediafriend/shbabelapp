@@ -5,7 +5,6 @@ import { Query } from "react-apollo";
 import gridPlaceholderQuery from '../../graphQL/gridPlaceholderQuery';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import scrollMagicParallax from './scrollMagicParallax';
-import ReactHoverObserver from '../ReactHoverObserver';
 import Tilt from 'react-vanilla-tilt'
 
 import placeholderA from '../../media/placeholders/placeholder-5000x500-1.jpg'

@@ -5,9 +5,6 @@ import ScrollMagic from 'scrollmagic-with-ssr';
 import 'AnimationGsap';
 import 'debug.addIndicators';
 
-import { getOr, assign } from 'lodash/fp';
-import S from "camel-case-selector";
-
 let globalOptions = {
   offset: 0,
   container: 'body',
@@ -95,7 +92,7 @@ function withSubscription(WrappedComponent, selectData) {
 
     createScene() {
       let options = this.getOptions();
-      let $el = ReactDOM.findDOMNode(this.myRef.current);
+
       this.controller = new ScrollMagic.Controller({
         container: options.container,
         // addIndicators: true,
