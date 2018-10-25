@@ -8,7 +8,7 @@ class Breadcrumbs extends Component {
   render() {
     return (
       <div className={cx('breadcrumbs',styles.breadcrumbs,this.props.className)}>
-        <Link to={'/{this.props.url}'}>{this.props.title}'}</Link>
+        <Link to={`/${this.props.url}`}>{this.props.title}</Link>
       </div>
     )
   }

@@ -52,7 +52,7 @@ const RenderFieldSingle = ({
 
 RenderFieldSingle.propTypes = {
   labeltext: PropTypes.string,
-  input: PropTypes.string,
+  input: PropTypes.object,
   placeholder: PropTypes.string,
   type: PropTypes.string,
   submitting: PropTypes.bool,

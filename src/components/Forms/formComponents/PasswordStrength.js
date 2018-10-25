@@ -102,7 +102,7 @@ class FormFieldInput extends React.Component {
 }
 
 FormFieldInput.propTypes = {
-  input: PropTypes.string,
+  input: PropTypes.object,
   placeholder: PropTypes.string,
   strengthIndicator: PropTypes.bool,
   id: PropTypes.string,
