@@ -18,7 +18,7 @@ const TimeFomated = ({created}) => {
 };
 
 TimeFomated.props = {
-  created: PropTypes.string
+  created: PropTypes.number
 };
 
 export default TimeFomated

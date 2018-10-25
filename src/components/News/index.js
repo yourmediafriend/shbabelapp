@@ -78,8 +78,8 @@ NewsItem.propTypes = {
   title: PropTypes.string,
   url: PropTypes.string,
   author: PropTypes.object,
-  created: PropTypes.string,
-  category: PropTypes.string,
+  created: PropTypes.number,
+  category: PropTypes.object,
 };
 
 class NewsArticlesIndex extends Component {

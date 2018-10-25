@@ -43,6 +43,12 @@ const StickyContainer = (props) => {
   );
 };
 
+StickyContainer.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.object,
+  flexStyle: PropTypes.object,
+};
+
 const initialState = {
   triggerWidth: 54,
   menuWidth: 280,
@@ -209,8 +215,6 @@ class App extends Component {
       >
         {(state) => {
 
-         // console.log('HideMenu', (!this.props.isMenuOpen && !this.props.isMenuAnimating));
-
           return (
             <div className={cx(styles.outer,'application')}>
 
@@ -271,15 +275,28 @@ class App extends Component {
 }
 
 App.propTypes = {
-  stickyHeader: PropTypes.bool,
+  currentpage: PropTypes.string,
   fixedFooter: PropTypes.bool,
   revealFooter: PropTypes.bool,
+  stickyHeader: PropTypes.bool,
+  showHeader: PropTypes.bool,
+  showFooterFixed: PropTypes.bool,
+  showFooterReveal: PropTypes.bool,
   isMenuOpen: PropTypes.bool,
   isMenuAnimating: PropTypes.bool,
   isModalOpen: PropTypes.bool,
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object,
+  singlePage: PropTypes.bool,
   offCanvasMenuStateChange: PropTypes.func,
   offCanvasMenuToggleAnimation: PropTypes.func,
+  pageTitle: PropTypes.string,
+  setCurrentBreakPoin: PropTypes.func,
+  setIconNavConfig: PropTypes.func,
+  //staticContext,
 };
+
 
 App.defaultProps = {
   showFooterReveal: true,

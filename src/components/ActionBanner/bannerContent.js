@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './actionBannerStyles';
 import { Transition } from 'react-transition-group';
 
@@ -40,7 +42,7 @@ class BannerContent extends Component {
           >
             {(state) => {
               return (
-                <div className="wrapper" style={{...styles.actionBanner.banner, ...defaultStyle, ...transitionStyles[state]      }}>
+                <div className="wrapper" style={{...styles.actionBanner.banner, ...defaultStyle, ...transitionStyles[state]}}>
                   <header>
                     <h1>SIMPLIFY</h1>
                   </header>
@@ -55,6 +57,10 @@ class BannerContent extends Component {
     )
   }
 }
+
+BannerContent.propTypes = {
+  sceneActive: PropTypes.bool,
+};
 
 export default BannerContent;
 
