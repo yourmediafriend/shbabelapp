@@ -10,7 +10,7 @@ import Duration from './Duration';
 import styles from './musicPlayer.scss';
 import { Image } from 'cloudinary-react';
 import Icon from '../Icons';
-import MusicQueuePopUp from './MusicQueue'
+import MusicQueuePopUp from './MusicQueue/MusicQueue'
 import {toggleQueuePopUp} from "../../modules/MusicPlayer";
 
 class MusicPlayer extends Component {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import { loadTrack} from "../../modules/MusicPlayer";
-import styles from './musicPlayer.scss'
+import { loadTrack} from "../../../modules/MusicPlayer/index";
+import styles from '../musicPlayer.scss'
 import cx from 'classnames';
 import { Image } from 'cloudinary-react';
 

@@ -1,17 +1,17 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import { closeQueuePopUp } from "../../modules/MusicPlayer";
+import { closeQueuePopUp } from "../../../modules/MusicPlayer/index";
 import {get} from "lodash/fp";
-import styles from './musicPlayer.scss'
+import styles from '../musicPlayer.scss'
 import cx from 'classnames';
 import { Query } from "react-apollo";
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import QueueItem from './MusicQueueItem';
 
-import musicPlayerQuery from '../../graphQL/musicPlayerQuery';
+import musicPlayerQuery from '../../../graphQL/musicPlayerQuery';
 
-import Icon from '../Icons';
+import Icon from '../../Icons/index';
 
 const Playlist = () => {
   return (

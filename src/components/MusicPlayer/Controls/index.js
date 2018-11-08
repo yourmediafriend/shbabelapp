@@ -3,14 +3,14 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {get} from "lodash/fp";
 import cx from 'classnames';
-import ReactHoverObserver from '../ReactHoverObserver';
+import ReactHoverObserver from '../../ReactHoverObserver/index';
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
-import Duration from './Duration';
-import styles from './musicPlayer.scss';
+import Duration from '../Duration';
+import styles from '../musicPlayer.scss';
 import { Image } from 'cloudinary-react';
-import Icon from '../Icons';
-import MusicQueuePopUp from './MusicQueue'
+import Icon from '../../Icons/index';
+import MusicQueuePopUp from '../MusicQueue'
 import {
   playPause,
   stop,
@@ -29,7 +29,7 @@ import {
   toggleQueuePopUp,
   loadTrack,
   positionControls
-} from "../../modules/MusicPlayer";
+} from "../../../modules/MusicPlayer/index";
 
 class TrackDetails extends Component {
 
@@ -187,7 +187,7 @@ class VolumeControl extends Component {
   }
 }
 
-class Controls extends Component {
+class Index extends Component {
 
   render () {
 
@@ -195,7 +195,6 @@ class Controls extends Component {
 
     return (
       <div className={cx(styles.controls, this.props.className, styles[this.props.class] )}>
-
         <div className={cx(styles.section, styles.controls)}>
           <button className={cx(styles.button, styles.playpause)} onClick={playPause}>
             {track.fieldTrack.uri && playing ? <span className={cx(styles.icon, styles.pause)}><Icon icon={'pause'} /></span> : <span className={cx(styles.icon, styles.play)}><Icon icon={'play'} /></span>}
@@ -231,6 +230,7 @@ class Controls extends Component {
         <VolumeControl hoverDelay={0} hoverOffDelay={800} muted={muted} volume={volume} toggleMuted={toggleMuted} setMuted={setMuted} setVolume={setVolume}/>
 
         <MusicQueuePopUp />
+
         {/* https://storage.googleapis.com/media-session/elephants-dream/the-wires.mp3*/}
         <div className={cx(styles.section, styles.select)}>
           {/*this.load('https://res.cloudinary.com/dghff7rpa/video/upload/v1533465886/Mixes/test.mp3')*/}
@@ -282,4 +282,4 @@ const mapDispatchToProps = dispatch =>
     dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Controls);
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
