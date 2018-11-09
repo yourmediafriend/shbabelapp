@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ThreeColumn }  from '../../../Layout';
 
-import { PromoWidget, MenuWidget, NewsLatestWidget} from '../../../Widgets';
+import { CookieWidget, PromoWidget, MenuWidget, NewsLatestWidget} from '../../../Widgets';
 
 import PageTitle from '../../../PageTitle'
 import Dummytext from '../../../DummyText/DummyTextLong';
@@ -18,7 +18,6 @@ import hero_980w from '../../../../media/hero6/hero_980w.jpg';
 import hero_1320w from '../../../../media/hero6/hero_1320w.jpg';
 import hero_1900w from '../../../../media/hero6/hero_1900w.jpg';
 
-
 const imagesHero = {
   0: hero_480w,
   480: hero_660w,
@@ -27,7 +26,6 @@ const imagesHero = {
   1140: hero_1320w,
   1300: hero_1900w,
 };
-
 
 class SidebarLeft extends Component {
 
@@ -39,6 +37,9 @@ class SidebarLeft extends Component {
   render() {
     return (
       <div ref={this.ref} className={styles.sidebarWrap}>
+
+        <CookieWidget className={styles.CookieWidget} />
+
         <PromoWidget imgSrc={hero_480w} className={styles.sidebarWidget} />
         <MenuWidget  className={styles.sidebarWidget} />
         <PromoWidget imgSrc={hero_480w} className={cx(styles.sidebarWidget)} />

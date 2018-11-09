@@ -1,17 +1,19 @@
-import MenuWidget from './MenuWidget';
-import SocialWidget from './SocialWidget';
-import PromoWidget from './PromoWidget';
-import NewsLatestWidget from './NewsLatestWidget';
-
+import CookieWidget from './CookieWidget';
 import DummyWidget from './DummyWidget';
+import MenuWidget from './MenuWidget';
+import NewsLatestWidget from './NewsLatestWidget';
+import PromoWidget from './PromoWidget';
+import SocialWidget from './SocialWidget';
+
 import Widget from './Widget';
 
 export default Widget;
 
 export  {
-  MenuWidget,
-  SocialWidget,
-  PromoWidget,
-  NewsLatestWidget,
+  CookieWidget,
   DummyWidget,
+  MenuWidget,
+  NewsLatestWidget,
+  PromoWidget,
+  SocialWidget,
 };
