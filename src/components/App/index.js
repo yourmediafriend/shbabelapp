@@ -262,10 +262,13 @@ class App extends Component {
 
                 <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.full, this.modalState(this.props) )}>
                   <Modal/>
+
+                  <ModalTest/>
+
                 </StickyContainer>
 
 
-                <ModalTest/>
+
 
 
                 <MusicPlayer />

@@ -51,7 +51,7 @@ class Modal extends Component {
 
   render() {
 
-    const { children, overlayClose, preventScroll } = this.props;
+    const { children, overlayClose } = this.props;
     const { isModalOpen } = this.state;
 
     this.setNoScroll();

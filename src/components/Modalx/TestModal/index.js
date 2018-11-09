@@ -22,6 +22,8 @@ class ModalContent extends React.Component {
       overlayClose: true,
     };
 
+    console.log('modalConfig',modalConfig);
+
     return (
       <Modal { ...modalConfig } >
           <PageTitle title={"TEST MODAL"}/>
