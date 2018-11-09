@@ -18,6 +18,8 @@ import Helmet from "./Helmet";
 import MainContent from '../Content';
 import Header from '../Header';
 import SearchModal from '../SearchModal'
+import ComplianceModal from '../Modalx/ComplianceModal'
+
 import Modal from '../Modal';
 import {FixedFooter, RevealFooter} from '../Footer';
 
@@ -234,6 +236,7 @@ class App extends Component {
                         <SearchModal />
                   </StickyContainer> }
 
+
               <div className={cx(styles.menuFlexWrap,'mainContent')}>
                 <div className={styles.menuFlex} style={{...this.myStyles(state).containerInner}} />
                   <div className={styles.mainFlex}>
@@ -260,6 +263,8 @@ class App extends Component {
                 </StickyContainer>
 
                 <MusicPlayer />
+
+                <ComplianceModal />
 
               </div>
             </div>

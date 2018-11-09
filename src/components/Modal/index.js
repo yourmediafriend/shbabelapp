@@ -9,6 +9,7 @@ import { get } from "lodash/fp";
 import styles from './modalStyles.scss';
 import { modalClose } from '../../modules/Modal';
 import Icon from '../Icons';
+
 import AccountModal from './AccountModal'
 import LocationModal from './LocationModal'
 
