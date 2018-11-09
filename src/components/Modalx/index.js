@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes, { instanceOf } from 'prop-types';
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import PropTypes from 'prop-types';
 import Animate from 'react-move/Animate';
 import { easeExpOut } from 'd3-ease';
 import cx from 'classnames';
-import { get } from "lodash/fp";
+import { isFunction } from "lodash/fp";
 import styles from './modalStyles.scss';
-import { modalClose } from '../../modules/Modal';
+
 import Icon from '../Icons';
 
 const ModalCloseButton = ({clickEvent}) => {
@@ -20,6 +18,19 @@ const ModalCloseButton = ({clickEvent}) => {
 
 class Modal extends Component {
 
+  static propTypes = {
+    extendClose: PropTypes.func,
+    isModalOpen: PropTypes.bool,
+    overlayClose: PropTypes.bool,
+    preventScroll: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    isModalOpen: false,
+    overlayClose: false,
+    preventScroll: false,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -27,16 +38,23 @@ class Modal extends Component {
     };
   }
 
+  setNoScroll() {
+    const { isModalOpen } = this.state;
+    isModalOpen ? document.body.classList.add ('noscroll') : document.body.classList.remove ('noscroll');
+  }
+
   handleClose() {
     const { extendClose } = this.props;
     this.setState({isModalOpen: false});
-    extendClose();
+    isFunction(extendClose) ? extendClose() : '';
   }
 
   render() {
 
-    const { modalClose, children} = this.props;
+    const { children, overlayClose, preventScroll } = this.props;
     const { isModalOpen } = this.state;
+
+    this.setNoScroll();
 
     return (
       <Animate
@@ -52,12 +70,12 @@ class Modal extends Component {
             start() {
               // dispatch action Opening
               //console.log('isAnimating');
-              return  isModalOpen ? this.setState({modalDisplay:'block'}) : null;
+              isModalOpen ? this.setState({modalDisplay:'block'}) : null;
             },
             end() {
               // dispatch action Opening
               //console.log('notAnimating');
-              return !(isModalOpen) ? this.setState({modalDisplay:'none'}) : null;
+              !(isModalOpen) ? this.setState({modalDisplay:'none'}) : null;
             },
           },
         })}
@@ -65,7 +83,7 @@ class Modal extends Component {
         {(state) => {
           return (
             <div className={cx(styles.modalContainer)} style={{display: isModalOpen ? 'block' : state.modalDisplay}}>
-              <div className={cx(styles.modalContainerOverlay)} style={{display: state.modalDisplay, opacity: state.modalOpacity}} />
+              <div className={cx(styles.modalContainerOverlay)} style={{display: state.modalDisplay, opacity: state.modalOpacity}}  onClick={overlayClose ? this.handleClose.bind(this): '' }/>
               <div className={cx(styles.modal, styles.bottom)} style={{display: state.modalDisplay, opacity: state.modalOpacity}}>
                 <div className={styles.modalInner}>
                   <ModalCloseButton clickEvent={this.handleClose.bind(this)}/>

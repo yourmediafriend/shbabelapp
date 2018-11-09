@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ThreeColumn }  from '../../../Layout';
 
-import { CookieWidget, PromoWidget, MenuWidget, NewsLatestWidget} from '../../../Widgets';
+import { ModalWidget, PromoWidget, MenuWidget, NewsLatestWidget} from '../../../Widgets';
 
 import PageTitle from '../../../PageTitle'
 import Dummytext from '../../../DummyText/DummyTextLong';
@@ -38,7 +38,7 @@ class SidebarLeft extends Component {
     return (
       <div ref={this.ref} className={styles.sidebarWrap}>
 
-        <CookieWidget className={styles.CookieWidget} />
+        <ModalWidget className={styles.ModalWidget} />
 
         <PromoWidget imgSrc={hero_480w} className={styles.sidebarWidget} />
         <MenuWidget  className={styles.sidebarWidget} />

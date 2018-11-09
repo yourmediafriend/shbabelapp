@@ -5,6 +5,8 @@ import { reducer as formReducer } from 'redux-form';
 import searchModal from './Search';
 
 import modal from './Modal';
+import modalTestModule from './ModalTest';
+
 import nestedMenuReducers from './NestedMenu';
 import retrieveCatalogMenuData from './CatalogMenu';
 import retrieveOpenWeather from './OpenWeather';
@@ -40,6 +42,7 @@ export default combineReducers({
   fullpageModule,
   footerModule,
   userModule,
+  modalTestModule,
   ...modal,
   ...nestedMenuReducers,
 });

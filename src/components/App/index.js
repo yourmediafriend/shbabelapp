@@ -21,6 +21,8 @@ import SearchModal from '../SearchModal'
 import ComplianceModal from '../Modalx/ComplianceModal'
 
 import Modal from '../Modal';
+import ModalTest from '../Modalx/TestModal';
+
 import {FixedFooter, RevealFooter} from '../Footer';
 
 // Menu
@@ -261,6 +263,10 @@ class App extends Component {
                 <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.full, this.modalState(this.props) )}>
                   <Modal/>
                 </StickyContainer>
+
+
+                <ModalTest/>
+
 
                 <MusicPlayer />
 
