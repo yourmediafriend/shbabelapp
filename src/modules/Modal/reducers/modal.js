@@ -1,12 +1,9 @@
 const OPEN_MODAL = "modal/OPEN_MODAL";
 const CLOSE_MODAL = "modal/CLOSE_MODAL";
 const TOGGLE_MODAL = "modal/TOGGLE_MODAL";
-const OPEN_SEARCH = "searchModal/OPEN_SEARCH";
 
 export const initialState = {
-  modalIsOpen: false,
-  modalRef: 'default',
-  contentId: 0,
+  modals: [],
 };
 
 // Reducer
@@ -17,33 +14,26 @@ export default function reducer(state=initialState, action = {}) {
     case TOGGLE_MODAL:
       console.log('TOGGLE_MODAL');
       // need to get the state of the menu
-      if (!state.modalIsOpen) {
-        // dispatch SEARCH_CLOSE
-      }
-
       return {
         ...state,
-        modalIsOpen: !state.modalIsOpen,
-        modalRef: action.payload.modalRef,
-        contentId: action.payload.contentId,
       }
 
     case OPEN_MODAL:
       console.log('OPEN_MODAL');
       // need to get the state of the menu
+
+      console.log(action.payload);
+
       return {
         ...state,
-        modalRef: action.payload.modalRef,
-        contentId: action.payload.contentId,
-        modalIsOpen: true,
+        modals: state.modals.concat(action.payload)
       }
 
-    case OPEN_SEARCH:
     case CLOSE_MODAL:
       // need to get the state of the menu
       return {
         ...state,
-        modalIsOpen: false,
+        modals: state.modals.filter(item => item.id !== action.payload.id),
       }
 
     default: return state;
@@ -52,25 +42,23 @@ export default function reducer(state=initialState, action = {}) {
 
 
 // Action Creators
-export function modalOpen(modalRef, contentId) {
+export function modalOpen(payload) {
   return {
     type: OPEN_MODAL,
-    payload: {
-      modalRef: modalRef,
-      contentId: contentId,
-    }
+    payload
   };
 }
 
-export function modalClose() {
-  return { type: CLOSE_MODAL };
+export function modalClose(payload) {
+  return {
+    type: CLOSE_MODAL,
+    payload
+  };
 }
 
-export function modalToggle(modalRef, contentId) {
-  return { type: TOGGLE_MODAL,
-    payload: {
-      modalRef: modalRef,
-      contentId: contentId,
-    }
+export function modalToggle(payload) {
+  return {
+    type: TOGGLE_MODAL,
+    payload
   };
 }

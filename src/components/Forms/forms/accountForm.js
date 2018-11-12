@@ -5,12 +5,9 @@ import { Button, Form, Row, Col, FormText } from 'reactstrap';
 import styles from '../forms.scss';
 import cx from 'classnames'
 
-
 const validate = values => {
+
   const errors = {};
-
-  console.log('validate PasswordForm');
-
   // if ((values.passwordRepeat && values.password) && values.passwordRepeat !== values.password ) {
   //   errors.passwordRepeat = 'Must Match'
   // }

@@ -7,8 +7,18 @@ import { Button } from 'reactstrap';
 import styles from './widget.scss';
 import {connect} from "react-redux";
 import {get} from "lodash/fp";
+import uuid from 'uuid';
+import { modalOpen } from "../../modules/Modal";
 
-import { modalOpen } from "../../modules/ModalTest";
+class ModalContent extends Component {
+  render() {
+    return (
+      <div>
+        HELLLO I AM THE MODAL
+      </div>
+    );
+  }
+}
 
 class Widget extends Component {
 
@@ -18,12 +28,18 @@ class Widget extends Component {
 
   handleSubmit () {
     // open Modal
-    console.log('handleSubmit - open Modal ');
     const { modalOpen } = this.props;
 
-
-
-  modalOpen();
+    modalOpen({
+      id: uuid.v4(),
+      type: 'confirmation',
+      text: 'Are you sure to do this?',
+      content: <ModalContent />,
+      overlayClose: true,
+      preventScroll: true,
+      onClose: () => console.log("fire at Close event"),
+      onConfirm: () => console.log("fire at confirming event"),
+    });
 
   }
 
@@ -46,7 +62,7 @@ const mapStateToProps = (state) => {
   // console.log('mapStateToProps', get('signUpFormModule.message', state));
 
   return {
-    values: get('form.SignUpForm.values', state),
+
   };
 };
 

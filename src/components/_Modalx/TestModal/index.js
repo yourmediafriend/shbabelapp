@@ -7,7 +7,7 @@ import { get } from "lodash/fp";
 import Modal from '../';
 import PageTitle from '../../PageTitle';
 
-import { modalOpen } from "../../../modules/ModalTest";
+import { modalOpen } from "../../../modules/Modal";
 
 class ModalContent extends React.Component {
 
@@ -35,7 +35,7 @@ class ModalContent extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isModalOpen: get('modalTestModule.isModalOpen', state),
+    isModalOpen: get('modalModule.isModalOpen', state),
   };
 }
 

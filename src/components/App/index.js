@@ -18,10 +18,10 @@ import Helmet from "./Helmet";
 import MainContent from '../Content';
 import Header from '../Header';
 import SearchModal from '../SearchModal'
-import ComplianceModal from '../Modalx/ComplianceModal'
 
-import Modal from '../Modal';
-import ModalTest from '../Modalx/TestModal';
+import ModalContainer from '../Modal';
+import ModalCompliance from '../ModalCompliance';
+
 
 import {FixedFooter, RevealFooter} from '../Footer';
 
@@ -250,30 +250,14 @@ class App extends Component {
                   <FixedFooter />
                 </StickyContainer>
 
-{/*                { this.props.fixedFooter ?
-                  <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isFixed)}>
-                    <FixedFooter />
-                  </StickyContainer> : '' }*/}
-
                 { this.props.revealFooter ?
                   <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.footer, styles.bottom, styles.isReveal)}>
                     <RevealFooter />
                   </StickyContainer> : '' }
 
-                <StickyContainer flexStyle={{...this.myStyles(state).containerInner}} className={cx(styles.search,styles.full, this.modalState(this.props) )}>
-                  <Modal/>
-
-                  <ModalTest/>
-
-                </StickyContainer>
-
-
-
-
-
                 <MusicPlayer />
-
-                <ComplianceModal />
+                <ModalContainer />
+                <ModalCompliance />
 
               </div>
             </div>

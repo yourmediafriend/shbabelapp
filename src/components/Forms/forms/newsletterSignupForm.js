@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Field, reduxForm } from 'redux-form';
 import { FormRow, FormFieldInput } from '../formComponents'
 import { Button } from 'reactstrap';
-import {UID} from 'react-uid';
+import { UID} from 'react-uid';
 import { FormGroup, FormFeedback } from 'reactstrap';
 import styles from '../forms.scss';
 import cx from "classnames";

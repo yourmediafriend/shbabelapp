@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { get } from "lodash/fp";
 
-import { modalClose } from '../../modules/Modal/index';
+import { modalClose } from '../../../modules/Modal';
 
 import Modal from './Modal'
 
