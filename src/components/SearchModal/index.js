@@ -47,6 +47,10 @@ const SearchModal = ({searchIsOpen, searchModalClose}) => {
       })}
     >
       {(state) => {
+
+        console.log(state.modalOpacity);
+
+
         return (
           <div className={cx(styles.searchModal)}  style={{display: state.modalDisplay, opacity: state.modalOpacity}} >
             <div>

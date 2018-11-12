@@ -4,7 +4,8 @@ import styles from './styles.scss';
 import cx from 'classnames';
 import {isFunction} from "lodash/fp";
 import Icon from '../Icons/index';
-
+import Animate from 'react-move/Animate';
+import { easeExpOut } from 'd3-ease';
 
 const ModalCloseButton = ({clickEvent}) => {
   return (
@@ -13,15 +14,14 @@ const ModalCloseButton = ({clickEvent}) => {
     </div>
   )
 }
+
 class Modal extends Component {
 
   onClose(){
     const { item, modalClose } = this.props;
     const { onClose } = item;
-
     isFunction(onClose) ? onClose(item): '';
     modalClose(item);
-
   }
 
   componentDidMount() {
@@ -48,17 +48,37 @@ class Modal extends Component {
     const { zIndex } = this.props;
     const { content, overlayClose, className, extendStyles } = this.props.item;
     return (
-      <div className={cx(styles.modalContainer)} style={{zIndex: (zIndex+1)*10}}>
-        <div className={cx(styles.modalContainerOverlay)} onClick={overlayClose ? this.onClose.bind(this): '' }/>
-        <div className={cx(styles.modal, className)} style={ {...this.getMaxWidth(), ...this.getMaxHeight(), ...extendStyles.modal} }       >
-          <div className={styles.inner} style={extendStyles.inner}>
-            <ModalCloseButton clickEvent={this.onClose.bind(this)}/>
-            {content}
-          </div>
-        </div>
-      </div>
-    )
+        <Animate
+          start={() => ({
+            modalOpacity: [0]
+          })}
 
+          enter={{
+            modalOpacity: [1],
+            timing: {duration: 1000, ease: easeExpOut},
+          }}
+
+          update={() => ({
+            modalOpacity: [1],
+            timing: {duration: 1000, ease: easeExpOut},
+          })}
+        >
+          {(state) => {
+            //console.log(state.modalOpacity);
+            return (
+              <div className={cx(styles.modalContainer)} style={{zIndex: (zIndex+1)*10}}>
+                <div className={cx(styles.modalContainerOverlay)} onClick={overlayClose ? this.onClose.bind(this): '' }/>
+                <div className={cx(styles.modal, className)} style={ {...this.getMaxWidth(), ...this.getMaxHeight(), ...extendStyles.modal, ...{opacity: state.modalOpacity}} } >
+                  <div className={styles.inner} style={extendStyles.inner}>
+                    <ModalCloseButton clickEvent={this.onClose.bind(this)}/>
+                    {content}
+                  </div>
+                </div>
+              </div>
+            );
+          }}
+        </Animate>
+    );
   }
 }
 

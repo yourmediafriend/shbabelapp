@@ -12,24 +12,22 @@ export default function reducer(state=initialState, action = {}) {
   switch (action.type) {
     // do reducer stuff
     case TOGGLE_MODAL:
-      console.log('TOGGLE_MODAL');
+      //console.log('TOGGLE_MODAL', action.payload);
       // need to get the state of the menu
       return {
         ...state,
       }
 
     case OPEN_MODAL:
-      console.log('OPEN_MODAL');
+      //console.log('OPEN_MODAL', action.payload);
       // need to get the state of the menu
-
-      console.log(action.payload);
-
       return {
         ...state,
         modals: state.modals.concat(action.payload)
       }
 
     case CLOSE_MODAL:
+      //console.log('CLOSE_MODAL', action.payload);
       // need to get the state of the menu
       return {
         ...state,
@@ -39,7 +37,6 @@ export default function reducer(state=initialState, action = {}) {
     default: return state;
   }
 }
-
 
 // Action Creators
 export function modalOpen(payload) {
