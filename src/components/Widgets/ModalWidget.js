@@ -35,14 +35,13 @@ class Widget extends Component {
       type: 'confirmation',
       text: 'Are you sure to do this?',
       content: <ModalContent />,
-      className:'centerX bottom',
-      zIndex: 9999,
-      maxWidth: '1000px',
-      maxHeight: '',
+      className:'centerX top',
+      maxWidth: '500px',
+      maxHeight: '500px',
       bodyScroll: false,
       extendStyles: {
-        modal:{marginBottom: '30px'},
-        inner:{background: '#ff00ea', color:'#ffffff' }
+        modal:{marginTop: '100px'},
+        inner:{background: '#6f1919', color:'#ffffff' }
         },
       overlayClose: true,
       preventScroll: true,
