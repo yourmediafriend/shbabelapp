@@ -5,7 +5,7 @@ import cx from 'classnames';
 import {isFunction} from "lodash/fp";
 import Icon from '../Icons/index';
 import Animate from 'react-move/Animate';
-import { easeExpOut } from 'd3-ease';
+import { easeExp } from 'd3-ease';
 
 const ModalCloseButton = ({clickEvent}) => {
   return (
@@ -14,6 +14,7 @@ const ModalCloseButton = ({clickEvent}) => {
     </div>
   )
 }
+
 
 class Modal extends Component {
 
@@ -50,25 +51,31 @@ class Modal extends Component {
     return (
         <Animate
           start={() => ({
-            modalOpacity: [0]
+            translateX: [100]
           })}
 
           enter={{
-            modalOpacity: [1],
-            timing: {duration: 1000, ease: easeExpOut},
+            translateX: [0],
+            timing: {duration: 500, ease: easeExp},
           }}
 
           update={() => ({
-            modalOpacity: [1],
-            timing: {duration: 1000, ease: easeExpOut},
+            translateX: [0],
+            timing: {duration: 500, ease: easeExp},
           })}
         >
           {(state) => {
-            //console.log(state.modalOpacity);
+
+            // console.log(state.translateX);
+            // console.log(animationStyle());
+
+            const animationStyle = () => { return {transform:`translateX(${state.translateX}%)`} }
+
+
             return (
               <div className={cx(styles.modalContainer)} style={{zIndex: (zIndex+1)*10}}>
                 <div className={cx(styles.modalContainerOverlay)} onClick={overlayClose ? this.onClose.bind(this): '' }/>
-                <div className={cx(styles.modal, className)} style={ {...this.getMaxWidth(), ...this.getMaxHeight(), ...extendStyles.modal, ...{opacity: state.modalOpacity}} } >
+                <div className={cx(styles.modal, className)} style={ {...this.getMaxWidth(), ...this.getMaxHeight(), ...extendStyles.modal, ...animationStyle() } } >
                   <div className={styles.inner} style={extendStyles.inner}>
                     <ModalCloseButton clickEvent={this.onClose.bind(this)}/>
                     {content}
