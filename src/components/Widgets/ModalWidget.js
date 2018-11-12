@@ -35,12 +35,20 @@ class Widget extends Component {
       type: 'confirmation',
       text: 'Are you sure to do this?',
       content: <ModalContent />,
+      className:'centerX bottom',
+      zIndex: 9999,
+      maxWidth: '1000px',
+      maxHeight: '',
+      bodyScroll: false,
+      extendStyles: {
+        modal:{marginBottom: '30px'},
+        inner:{background: '#ff00ea', color:'#ffffff' }
+        },
       overlayClose: true,
       preventScroll: true,
       onClose: () => console.log("fire at Close event"),
       onConfirm: () => console.log("fire at confirming event"),
     });
-
   }
 
   render() {
@@ -57,10 +65,6 @@ class Widget extends Component {
 }
 
 const mapStateToProps = (state) => {
-
-  // console.log(state);
-  // console.log('mapStateToProps', get('signUpFormModule.message', state));
-
   return {
 
   };

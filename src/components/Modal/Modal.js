@@ -13,7 +13,6 @@ const ModalCloseButton = ({clickEvent}) => {
     </div>
   )
 }
-
 class Modal extends Component {
 
   onClose(){
@@ -25,15 +24,34 @@ class Modal extends Component {
 
   }
 
+  componentDidMount() {
+    const { bodyScroll } = this.props.item;
+    !bodyScroll ? document.body.classList.add ('noscroll') : '';
+  }
+
+  componentWillUnmount() {
+    const { bodyScroll } = this.props.item;
+    !bodyScroll ? document.body.classList.remove ('noscroll'): '';
+  }
+
+  getMaxWidth() {
+    const { maxWidth } = this.props.item;
+    return maxWidth ? { maxWidth } : '';
+  }
+
+  getMaxHeight() {
+    const { maxHeight } = this.props.item;
+    return maxHeight ? { maxHeight } : '';
+  }
+
   render() {
     const { zIndex } = this.props;
-    const { content, overlayClose } = this.props.item;
-
+    const { content, overlayClose, className, extendStyles } = this.props.item;
     return (
       <div className={cx(styles.modalContainer)} style={{zIndex: (zIndex+1)*10}}>
         <div className={cx(styles.modalContainerOverlay)} onClick={overlayClose ? this.onClose.bind(this): '' }/>
-        <div className={cx(styles.modal, styles.center)}>
-          <div className={styles.modalInner}>
+        <div className={cx(styles.modal, className)} style={ {...this.getMaxWidth(), ...this.getMaxHeight(), ...extendStyles.modal} }       >
+          <div className={styles.inner} style={extendStyles.inner}>
             <ModalCloseButton clickEvent={this.onClose.bind(this)}/>
             {content}
           </div>
