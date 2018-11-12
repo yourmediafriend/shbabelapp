@@ -47,30 +47,121 @@ class Modal extends Component {
 
   render() {
     const { zIndex } = this.props;
-    const { content, overlayClose, className, extendStyles } = this.props.item;
+    const { content, overlayClose, className, extendStyles, animate } = this.props.item;
+
     return (
         <Animate
-          start={() => ({
-            translateX: [100]
-          })}
-
-          enter={{
-            translateX: [0],
-            timing: {duration: 500, ease: easeExp},
+          start={() => {
+            switch(animate) {
+              case 'slide-rtl':
+                return ({
+                  translateX: [100]
+                })
+              case 'slide-ltr':
+                return ({
+                  translateX: [-100]
+                })
+              case 'slide-ttb':
+                return ({
+                  translateY: [-100]
+                })
+              case 'slide-btt':
+                return ({
+                  translateY: [100]
+                })
+              case 'fade':
+                return ({
+                  opacity: [0]
+                })
+              default:
+                return null;
+            }
           }}
 
-          update={() => ({
-            translateX: [0],
-            timing: {duration: 500, ease: easeExp},
-          })}
+          enter={() => {
+            switch(animate) {
+              case 'slide-rtl':
+                return ({
+                  translateX: [0],
+                  timing: {duration: 500, ease: easeExp},
+                })
+              case 'slide-ltr':
+                return ({
+                  translateX: [0],
+                  timing: {duration: 500, ease: easeExp},
+                })
+              case 'slide-ttb':
+                return ({
+                  translateY: [0],
+                  timing: {duration: 500, ease: easeExp},
+                })
+              case 'slide-btt':
+                return ({
+                  translateY: [0],
+                  timing: {duration: 500, ease: easeExp},
+                })
+              case 'fade':
+                return ({
+                  opacity: [1],
+                  timing: {duration: 500, ease: easeExp},
+                })
+              default:
+                return null;
+            }
+          }}
+
+          update={() => {
+            switch(animate) {
+              case 'slide-rtl':
+                return ({
+                  translateX: [0],
+                  timing: {duration: 500, ease: easeExp},
+                })
+              case 'slide-ltr':
+                return ({
+                  translateX: [0],
+                  timing: {duration: 500, ease: easeExp},
+                })
+              case 'slide-ttb':
+                return ({
+                  translateY: [0],
+                  timing: {duration: 500, ease: easeExp},
+                })
+              case 'slide-btt':
+                return ({
+                  translateY: [0],
+                  timing: {duration: 500, ease: easeExp},
+                })
+              case 'fade':
+                return ({
+                  opacity: [1],
+                  timing: {duration: 500, ease: easeExp},
+                })
+              default:
+                return null;
+
+            }
+          }}
         >
           {(state) => {
 
             // console.log(state.translateX);
             // console.log(animationStyle());
 
-            const animationStyle = () => { return {transform:`translateX(${state.translateX}%)`} }
-
+            const animationStyle = () => {
+              switch (animate) {
+                case 'slide-rtl':
+                case 'slide-ltr':
+                  return {transform: `translateX(${state.translateX}%)`}
+                case 'slide-ttb':
+                case 'slide-btt':
+                  return {transform: `translateY(${state.translateY}%)`}
+                case 'fade':
+                  return {opacity: state.opacity}
+                default:
+                  return {};
+              }
+            }
 
             return (
               <div className={cx(styles.modalContainer)} style={{zIndex: (zIndex+1)*10}}>

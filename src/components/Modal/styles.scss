@@ -28,10 +28,8 @@
 .modal {
     background: #ffc107;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    max-width: 640px;
-    max-height: 400px;
+    width: auto;
+    height: auto;
     text-align: center;
     &:global(.top) {
         top: 0;

@@ -36,11 +36,12 @@ class Widget extends Component {
       text: 'Are you sure to do this?',
       content: <ModalContent />,
       className:'right fullY',
-      maxWidth: '500px',
+      animate: 'slide-rtl',
+      maxWidth: '50vw',
       maxHeight: '',
       bodyScroll: false,
       extendStyles: {
-        modal:{marginTop: '0px'},
+        modal:{marginTop: '0px', width: '100%'},
         inner:{background: '#6f1919', color:'#ffffff' }
         },
       overlayClose: true,
