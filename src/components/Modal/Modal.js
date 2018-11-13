@@ -6,6 +6,7 @@ import {isFunction} from "lodash/fp";
 import Icon from '../Icons/index';
 import Animate from 'react-move/Animate';
 import { easeExp } from 'd3-ease';
+import Overlay from './Overlay';
 
 const ModalCloseButton = ({clickEvent}) => {
   return (
@@ -15,19 +16,26 @@ const ModalCloseButton = ({clickEvent}) => {
   )
 }
 
-
 class Modal extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalOpen: false
+    };
+  }
+
   onClose(){
-    const { item, modalClose } = this.props;
+    const { item } = this.props;
     const { onClose } = item;
+    this.setState({isModalOpen: false});
     isFunction(onClose) ? onClose(item): '';
-    modalClose(item);
   }
 
   componentDidMount() {
     const { bodyScroll } = this.props.item;
     !bodyScroll ? document.body.classList.add ('noscroll') : '';
+    this.setState({isModalOpen: true});
   }
 
   componentWillUnmount() {
@@ -46,10 +54,13 @@ class Modal extends Component {
   }
 
   render() {
-    const { zIndex } = this.props;
+    const { zIndex, modalClose, item } = this.props;
     const { content, overlayClose, className, extendStyles, animate } = this.props.item;
+    const { isModalOpen } = this.state
 
     return (
+      <div className={cx(styles.modalContainer)} style={{zIndex: (zIndex+1)*10}}>
+        <Overlay onClose={this.onClose.bind(this)}  overlayClose={overlayClose}  isModalOpen={isModalOpen} />
         <Animate
           start={() => {
             switch(animate) {
@@ -78,68 +89,47 @@ class Modal extends Component {
             }
           }}
 
-          enter={() => {
-            switch(animate) {
-              case 'slide-rtl':
-                return ({
-                  translateX: [0],
-                  timing: {duration: 500, ease: easeExp},
-                })
-              case 'slide-ltr':
-                return ({
-                  translateX: [0],
-                  timing: {duration: 500, ease: easeExp},
-                })
-              case 'slide-ttb':
-                return ({
-                  translateY: [0],
-                  timing: {duration: 500, ease: easeExp},
-                })
-              case 'slide-btt':
-                return ({
-                  translateY: [0],
-                  timing: {duration: 500, ease: easeExp},
-                })
-              case 'fade':
-                return ({
-                  opacity: [1],
-                  timing: {duration: 500, ease: easeExp},
-                })
-              default:
-                return null;
-            }
-          }}
-
           update={() => {
             switch(animate) {
               case 'slide-rtl':
                 return ({
-                  translateX: [0],
+                  translateX: [isModalOpen ? 0 : 100],
                   timing: {duration: 500, ease: easeExp},
                 })
               case 'slide-ltr':
                 return ({
-                  translateX: [0],
+                  translateX: [isModalOpen ? 0 : -100],
                   timing: {duration: 500, ease: easeExp},
+                  events: {
+                    start() {
+                      // dispatch action Opening
+                      //console.log('isAnimating');
+                      return;
+                    },
+                    end() {
+                      // dispatch action Opening
+                      //console.log('notAnimating');
+                     return !(isModalOpen) ? modalClose(item) : null;
+                    },
+                  }
                 })
               case 'slide-ttb':
                 return ({
-                  translateY: [0],
+                  translateY: [isModalOpen ? 0 : -100],
                   timing: {duration: 500, ease: easeExp},
                 })
               case 'slide-btt':
                 return ({
-                  translateY: [0],
+                  translateY: [isModalOpen ? 0 : 100],
                   timing: {duration: 500, ease: easeExp},
                 })
               case 'fade':
                 return ({
-                  opacity: [1],
+                  opacity: [isModalOpen ? 1 : 0],
                   timing: {duration: 500, ease: easeExp},
                 })
               default:
                 return null;
-
             }
           }}
         >
@@ -147,7 +137,6 @@ class Modal extends Component {
 
             // console.log(state.translateX);
             // console.log(animationStyle());
-
             const animationStyle = () => {
               switch (animate) {
                 case 'slide-rtl':
@@ -164,18 +153,16 @@ class Modal extends Component {
             }
 
             return (
-              <div className={cx(styles.modalContainer)} style={{zIndex: (zIndex+1)*10}}>
-                <div className={cx(styles.modalContainerOverlay)} onClick={overlayClose ? this.onClose.bind(this): '' }/>
-                <div className={cx(styles.modal, className)} style={ {...this.getMaxWidth(), ...this.getMaxHeight(), ...extendStyles.modal, ...animationStyle() } } >
-                  <div className={styles.inner} style={extendStyles.inner}>
-                    <ModalCloseButton clickEvent={this.onClose.bind(this)}/>
-                    {content}
-                  </div>
+              <div className={cx(styles.modal, className)} style={ {...this.getMaxWidth(), ...this.getMaxHeight(), ...extendStyles.modal, ...animationStyle() } } >
+                <div className={styles.inner} style={extendStyles.inner}>
+                  <ModalCloseButton clickEvent={this.onClose.bind(this)}/>
+                  {content}
                 </div>
               </div>
             );
           }}
         </Animate>
+      </div>
     );
   }
 }

@@ -14,11 +14,84 @@ class ModalContent extends Component {
   render() {
     return (
       <div>
-        HELLLO I AM THE MODAL
+        I AM THE MODAL. YOU ARE YOU.
       </div>
     );
   }
 }
+
+const optionsArray = {
+  rtl: {
+    id: uuid.v4(),
+    content: <ModalContent />,
+    className:'right fullY',
+    animate: 'slide-rtl',
+    maxWidth: '50vw',
+    maxHeight: '',
+    bodyScroll: false,
+    extendStyles: {
+      modal:{marginTop: '0px', width: '100%'},
+      inner:{background: '#6f1919', color:'#ffffff' }
+    },
+    overlayClose: true,
+    preventScroll: true,
+    onClose: () => console.log("fire at Close event"),
+    onConfirm: () => console.log("fire at confirming event"),
+  },
+  ltr: {
+    id: uuid.v4(),
+    content: <ModalContent />,
+    className:'left fullY',
+    animate: 'slide-ltr',
+    maxWidth: '50vw',
+    maxHeight: '',
+    bodyScroll: false,
+    extendStyles: {
+      modal:{marginTop: '0px', width: '100%'},
+      inner:{background: '#6f1919', color:'#ffffff' }
+    },
+    overlayClose: true,
+    preventScroll: true,
+    onClose: () => console.log("fire at Close event"),
+    onConfirm: () => console.log("fire at confirming event"),
+  },
+  ttb: {
+    id: uuid.v4(),
+    content: <ModalContent />,
+    className:'fullX top',
+    animate: 'slide-ttb',
+    maxWidth: '',
+    maxHeight: '',
+    bodyScroll: false,
+    extendStyles: {
+      modal:{marginTop: '0px', width: '100%'},
+      inner:{background: '#6f1919', color:'#ffffff' }
+    },
+    overlayClose: true,
+    preventScroll: true,
+    onClose: () => console.log("fire at Close event"),
+    onConfirm: () => console.log("fire at confirming event"),
+  },
+  btt: {
+    id: uuid.v4(),
+    content: <ModalContent />,
+    className:'fullX bottom',
+    animate: 'slide-btt',
+    maxWidth: '',
+    maxHeight: '',
+    bodyScroll: false,
+    extendStyles: {
+      modal:{marginTop: '0px', width: '100%'},
+      inner:{background: '#6f1919', color:'#ffffff' }
+    },
+    overlayClose: true,
+    preventScroll: true,
+    onClose: () => console.log("fire at Close event"),
+    onConfirm: () => console.log("fire at confirming event"),
+  },
+}
+
+
 
 class Widget extends Component {
 
@@ -29,26 +102,7 @@ class Widget extends Component {
   handleSubmit () {
     // open Modal
     const { modalOpen } = this.props;
-
-    modalOpen({
-      id: uuid.v4(),
-      type: 'confirmation',
-      text: 'Are you sure to do this?',
-      content: <ModalContent />,
-      className:'right fullY',
-      animate: 'slide-rtl',
-      maxWidth: '50vw',
-      maxHeight: '',
-      bodyScroll: false,
-      extendStyles: {
-        modal:{marginTop: '0px', width: '100%'},
-        inner:{background: '#6f1919', color:'#ffffff' }
-        },
-      overlayClose: true,
-      preventScroll: true,
-      onClose: () => console.log("fire at Close event"),
-      onConfirm: () => console.log("fire at confirming event"),
-    });
+    modalOpen(optionsArray.ltr);
   }
 
   render() {
