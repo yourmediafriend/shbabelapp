@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+import cx from "classnames";
+
+exports[`converts basic button using mount 1`] = `
+    <Button className="class">
+      <span>
+        <span>xxx</span>
+      </span>
+    </Button>
+  `;
+
+exports[`converts basic button using render 1`] = `
+    <Button className="class">
+      <span>
+        <span>xxx</span>
+      </span>
+    </Button>
+  `;
+
+
+exports[`converts basic button using shallow 1`] = `
+    <Button className="class">
+      <span>
+        <span>xxx</span>
+      </span>
+    </Button>
+  `;

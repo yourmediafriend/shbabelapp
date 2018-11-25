@@ -10,6 +10,7 @@ export const initialState = {
   fixedFooter: true,
   revealFooter: true,
   stickyHeader: true,
+  breakpoint: 's',
   iconNavConfig: {
     side: {},
     top: {}
@@ -62,7 +63,6 @@ export default function reducer(state=initialState, action = {}) {
     default: return state;
   }
 }
-
 
 export function setUpPage(appSetup) {
   return {
