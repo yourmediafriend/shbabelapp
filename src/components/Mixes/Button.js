@@ -19,4 +19,9 @@ Button.propTypes = {
   playing: PropTypes.bool,
 };
 
+Button.defaultProps = {
+  playing: false,
+};
+
+
 export default Button;

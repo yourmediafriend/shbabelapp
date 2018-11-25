@@ -53,7 +53,6 @@ describe('SET_CURRENT_BREAKPOINT', () => {
   });
 });
 
-
 // Test Actions
 
 const middlewares = []

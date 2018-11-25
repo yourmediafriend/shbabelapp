@@ -96,9 +96,9 @@ export default function reducer(state=initialState, action = {}) {
       return {
         ...state,
         progress: {
-                    ...state.progress,
-                    played: action.payload.playheadPositon
-                   }
+          ...state.progress,
+          played: action.payload.playheadPositon
+         }
       }
     case SET_SEEK:
       return {
@@ -203,8 +203,6 @@ export const setMuted = (muted) => {
   };
 }
 
-
-
 export const toggleShowRemaining = () => {
   return {
     type: SHOW_REMAINING,
@@ -275,19 +273,18 @@ export const setProgress = (value) => {
   };
 }
 
-export function closeQueuePopUp(data) {
+export function closeQueuePopUp() {
   return {
     type: CLOSE_QUEUE_POPUP,
-    data
   };
 }
 
-export function toggleQueuePopUp(data) {
+export function toggleQueuePopUp() {
   return {
     type: TOGGLE_QUEUE_POPUP,
-    data
   };
 }
+
 export function loadTrack(track) {
   return {
     type: LOAD_TRACK,
@@ -296,6 +293,7 @@ export function loadTrack(track) {
     }
   };
 }
+
 export function positionControls(position) {
   return {
     type: MOVE_CONTROLS,

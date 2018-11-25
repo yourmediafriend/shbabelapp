@@ -6,6 +6,7 @@ import configureStore from 'redux-mock-store'; // Smart components
 // Component to be tested
 import Button from '../Button';
 
+
 describe('<Button />', () => {
   describe('render()', () => {
     test('renders the component', () => {
