@@ -118,8 +118,11 @@ export default function reducer(state=initialState, action = {}) {
     case SET_PROGRESS:
       return {
         ...state,
-        progress: action.payload.progress,
-        played: action.payload.progress.played
+        played: action.payload.progress.played,
+        progress: {
+          ...state.progress,
+          played: action.payload.progress.played
+        },
       }
     case PLAY:
       return {

@@ -135,11 +135,12 @@ describe('setVolume()', () => {
     const store = mockStore(initialState);
 
     // Dispatch the action
-    store.dispatch(setVolume());
+    let value = 10;
+    store.dispatch(setVolume(value));
 
     // Test if your store dispatched the expected actions
     const actions = store.getActions();
-    const expectedPayload = { type: 'musicPlayer/SET_VOLUME', payload: {} };
+    const expectedPayload = { type: 'musicPlayer/SET_VOLUME', payload: {volume: value}};
 
     expect(actions).toEqual([expectedPayload]);
 
@@ -173,11 +174,12 @@ describe('setMuted()', () => {
     const store = mockStore(initialState);
 
     // Dispatch the action
-    store.dispatch(setMuted());
+    let value = true;
+    store.dispatch(setMuted(value));
 
     // Test if your store dispatched the expected actions
     const actions = store.getActions();
-    const expectedPayload = {type: 'musicPlayer/SET_MUTE', payload: {muted: undefined}};
+    const expectedPayload = {type: 'musicPlayer/SET_MUTE', payload: {muted: value}};
 
     expect(actions).toEqual([expectedPayload]);
 
@@ -210,12 +212,13 @@ describe('setPlaybackRate()', () => {
     const initialState = {};
     const store = mockStore(initialState);
 
+    let value = 10;
     // Dispatch the action
-    store.dispatch(setPlaybackRate());
+    store.dispatch(setPlaybackRate(value));
 
     // Test if your store dispatched the expected actions
     const actions = store.getActions();
-    const expectedPayload = { type: 'musicPlayer/SET_PLAYBACK_RATE', payload: {playbackRate: NaN} };
+    const expectedPayload = { type: 'musicPlayer/SET_PLAYBACK_RATE', payload: {playbackRate: parseFloat(value)} };
 
     expect(actions).toEqual([expectedPayload]);
 
@@ -229,13 +232,14 @@ describe('setSeek()', () => {
     const initialState = {};
     const store = mockStore(initialState);
 
+    let value = 10;
     // Dispatch the action
-    store.dispatch(setSeek());
+    store.dispatch(setSeek(value));
 
     // Test if your store dispatched the expected actions
     const actions = store.getActions();
 
-    const expectedPayload = {type: 'musicPlayer/SET_SEEK', payload: {seeking: NaN}};
+    const expectedPayload = {type: 'musicPlayer/SET_SEEK', payload: {seeking: value}};
 
     expect(actions).toEqual([expectedPayload]);
 
@@ -250,11 +254,12 @@ describe('setSeekTo()', () => {
     const store = mockStore(initialState);
 
     // Dispatch the action
-    store.dispatch(setSeekTo());
+    let value = 10;
+    store.dispatch(setSeekTo(value));
 
     // Test if your store dispatched the expected actions
     const actions = store.getActions();
-    const expectedPayload = { type: 'musicPlayer/SET_SEEK_TO', payload: {} };
+    const expectedPayload = { type: 'musicPlayer/SET_SEEK_TO', payload: {seekTo: value} };
 
     expect(actions).toEqual([expectedPayload]);
 
@@ -269,11 +274,12 @@ describe('setPlayheadPositon()', () => {
     const store = mockStore(initialState);
 
     // Dispatch the action
-    store.dispatch(setPlayheadPositon());
+    let value = true;
+    store.dispatch(setPlayheadPositon(value));
 
     // Test if your store dispatched the expected actions
     const actions = store.getActions();
-    const expectedPayload = { type: 'musicPlayer/SET_PLAYHEAD_POSITION', payload: {} };
+    const expectedPayload = { type: 'musicPlayer/SET_PLAYHEAD_POSITION', payload: {playheadPositon: value} };
 
     expect(actions).toEqual([expectedPayload]);
 
@@ -307,12 +313,12 @@ describe('setDuration()', () => {
     const store = mockStore(initialState);
 
     // Dispatch the action
-    store.dispatch(setDuration());
+    let value = 100;
+    store.dispatch(setDuration(value));
 
     // Test if your store dispatched the expected actions
     const actions = store.getActions();
-    const expectedPayload = { type: 'musicPlayer/SET_DURATION', payload: {} };
-
+    const expectedPayload = { type: 'musicPlayer/SET_DURATION', payload: {duration:value } };
     expect(actions).toEqual([expectedPayload]);
 
   });
@@ -364,11 +370,12 @@ describe('loadTrack()', () => {
     const store = mockStore(initialState);
 
     // Dispatch the action
-    store.dispatch(loadTrack());
+    let value = 'url';
+    store.dispatch(loadTrack(value));
 
     // Test if your store dispatched the expected actions
     const actions = store.getActions();
-    const expectedPayload = { type: 'musicPlayer/LOAD_TRACK', payload: { track : undefined } };
+    const expectedPayload = { type: 'musicPlayer/LOAD_TRACK', payload: { track : value } };
 
     expect(actions).toEqual([expectedPayload]);
 
@@ -383,11 +390,12 @@ describe('positionControls()', () => {
     const store = mockStore(initialState);
 
     // Dispatch the action
-    store.dispatch(positionControls());
+    let value = 100;
+    store.dispatch(positionControls(value));
 
     // Test if your store dispatched the expected actions
     const actions = store.getActions();
-    const expectedPayload = { type: 'musicPlayer/MOVE_CONTROLS', payload: {} };
+    const expectedPayload = { type: 'musicPlayer/MOVE_CONTROLS', payload: { position: value} };
 
     expect(actions).toEqual([expectedPayload]);
 
